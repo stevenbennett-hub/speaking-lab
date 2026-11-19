@@ -1,0 +1,11 @@
+[
+  { "id": "rhetoric", "title": "The Rhetoric Lab", "short": "Spot ethos, pathos, and logos in action, then write your own.", "textbook": [{ "chapter": 13, "section": "13.4" }], "icon": "Scale" },
+  { "id": "audience", "title": "The Audience Lab", "short": "Adapt one message to different listeners without stereotyping.", "textbook": [{ "chapter": 2, "section": "2.1–2.4" }, { "chapter": "A" }, { "chapter": "C" }], "icon": "Users" },
+  { "id": "opening", "title": "The Opening Line Lab", "short": "Compare introductions and build your own, element by element.", "textbook": [{ "chapter": 8, "section": "8.2–8.3" }], "icon": "Sparkles" },
+  { "id": "organization", "title": "The Organization Lab", "short": "Put scrambled speech sections into a logical order.", "textbook": [{ "chapter": 6, "section": "6.2–6.3" }, { "chapter": 13, "section": "13.5" }], "icon": "ListOrdered" },
+  { "id": "evidence", "title": "The Evidence Lab", "short": "Sort facts, opinions, unsupported claims, and shaky research.", "textbook": [{ "chapter": 5, "section": "5.3" }, { "chapter": 7, "section": "7.2" }, { "chapter": 12, "section": "12.1" }], "icon": "Search" },
+  { "id": "fallacy", "title": "The Fallacy Detective", "short": "Crack ten cases of faulty reasoning.", "textbook": [{ "chapter": 14, "section": "14.4" }], "icon": "Fingerprint" },
+  { "id": "delivery", "title": "The Delivery Lab", "short": "Speech timer, breathing and pacing, purposeful pauses, and self-assessment.", "textbook": [{ "chapter": 11, "section": "11.3–11.6" }], "icon": "Mic" },
+  { "id": "visual", "title": "The Visual Aid Lab", "short": "Make slide decisions with before-and-after examples.", "textbook": [{ "chapter": 9, "section": "9.2, 9.4" }], "icon": "Presentation" },
+  { "id": "anxiety", "title": "The Speech Anxiety Toolkit", "short": "Evidence-informed strategies to prepare, practice, and build confidence.", "textbook": [{ "chapter": 1, "section": "1.2" }, { "chapter": "B", "note": "Part 5" }], "icon": "HeartPulse" }
+]

@@ -1,0 +1,368 @@
+[
+  {
+    "id": "narrative",
+    "number": 1,
+    "category": "major",
+    "title": "Personal Narrative",
+    "tagline": "Tell a true story that means something.",
+    "generalPurpose": "entertain/inspire",
+    "summary": "You will communicate a meaningful personal experience using narrative structure, purposeful details, audience awareness, and expressive delivery.",
+    "whyItMatters": "Stories are how people make sense of experience. College essays, job interviews, and community meetings all reward people who can tell a short, true story that shows who they are and why something matters.",
+    "objectives": {
+      "hs": [
+        "Choose a personal experience with a clear point or significance.",
+        "Organize the story with a beginning, conflict, turning point, and resolution.",
+        "Use specific sensory details and vivid language.",
+        "Deliver with eye contact, vocal variety, and purposeful pauses."
+      ],
+      "college": [
+        "Select and frame a personal experience so its significance connects to a broader audience.",
+        "Structure narrative tension deliberately and justify structural choices.",
+        "Apply language standards for clarity and vividness from Chapter 10.",
+        "Evaluate how ethos is built through self-disclosure and audience adaptation."
+      ]
+    },
+    "learn": ["Narrative structure", "Choosing details with a purpose", "Vivid, concrete language", "Expressive, controlled delivery"],
+    "textbook": [{ "chapter": 1, "section": "1.5", "note": "Remember the power of story" }, { "chapter": 7, "section": "7.2", "note": "Narratives as supporting material" }, { "chapter": 10, "section": "10.2" }, { "chapter": 11, "section": "11.5" }],
+    "steps": [
+      { "title": "Find your story", "detail": "List moments that changed how you think, what you value, or what you do. Pick one you are comfortable sharing with this audience." },
+      { "title": "Name the significance", "detail": "Finish this sentence: \"This story matters because...\" Your answer becomes your central idea." },
+      { "title": "Map the arc", "detail": "Use the story arc builder to plan the beginning, conflict, turning point, and resolution." },
+      { "title": "Choose details", "detail": "Keep the details that help the audience see, hear, and feel the key moments. Cut the rest." },
+      { "title": "Frame it", "detail": "Write an opening that pulls listeners into the moment and a closing that returns to the significance." },
+      { "title": "Rehearse", "detail": "Practice out loud with a timer. Mark places to pause before the turning point and after the resolution." }
+    ],
+    "tools": [
+      { "id": "arc", "type": "arc", "title": "Story arc builder", "intro": "Fill each stage. The arc rises as your story takes shape." },
+      { "id": "senses", "type": "organizer", "title": "Sensory detail workshop", "intro": "Pick the single most important moment in your story and describe it through the senses. Keep only the details that serve the story.",
+        "fields": [
+          { "id": "moment", "label": "The key moment", "help": "One sentence: where are you and what is happening?" },
+          { "id": "see", "label": "What you saw", "frame": "I noticed..." },
+          { "id": "hear", "label": "What you heard", "frame": "The only sound was..." },
+          { "id": "feel", "label": "What you felt (touch or emotion)", "frame": "My hands..." },
+          { "id": "smell", "label": "Smell or taste (if relevant)" },
+          { "id": "vivid", "label": "Rewrite one plain sentence vividly", "help": "Example: \"I was nervous\" → \"My hands left damp prints on the audition sheet.\"", "rows": 3 }
+        ] },
+      { "id": "significance", "type": "organizer", "title": "Why this story matters", "fields": [
+          { "id": "changed", "label": "What changed in you because of this experience?", "frame": "Before this, I thought... Afterward, I realized..." },
+          { "id": "audience", "label": "Why might your audience care?", "frame": "Many people my age have experienced..." },
+          { "id": "central", "label": "Your central idea in one sentence", "frame": "This experience taught me that..." }
+        ] },
+      { "id": "rehearse", "type": "link", "title": "Rehearse with the timer", "intro": "Time your story and practice purposeful pauses.", "to": "/labs/delivery", "label": "Open the Delivery Lab" }
+    ],
+    "topicIdeas": ["A time you were wrong about someone", "The first time you did something hard", "A tradition in your family and what it means", "A moment you stood up for yourself or someone else", "An object that holds a story", "A failure that taught you something"],
+    "structures": [
+      { "name": "Classic arc", "outline": ["Opening: drop the audience into a moment", "Beginning: who, where, what was normal", "Conflict: what went wrong or what was at stake", "Turning point: the moment things changed", "Resolution: what happened next", "Significance: what it means now"] },
+      { "name": "Frame story", "outline": ["Present day: a scene that echoes the past", "Flashback: the original experience", "Turning point", "Return to the present", "Significance"] }
+    ],
+    "checklist": ["My story has one clear significance.", "I can tell it within the time limit.", "The conflict and turning point are easy to identify.", "I use at least three specific sensory details.", "I pause before the turning point.", "I make eye contact during the most important moment.", "My conclusion returns to the significance.", "I am comfortable sharing every detail with this audience."],
+    "reflection": ["Which moment in your story got the strongest reaction? Why?", "What detail would you add or cut next time?", "How did telling a personal story feel compared with other speeches?"],
+    "collegeExtension": "Write a one-page rationale analyzing your structural and language choices with reference to Chapters 7 and 10, and explain how you managed ethos through self-disclosure."
+  },
+  {
+    "id": "informative",
+    "number": 2,
+    "category": "major",
+    "title": "Informative Speech",
+    "tagline": "Teach your audience something worth knowing.",
+    "generalPurpose": "inform",
+    "summary": "You will develop an organized, evidence-based presentation that teaches an audience something meaningful, clearly and accurately.",
+    "whyItMatters": "Explaining complex ideas clearly is one of the most valued skills in school and work: training a coworker, presenting research, or helping your community understand a change.",
+    "objectives": {
+      "hs": [
+        "Choose a focused topic that is new or useful to the audience.",
+        "Write a clear specific purpose and central idea.",
+        "Organize two to five main points using an appropriate pattern.",
+        "Support ideas with credible, cited sources.",
+        "Design a presentation aid that improves understanding."
+      ],
+      "college": [
+        "Distinguish informative content from opinion and avoid disguised persuasion.",
+        "Select an organizational pattern suited to the type of informative speech (Section 12.2).",
+        "Integrate varied supporting materials with accurate oral and written citations (APA or as assigned).",
+        "Adapt technical content for a nonexpert audience using definitions, examples, and analogies.",
+        "Design presentation aids using principles from Section 9.4."
+      ]
+    },
+    "learn": ["Topic selection and narrowing", "Specific purpose and central idea", "Organizational patterns", "Research and oral citation", "Introductions and conclusions", "Presentation aids"],
+    "textbook": [{ "chapter": 4 }, { "chapter": 5 }, { "chapter": 6 }, { "chapter": 7 }, { "chapter": 8 }, { "chapter": 9 }, { "chapter": 12 }],
+    "steps": [
+      { "title": "Explore topics", "detail": "Use the topic explorer to connect your interests with what your audience would find new or useful." },
+      { "title": "Focus", "detail": "Write a specific purpose (\"To inform my audience...\") and a one-sentence central idea." },
+      { "title": "Research", "detail": "Find credible sources. Note author, date, and how you will cite each one out loud." },
+      { "title": "Organize", "detail": "Choose a pattern and draft two to five main points." },
+      { "title": "Develop", "detail": "Add supporting material, connectives, an introduction, and a conclusion." },
+      { "title": "Design aids", "detail": "Create one or more presentation aids that show what words alone cannot." },
+      { "title": "Rehearse", "detail": "Practice extemporaneously from speaking notes and time each run." }
+    ],
+    "tools": [
+      { "id": "explorer", "type": "organizer", "title": "Informative topic explorer", "intro": "Section 12.2 describes five types of informative speeches. Brainstorm one idea for each, then choose.",
+        "fields": [
+          { "id": "history", "label": "History: the development of something", "frame": "How ___ came to be" },
+          { "id": "biography", "label": "Biography: a person's life or contribution" },
+          { "id": "process", "label": "Process: how something works or is done" },
+          { "id": "concept", "label": "Ideas and concepts: an abstract idea explained" },
+          { "id": "categories", "label": "Categories or divisions: the types or parts of something" },
+          { "id": "choice", "label": "My choice and why it fits this audience", "rows": 3 }
+        ] },
+      { "id": "focus", "type": "link", "title": "Specific purpose and central idea builder", "intro": "The Speech Studio checks your statements against the textbook's guidelines as you type.", "to": "/studio", "label": "Build them in the Speech Studio" },
+      { "id": "patterns", "type": "patterns", "title": "Organizational pattern selector", "intro": "Answer a few questions about your purpose to see which patterns fit.", "patterns": ["chronological", "spatial", "topical", "cause-effect"] },
+      { "id": "evidence", "type": "organizer", "title": "Research and supporting evidence organizer", "fields": [
+          { "id": "s1", "label": "Source 1: who, what, when", "frame": "According to [author/organization], in [publication], [year]...", "rows": 3 },
+          { "id": "s1use", "label": "Which main point does Source 1 support, and with what type of support (fact, statistic, example, testimony)?" },
+          { "id": "s2", "label": "Source 2: who, what, when", "rows": 3 },
+          { "id": "s2use", "label": "Which main point does Source 2 support?" },
+          { "id": "gaps", "label": "Which main point still needs evidence?" }
+        ] },
+      { "id": "introconc", "type": "organizer", "title": "Introduction and conclusion builder", "intro": "Based on the five introduction elements and three conclusion elements in Chapter 8.",
+        "fields": [
+          { "id": "attention", "label": "Attention-getter", "help": "Story, startling fact, rhetorical question, quotation, reference to the audience, or current event." },
+          { "id": "credibility", "label": "Credibility", "frame": "I have researched... / I first became interested when..." },
+          { "id": "rapport", "label": "Rapport: why it matters to this audience", "frame": "This affects us because..." },
+          { "id": "thesis", "label": "Central idea" },
+          { "id": "preview", "label": "Preview of main points", "frame": "First,... Next,... Finally,..." },
+          { "id": "signal", "label": "Signal the end", "frame": "As we come to a close..." },
+          { "id": "restate", "label": "Restate main points" },
+          { "id": "clincher", "label": "Clincher", "help": "Refer back to the introduction, end with a quotation, a question, or a look toward the future." }
+        ] },
+      { "id": "visual", "type": "link", "title": "Visual aid design activity", "intro": "Practice slide decisions with before-and-after examples.", "to": "/labs/visual", "label": "Open the Visual Aid Lab" }
+    ],
+    "topicIdeas": ["How noise-canceling headphones work", "The history of a local landmark", "How food banks get their food", "The science of sleep cycles", "Types of renewable energy used in your state", "How credit scores are calculated", "The life of a scientist from your heritage community"],
+    "structures": [
+      { "name": "Topical", "outline": ["Introduction", "I. First category or aspect", "II. Second category or aspect", "III. Third category or aspect", "Conclusion"] },
+      { "name": "Chronological (process)", "outline": ["Introduction", "I. Step or stage one", "II. Step or stage two", "III. Step or stage three", "Conclusion"] },
+      { "name": "Cause/effect", "outline": ["Introduction", "I. Causes", "II. Effects", "Conclusion"] }
+    ],
+    "checklist": ["My specific purpose begins with \"To inform\" and contains one idea.", "My central idea is a complete declarative sentence.", "My speech has two to five main points in a clear pattern.", "I cite each source out loud with author or organization and date.", "I define terms my audience may not know.", "I use connectives between main points.", "My presentation aid is readable from the back of the room.", "I rehearsed from speaking notes, not a script, and I finish within time."],
+    "reflection": ["What will your audience remember most? Why?", "Which source was most useful, and how did you verify it?", "Which part of your organization would you change?"],
+    "collegeExtension": "Submit a full preparation outline with APA (or assigned style) references and a one-paragraph audience analysis explaining how you adapted technical content for nonexperts."
+  },
+  {
+    "id": "persuasive",
+    "number": 3,
+    "category": "major",
+    "title": "Persuasive Speech",
+    "tagline": "Make a researched case that moves people.",
+    "generalPurpose": "persuade",
+    "summary": "You will build a researched argument designed to influence an audience's beliefs, attitudes, or actions, ethically and with sound reasoning.",
+    "whyItMatters": "Civic life, advocacy, and leadership depend on people who can make honest, well-supported arguments and respond fairly to disagreement.",
+    "objectives": {
+      "hs": [
+        "Write a clear proposition (claim) for a short classroom speech.",
+        "Support the claim with credible evidence and explain the reasoning.",
+        "Use ethos, pathos, and logos appropriately.",
+        "Address a counterargument fairly.",
+        "End with a specific call to action."
+      ],
+      "college": [
+        "Identify the proposition type (fact, definition, value, policy) and choose a matching organizational pattern.",
+        "Analyze the audience's position on the persuasion continuum and set a realistic goal.",
+        "Evaluate the reasoning behind each main point and avoid logical fallacies.",
+        "Integrate and cite academic sources, including at least one that challenges your position.",
+        "Apply ethical standards for persuasion from Chapters 3 and 13."
+      ]
+    },
+    "learn": ["Propositions and claims", "Evidence and reasoning", "Ethos, pathos, logos", "Counterargument and rebuttal", "Monroe's Motivated Sequence", "Logical fallacies", "Calls to action"],
+    "textbook": [{ "chapter": 3 }, { "chapter": 7 }, { "chapter": 13 }, { "chapter": 14 }],
+    "steps": [
+      { "title": "Explore", "detail": "Pick an issue you care about where reasonable people disagree and your audience can actually do something." },
+      { "title": "Claim", "detail": "Write your proposition and identify its type." },
+      { "title": "Analyze the audience", "detail": "Where are they on the persuasion continuum? What would make them skeptical?" },
+      { "title": "Build the case", "detail": "Gather evidence for each reason and explain the reasoning that connects them." },
+      { "title": "Answer objections", "detail": "State the strongest counterargument fairly, then respond with evidence." },
+      { "title": "Organize", "detail": "Use problem-solution, problem-cause-solution, or Monroe's Motivated Sequence." },
+      { "title": "Check reasoning", "detail": "Test your own argument for fallacies." },
+      { "title": "Close", "detail": "Write a specific, doable call to action and rehearse." }
+    ],
+    "tools": [
+      { "id": "explore", "type": "organizer", "title": "Persuasive topic exploration", "fields": [
+          { "id": "issues", "label": "Three issues you care about", "rows": 3 },
+          { "id": "disagree", "label": "For your top choice: what do reasonable people disagree about?" },
+          { "id": "act", "label": "What could your audience actually do about it?" }
+        ] },
+      { "id": "claim", "type": "organizer", "title": "Claim and evidence builder", "intro": "Claim, evidence, reasoning: each reason needs all three.",
+        "fields": [
+          { "id": "proposition", "label": "Your proposition", "frame": "Our school should..." },
+          { "id": "type", "label": "Proposition type (fact, definition, value, or policy) and how you know" },
+          { "id": "r1", "label": "Reason 1 + evidence + source", "rows": 3 },
+          { "id": "r1why", "label": "How does that evidence prove Reason 1?", "frame": "This shows that... because..." },
+          { "id": "r2", "label": "Reason 2 + evidence + source", "rows": 3 },
+          { "id": "r2why", "label": "How does that evidence prove Reason 2?" }
+        ] },
+      { "id": "appeals", "type": "organizer", "title": "Ethos, pathos, and logos plan", "fields": [
+          { "id": "ethos", "label": "Ethos: why should this audience trust you on this topic?", "frame": "I have..." },
+          { "id": "pathos", "label": "Pathos: what does your audience care about that connects to this issue?" },
+          { "id": "logos", "label": "Logos: your strongest piece of evidence" },
+          { "id": "check", "label": "Ethics check: is your emotional appeal proportionate to the facts?" }
+        ] },
+      { "id": "rebuttal", "type": "organizer", "title": "Counterargument and rebuttal workshop", "fields": [
+          { "id": "counter", "label": "The strongest objection, stated fairly", "frame": "Some people argue that... and they have a point because..." },
+          { "id": "response", "label": "Your response", "frame": "However, the evidence shows..." },
+          { "id": "evidence", "label": "Evidence for your response" },
+          { "id": "concede", "label": "Is there anything you should concede?" }
+        ] },
+      { "id": "monroe", "type": "monroe", "title": "Monroe's Motivated Sequence organizer", "intro": "Five steps that follow the questions listeners ask as they are persuaded (Section 13.5)." },
+      { "id": "fallacy", "type": "link", "title": "Logical fallacy detective", "intro": "Test your eye for faulty reasoning before you test your own speech.", "to": "/labs/fallacy", "label": "Open the Fallacy Detective" },
+      { "id": "cta", "type": "organizer", "title": "Persuasive closing and call-to-action builder", "intro": "The more concrete the action, the better.",
+        "fields": [
+          { "id": "action", "label": "Exactly what should the audience do?", "frame": "This week, sign... / Visit... / Ask..." },
+          { "id": "when", "label": "When and how?" },
+          { "id": "barrier", "label": "What might stop them, and how will you make it easier?" },
+          { "id": "clincher", "label": "Final line", "help": "Return to your opening story, a vivid image of the future, or a challenge." }
+        ] }
+    ],
+    "topicIdeas": ["Our school should offer a financial literacy course", "Teens should register as organ donors when eligible", "Our city should expand late-night bus service", "Students should limit social media use before bed", "Our district should adopt later start times"],
+    "structures": [
+      { "name": "Problem-solution", "outline": ["Introduction with proposition", "I. The problem and its significance", "II. The solution and why it works", "Counterargument and response", "Conclusion with call to action"] },
+      { "name": "Problem-cause-solution", "outline": ["Introduction", "I. The problem", "II. Its causes", "III. A solution that addresses the causes", "Conclusion with call to action"] },
+      { "name": "Monroe's Motivated Sequence", "outline": ["Attention", "Need", "Satisfaction", "Visualization", "Action"] }
+    ],
+    "checklist": ["My proposition is clear and I know its type.", "Every reason has evidence and an explanation of the reasoning.", "I cite each source out loud.", "I address at least one counterargument fairly.", "I checked my argument for fallacies.", "My emotional appeals are honest and proportionate.", "My call to action is specific and doable.", "I finish within the time limit."],
+    "reflection": ["Which reason was most persuasive to your audience? How can you tell?", "How fairly did you represent the other side?", "What would you change about your call to action?"],
+    "collegeExtension": "Include an annotated reference list with at least one source that challenges your position, and a paragraph explaining your placement of the rebuttal using your audience analysis."
+  },
+  {
+    "id": "special-occasion",
+    "number": 4,
+    "category": "major",
+    "title": "Special Occasion Speech",
+    "tagline": "Find the right words for a moment that matters.",
+    "generalPurpose": "commemorate",
+    "summary": "You will explore communication for meaningful occasions such as celebrations, tributes, introductions, commemorations, and ceremonies.",
+    "whyItMatters": "Toasts, eulogies, award acceptances, and introductions are the speeches most people give most often in life. Doing them well honors people and brings communities together.",
+    "objectives": {
+      "hs": [
+        "Identify the type of occasion and what the audience expects.",
+        "Choose a tone and language that fit the occasion.",
+        "Organize a short tribute or ceremonial speech.",
+        "Deliver with sincerity and appropriate emotion."
+      ],
+      "college": [
+        "Distinguish special occasion speeches from research-based speeches (Section 15.1).",
+        "Use evocative language techniques from Section 15.3 and Chapter 10 with purpose.",
+        "Adapt to occasion, audience, and time constraints.",
+        "Analyze a published ceremonial speech and apply its strategies."
+      ]
+    },
+    "learn": ["Types of special occasion speeches", "Tone and evocative language", "Tribute structure", "Delivery and emotional control"],
+    "textbook": [{ "chapter": 15, "section": "15.1–15.4" }, { "chapter": 10 }],
+    "steps": [
+      { "title": "Choose the occasion", "detail": "Use the occasion selector to identify your speech type and what the audience expects." },
+      { "title": "Know your subject", "detail": "Gather true, specific details about the person, group, or event you are honoring." },
+      { "title": "Set the tone", "detail": "Decide on the balance of warmth, humor, and seriousness." },
+      { "title": "Organize", "detail": "Use the tribute organizer to build a short, focused structure." },
+      { "title": "Polish the language", "detail": "Add one or two memorable phrases using repetition, imagery, or parallelism." },
+      { "title": "Rehearse", "detail": "Practice until you can deliver emotional moments steadily." }
+    ],
+    "tools": [
+      { "id": "tone", "type": "tone", "title": "Occasion, audience, and tone workshop", "intro": "Choose an occasion to see typical expectations, a suggested tone, and language moves." },
+      { "id": "tribute", "type": "organizer", "title": "Tribute and commemorative speech organizer", "fields": [
+          { "id": "who", "label": "Who or what are you honoring?" },
+          { "id": "relationship", "label": "Your connection", "frame": "I have known... since..." },
+          { "id": "quality1", "label": "Quality 1 + a specific story that shows it", "rows": 3 },
+          { "id": "quality2", "label": "Quality 2 + a specific story that shows it", "rows": 3 },
+          { "id": "meaning", "label": "What this person or event means to the audience" },
+          { "id": "close", "label": "Closing: a wish, a toast, a call to remember", "frame": "Please join me in..." }
+        ] },
+      { "id": "language", "type": "organizer", "title": "Tone and language workshop", "intro": "Try two language techniques from Chapter 10.", "fields": [
+          { "id": "plain", "label": "A plain sentence from your draft" },
+          { "id": "parallel", "label": "Rewrite with parallelism or repetition", "help": "Example: \"She taught us to listen, to question, and to care.\"" },
+          { "id": "image", "label": "Rewrite with an image or metaphor" }
+        ] },
+      { "id": "delivery", "type": "organizer", "title": "Delivery and emotional impact practice", "fields": [
+          { "id": "hard", "label": "Which line will be hardest to say steadily?" },
+          { "id": "plan", "label": "Your plan for that moment", "help": "Slow down, pause, breathe, look at a friendly face." },
+          { "id": "length", "label": "How long is your speech? Does it respect the event's schedule?" }
+        ] },
+      { "id": "examples", "type": "link", "title": "Example speech analysis", "intro": "The Gettysburg Address was delivered at a cemetery dedication. Analyze how it fits the occasion.", "to": "/great-speeches/gettysburg", "label": "Analyze the Gettysburg Address" }
+    ],
+    "topicIdeas": ["A toast to a team or club at its end-of-year banquet", "A tribute to a teacher, coach, or mentor", "Introducing a guest speaker", "Accepting an award (real or imagined)", "Dedicating a mural, garden, or memorial", "A farewell to a retiring staff member"],
+    "structures": [
+      { "name": "Tribute", "outline": ["Opening that names the subject and occasion", "Your connection", "Quality 1 with a story", "Quality 2 with a story", "Meaning for the audience", "Closing wish or toast"] },
+      { "name": "Speech of introduction", "outline": ["Welcome and occasion", "Why this speaker matters to this audience", "Brief credentials", "Speaker's topic", "Name and welcome"] }
+    ],
+    "checklist": ["I know which type of special occasion speech I am giving.", "My tone fits the occasion and audience.", "I use specific, true details.", "I use at least one memorable language technique.", "My speech respects the time available.", "I can deliver the emotional moments steadily."],
+    "reflection": ["How did your tone choices affect the audience?", "Which phrase do you think people remembered?", "What did you learn about speaking in emotional moments?"],
+    "collegeExtension": "Analyze one ceremonial speech in the Great Speeches gallery using Section 15.3. Write a paragraph comparing its language strategies to your own."
+  },
+  {
+    "id": "introductory", "number": null, "category": "optional",
+    "title": "Introductory Speech", "tagline": "Introduce yourself or a classmate.", "generalPurpose": "entertain/inspire",
+    "summary": "A short first speech that builds comfort with the audience while practicing basic structure.",
+    "whyItMatters": "First impressions in class, clubs, and interviews often start with a short self-introduction.",
+    "objectives": { "hs": ["Organize a short speech with an introduction, body, and conclusion.", "Share specific details instead of general statements.", "Practice eye contact and a steady pace."], "college": ["Apply the five elements of an introduction to a short speech.", "Use one artifact or story to create a unifying theme."] },
+    "learn": ["Basic speech structure", "Specific details", "First-speech confidence"],
+    "textbook": [{ "chapter": 1, "section": "1.5" }, { "chapter": 8 }],
+    "steps": [{ "title": "Choose a theme", "detail": "Pick an object, place, or word that represents you." }, { "title": "Select three details", "detail": "Each should connect to the theme." }, { "title": "Frame and rehearse", "detail": "Open with the theme, close by returning to it." }],
+    "tools": [{ "id": "intro", "type": "organizer", "title": "Introductory speech planner", "fields": [{ "id": "theme", "label": "Theme or artifact", "frame": "If you want to understand me, look at my..." }, { "id": "d1", "label": "Detail 1" }, { "id": "d2", "label": "Detail 2" }, { "id": "d3", "label": "Detail 3" }, { "id": "close", "label": "Closing line that returns to the theme" }] }],
+    "topicIdeas": ["An object that represents you", "Three places that shaped you", "Your name and its story"],
+    "structures": [{ "name": "Artifact theme", "outline": ["Show or describe the artifact", "Three connections to your life", "Return to the artifact"] }],
+    "checklist": ["I have one unifying theme.", "I share specific details.", "I finish within time."],
+    "reflection": ["How did it feel to speak to this audience for the first time?", "What is one delivery goal for your next speech?"],
+    "collegeExtension": "Write a brief reflection connecting your first-speech experience to the anxiety strategies in Section 1.2."
+  },
+  {
+    "id": "demonstration", "number": null, "category": "optional",
+    "title": "Demonstration Speech", "tagline": "Show how it is done.", "generalPurpose": "inform",
+    "summary": "An informative process speech in which you demonstrate the steps while explaining them.",
+    "whyItMatters": "Training others, teaching skills, and presenting products all rely on clear demonstrations.",
+    "objectives": { "hs": ["Break a process into clear, ordered steps.", "Use objects or visuals effectively.", "Explain while demonstrating."], "college": ["Apply chronological organization and connectives to a process.", "Plan presentation aids that remain visible and safe."] },
+    "learn": ["Chronological organization", "Objects and models as aids", "Narrating while doing"],
+    "textbook": [{ "chapter": 6, "section": "6.2" }, { "chapter": 9, "section": "9.3" }, { "chapter": 12, "section": "12.2" }],
+    "steps": [{ "title": "Choose a process", "detail": "Pick something you can show in the time limit." }, { "title": "List steps", "detail": "Group small steps into three to five stages." }, { "title": "Plan materials", "detail": "Make sure everyone can see." }, { "title": "Rehearse with materials", "detail": "Practice speaking while your hands are busy." }],
+    "tools": [{ "id": "steps", "type": "organizer", "title": "Process step planner", "fields": [{ "id": "process", "label": "Process" }, { "id": "materials", "label": "Materials needed" }, { "id": "stage1", "label": "Stage 1" }, { "id": "stage2", "label": "Stage 2" }, { "id": "stage3", "label": "Stage 3" }, { "id": "visibility", "label": "How will the back row see it?" }] }],
+    "topicIdeas": ["How to tie a bowline knot", "How to make a budget in a spreadsheet", "How to do CPR hand placement (with a certified source)"],
+    "structures": [{ "name": "Chronological", "outline": ["Introduction and materials", "Stage 1", "Stage 2", "Stage 3", "Conclusion with recap"] }],
+    "checklist": ["Steps are grouped into stages.", "Materials are visible.", "I explain while demonstrating."],
+    "reflection": ["Could your audience repeat the process? How do you know?"],
+    "collegeExtension": "Add a handout or slide that follows the design principles in Section 9.4 and explain your design choices."
+  },
+  {
+    "id": "impromptu", "number": null, "category": "optional",
+    "title": "Impromptu Speech", "tagline": "Think fast, speak clearly.", "generalPurpose": "varies",
+    "summary": "A short speech with little or no preparation time, built from a quick structure.",
+    "whyItMatters": "Interviews, meetings, and class discussions often require organized answers on the spot.",
+    "objectives": { "hs": ["Organize a response quickly using a simple structure.", "Stay calm and finish with a clear point."], "college": ["Apply the strengths and limits of impromptu delivery described in Section 11.2.", "Use a consistent structure across varied prompts."] },
+    "learn": ["Quick structure", "Composure under time pressure"],
+    "textbook": [{ "chapter": 11, "section": "11.2" }],
+    "steps": [{ "title": "State your point", "detail": "Answer the prompt in one sentence." }, { "title": "Give a reason", "detail": "Why do you think so?" }, { "title": "Give an example", "detail": "A story, fact, or experience." }, { "title": "Restate the point", "detail": "Close the loop." }],
+    "tools": [{ "id": "prep", "type": "organizer", "title": "Point-reason-example-point planner", "intro": "A widely used quick structure; your instructor may teach another.", "fields": [{ "id": "prompt", "label": "Prompt" }, { "id": "point", "label": "Point" }, { "id": "reason", "label": "Reason" }, { "id": "example", "label": "Example" }, { "id": "restate", "label": "Restated point" }] }, { "id": "timer", "type": "link", "title": "Practice with the timer", "to": "/labs/delivery", "label": "Open the timer" }],
+    "topicIdeas": ["What skill should every graduate have?", "Describe a place you would show a visitor.", "What makes a good leader?"],
+    "structures": [{ "name": "Point-reason-example-point", "outline": ["Point", "Reason", "Example", "Point"] }],
+    "checklist": ["I stated a clear point.", "I supported it with an example.", "I ended clearly."],
+    "reflection": ["What helped you organize your thoughts quickly?"],
+    "collegeExtension": "Practice five prompts and reflect on which structure choices worked under pressure."
+  },
+  {
+    "id": "group", "number": null, "category": "optional",
+    "title": "Group Presentation", "tagline": "Many voices, one message.", "generalPurpose": "inform",
+    "summary": "A team presentation that requires shared planning, clear roles, and smooth handoffs.",
+    "whyItMatters": "Most workplaces present as teams. Coordination is a communication skill.",
+    "objectives": { "hs": ["Divide responsibilities fairly.", "Create one unified introduction and conclusion.", "Plan transitions between speakers."], "college": ["Apply the guidance for group informative speeches in Section 12.5.", "Evaluate group process as well as product."] },
+    "learn": ["Roles and planning", "Unified structure", "Speaker handoffs"],
+    "textbook": [{ "chapter": 12, "section": "12.5" }],
+    "steps": [{ "title": "Agree on purpose", "detail": "Write one shared specific purpose and central idea." }, { "title": "Assign roles", "detail": "Divide research, speaking, and design." }, { "title": "Plan handoffs", "detail": "Write a connective for each transition between speakers." }, { "title": "Rehearse together", "detail": "Practice at least once as a full group, timed." }],
+    "tools": [{ "id": "roles", "type": "organizer", "title": "Group planning board", "fields": [{ "id": "purpose", "label": "Shared specific purpose" }, { "id": "members", "label": "Members and roles", "rows": 4 }, { "id": "handoffs", "label": "Handoff lines", "rows": 4 }, { "id": "deadline", "label": "Rehearsal date and time" }] }],
+    "topicIdeas": ["A local issue explained from several angles", "A history told by era", "A product pitch"],
+    "structures": [{ "name": "Shared topical", "outline": ["Group introduction", "Speaker 1: main point", "Speaker 2: main point", "Speaker 3: main point", "Group conclusion"] }],
+    "checklist": ["We have one central idea.", "Each handoff is planned.", "We rehearsed together."],
+    "reflection": ["What did your group do well together? What would you change?"],
+    "collegeExtension": "Write an individual reflection on group process and your specific contribution."
+  },
+  {
+    "id": "capstone", "number": null, "category": "optional",
+    "title": "College Public Speaking Capstone", "tagline": "Bring everything together.", "generalPurpose": "varies",
+    "summary": "A culminating speech that demonstrates research, organization, rhetorical analysis, ethical persuasion, and polished delivery.",
+    "whyItMatters": "A capstone shows growth across the course and prepares you for academic and professional presentations.",
+    "objectives": { "hs": ["Combine skills from earlier speeches in one polished presentation."], "college": ["Conduct and cite academic research in the assigned style.", "Justify organizational and rhetorical choices in a written rationale.", "Adapt to a defined audience using formal audience analysis.", "Deliver extemporaneously with purposeful aids.", "Reflect critically on growth using earlier self-assessments."] },
+    "learn": ["Integration of all course skills", "Written rhetorical rationale", "Self-evaluation over time"],
+    "textbook": [{ "chapter": 2 }, { "chapter": 5 }, { "chapter": 6 }, { "chapter": 13 }, { "chapter": 14 }, { "chapter": "E" }],
+    "steps": [{ "title": "Propose", "detail": "Submit a topic proposal with audience analysis." }, { "title": "Research", "detail": "Build an annotated bibliography." }, { "title": "Outline", "detail": "Write a full preparation outline with references." }, { "title": "Rationale", "detail": "Explain your rhetorical choices." }, { "title": "Deliver and reflect", "detail": "Compare your self-assessments across the course." }],
+    "tools": [{ "id": "rationale", "type": "organizer", "title": "Rhetorical rationale planner", "fields": [{ "id": "audience", "label": "Audience analysis summary", "rows": 4 }, { "id": "structure", "label": "Why this organization?", "rows": 3 }, { "id": "appeals", "label": "How you balanced ethos, pathos, and logos", "rows": 3 }, { "id": "growth", "label": "How this speech shows growth since your first", "rows": 3 }] }, { "id": "growth", "type": "link", "title": "Compare your self-assessments", "to": "/my-growth", "label": "Open My Growth" }],
+    "topicIdeas": ["A policy proposal for your community", "A research presentation in your intended major", "An analysis of a public controversy"],
+    "structures": [{ "name": "Instructor-defined", "outline": ["Follow your instructor's capstone guidelines."] }],
+    "checklist": ["My references follow the assigned style.", "My rationale explains my choices.", "I compared early and recent self-assessments."],
+    "reflection": ["How have you grown as a speaker this term? Use evidence from your self-assessments."],
+    "collegeExtension": "The capstone is itself the college-level extension."
+  }
+]

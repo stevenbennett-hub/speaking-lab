@@ -1,0 +1,20 @@
+{
+  "categories": ["Verifiable fact", "Opinion", "Unsupported claim", "Credible evidence", "Questionable research"],
+  "definitions": {
+    "Verifiable fact": "A statement that can be checked and confirmed, often common knowledge.",
+    "Opinion": "A judgment or preference. It can be reasonable but cannot be proven true or false.",
+    "Unsupported claim": "An assertion presented as true with no evidence offered.",
+    "Credible evidence": "Information from an identified, qualified source that you can trace and check.",
+    "Questionable research": "Research exists, but something weakens it: tiny sample, conflict of interest, misrepresentation, or no way to trace it."
+  },
+  "items": [
+    { "id": "e1", "text": "\"Pizza is the best school lunch option.\"", "answer": "Opinion", "feedback": "This is a preference. You could support it with survey data about what students choose, but the statement itself is a judgment." },
+    { "id": "e2", "text": "\"At sea level, water boils at 100 degrees Celsius.\"", "answer": "Verifiable fact", "feedback": "Widely documented and easy to confirm, so it is common knowledge and usually does not need a citation." },
+    { "id": "e3", "text": "\"Everyone knows phones are destroying our attention spans.\"", "answer": "Unsupported claim", "feedback": "\"Everyone knows\" replaces evidence. The topic is researchable, but this sentence offers no source." },
+    { "id": "e4", "text": "\"A peer-reviewed study of about 2,000 students, published in a university journal, found this pattern, and two later studies by other researchers found similar results.\"", "answer": "Credible evidence", "feedback": "Peer review, a substantial sample, and independent replication make this strong. In your speech, name the journal and year." },
+    { "id": "e5", "text": "\"An energy drink company's website reports that 9 out of 10 customers who took its online survey felt more focused.\"", "answer": "Questionable research", "feedback": "The company profits from the result, and people who chose to answer may not represent everyone. Look for independent research." },
+    { "id": "e6", "text": "\"According to our county's published crash report for last year, this intersection had more reported crashes than any other in the county.\"", "answer": "Credible evidence", "feedback": "An identified public source you can trace and check. Go upstream to the report itself if you can." },
+    { "id": "e7", "text": "\"A study of 15 volunteers over one weekend proves that a new study app doubles test scores.\"", "answer": "Questionable research", "feedback": "Fifteen people over one weekend is a tiny, short study, and \"proves\" overstates any single study. Check who funded it." },
+    { "id": "e8", "text": "\"The new library hours are inconvenient for students who work after school.\"", "answer": "Opinion", "feedback": "A reasonable judgment, but still a judgment. You could strengthen it with a survey of working students." }
+  ]
+}

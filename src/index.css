@@ -1,0 +1,56 @@
+@import '@fontsource-variable/bricolage-grotesque/wdth.css';
+@import '@fontsource/atkinson-hyperlegible/400.css';
+@import '@fontsource/atkinson-hyperlegible/700.css';
+@import '@fontsource/atkinson-hyperlegible/400-italic.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; scroll-padding-top: 5rem; }
+  body { @apply bg-paper text-ink font-body antialiased; font-size: 1.0625rem; line-height: 1.6; }
+  h1, h2, h3, h4 { @apply font-display text-ink; font-variation-settings: 'wdth' 92; line-height: 1.1; letter-spacing: -0.01em; }
+  h1 { font-weight: 750; }
+  h2 { font-weight: 700; }
+  h3 { font-weight: 650; }
+  a { @apply underline decoration-1 underline-offset-2; }
+  :focus-visible { outline: 3px solid #F2B33D; outline-offset: 2px; box-shadow: 0 0 0 5px #1B1F3B; border-radius: 4px; }
+  ::selection { background: #FCEFD2; color: #1B1F3B; }
+  textarea, input[type='text'], input[type='url'], input[type='date'], input[type='number'], select {
+    @apply w-full rounded-md border border-ink/25 bg-white px-3 py-2 text-ink placeholder:text-ink/70;
+  }
+  textarea:focus, input:focus, select:focus { @apply border-ink; }
+  label { @apply font-bold; }
+}
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 font-bold no-underline transition-colors disabled:cursor-not-allowed disabled:opacity-50; min-height: 44px; }
+  .btn-primary { @apply btn bg-ink text-white hover:bg-ink-3; }
+  .btn-stage { @apply btn bg-stage text-ink hover:bg-[#f6c464]; }
+  .btn-secondary { @apply btn border-2 border-ink bg-transparent text-ink hover:bg-ink hover:text-white; }
+  .btn-quiet { @apply btn text-ink underline hover:bg-mist; }
+  .panel { @apply rounded-lg border border-mist bg-white p-5 sm:p-6; }
+  .prose-body p { @apply mb-4 max-w-prose; }
+  .chip { @apply inline-flex items-center rounded-full border border-ink/20 px-3 py-1 text-sm; }
+  .wrap { @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+/* The one orchestrated moment: the hero headline swells like a voice waveform. */
+@keyframes voice {
+  0%, 100% { font-variation-settings: 'wght' 500, 'wdth' 85; }
+  50% { font-variation-settings: 'wght' 800, 'wdth' 100; }
+}
+.voice-letter { display: inline-block; font-variation-settings: 'wght' 800, 'wdth' 100; animation: voice 900ms ease-in-out both; }
+
+@keyframes breathe { 0%, 100% { transform: scale(0.55); } 50% { transform: scale(1); } }
+
+@media print {
+  header, footer, nav, .no-print { display: none !important; }
+  body { background: white; }
+  .panel { border: 1px solid #999; }
+}

@@ -1,0 +1,59 @@
+{
+  "_readme": "SAMPLE rubrics written for this site. They are the instructor's criteria, kept separate from textbook content. Weights are percentages and should total 100. Students use these for SELF-assessment only; nothing is submitted or graded by this site.",
+  "isSample": true,
+  "levels": ["Beginning", "Developing", "Proficient", "Exemplary"],
+  "rubrics": [
+    { "speechId": "narrative", "criteria": [
+      { "name": "Story structure", "weight": 25, "description": "Clear beginning, conflict, turning point, and resolution." },
+      { "name": "Significance", "weight": 20, "description": "The meaning of the story is clear and connects to the audience." },
+      { "name": "Detail and language", "weight": 20, "description": "Specific, vivid details chosen with purpose." },
+      { "name": "Vocal delivery", "weight": 15, "description": "Variety in pitch and pace; purposeful pauses; few vocalized fillers." },
+      { "name": "Physical delivery", "weight": 10, "description": "Eye contact, posture, and natural gestures." },
+      { "name": "Time", "weight": 10, "description": "Within the assigned time range." } ] },
+    { "speechId": "informative", "criteria": [
+      { "name": "Purpose and central idea", "weight": 10, "description": "Specific purpose and central idea are clear and appropriately focused." },
+      { "name": "Organization", "weight": 20, "description": "Appropriate pattern, clear main points, effective connectives." },
+      { "name": "Research and citation", "weight": 20, "description": "Credible sources, accurately represented and cited out loud." },
+      { "name": "Introduction and conclusion", "weight": 15, "description": "All five introduction elements and three conclusion elements." },
+      { "name": "Presentation aid", "weight": 10, "description": "Clear, readable, and improves understanding." },
+      { "name": "Delivery", "weight": 20, "description": "Extemporaneous, conversational, with eye contact and vocal variety." },
+      { "name": "Time", "weight": 5, "description": "Within the assigned time range." } ] },
+    { "speechId": "persuasive", "criteria": [
+      { "name": "Proposition and audience adaptation", "weight": 15, "description": "Clear claim suited to where the audience stands." },
+      { "name": "Evidence and reasoning", "weight": 25, "description": "Credible evidence with explained reasoning; free of fallacies." },
+      { "name": "Counterargument", "weight": 10, "description": "Opposing view stated fairly and answered." },
+      { "name": "Organization", "weight": 15, "description": "Persuasive pattern fits the proposition." },
+      { "name": "Appeals and ethics", "weight": 10, "description": "Balanced, honest use of ethos, pathos, and logos." },
+      { "name": "Call to action", "weight": 5, "description": "Specific and doable." },
+      { "name": "Delivery", "weight": 15, "description": "Confident, conversational, and engaging." },
+      { "name": "Time", "weight": 5, "description": "Within the assigned time range." } ] },
+    { "speechId": "special-occasion", "criteria": [
+      { "name": "Fit to occasion", "weight": 25, "description": "Content and length match the occasion and audience expectations." },
+      { "name": "Tone", "weight": 20, "description": "Tone is appropriate and consistent." },
+      { "name": "Language", "weight": 20, "description": "At least one memorable, purposeful language technique." },
+      { "name": "Specific details", "weight": 15, "description": "True, specific details about the subject." },
+      { "name": "Delivery", "weight": 20, "description": "Sincere, steady, and well-paced." } ] },
+    { "speechId": "introductory", "criteria": [
+      { "name": "Structure", "weight": 40, "description": "Introduction, body, and conclusion with a unifying theme." },
+      { "name": "Details", "weight": 30, "description": "Specific rather than general." },
+      { "name": "Delivery", "weight": 30, "description": "Eye contact and steady pace." } ] },
+    { "speechId": "demonstration", "criteria": [
+      { "name": "Clarity of steps", "weight": 35, "description": "Logical stages the audience could repeat." },
+      { "name": "Use of materials", "weight": 30, "description": "Visible, safe, and well-handled." },
+      { "name": "Delivery", "weight": 35, "description": "Explains clearly while demonstrating." } ] },
+    { "speechId": "impromptu", "criteria": [
+      { "name": "Organization", "weight": 50, "description": "Clear point, support, and close." },
+      { "name": "Composure", "weight": 50, "description": "Steady delivery under time pressure." } ] },
+    { "speechId": "group", "criteria": [
+      { "name": "Unity", "weight": 30, "description": "One central idea and consistent design." },
+      { "name": "Transitions", "weight": 20, "description": "Planned, smooth handoffs." },
+      { "name": "Content", "weight": 30, "description": "Accurate, well-supported information." },
+      { "name": "Delivery", "weight": 20, "description": "Each member speaks clearly and engages the audience." } ] },
+    { "speechId": "capstone", "criteria": [
+      { "name": "Research", "weight": 25, "description": "Academic sources accurately cited in the assigned style." },
+      { "name": "Organization and reasoning", "weight": 25, "description": "Clear structure and sound reasoning." },
+      { "name": "Rhetorical rationale", "weight": 20, "description": "Choices are explained with course concepts." },
+      { "name": "Delivery and aids", "weight": 20, "description": "Polished extemporaneous delivery with purposeful aids." },
+      { "name": "Reflection", "weight": 10, "description": "Evidence-based reflection on growth." } ] }
+  ]
+}

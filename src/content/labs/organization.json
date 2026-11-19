@@ -1,0 +1,30 @@
+[
+  { "id": "hurricane", "title": "How a hurricane forms", "pattern": "Chronological",
+    "why": "A natural process unfolds in time, so chronological order lets listeners follow cause to result.",
+    "pieces": [
+      "Attention: \"Every hurricane begins as a patch of warm, ordinary-looking ocean.\"",
+      "Preview: \"Let's follow a storm from warm water to a named hurricane in three stages.\"",
+      "I. Warm ocean water evaporates and rises, carrying heat and moisture into the air.",
+      "II. Thunderstorms cluster, and Earth's rotation starts the air spinning.",
+      "III. When sustained winds reach 74 miles per hour, the storm is classified as a hurricane.",
+      "Clincher: \"The next time you see a forecast cone, you'll know the journey that storm has already taken.\""
+    ] },
+  { "id": "cafeteria", "title": "Cutting food waste in our cafeteria", "pattern": "Problem-cause-solution",
+    "why": "The solution should address the cause, so the cause must come before it.",
+    "pieces": [
+      "Attention: a photo description of one day's untouched lunches in the trash.",
+      "I. Problem: our cafeteria throws away a large share of the food it serves each day.",
+      "II. Cause: students must take every item on the tray, even items they will not eat.",
+      "III. Solution: an \"offer versus serve\" option and a share table for unopened items.",
+      "Call to action: \"Sign the petition at lunch this week to bring this to the student council.\""
+    ] },
+  { "id": "blooddrive", "title": "Join the school blood drive", "pattern": "Monroe's Motivated Sequence",
+    "why": "Monroe's sequence follows the questions listeners ask as they are persuaded: Why listen? What is wrong? What fixes it? What will it look like? What do I do?",
+    "pieces": [
+      "Attention: the story of a classmate who needed a transfusion after an accident.",
+      "Need: regional hospitals regularly report blood shortages, especially in winter and summer.",
+      "Satisfaction: one donation can be separated into components that help more than one patient.",
+      "Visualization: picture next month: our donations on the shelf when someone in our town needs them.",
+      "Action: \"Sign up at the library table by Friday. If you're under the age limit, recruit an adult.\""
+    ] }
+]

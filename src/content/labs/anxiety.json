@@ -1,0 +1,32 @@
+{
+  "thoughts": [
+    { "id": "t1", "prompt": "\"I messed up my last presentation, so I'm just bad at public speaking.\"",
+      "options": [
+        { "text": "All-or-nothing thinking", "feedback": "Close, but the key move is turning one event into a permanent rule." },
+        { "text": "Overgeneralization", "correct": true, "feedback": "One experience becomes \"always.\" A balanced thought: \"That speech was hard. I know what I'd practice differently.\"" },
+        { "text": "Fortune telling", "feedback": "Fortune telling predicts the future. This draws a conclusion from the past." } ] },
+    { "id": "t2", "prompt": "\"Even if I practice, it's going to go badly.\"",
+      "options": [
+        { "text": "Fortune telling", "correct": true, "feedback": "It predicts failure regardless of effort. Balanced: \"Practice usually makes it go better than I expect.\"" },
+        { "text": "Overgeneralization", "feedback": "This is about the future, not about a past event." },
+        { "text": "All-or-nothing thinking", "feedback": "Not quite; the thought predicts an outcome rather than judging perfection." } ] },
+    { "id": "t3", "prompt": "\"If I say 'um' even once, everyone will think I'm unprepared.\"",
+      "options": [
+        { "text": "All-or-nothing thinking", "correct": true, "feedback": "One small slip becomes total failure. Most listeners barely notice an occasional filler." },
+        { "text": "Fortune telling", "feedback": "It does predict a reaction, but the core error is the perfection standard." },
+        { "text": "Overgeneralization", "feedback": "It isn't drawing a rule from a past event." } ] },
+    { "id": "t4", "prompt": "\"I'm just not a natural speaker. Some people have it and I don't.\"",
+      "options": [
+        { "text": "A fixed view of skill", "correct": true, "feedback": "The textbook cites Carol Dweck's research showing skills are malleable. Difficulty is a sign you are learning, not a verdict." },
+        { "text": "Fortune telling", "feedback": "It's less a prediction than a belief that ability can't change." },
+        { "text": "Healthy self-awareness", "feedback": "Knowing your strengths helps, but this thought closes off growth." } ] }
+  ],
+  "strategies": [
+    { "kind": "Mental preparation", "items": ["Name the specific worry, then write a realistic counter-thought.", "Visualize the speech going reasonably well, including recovering from a small slip.", "Remember that your audience is made of peers who want you to succeed."] },
+    { "kind": "Physical preparation", "items": ["Sleep and eat normally the day before.", "Use slow breathing to steady your voice (try the breathing pacer in the Delivery Lab).", "Release tension before you speak: roll your shoulders, unclench your hands."] },
+    { "kind": "Contextual preparation", "items": ["Visit or picture the room. Where will you stand? Where are the notes?", "Check technology ahead of time.", "Know when you speak and how long you have."] },
+    { "kind": "Speech preparation", "items": ["Practice out loud, standing up, at least three times.", "Practice in front of a friend or family member.", "Know your first 30 seconds especially well."] }
+  ],
+  "checklist": ["I have practiced out loud at least three times.", "My notes are numbered and easy to read.", "I know my opening lines well.", "I checked any technology.", "I have water nearby.", "I have a plan for losing my place: pause, breathe, look at my notes.", "I will take two slow breaths before I begin."],
+  "support": "Nervousness before speaking is normal. If anxiety feels overwhelming or affects your daily life, talk with your teacher, school counselor, or another trusted adult. Your instructor may also offer accommodations."
+}

@@ -1,0 +1,16 @@
+{
+  "_readme": "Edit this file to change announcements and what appears on the home page. See INSTRUCTOR_GUIDE.md.",
+  "courseName": "Speech and Public Speaking",
+  "instructorName": "",
+  "schoolName": "",
+  "announcements": [
+    {
+      "id": "welcome",
+      "date": "2026-08-20",
+      "title": "Welcome to The Speaking Lab",
+      "body": "Choose your pathway at the top of the page, then start with the Personal Narrative speech. Your planning work saves in this browser only, so export a backup from My Growth if you switch devices."
+    }
+  ],
+  "featuredLabs": ["rhetoric", "fallacy", "delivery"],
+  "featuredGreatSpeeches": ["gettysburg", "truth-akron", "jordan-1976"]
+}

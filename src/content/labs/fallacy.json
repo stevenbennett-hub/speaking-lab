@@ -1,0 +1,62 @@
+[
+  { "id": "f1", "prompt": "\"I met two students from that school at the tournament and both were rude. Everyone there must be rude.\"",
+    "options": [
+      { "text": "Hasty generalization", "correct": true, "feedback": "Two people cannot represent a whole school. The conclusion is far bigger than the evidence." },
+      { "text": "Ad hominem", "feedback": "Ad hominem attacks a person instead of an argument. Here the problem is a broad conclusion from tiny evidence." },
+      { "text": "Slippery slope", "feedback": "A slippery slope predicts a chain of consequences. This draws a conclusion from too few examples." },
+      { "text": "Red herring", "feedback": "Nothing is distracting from the issue; the reasoning itself is thin." } ] },
+  { "id": "f2", "prompt": "\"I wore my lucky socks and we won. I'm wearing them every game.\"",
+    "options": [
+      { "text": "False cause (post hoc)", "correct": true, "feedback": "One event followed another, but that does not mean it caused it. The textbook calls this post hoc ergo propter hoc: \"after this, therefore because of this.\"" },
+      { "text": "Appeal to tradition", "feedback": "Tradition argues something is right because it's always been done. This is about cause." },
+      { "text": "False dilemma", "feedback": "No choices are being limited here." },
+      { "text": "Hasty generalization", "feedback": "Close, since it rests on one instance, but the core error is assuming cause from sequence." } ] },
+  { "id": "f3", "prompt": "\"If we let students redo one test, they'll expect to redo everything, then no deadlines will matter, and eventually the diploma will be meaningless.\"",
+    "options": [
+      { "text": "Slippery slope", "correct": true, "feedback": "Each step in the chain is asserted without evidence. A reasonable redo policy can include limits." },
+      { "text": "Straw man", "feedback": "A straw man misrepresents an opponent's position. This predicts a chain of consequences." },
+      { "text": "False analogy", "feedback": "No comparison is being made." },
+      { "text": "Ad hominem", "feedback": "No person is attacked." } ] },
+  { "id": "f4", "prompt": "Maya proposes adding vegetarian options to the menu. Her opponent replies: \"Maya wants to ban meat from the cafeteria.\"",
+    "options": [
+      { "text": "Straw man", "correct": true, "feedback": "Her opponent replaced her actual, modest proposal with an extreme version that is easier to attack." },
+      { "text": "Red herring", "feedback": "A red herring changes the subject. This distorts the original position." },
+      { "text": "Hasty generalization", "feedback": "No conclusion is drawn from examples." },
+      { "text": "Guilt by association", "feedback": "No link to a disliked group is made." } ] },
+  { "id": "f5", "prompt": "\"Either we cancel the field trip or we accept that students will be unsafe.\"",
+    "options": [
+      { "text": "False dilemma", "correct": true, "feedback": "Only two options are presented. Others exist: more chaperones, a different site, a safety plan." },
+      { "text": "Slippery slope", "feedback": "There's no chain of consequences, just two forced options." },
+      { "text": "Appeal to tradition", "feedback": "Tradition isn't mentioned." },
+      { "text": "Non sequitur", "feedback": "The options connect to the topic; the problem is that they are the only two offered." } ] },
+  { "id": "f6", "prompt": "\"Why listen to his plan for the budget? He failed algebra in ninth grade.\"",
+    "options": [
+      { "text": "Ad hominem", "correct": true, "feedback": "The response attacks the person instead of the plan. Evaluate the budget on its merits." },
+      { "text": "Straw man", "feedback": "The plan isn't being misrepresented; it's being ignored." },
+      { "text": "Inappropriate appeal to authority", "feedback": "That fallacy relies on a false expert. This dismisses a person." },
+      { "text": "Red herring", "feedback": "It does shift attention, but its defining move is attacking the speaker." } ] },
+  { "id": "f7", "prompt": "Asked whether the new parking fee is fair, a council member says: \"What I'd really like to talk about is how beautiful our new downtown fountain is.\"",
+    "options": [
+      { "text": "Red herring", "correct": true, "feedback": "The answer leads attention away from the question. Listeners should steer back: \"But is the fee fair?\"" },
+      { "text": "Ad hominem", "feedback": "No one is attacked." },
+      { "text": "False dilemma", "feedback": "No choices are limited." },
+      { "text": "Straw man", "feedback": "No position is distorted; the question is simply dodged." } ] },
+  { "id": "f8", "prompt": "\"We've always held graduation in the gym. Moving it outdoors would be wrong.\"",
+    "options": [
+      { "text": "Appeal to tradition", "correct": true, "feedback": "Past practice alone doesn't prove something is best. Give reasons (cost, weather, capacity) instead." },
+      { "text": "False cause", "feedback": "No causal claim is made." },
+      { "text": "Hasty generalization", "feedback": "No conclusion is drawn from examples." },
+      { "text": "Slippery slope", "feedback": "No chain of consequences is predicted." } ] },
+  { "id": "f9", "prompt": "\"A famous basketball player says this cholesterol medicine works, so it must be safe.\"",
+    "options": [
+      { "text": "Inappropriate appeal to authority", "correct": true, "feedback": "The athlete is an expert in basketball, not medicine. Expert testimony is strong only within the expert's field." },
+      { "text": "Ad hominem", "feedback": "This praises a person instead of attacking one." },
+      { "text": "False analogy", "feedback": "No comparison is being made." },
+      { "text": "Appeal to tradition", "feedback": "Tradition isn't mentioned." } ] },
+  { "id": "f10", "prompt": "\"Running a school is just like running a business, so the school should cut any class that doesn't make a profit.\"",
+    "options": [
+      { "text": "False analogy", "correct": true, "feedback": "Schools and businesses share some features, but they differ in their central purpose. The comparison breaks down exactly where the argument needs it." },
+      { "text": "Hasty generalization", "feedback": "No conclusion is drawn from a few examples." },
+      { "text": "Red herring", "feedback": "The argument stays on topic; the reasoning is the problem." },
+      { "text": "False dilemma", "feedback": "No options are being limited." } ] }
+]

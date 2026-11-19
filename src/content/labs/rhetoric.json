@@ -1,0 +1,42 @@
+[
+  { "id": "r1", "prompt": "\"As a nurse in this emergency room for twelve years, I have treated dozens of teens injured in this exact kind of crash.\"",
+    "options": [
+      { "text": "Ethos", "correct": true, "feedback": "The speaker's experience and role build credibility. It also hints at evidence, but its main work is establishing why we should trust her." },
+      { "text": "Pathos", "feedback": "There is emotional weight, but the sentence leads with her credentials and experience." },
+      { "text": "Logos", "feedback": "\"Dozens\" is not specific data. The appeal rests on who she is." } ] },
+  { "id": "r2", "prompt": "\"Picture your little sister at a bus stop after dark: phone dead, no streetlight, the next bus forty minutes away.\"",
+    "options": [
+      { "text": "Ethos", "feedback": "Nothing here builds the speaker's credibility." },
+      { "text": "Pathos", "correct": true, "feedback": "Vivid imagery invites listeners to feel protective concern. Ethical pathos fits the facts; if bus stops really lack lighting, this is fair." },
+      { "text": "Logos", "feedback": "No evidence or reasoning is offered yet." } ] },
+  { "id": "r3", "prompt": "\"According to the district's annual report, students who finished the tutoring program raised their reading scores by an average of two grade levels.\"",
+    "options": [
+      { "text": "Ethos", "feedback": "Citing the district adds some credibility, but the sentence's main job is presenting evidence." },
+      { "text": "Pathos", "feedback": "This is data, not an emotional appeal." },
+      { "text": "Logos", "correct": true, "feedback": "A specific, sourced result supports a claim. Notice the oral citation, which also builds ethos." } ] },
+  { "id": "r4", "prompt": "\"I'll be honest: I opposed this idea last year. Reading the research changed my mind.\"",
+    "options": [
+      { "text": "Ethos", "correct": true, "feedback": "Admitting a change of mind shows honesty and open-mindedness, which builds character and goodwill. Skeptical listeners may trust a speaker who once stood where they stand." },
+      { "text": "Pathos", "feedback": "It may create connection, but its main work is showing the speaker's fairness." },
+      { "text": "Logos", "feedback": "It refers to research but presents none." } ] },
+  { "id": "r5", "prompt": "\"If each of our 1,200 students skips one bottled drink a week, that's more than 60,000 fewer bottles a year.\"",
+    "options": [
+      { "text": "Ethos", "feedback": "This sentence does not focus on the speaker." },
+      { "text": "Pathos", "feedback": "The big number may impress, but the appeal is reasoning from a calculation." },
+      { "text": "Logos", "correct": true, "feedback": "It reasons from a clear calculation (1,200 × 52 = 62,400). Logos can make a small action feel significant." } ] },
+  { "id": "r6", "prompt": "\"This park is where my grandfather taught me to fish, and where I hope my own kids will learn someday.\"",
+    "options": [
+      { "text": "Ethos", "feedback": "It shows a personal connection, which helps credibility, but the main pull is emotional." },
+      { "text": "Pathos", "correct": true, "feedback": "Family, memory, and hope connect the park to values the audience may share. A strong speech would pair this with evidence (logos)." },
+      { "text": "Logos", "feedback": "There is no data or reasoning here." } ] },
+  { "id": "r7", "prompt": "\"Three independent research teams, using different methods, reached the same conclusion.\"",
+    "options": [
+      { "text": "Ethos", "feedback": "It borrows credibility from researchers, but the point is the strength of the evidence." },
+      { "text": "Pathos", "feedback": "There is no emotional appeal here." },
+      { "text": "Logos", "correct": true, "feedback": "Converging evidence from independent sources strengthens reasoning. In a real speech, name at least one of the teams." } ] },
+  { "id": "r8", "prompt": "\"My opponent has never even lived in this neighborhood, so why should we listen to her plan?\"",
+    "options": [
+      { "text": "Ethos, used to attack the other speaker's credibility", "correct": true, "feedback": "It targets the opponent's credibility. Be careful: dismissing an argument because of who makes it, instead of answering it, is the ad hominem fallacy (Section 14.4)." },
+      { "text": "Logos", "feedback": "It offers no evidence about the plan itself." },
+      { "text": "Pathos", "feedback": "It may stir resentment, but its target is the opponent's credibility." } ] }
+]

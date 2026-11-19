@@ -1,0 +1,703 @@
+[
+  {
+    "id": "communication-process",
+    "category": "foundations",
+    "title": "The communication process",
+    "summary": "Communication is sharing meaning between people. It is a process, not a single event: speakers and listeners trade roles, and every message travels through a context, a channel, and some amount of noise.",
+    "keyIdeas": [
+      "The textbook lists the elements as people (senders and receivers), context, message, channel, noise, feedback, and outcome.",
+      "Speakers encode ideas into symbols (words, gestures); listeners decode them. Meaning can shift between the two.",
+      "Context has layers: historical, cultural, social, and physical. Each one shapes how a message lands.",
+      "Words carry denotative (dictionary) and connotative (emotional, associated) meanings."
+    ],
+    "example": {
+      "setting": "Community meeting",
+      "text": "Nadia explains a new bus route at a neighborhood meeting. A leaf blower outside (physical noise) drowns out the route numbers, and some residents frown because the last route change cut their stop (historical context). She sees the frowns (feedback), pauses, and hands out a printed map (a second channel)."
+    },
+    "textbook": [{ "chapter": 1, "section": "1.3" }],
+    "activity": {
+      "id": "m-communication-process",
+      "prompt": "Nadia's listeners frowned before she said anything controversial. Which element of the process best explains that reaction?",
+      "options": [
+        { "text": "Channel", "feedback": "The channel is the medium (spoken voice, printed map). The frowns came from something listeners brought with them." },
+        { "text": "Historical context", "correct": true, "feedback": "Yes. Past events between a speaker and audience shape how a new message is heard, even before it is spoken." },
+        { "text": "Encoding", "feedback": "Encoding is how Nadia turns her ideas into words. She had not encoded anything upsetting yet." },
+        { "text": "Denotative meaning", "feedback": "Denotative meaning is a word's literal definition. The reaction here was about the relationship, not a word." }
+      ]
+    },
+    "reflection": "Think of a time a message you sent was misunderstood. Which element of the process (noise, context, channel, connotation) caused the gap?",
+    "college": "Compare a linear (sender-to-receiver) model with a transactional model in which both parties send and receive at once. Which better describes a classroom speech with live nonverbal feedback? Write a short paragraph using two elements from Section 1.3 as evidence.",
+    "vocab": ["channel", "feedback", "noise", "encode", "decode", "connotative"]
+  },
+  {
+    "id": "speech-anxiety",
+    "category": "foundations",
+    "title": "Speech anxiety and confidence",
+    "summary": "Nervousness about speaking is common and normal. The goal is not to erase it but to prepare well, challenge unhelpful thoughts, and build confidence through practice.",
+    "keyIdeas": [
+      "The textbook names three misperceptions behind anxiety: all-or-nothing thinking, overgeneralization, and fortune telling.",
+      "Skill is not fixed. Speaking ability grows with effort and feedback, like any other skill.",
+      "Preparation comes in four kinds: mental, physical, contextual (knowing the room and situation), and speech preparation.",
+      "Your classroom audience generally wants you to succeed."
+    ],
+    "example": {
+      "setting": "Job interview",
+      "text": "Before an interview, Marco thinks, \"I stumbled once in class, so I always freeze.\" He catches the overgeneralization, rehearses his answers out loud twice, and visits the building the day before so the setting is familiar."
+    },
+    "textbook": [{ "chapter": 1, "section": "1.2" }, { "chapter": "B", "note": "Part 5: Test Anxiety/Speech Anxiety" }],
+    "activity": {
+      "id": "m-speech-anxiety",
+      "prompt": "\"If I forget one line, the whole speech is ruined.\" Which unhelpful thinking pattern is this?",
+      "options": [
+        { "text": "All-or-nothing thinking", "correct": true, "feedback": "Right. It treats anything less than perfect as total failure. Audiences rarely notice a skipped line, and a pause to find your place is normal." },
+        { "text": "Fortune telling", "feedback": "Close. Fortune telling predicts a bad outcome no matter what. This thought is mainly about perfection versus failure." },
+        { "text": "Overgeneralization", "feedback": "Overgeneralization turns one event into 'always.' This thought is about a single speech being all good or all bad." }
+      ]
+    },
+    "reflection": "Write one honest worry you have about speaking. Then rewrite it as a realistic, balanced thought.",
+    "college": "Read Section 1.2 and Appendix B, Part 5. Choose two strategies and design a one-week rehearsal plan that uses both. Explain why each fits your specific pattern of anxiety.",
+    "practice": { "label": "Open the Speech Anxiety Toolkit", "to": "/labs/anxiety" }
+  },
+  {
+    "id": "listening",
+    "category": "foundations",
+    "title": "Listening",
+    "summary": "Hearing is physical; listening is intentional work. Good listeners manage distractions, notice their own biases, and evaluate what they hear.",
+    "keyIdeas": [
+      "Barriers include believing you are a poor listener, constant digital distraction, and personal concerns competing for attention.",
+      "Confirmation bias is the tendency to accept information that matches what we already believe.",
+      "Critical listening means evaluating evidence and reasoning, not just collecting facts.",
+      "Knowing how audiences listen helps you design speeches that are easier to follow."
+    ],
+    "example": {
+      "setting": "Student council debate",
+      "text": "During a debate on a later school start time, Imani notices she nods at every point that matches her opinion. She starts writing down the evidence for each claim on both sides before deciding."
+    },
+    "textbook": [{ "chapter": 2, "section": "2.5" }],
+    "activity": {
+      "id": "m-listening",
+      "prompt": "Imani's habit of nodding along to points she already agrees with is an example of:",
+      "options": [
+        { "text": "Physical noise", "feedback": "Physical noise is a sound or setting distraction. This barrier is happening inside Imani's thinking." },
+        { "text": "Confirmation bias", "correct": true, "feedback": "Yes. Confirmation bias filters what we hear toward what we already believe. Writing down evidence for both sides is a strong counter-move." },
+        { "text": "Critical listening", "feedback": "Critical listening is the goal she moves toward, not the habit she started with." }
+      ]
+    },
+    "reflection": "Which listening barrier affects you most in class? Name one specific change you will try this week.",
+    "college": "Listen to a 5-minute segment of a speech in the Great Speeches gallery. Record each claim and the support offered. Identify one moment where your own prior beliefs might have shaped how you evaluated it.",
+    "vocab": ["confirmation-bias"]
+  },
+  {
+    "id": "audience-analysis",
+    "category": "foundations",
+    "title": "Audience analysis",
+    "summary": "An audience-centered speaker learns about listeners before speaking: what they know, what they value, and the situation they are in. The point is to connect, not to stereotype.",
+    "keyIdeas": [
+      "Demographic factors (age, education, group affiliation, and more) can hint at shared experiences, but never decide what an individual thinks.",
+      "Psychographic factors are attitudes, beliefs, values, and needs. The textbook connects needs to Maslow's hierarchy.",
+      "Contextual factors include time, place, occasion, and audience size.",
+      "The best information comes from asking: surveys, conversations, and observation."
+    ],
+    "example": {
+      "setting": "Career presentation",
+      "text": "Before presenting a coding club to eighth graders, Jun surveys a class. Most have used a block-coding app, few know text-based languages, and many worry it is 'only for math kids.' He opens with a game they already play and how it was built."
+    },
+    "textbook": [{ "chapter": 2, "section": "2.1–2.4" }, { "chapter": "A", "note": "Cultural diversity" }],
+    "activity": {
+      "id": "m-audience-analysis",
+      "prompt": "Jun learns his audience is unsure the club is for them. Which adaptation responds best to that finding?",
+      "options": [
+        { "text": "Add more advanced programming vocabulary to show expertise.", "feedback": "This would widen the gap. Credibility comes from connecting, not from jargon." },
+        { "text": "Share examples of students with many different interests who joined and what they made.", "correct": true, "feedback": "Yes. It addresses the attitude he discovered (\"not for me\") with evidence that broadens who belongs." },
+        { "text": "Assume the students who are good at math will be most interested and speak to them.", "feedback": "That is a stereotype his survey actually contradicted. Adapt to what you learn, not to assumptions." }
+      ]
+    },
+    "reflection": "For your current speech, what is one thing your audience already knows and one thing they might misunderstand?",
+    "college": "Design a five-question audience survey for your next speech. Include at least one question about attitudes and one about prior knowledge. Explain how each answer could change your organization or supporting material.",
+    "vocab": ["audience-centered", "demographic", "psychographic"],
+    "practice": { "label": "Try the Audience Lab", "to": "/labs/audience" }
+  },
+  {
+    "id": "ethics",
+    "category": "foundations",
+    "title": "Ethics and academic integrity",
+    "summary": "Ethical speakers tell the truth, credit their sources, and respect their audience. Credibility depends on ethics, and plagiarism destroys both.",
+    "keyIdeas": [
+      "The textbook describes three levels of plagiarism: stealing, sneaking, and borrowing. Some is intentional; some happens from not knowing the rules.",
+      "In a speech, you cite sources out loud with an oral citation, plus any written citations your instructor requires.",
+      "Credibility grows from competence, character, and goodwill toward the audience.",
+      "Civil discourse means disagreeing with ideas while respecting people."
+    ],
+    "example": {
+      "setting": "Class presentation",
+      "text": "Lena found a strong statistic in a news article. Instead of reading it as if it were common knowledge, she says, \"According to a report our county health department published last spring...\" and lists the full report in her references."
+    },
+    "textbook": [{ "chapter": 3, "section": "3.1–3.4" }, { "chapter": "B", "note": "Part 7: Avoiding Plagiarism" }, { "chapter": "E", "note": "APA Citation" }],
+    "activity": {
+      "id": "m-ethics",
+      "prompt": "A student rewrites a paragraph from a website by swapping in synonyms but keeps the same structure and does not cite it. What is this?",
+      "options": [
+        { "text": "Acceptable paraphrasing", "feedback": "A paraphrase must be in your own words and structure, and it still needs a citation." },
+        { "text": "Plagiarism", "correct": true, "feedback": "Correct. Changing words while keeping someone else's ideas and structure without credit is still plagiarism. Cite the source and truly restate the idea." },
+        { "text": "Common knowledge", "feedback": "Common knowledge is widely known and easy to find in many sources. A specific website's paragraph is not." }
+      ]
+    },
+    "reflection": "Why might an audience trust you more when you name your sources out loud?",
+    "college": "Write oral citations for two sources in your current speech that include author or organization, credentials, publication, and date. Then explain how the citation increases your credibility for this specific audience.",
+    "vocab": ["plagiarism", "oral-citation", "credibility"]
+  },
+  {
+    "id": "choosing-topics",
+    "category": "construction",
+    "title": "Choosing topics",
+    "summary": "Strong topics sit where three things meet: you (your interests and experience), your audience, and the context. Start with what you know, then research beyond it.",
+    "keyIdeas": [
+      "The textbook's starting point is a personal inventory: interests, experiences, goals, and passions.",
+      "A good topic fits the audience's needs and the time limit.",
+      "A topic that is too broad becomes a list; narrow it to one angle.",
+      "Your commitment to a topic shows up as credibility and energy."
+    ],
+    "example": {
+      "setting": "Informative speech",
+      "text": "Diego loves cooking with his grandmother. \"Mexican food\" is too broad. \"How nixtamalization turns dried corn into masa\" is focused, connects to his experience, and teaches something most classmates do not know."
+    },
+    "textbook": [{ "chapter": 4, "section": "4.1–4.2" }, { "chapter": 12, "section": "12.3" }],
+    "activity": {
+      "id": "m-choosing-topics",
+      "prompt": "Which topic is best sized for a 5-minute informative speech?",
+      "options": [
+        { "text": "The history of music", "feedback": "This could fill an entire course. Narrow it to one era, instrument, or movement." },
+        { "text": "How the steel drum was developed in Trinidad and Tobago", "correct": true, "feedback": "Yes. It is focused, explainable in a few main points, and likely new to most listeners." },
+        { "text": "Why my favorite band is the best", "feedback": "This is an opinion, so it would be persuasive, and it is hard to support with evidence." }
+      ]
+    },
+    "reflection": "List three things you know more about than most people your age. Which could become a speech?",
+    "college": "Narrow one broad interest through three levels (subject, topic, angle). For the final angle, write a sentence explaining why it matters to this specific audience now.",
+    "practice": { "label": "Start in the Speech Studio", "to": "/studio" }
+  },
+  {
+    "id": "purposes",
+    "category": "construction",
+    "title": "General and specific purposes",
+    "summary": "The general purpose names the speech's broad goal: to inform, to persuade, or to entertain or inspire. The specific purpose states exactly what you want this audience to understand, believe, or do.",
+    "keyIdeas": [
+      "Write the specific purpose as an infinitive phrase: \"To inform my audience about...\"",
+      "Keep it to one idea. A specific purpose joined with \"and\" usually covers two speeches.",
+      "Match the verb to the content. \"To inform my audience why...\" is usually persuasive in disguise.",
+      "Not too broad, not too narrow, and never a question."
+    ],
+    "example": {
+      "setting": "Persuasive speech",
+      "text": "First draft: \"To inform my class why school lunches should be free.\" The word \"why\" signals a position. Revision: \"To persuade my classmates to support universal free school meals in our district.\""
+    },
+    "textbook": [{ "chapter": 4, "section": "4.1–4.2, 4.4" }],
+    "activity": {
+      "id": "m-purposes",
+      "prompt": "Which specific purpose statement follows the textbook's guidelines?",
+      "options": [
+        { "text": "What is the best way to study for finals?", "feedback": "A specific purpose should not be a question. Turn it into an infinitive phrase." },
+        { "text": "To inform my audience how to use spaced practice to study for finals.", "correct": true, "feedback": "Yes: an infinitive phrase, one idea, a verb that matches the content, and a manageable scope." },
+        { "text": "To inform my audience about study methods and how to choose a college.", "feedback": "Two topics joined by \"and.\" Choose one." },
+        { "text": "To persuade my audience about the three types of note-taking.", "feedback": "The content is informative. The verb should match: \"to inform.\"" }
+      ]
+    },
+    "reflection": "Write your current specific purpose. Read it aloud. Does the verb match what you actually plan to do?",
+    "college": "Write specific purposes for the same topic at three levels of the persuasion continuum (reinforce, shift attitude, prompt action). Explain which fits your audience analysis and why.",
+    "vocab": ["general-purpose", "specific-purpose"]
+  },
+  {
+    "id": "central-idea",
+    "category": "construction",
+    "title": "Central ideas and thesis statements",
+    "summary": "The central idea (thesis) is one complete, declarative sentence that captures what your speech says. If the specific purpose is the goal, the central idea is the message.",
+    "keyIdeas": [
+      "Write it as a full sentence, not a question or fragment.",
+      "Use concrete language. Avoid slang, jargon, and unexplained acronyms.",
+      "It often previews your main points.",
+      "Every main point should support it; anything that does not belongs in another speech."
+    ],
+    "example": {
+      "setting": "Informative speech",
+      "text": "Specific purpose: \"To inform my audience how bees communicate.\" Central idea: \"Honeybees share the location of food through the waggle dance, the round dance, and scent signals.\""
+    },
+    "textbook": [{ "chapter": 4, "section": "4.3–4.4" }],
+    "activity": {
+      "id": "m-central-idea",
+      "prompt": "Which is the strongest central idea statement?",
+      "options": [
+        { "text": "Volunteering.", "feedback": "A fragment names a topic but makes no statement about it." },
+        { "text": "Have you ever thought about volunteering?", "feedback": "Questions can be good attention-getters, but the central idea must be a declarative sentence." },
+        { "text": "Volunteering at a food bank builds job skills, strengthens community ties, and helps families in need.", "correct": true, "feedback": "Yes: a complete sentence with a clear claim that previews three main points." },
+        { "text": "Volunteering is lit and everyone should do it.", "feedback": "Slang weakens credibility, and \"should\" signals persuasion without support." }
+      ]
+    },
+    "reflection": "Can you say your central idea in one breath? If not, what can you cut?",
+    "college": "Write two central idea statements for your speech: one that previews main points and one that is a single unified claim. Explain which serves your audience better and how it shapes your conclusion.",
+    "vocab": ["central-idea"]
+  },
+  {
+    "id": "research",
+    "category": "construction",
+    "title": "Research and credible sources",
+    "summary": "Research turns opinions into supported ideas. Use library databases and the open web, then evaluate every source before trusting it.",
+    "keyIdeas": [
+      "Primary sources are original (a study, an interview, a speech). Secondary sources interpret or summarize them.",
+      "Quick checks from the textbook: Is it current? Does it address your topic? Who created it, and why?",
+      "The textbook shares Michael Caulfield's moves: check for previous work, go upstream to the original source, read laterally, and circle back.",
+      "Your own interviews and surveys count as research when done carefully."
+    ],
+    "example": {
+      "setting": "Health topic",
+      "text": "A video claims a supplement improves memory by 40%. Ava goes upstream to the study the video cites, finds it involved 12 adults over one week, and reads what other researchers say about it. She decides not to use the 40% figure."
+    },
+    "textbook": [{ "chapter": 5, "section": "5.1–5.4" }],
+    "activity": {
+      "id": "m-research",
+      "prompt": "A website looks professional and cites \"experts,\" but you cannot tell who runs it. What should you do first?",
+      "options": [
+        { "text": "Use it; it looks professional.", "feedback": "Appearance is easy to fake. Credibility depends on who created the information and why." },
+        { "text": "Read laterally: search for what other sources say about the site and its owner.", "correct": true, "feedback": "Yes. Leaving the site to see what others say about it is faster and more reliable than judging it from the inside." },
+        { "text": "Count the number of citations on the page.", "feedback": "Citations help only if they are real and accurately represented. Check who is behind the page first." }
+      ]
+    },
+    "reflection": "Pick one source you plan to use. Who created it, and what might they gain from your belief?",
+    "college": "For two sources, trace one claim upstream to its original study or data. Note whether the secondary source represented it accurately, and write an APA reference for the original.",
+    "vocab": ["primary-source", "secondary-source", "lateral-reading"],
+    "practice": { "label": "Open the Evidence Lab", "to": "/labs/evidence" }
+  },
+  {
+    "id": "organization",
+    "category": "construction",
+    "title": "Speech organization",
+    "summary": "Listeners cannot re-read a speech, so organization does the work that headings and paragraphs do on a page. Choose a pattern that fits your specific purpose.",
+    "keyIdeas": [
+      "Patterns in the textbook: chronological, spatial, topical, cause/effect, problem-solution, and problem-cause-solution. Persuasive speeches may also use Monroe's Motivated Sequence.",
+      "Most classroom speeches use two to five main points.",
+      "Main points and subpoints can use different patterns.",
+      "Outlines come in two forms: a full preparation outline and brief speaking notes."
+    ],
+    "example": {
+      "setting": "Informative speech",
+      "text": "To explain how a bill becomes law, Theo uses chronological order (introduction, committee, floor vote, other chamber, signature). To describe a new school building, Rosa uses spatial order (entrance, first floor, second floor)."
+    },
+    "textbook": [{ "chapter": 6, "section": "6.1–6.2, 6.4" }, { "chapter": "I", "note": "Sample outlines" }],
+    "activity": {
+      "id": "m-organization",
+      "prompt": "Specific purpose: \"To inform my audience about the effects of losing sleep on teenagers.\" Which pattern fits best?",
+      "options": [
+        { "text": "Spatial", "feedback": "Spatial order moves through physical space. Sleep loss is not organized by location." },
+        { "text": "Cause/effect", "correct": true, "feedback": "Yes. The purpose focuses on causes and the effects that follow them." },
+        { "text": "Chronological", "feedback": "You could trace a night, but the purpose is about effects, not a sequence of events." }
+      ]
+    },
+    "reflection": "Which pattern did you choose for your current speech, and what would change if you used a different one?",
+    "college": "Outline the same body two ways (topical and problem-solution). Evaluate which better serves your audience's prior knowledge and your purpose.",
+    "practice": { "label": "Try the Organization Lab", "to": "/labs/organization" }
+  },
+  {
+    "id": "intros-conclusions",
+    "category": "construction",
+    "title": "Introductions, conclusions, and transitions",
+    "summary": "The introduction earns attention and sets expectations. The conclusion signals the end and leaves a lasting impression. Connective statements guide listeners between the two.",
+    "keyIdeas": [
+      "The textbook's five introduction elements: get attention, establish credibility, build rapport, preview your topic or central idea, and preview main points.",
+      "Its three conclusion elements: signal the end, restate the main points, and finish with a clincher.",
+      "Connectives include transitions, internal previews, internal summaries, and signposts.",
+      "Write the introduction after the body is solid, so you know what you are introducing."
+    ],
+    "example": {
+      "setting": "Informative speech",
+      "text": "Opening: \"Last summer, the power went out on our street for three days.\" Credibility: \"I spent a week volunteering with my city's emergency office.\" Rapport: \"Any of us could face the next outage.\" Preview: three items for a home emergency kit."
+    },
+    "textbook": [{ "chapter": 8, "section": "8.1–8.5" }, { "chapter": 6, "section": "6.3" }],
+    "activity": {
+      "id": "m-intros-conclusions",
+      "prompt": "\"So far we've seen why outages happen and who they affect most. Next, let's build the kit.\" What kind of connective is this?",
+      "options": [
+        { "text": "Signpost", "feedback": "Signposts are short markers like \"first\" or \"finally.\" This sentence reviews and previews." },
+        { "text": "Internal summary followed by an internal preview", "correct": true, "feedback": "Yes. It recaps what was covered, then tells listeners what comes next." },
+        { "text": "Clincher", "feedback": "A clincher is the memorable final line of a conclusion." }
+      ]
+    },
+    "reflection": "Which introduction element is hardest for you? Why?",
+    "college": "Draft two different attention-getters (for example, a startling statistic and a brief narrative). Analyze which better establishes rapport with your audience and cite the strategy from Section 8.2.",
+    "vocab": ["connective", "signpost", "clincher"],
+    "practice": { "label": "Try the Opening Line Lab", "to": "/labs/opening" }
+  },
+  {
+    "id": "appeals",
+    "category": "rhetoric",
+    "title": "Ethos, pathos, and logos",
+    "summary": "Aristotle grouped persuasive appeals into three kinds: ethos (the speaker's credibility and character), pathos (emotion), and logos (logic and evidence). Strong persuasion usually blends all three.",
+    "keyIdeas": [
+      "Ethos comes from what the audience already knows about you and what you build during the speech: credible sources, sound arguments, awareness of the audience, and effective delivery.",
+      "Pathos connects an argument to what listeners care about. It should be honest, not manipulative.",
+      "Logos is reasoning supported by evidence.",
+      "One sentence can use more than one appeal."
+    ],
+    "example": {
+      "setting": "Civic advocacy",
+      "text": "Speaking to the city council about a crosswalk, Amara says she has crossed there every school day for four years (ethos), describes her little brother's near miss (pathos), and cites the city's own crash data for the intersection (logos)."
+    },
+    "textbook": [{ "chapter": 13, "section": "13.4" }],
+    "activity": {
+      "id": "m-appeals",
+      "prompt": "\"City records show 14 reported crashes at this intersection in three years.\" Which appeal is strongest here?",
+      "options": [
+        { "text": "Ethos", "feedback": "Citing city records can help credibility, but the sentence's main work is evidence." },
+        { "text": "Pathos", "feedback": "The number may be worrying, but the sentence relies on data rather than emotional connection." },
+        { "text": "Logos", "correct": true, "feedback": "Yes. It offers factual evidence to support a claim." }
+      ]
+    },
+    "reflection": "Which appeal do you rely on most? Which do you use least?",
+    "college": "Analyze one speech in the Great Speeches gallery. Identify one moment for each appeal and argue which appeal carries the most weight for that audience. Consider an alternative reading.",
+    "vocab": ["ethos", "pathos", "logos"],
+    "practice": { "label": "Open the Rhetoric Lab", "to": "/labs/rhetoric" }
+  },
+  {
+    "id": "claims-evidence",
+    "category": "rhetoric",
+    "title": "Claims, reasoning, and evidence",
+    "summary": "A claim states what you want the audience to accept. Evidence supports it. Reasoning explains why the evidence leads to the claim.",
+    "keyIdeas": [
+      "Persuasive claims (propositions) can be of fact, definition, value, or policy.",
+      "Supporting materials include definitions, examples, narratives, facts, statistics, and testimony (expert and peer).",
+      "Inductive reasoning moves from examples to a conclusion: generalization, causal, sign, and analogy.",
+      "Deductive reasoning moves from a general principle to a specific conclusion."
+    ],
+    "example": {
+      "setting": "School board proposal",
+      "text": "Claim: Our school should add a peer tutoring program. Evidence: Two nearby schools added one, and their course failure rates dropped. Reasoning (analogy): Our school is similar in size and student needs, so similar results are reasonable to expect."
+    },
+    "textbook": [{ "chapter": 7, "section": "7.1–7.2" }, { "chapter": 13, "section": "13.5" }, { "chapter": 14, "section": "14.1–14.3" }],
+    "activity": {
+      "id": "m-claims-evidence",
+      "prompt": "\"Our district should replace paper hall passes with a digital system.\" What type of proposition is this?",
+      "options": [
+        { "text": "Fact", "feedback": "A proposition of fact argues something is or is not true. This proposes an action." },
+        { "text": "Value", "feedback": "A proposition of value judges something as good, bad, right, or wrong. This argues for a change in action." },
+        { "text": "Policy", "correct": true, "feedback": "Yes. \"Should\" plus a specific action signals a proposition of policy." }
+      ]
+    },
+    "reflection": "Write your main claim. What is your strongest piece of evidence, and how do you explain the link between them?",
+    "college": "Identify the reasoning type (generalization, causal, sign, analogy) behind each main point of your persuasive speech. For one, describe what evidence would weaken it and how you will address that.",
+    "vocab": ["proposition", "inductive", "deductive"]
+  },
+  {
+    "id": "persuasive-organization",
+    "category": "rhetoric",
+    "title": "Persuasive organization",
+    "summary": "How you organize a persuasive speech should match your proposition and where your audience currently stands.",
+    "keyIdeas": [
+      "The textbook describes persuasion as a continuum: you might reinforce, shift, or move an audience to act.",
+      "Propositions of policy often use problem-solution or problem-cause-solution.",
+      "Propositions of value can be organized around the criteria for judging and then applying them.",
+      "Address likely objections; skeptical audiences need them answered."
+    ],
+    "example": {
+      "setting": "Community advocacy",
+      "text": "Proposing a community garden on an empty lot, Keisha uses problem-cause-solution: few fresh-food options nearby, caused by the nearest grocery store closing, solved by a garden run by neighbors and the youth center."
+    },
+    "textbook": [{ "chapter": 13, "section": "13.2–13.5" }],
+    "activity": {
+      "id": "m-persuasive-organization",
+      "prompt": "Your audience already agrees recycling matters but rarely does it. Where on the persuasion continuum is your goal?",
+      "options": [
+        { "text": "Change their belief", "feedback": "They already agree. Changing their belief is not the challenge." },
+        { "text": "Move them to action", "correct": true, "feedback": "Yes. The gap is behavior, so the speech should make action concrete and easy." },
+        { "text": "Create a new belief", "feedback": "They already hold this belief." }
+      ]
+    },
+    "reflection": "Where does your audience stand on your proposition right now? How do you know?",
+    "college": "Write the strongest objection your audience might raise. Place a rebuttal in your outline and justify its position (early, middle, or late).",
+    "vocab": ["persuasion-continuum"]
+  },
+  {
+    "id": "monroe",
+    "category": "rhetoric",
+    "title": "Monroe's Motivated Sequence",
+    "summary": "Developed by Alan Monroe and based on John Dewey's reflective thinking, this five-step pattern follows the questions listeners ask as they are persuaded: attention, need, satisfaction, visualization, and action.",
+    "keyIdeas": [
+      "Attention: bring the audience into the topic, establish credibility, and state the thesis.",
+      "Need: define the problem, show its severity and how it affects the audience, and support it with evidence.",
+      "Satisfaction: present the solution and show that it addresses causes as well as symptoms.",
+      "Visualization: show the future with the solution (positive) or without it (negative).",
+      "Action: give specific, concrete steps listeners can take soon."
+    ],
+    "example": {
+      "setting": "Blood drive appeal",
+      "text": "Attention: a story about a classmate's surgery. Need: the regional blood supply shortage. Satisfaction: one donation can help multiple patients. Visualization: the hospital shelf full next month. Action: sign-up link and the date of the school drive."
+    },
+    "textbook": [{ "chapter": 13, "section": "13.5", "note": "plus the sample outline using Monroe's Motivated Sequence" }, { "chapter": 6, "section": "6.2" }],
+    "activity": {
+      "id": "m-monroe",
+      "prompt": "\"Imagine our hallways next spring: no overflowing trash cans and a campus we're proud to show visitors.\" Which step is this?",
+      "options": [
+        { "text": "Need", "feedback": "The need step describes the problem. This describes the future after the solution." },
+        { "text": "Visualization", "correct": true, "feedback": "Yes. It helps the audience picture the benefits of the solution." },
+        { "text": "Action", "feedback": "The action step gives concrete steps to take. This paints a picture." }
+      ]
+    },
+    "reflection": "Which step of the sequence will need the most evidence in your speech?",
+    "college": "Use the Monroe organizer in the Persuasive Speech page. Then explain where a counterargument fits best in the sequence for your audience and why.",
+    "practice": { "label": "Open the Persuasive Speech page", "to": "/speeches/persuasive" }
+  },
+  {
+    "id": "fallacies",
+    "category": "rhetoric",
+    "title": "Logical fallacies",
+    "summary": "A fallacy is an error in reasoning that makes an argument seem stronger than it is. Spotting fallacies makes you a sharper listener and a more trustworthy speaker.",
+    "keyIdeas": [
+      "Common fallacies from the textbook include hasty generalization, false cause, slippery slope, straw man, false dilemma, ad hominem, red herring, appeal to tradition, and inappropriate appeal to authority.",
+      "Fallacies often feel convincing because they appeal to emotion or seem like common sense.",
+      "Calling out a fallacy works best when you explain the missing reasoning, not just name it.",
+      "Check your own arguments as carefully as others'."
+    ],
+    "example": {
+      "setting": "Online comment",
+      "text": "\"If we let students use phones at lunch, next they'll use them in every class, and soon no one will learn anything.\" This leaps through a chain of consequences without evidence for each link: slippery slope."
+    },
+    "textbook": [{ "chapter": 14, "section": "14.4" }],
+    "activity": {
+      "id": "m-fallacies",
+      "prompt": "\"You can either support the new schedule or you don't care about student success.\" Which fallacy is this?",
+      "options": [
+        { "text": "False dilemma", "correct": true, "feedback": "Yes. It presents only two options when many positions exist." },
+        { "text": "Red herring", "feedback": "A red herring changes the subject. This one narrows the choices." },
+        { "text": "Hasty generalization", "feedback": "A hasty generalization draws a broad conclusion from too few examples." }
+      ]
+    },
+    "reflection": "Which fallacy do you hear most often online? Why do you think it works on people?",
+    "college": "Find a fallacy in a real public argument (with the source). Explain the faulty reasoning, then rewrite the argument so it makes the same point soundly.",
+    "vocab": ["fallacy"],
+    "practice": { "label": "Become a Fallacy Detective", "to": "/labs/fallacy" }
+  },
+  {
+    "id": "ethical-persuasion",
+    "category": "rhetoric",
+    "title": "Ethical persuasion",
+    "summary": "Persuasion is ethical when it respects the audience's ability to choose: truthful evidence, honest emotional appeals, fair treatment of opposing views, and transparency about your interests.",
+    "keyIdeas": [
+      "Never fabricate or distort evidence, even to support a cause you believe in.",
+      "Emotional appeals should fit the facts, not exaggerate them.",
+      "Represent opposing views accurately before you answer them.",
+      "Civil discourse keeps disagreement focused on ideas rather than attacks on people."
+    ],
+    "example": {
+      "setting": "Fundraising speech",
+      "text": "Raising money for an animal shelter, Sam is tempted to say \"hundreds of dogs are put down every week here.\" The shelter's real number is much smaller. He uses the accurate figure and the story of one dog's adoption instead."
+    },
+    "textbook": [{ "chapter": 3, "section": "3.2, 3.4" }, { "chapter": 13, "section": "13.4" }],
+    "activity": {
+      "id": "m-ethical-persuasion",
+      "prompt": "Which choice best reflects ethical persuasion?",
+      "options": [
+        { "text": "Leaving out a study that disagrees with you because the audience won't check.", "feedback": "Hiding relevant evidence undermines the audience's ability to judge. Address it honestly." },
+        { "text": "Stating the opposing view in its strongest form, then explaining why your evidence leads elsewhere.", "correct": true, "feedback": "Yes. Fairly representing the other side respects your audience and strengthens your credibility." },
+        { "text": "Using a frightening statistic from an unknown website because it gets attention.", "feedback": "An unverified, frightening claim manipulates rather than informs. Verify first." }
+      ]
+    },
+    "reflection": "Where is the line between a passionate appeal and a manipulative one in your topic?",
+    "college": "Write a short ethics statement for your persuasive speech: what you will not do to win agreement, and how you will represent opposing views. Connect it to Sections 3.2 and 3.4."
+  },
+  {
+    "id": "vocal-variety",
+    "category": "delivery",
+    "title": "Vocal variation",
+    "summary": "Your voice carries meaning beyond your words. Varying pitch, emphasis, and energy keeps listeners engaged and signals what matters most.",
+    "keyIdeas": [
+      "A monotone voice makes even interesting content hard to follow.",
+      "Emphasis on key words clarifies meaning: try saying one sentence stressing a different word each time.",
+      "Volume and energy should fit the room and the occasion.",
+      "Section 11.6 offers an acting instructor's advice for warming up and supporting the voice."
+    ],
+    "example": {
+      "setting": "Tour guide",
+      "text": "A museum guide says, \"This painting was hidden for forty years.\" She slows on \"hidden,\" lowers her pitch slightly, and pauses. The group leans in."
+    },
+    "textbook": [{ "chapter": 11, "section": "11.5–11.6" }],
+    "activity": {
+      "id": "m-vocal-variety",
+      "prompt": "A speaker's content is strong, but listeners drift. Her pitch and speed never change. What is the most direct fix?",
+      "options": [
+        { "text": "Add more statistics.", "feedback": "More content will not help if delivery is flattening the content she already has." },
+        { "text": "Mark key words to emphasize and practice varying pitch and pace.", "correct": true, "feedback": "Yes. Planned emphasis and variety give listeners cues about what matters." },
+        { "text": "Speak louder throughout.", "feedback": "Constant loudness is another kind of monotone. Variety is the goal." }
+      ]
+    },
+    "reflection": "Record yourself reading one paragraph. Where does your voice flatten?",
+    "college": "Mark a one-minute passage of your speech with emphasis, pitch shifts, and pauses. Record two versions and analyze how the delivery choices change the meaning.",
+    "practice": { "label": "Open the Delivery Lab", "to": "/labs/delivery" }
+  },
+  {
+    "id": "rate-volume-pauses",
+    "category": "delivery",
+    "title": "Rate, volume, and pauses",
+    "summary": "Nervous speakers often speed up. A deliberate rate, enough volume for the back row, and purposeful pauses make a speech easier to follow.",
+    "keyIdeas": [
+      "Vocalized pauses (\"um,\" \"uh,\" \"like\") fill silence. A silent pause usually works better.",
+      "Pause before and after key ideas so they land.",
+      "Practice for time: the textbook recommends timing practice runs.",
+      "Adjust volume for the room, outdoor settings, and microphones."
+    ],
+    "example": {
+      "setting": "Graduation speech",
+      "text": "Sophia's draft takes 4 minutes when she rushes and 5:20 when she pauses after each main idea. She trims one example so she can keep the pauses."
+    },
+    "textbook": [{ "chapter": 11, "section": "11.3–11.5" }],
+    "activity": {
+      "id": "m-rate-volume-pauses",
+      "prompt": "You lose your place mid-sentence. What is the most effective response?",
+      "options": [
+        { "text": "Fill the time with \"um\" until you remember.", "feedback": "Vocalized pauses draw attention to the gap." },
+        { "text": "Pause silently, glance at your notes, and continue.", "correct": true, "feedback": "Yes. A short silent pause looks intentional to most audiences." },
+        { "text": "Apologize and start the speech over.", "feedback": "Restarting highlights the problem and costs time. A pause is enough." }
+      ]
+    },
+    "reflection": "Time your speech twice. How much did your rate change between the two runs?",
+    "college": "Record a practice run and count vocalized pauses per minute. Set a measurable goal and track it across three rehearsals in My Growth.",
+    "practice": { "label": "Use the speech timer", "to": "/labs/delivery" }
+  },
+  {
+    "id": "gestures-posture",
+    "category": "delivery",
+    "title": "Gestures and posture",
+    "summary": "Natural, purposeful movement supports your message. Posture signals confidence; gestures help explain size, direction, sequence, and emphasis.",
+    "keyIdeas": [
+      "Stand balanced and avoid leaning on the lectern.",
+      "Let gestures grow from meaning (\"three steps,\" \"a huge gap\"), not from nervous energy.",
+      "Distracting habits include pocket jingling, pen clicking, and swaying.",
+      "Gesture norms vary across cultures; aim for clarity and respect."
+    ],
+    "example": {
+      "setting": "Demonstration",
+      "text": "Explaining how a river delta forms, Kai traces the river's path with one hand and spreads his fingers to show it splitting into channels."
+    },
+    "textbook": [{ "chapter": 11, "section": "11.5" }, { "chapter": "A", "note": "Cultural diversity" }],
+    "activity": {
+      "id": "m-gestures-posture",
+      "prompt": "Which gesture supports meaning rather than distracting from it?",
+      "options": [
+        { "text": "Clicking a pen while you talk.", "feedback": "Repetitive habits pull attention away from your message." },
+        { "text": "Holding up three fingers as you preview three main points.", "correct": true, "feedback": "Yes. The gesture reinforces structure the audience is trying to follow." },
+        { "text": "Gripping both sides of the lectern for the whole speech.", "feedback": "This limits gestures and can signal tension." }
+      ]
+    },
+    "reflection": "What does your body do when you are nervous? What could you do instead?",
+    "college": "Watch a video in the Great Speeches gallery with the sound off for one minute. Describe how posture and gesture shape your impression of the speaker's credibility.",
+    "practice": { "label": "Try the delivery self-assessment", "to": "/labs/delivery" }
+  },
+  {
+    "id": "eye-contact",
+    "category": "delivery",
+    "title": "Eye contact and audience engagement",
+    "summary": "Eye contact turns a speech into a conversation. It lets you read feedback and shows listeners you are speaking with them.",
+    "keyIdeas": [
+      "Look at individuals across the whole room, not just one side or the ceiling.",
+      "Use notes as brief reminders so your eyes can return to the audience.",
+      "Watch for feedback such as confused faces, and adapt by slowing down or adding an example.",
+      "Expectations about eye contact differ across cultures; aim for inclusive, comfortable connection."
+    ],
+    "example": {
+      "setting": "Team meeting",
+      "text": "Presenting a project update, Ana notices two teammates frowning at the budget slide. She stops and says, \"Let me show where that number comes from.\""
+    },
+    "textbook": [{ "chapter": 11, "section": "11.5" }, { "chapter": "A", "note": "Cultural diversity" }],
+    "activity": {
+      "id": "m-eye-contact",
+      "prompt": "Which practice habit best builds eye contact?",
+      "options": [
+        { "text": "Memorize the speech word for word so you never look down.", "feedback": "Memorizing word for word often makes speakers look inward to recall the script." },
+        { "text": "Practice from brief keyword notes in front of a few people.", "correct": true, "feedback": "Yes. Keyword notes free your eyes, and real faces give you practice reading feedback." },
+        { "text": "Look just above everyone's heads.", "feedback": "Audiences can tell, and you lose the feedback eye contact provides." }
+      ]
+    },
+    "reflection": "During your last speech, where did your eyes go most? Where did they rarely go?",
+    "college": "Plan three points in your speech where you will deliberately check for audience feedback. Describe what you will do if you see confusion at each point."
+  },
+  {
+    "id": "visual-aids",
+    "category": "delivery",
+    "title": "Visual aids",
+    "summary": "Presentation aids should improve understanding, aid memory, add interest, or strengthen credibility. If an aid does not do one of those things, it is decoration.",
+    "keyIdeas": [
+      "The textbook applies design principles to slides: unity, emphasis, scale and proportion, balance, and rhythm.",
+      "Keep each slide to one message. Use a consistent font and background.",
+      "Use animation to control what the audience sees, not to entertain.",
+      "You are the presentation; the slides support you."
+    ],
+    "example": {
+      "setting": "Science fair",
+      "text": "Instead of a slide with eight bullet points about water use, Priya shows one bar graph comparing three household activities and talks through it."
+    },
+    "textbook": [{ "chapter": 9, "section": "9.1–9.5" }],
+    "activity": {
+      "id": "m-visual-aids",
+      "prompt": "Which slide follows the textbook's guidance best?",
+      "options": [
+        { "text": "A slide with your entire paragraph so you can read it.", "feedback": "The audience will read instead of listen, and you will face the screen." },
+        { "text": "A slide with one clear graph and a short title that states its point.", "correct": true, "feedback": "Yes. One message, clear emphasis, easy to read from the back." },
+        { "text": "A slide with five photos, spinning text, and a sound effect.", "feedback": "Competing elements break unity and pull attention from you." }
+      ]
+    },
+    "reflection": "What is the one thing your audience needs to see (not hear) in your speech?",
+    "college": "Redesign one slide using two named principles from Section 9.4. Explain how each change helps the audience process information.",
+    "practice": { "label": "Open the Visual Aid Lab", "to": "/labs/visual" }
+  },
+  {
+    "id": "speaking-notes",
+    "category": "delivery",
+    "title": "Speaking from notes",
+    "summary": "Your preparation outline is detailed. Your speaking notes are brief cues: keywords, quotations you must say exactly, statistics, and source citations.",
+    "keyIdeas": [
+      "Speaking notes support extemporaneous delivery: you know the ideas, and the notes jog your memory.",
+      "Include exact wording only where accuracy matters (quotations, statistics, oral citations).",
+      "Use large type and clear structure so you can find your place with a glance.",
+      "Add delivery cues such as PAUSE or SLOW DOWN."
+    ],
+    "example": {
+      "setting": "Interview presentation",
+      "text": "Mei's notes for a scholarship interview fit on one card: three keywords for her main points, one statistic with its source, and the word \"BREATHE\" at the top."
+    },
+    "textbook": [{ "chapter": 6, "section": "6.4", "note": "Figure 6.2: Speaking Notes Example" }, { "chapter": 11, "section": "11.3" }],
+    "activity": {
+      "id": "m-speaking-notes",
+      "prompt": "What belongs word for word on your speaking notes?",
+      "options": [
+        { "text": "Every sentence of your body paragraphs.", "feedback": "That is a manuscript. It pulls your eyes down and makes delivery stiff." },
+        { "text": "A direct quotation and its source.", "correct": true, "feedback": "Yes. Quotations and citations must be exact, so write them out." },
+        { "text": "Nothing; real speakers memorize everything.", "feedback": "Most extemporaneous speakers use brief notes. Memorizing everything is risky and often sounds recited." }
+      ]
+    },
+    "reflection": "Convert one main point of your outline into speaking notes using no more than 15 words.",
+    "college": "Create speaking notes for your full speech and compare their length with your preparation outline. Justify each place you wrote out exact wording."
+  },
+  {
+    "id": "extemporaneous",
+    "category": "delivery",
+    "title": "Extemporaneous delivery",
+    "summary": "The textbook describes four methods: impromptu, manuscript, memorized, and extemporaneous. Extemporaneous speaking is carefully prepared and practiced but delivered conversationally from brief notes.",
+    "keyIdeas": [
+      "Impromptu: little or no preparation. Spontaneous, but it can be disorganized.",
+      "Manuscript: read word for word. Precise, but it can limit eye contact and energy.",
+      "Memorized: recited from memory. Risky if you lose your place.",
+      "Extemporaneous: researched and rehearsed, with wording that varies slightly each time. Most instructors expect it."
+    ],
+    "example": {
+      "setting": "Class speech",
+      "text": "Jamal practices his speech five times. His sentences are a little different each time, but his main points, examples, and sources never change. That is extemporaneous delivery."
+    },
+    "textbook": [{ "chapter": 11, "section": "11.2" }],
+    "activity": {
+      "id": "m-extemporaneous",
+      "prompt": "A senator reads a policy statement word for word from a teleprompter. Which method is this?",
+      "options": [
+        { "text": "Manuscript", "correct": true, "feedback": "Yes. Manuscript delivery fits situations where exact wording matters." },
+        { "text": "Extemporaneous", "feedback": "Extemporaneous delivery uses brief notes and flexible wording." },
+        { "text": "Impromptu", "feedback": "Impromptu delivery has little preparation. A teleprompter script is fully prepared." }
+      ]
+    },
+    "reflection": "Which method feels most natural to you? Which will your next speech require?",
+    "college": "Identify a professional situation in your intended field that calls for each of the four methods. Explain the trade-offs that make each method appropriate there."
+  }
+]

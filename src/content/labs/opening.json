@@ -1,0 +1,27 @@
+{
+  "pairs": [
+    { "id": "o1", "prompt": "Which opening is more effective for a speech about food deserts?",
+      "options": [
+        { "text": "\"Today I'm going to talk to you about food deserts.\"", "feedback": "This announces the topic but does nothing to earn attention. The textbook treats getting attention as the first job of an introduction." },
+        { "text": "\"For Maria, the closest place to buy a fresh tomato is a 45-minute bus ride away.\"", "correct": true, "feedback": "A brief narrative puts a human face on the issue immediately. Follow it with your topic and a credibility statement." } ] },
+    { "id": "o2", "prompt": "Which opening is more effective for a speech on sleep?",
+      "options": [
+        { "text": "\"Raise your hand if you got eight hours of sleep last night. Keep it up if you did that every night this week.\"", "correct": true, "feedback": "Audience participation makes the topic personal. Plan how you'll transition if very few hands go up." },
+        { "text": "\"Webster's dictionary defines sleep as...\"", "feedback": "Dictionary openings are predictable. A definition can help later in the body if listeners need it." } ] },
+    { "id": "o3", "prompt": "Which opening is more appropriate for a tribute to a retiring custodian?",
+      "options": [
+        { "text": "A shocking statistic about workplace injuries.", "feedback": "A startling statistic can work in persuasive speeches, but it mismatches a celebration's tone." },
+        { "text": "A short story about the morning he fixed the gym lock in the snow so the team could practice.", "correct": true, "feedback": "A specific, warm story fits the occasion and shows his character (Chapter 15)." } ] },
+    { "id": "o4", "prompt": "Which rhetorical question works better?",
+      "options": [
+        { "text": "\"Have you ever thought about stuff?\"", "feedback": "Too vague to engage anyone." },
+        { "text": "\"What would you do if your phone was the only record of every photo of your family?\"", "correct": true, "feedback": "Specific and personal, so listeners can imagine an answer. It leads naturally to a speech about data backup." } ] }
+  ],
+  "elements": [
+    { "id": "attention", "label": "Get the audience's attention", "help": "A story, startling fact, rhetorical question, quotation, reference to the audience, current event, or historical reference." },
+    { "id": "credibility", "label": "Establish or enhance your credibility", "help": "Why should they listen to you on this topic? Experience, research, or personal connection." },
+    { "id": "rapport", "label": "Establish rapport", "help": "Why does this matter to this audience?" },
+    { "id": "topic", "label": "Preview your topic, purpose, or central idea", "help": "State your central idea clearly." },
+    { "id": "points", "label": "Preview your main points", "help": "\"First... next... finally...\"" }
+  ]
+}

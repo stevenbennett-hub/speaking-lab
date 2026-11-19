@@ -1,0 +1,290 @@
+[
+  {
+    "id": "gettysburg",
+    "speaker": "Abraham Lincoln",
+    "title": "The Gettysburg Address",
+    "date": "November 19, 1863",
+    "place": "Dedication of the national cemetery at Gettysburg, Pennsylvania",
+    "theme": "Democracy and sacrifice",
+    "rights": "Public domain. Short excerpts are quoted below.",
+    "context": "Months after the Battle of Gettysburg, Lincoln was invited to give brief remarks at the dedication of a cemetery for Union soldiers. The featured orator, Edward Everett, spoke for about two hours before him. Lincoln's address is roughly 270 words. The textbook uses this contrast in Section 2.5 to discuss how listening expectations have changed.",
+    "purpose": "To dedicate the cemetery and to redefine the war's purpose as a test of whether a nation built on equality could endure.",
+    "audience": "Thousands of mourners, officials, and soldiers at the ceremony, and newspaper readers across the country.",
+    "strategies": [
+      { "name": "Chronological frame", "description": "The speech moves from past (the nation's founding) to present (the war and the cemetery) to future (the work ahead)." },
+      { "name": "Tricolon", "description": "Ideas grouped in threes create rhythm and emphasis, most famously \"of the people, by the people, for the people.\"" },
+      { "name": "Allusion", "description": "\"Four score and seven years ago\" points back to 1776 and the Declaration of Independence." },
+      { "name": "Antithesis and humility", "description": "Lincoln contrasts what the world will remember (what the soldiers did) with what it will forget (what is said there)." }
+    ],
+    "delivery": "There is no recording. Eyewitness accounts vary, so delivery claims should be treated with caution. What we can study is how the text was built to be heard: short sentences, repetition, and a strong closing rhythm.",
+    "critical": "Five handwritten copies survive, and they differ in wording. The two earliest drafts (the Nicolay and Hay copies at the Library of Congress) do not contain the words \"under God,\" yet some reporters' transcriptions on the day include them. Historians still debate exactly what Lincoln said. Ask: what does a \"text\" of a speech really record?",
+    "questions": [
+      "Why might a brief speech have been more effective after a two-hour oration?",
+      "Lincoln says the world will not long remember what was said there. Was he wrong? Why might he have said it?",
+      "How does the past-present-future structure support the purpose?",
+      "If the drafts differ, which version should we study, and why?"
+    ],
+    "identify": [
+      { "id": "g1", "prompt": "\"...of the people, by the people, for the people...\" Which technique is this?",
+        "options": [
+          { "text": "Tricolon (a group of three)", "correct": true, "feedback": "Three parallel phrases create a memorable rhythm." },
+          { "text": "Rhetorical question", "feedback": "No question is asked." },
+          { "text": "Statistic", "feedback": "No numerical evidence is offered." } ] },
+      { "id": "g2", "prompt": "Why open with \"Four score and seven years ago\"?",
+        "options": [
+          { "text": "To give the exact date of the battle", "feedback": "It counts back 87 years, to 1776, not to the battle." },
+          { "text": "To allude to the nation's founding and connect the war to the Declaration's ideals", "correct": true, "feedback": "Yes. The allusion frames the war as a test of founding principles." },
+          { "text": "To fill time", "feedback": "Every word in a 270-word speech is doing work." } ] }
+    ],
+    "connection": "Can you state your speech's purpose in a few minutes or less? Try cutting your draft by a third and see what you keep.",
+    "sources": [
+      { "label": "Library of Congress: Gettysburg Address exhibition items (drafts and photographs)", "url": "https://www.loc.gov/exhibits/gettysburg-address/exhibition-items.html", "kind": "archive" },
+      { "label": "American Battlefield Trust: Versions of the Gettysburg Address", "url": "https://www.battlefields.org/learn/articles/versions-gettysburg-address", "kind": "context" },
+      { "label": "Cornell University Library: The Five Copies", "url": "https://exhibits.library.cornell.edu/gettysburg/feature/the-five-copies", "kind": "context" }
+    ],
+    "textbook": [{ "chapter": 2, "section": "2.5" }, { "chapter": 15, "section": "15.2", "note": "Speeches of dedication" }]
+  },
+  {
+    "id": "truth-akron",
+    "speaker": "Sojourner Truth",
+    "title": "Speech at the Woman's Rights Convention (\"Ain't I a Woman?\")",
+    "date": "Late May 1851 (most accounts give May 29)",
+    "place": "Ohio Woman's Rights Convention, Akron, Ohio",
+    "theme": "Civil rights and women's rights",
+    "rights": "The 1851 and 1863 printed versions are in the public domain. The National Park Service reproduces both.",
+    "context": "Sojourner Truth was born into slavery in New York, walked away to freedom in the 1820s, and became a traveling preacher and speaker for abolition and women's rights. She could not read or write, and no recording exists, so we know her words only through people who wrote them down.",
+    "purpose": "To argue that women, including Black women, are equal in strength and capability and deserve rights.",
+    "audience": "Convention attendees (supporters and some opponents) in a church in Akron.",
+    "strategies": [
+      { "name": "Personal evidence", "description": "Truth uses her own labor and strength as proof, turning experience into argument." },
+      { "name": "Refutation", "description": "She answers specific claims made by men at the convention." },
+      { "name": "Humor and directness", "description": "Accounts describe the audience laughing and applauding, suggesting she used wit to disarm opposition." }
+    ],
+    "delivery": "Robinson's 1851 report says the speech's effect could not be captured on paper and points to her powerful presence, earnest gestures, and strong voice. Truth's first language was Dutch, and she grew up in New York, not the South.",
+    "critical": "There are two main versions. Marius Robinson, who was at the convention and knew Truth, published one in the Anti-Slavery Bugle on June 21, 1851; it does not contain the famous question \"Ain't I a woman?\" Frances Dana Gage published a very different version in 1863, twelve years later, adding the repeated question and a Southern dialect. Historian Nell Irvin Painter and others consider Robinson's version closer to what Truth said. Ask: whose words are we quoting when we quote a speech?",
+    "questions": [
+      "Compare the two versions on the National Park Service page. What is the same? What changed?",
+      "Why might Gage have changed the dialect, and what effect does that have on how Truth is remembered?",
+      "Which version makes the stronger argument? Is that the same as which version is more accurate?",
+      "How does this case connect to ethics and accurate citation (Chapter 3)?"
+    ],
+    "identify": [
+      { "id": "t1", "prompt": "In Robinson's 1851 version, Truth says she has \"as much muscle as any man.\" What kind of support is this?",
+        "options": [
+          { "text": "Personal example used as evidence", "correct": true, "feedback": "She turns her own body and labor into proof of capability." },
+          { "text": "Expert testimony", "feedback": "She speaks from her own experience, not as an outside expert." },
+          { "text": "Statistic", "feedback": "No numerical data is given." } ] },
+      { "id": "t2", "prompt": "The phrase \"Ain't I a woman?\" first appears in which account?",
+        "options": [
+          { "text": "Marius Robinson's 1851 report", "feedback": "Robinson's report does not include the question." },
+          { "text": "Frances Dana Gage's 1863 account", "correct": true, "feedback": "Correct. This is why many historians treat the famous version with caution." } ] }
+    ],
+    "connection": "When you quote someone in your speech, how do you know the quotation is accurate? Trace one quotation in your speech to its original source.",
+    "sources": [
+      { "label": "National Park Service: Ain't I A Woman? (teacher activity comparing versions)", "url": "https://www.nps.gov/teachers/classrooms/aint-i-a-woman.htm", "kind": "archive" },
+      { "label": "National Park Service: Sojourner Truth article", "url": "https://www.nps.gov/articles/sojourner-truth.htm", "kind": "context" },
+      { "label": "The Sojourner Truth Project: Compare the Speeches (includes audio recreations)", "url": "https://www.thesojournertruthproject.com/compare-the-speeches", "kind": "audio" }
+    ],
+    "textbook": [{ "chapter": 3, "section": "3.3" }, { "chapter": 7, "section": "7.2" }]
+  },
+  {
+    "id": "fdr-1933",
+    "speaker": "Franklin D. Roosevelt",
+    "title": "First Inaugural Address",
+    "date": "March 4, 1933",
+    "place": "U.S. Capitol, Washington, D.C.",
+    "theme": "Leadership in crisis",
+    "rights": "Public domain (U.S. government work). Audio is available from the Miller Center.",
+    "context": "After more than three years of the Great Depression, thousands of banks had failed and millions of people were out of work. Roosevelt took office promising action.",
+    "purpose": "To restore public confidence and prepare the country for rapid, expanded government action.",
+    "audience": "The crowd at the Capitol and a national radio audience.",
+    "strategies": [
+      { "name": "Reframing fear", "description": "\"The only thing we have to fear is fear itself\" turns panic into the problem to be solved." },
+      { "name": "Anaphora", "description": "A run of sentences beginning \"It can be helped by...\" lists actions and builds momentum." },
+      { "name": "Extended analogy", "description": "Roosevelt compares the crisis to a war, which prepares listeners to accept emergency powers." },
+      { "name": "Candor as ethos", "description": "He opens by promising to speak the truth frankly, building trust with a frightened audience." }
+    ],
+    "delivery": "Listen to the recording: notice his measured pace, emphasis on key words, and pauses after major claims, built for radio listeners who could not see him.",
+    "critical": "The American Presidency Project notes that the speech as delivered differs from the version published \"as prepared.\" The FDR Library also describes competing accounts of where the \"fear itself\" line came from. Some listeners were uneasy about the crowd's enthusiasm for wartime executive power. Ask: when is a war analogy helpful, and when could it be dangerous?",
+    "questions": [
+      "How does Roosevelt balance honesty about the crisis with hope?",
+      "What does the war analogy make easier for him to ask for?",
+      "Compare the delivered and prepared texts. What changed, and why might it matter?"
+    ],
+    "identify": [
+      { "id": "f1", "prompt": "Several consecutive sentences begin \"It can be helped by...\" Which technique is this?",
+        "options": [
+          { "text": "Anaphora (repetition at the start of sentences)", "correct": true, "feedback": "Repetition creates rhythm and signals a list of concrete actions." },
+          { "text": "Antithesis", "feedback": "Antithesis contrasts opposites in parallel form." },
+          { "text": "Rhetorical question", "feedback": "These are statements, not questions." } ] },
+      { "id": "f2", "prompt": "Comparing the Depression to war mainly serves which purpose?",
+        "options": [
+          { "text": "Justifying urgent, expanded action", "correct": true, "feedback": "Yes. A war frame makes emergency measures feel necessary." },
+          { "text": "Describing actual military plans", "feedback": "It is an analogy, not a military plan." } ] }
+    ],
+    "connection": "Does your persuasive speech use an analogy? Test where your comparison holds and where it breaks down (Section 14.4: false analogy).",
+    "sources": [
+      { "label": "National Archives: FDR's First Inaugural Address lesson", "url": "https://www.archives.gov/education/lessons/fdr-inaugural", "kind": "archive" },
+      { "label": "The American Presidency Project: transcript as delivered", "url": "https://www.presidency.ucsb.edu/documents/inaugural-address-8", "kind": "text" },
+      { "label": "Miller Center: audio and transcript", "url": "https://millercenter.org/the-presidency/presidential-speeches/march-4-1933-first-inaugural-address", "kind": "audio" },
+      { "label": "FDR Library: First Inaugural curriculum hub", "url": "https://www.fdrlibrary.org/first-inaugural-curriculum-hub", "kind": "context" }
+    ],
+    "textbook": [{ "chapter": 10, "section": "10.2" }, { "chapter": 14, "section": "14.2" }]
+  },
+  {
+    "id": "jfk-rice",
+    "speaker": "John F. Kennedy",
+    "title": "Address at Rice University on the Nation's Space Effort",
+    "date": "September 12, 1962",
+    "place": "Rice University Stadium, Houston, Texas",
+    "theme": "Science communication and civic ambition",
+    "rights": "The JFK Library lists NASA's video of the speech as public domain.",
+    "context": "The United States was competing with the Soviet Union in space. Houston had just been chosen for NASA's new Manned Spacecraft Center. Kennedy used a large outdoor university audience to build public support for the expensive goal of reaching the Moon.",
+    "purpose": "To persuade the public that the Moon program was worth its cost and difficulty.",
+    "audience": "Students, faculty, and residents in the stadium, and a national audience through news coverage.",
+    "strategies": [
+      { "name": "Audience adaptation", "description": "He jokes about being made an honorary visiting professor and asks why Rice plays Texas, a local football reference." },
+      { "name": "Making numbers relatable", "description": "He translates the space budget into cents per person per week, a way to make a huge number meaningful." },
+      { "name": "Rhetorical questions", "description": "\"But why, some say, the moon?\" anticipates the audience's objection and answers it." },
+      { "name": "Repetition", "description": "\"We choose to go to the moon\" repeats for emphasis before the full explanation." }
+    ],
+    "delivery": "Watch the NASA video: an outdoor speech in heat, with crowd reactions Kennedy pauses for. Notice how he uses applause and laughter as feedback.",
+    "critical": "The JFK Library holds drafts by speechwriter Ted Sorensen with Kennedy's handwritten changes. Public officials often work with speechwriters. Ask: how is that different from a student submitting a speech written by someone (or something) else? Connect this to the AI Coach principles.",
+    "questions": [
+      "How does Kennedy adapt a national message to a local audience?",
+      "What objections does he anticipate, and how does he answer them?",
+      "How does he make a technical, expensive goal feel personal?"
+    ],
+    "identify": [
+      { "id": "j1", "prompt": "\"Why does Rice play Texas?\" in the middle of a speech about space mainly serves to...",
+        "options": [
+          { "text": "Build rapport with the local audience through a shared reference", "correct": true, "feedback": "Yes. It connects a national goal to something the stadium crowd cares about." },
+          { "text": "Provide statistical evidence", "feedback": "It is a question about a rivalry, not data." } ] },
+      { "id": "j2", "prompt": "Turning the space budget into a weekly cost per person is an example of...",
+        "options": [
+          { "text": "Making statistics meaningful to the audience", "correct": true, "feedback": "Large numbers are hard to grasp. Relating them to everyday amounts helps listeners judge them." },
+          { "text": "A logical fallacy", "feedback": "Restating a number in relatable terms is a legitimate technique, as long as it is accurate." } ] }
+    ],
+    "connection": "Find the biggest number in your speech. How could you make it meaningful to your classmates?",
+    "sources": [
+      { "label": "JFK Library: Address at Rice University (video)", "url": "https://www.jfklibrary.org/learn/about-jfk/historic-speeches/address-at-rice-university-on-the-nations-space-effort", "kind": "video" },
+      { "label": "JFK Library: transcript", "url": "https://www.jfklibrary.org/archives/other-resources/john-f-kennedy-speeches/rice-university-19620912", "kind": "text" },
+      { "label": "JFK Library: speech drafts with handwritten notes", "url": "https://www.jfklibrary.org/asset-viewer/archives/jfkpof-040-001", "kind": "archive" }
+    ],
+    "textbook": [{ "chapter": 2, "section": "2.4" }, { "chapter": 7, "section": "7.2" }]
+  },
+  {
+    "id": "king-1963",
+    "speaker": "Martin Luther King, Jr.",
+    "title": "\"I Have a Dream\"",
+    "date": "August 28, 1963",
+    "place": "Lincoln Memorial, March on Washington for Jobs and Freedom",
+    "theme": "Civil rights and social change",
+    "rights": "The text and recordings are protected by copyright held by the King estate. The Speaking Lab does not reproduce or quote them. Read and watch through the linked authorized sources.",
+    "context": "More than 200,000 people joined the March on Washington, held in the centennial year of the Emancipation Proclamation, to demand civil and economic rights. King spoke near the end of a long program of speakers and performers.",
+    "purpose": "To call the nation to fulfill its founding promises of equality and to sustain hope and nonviolent commitment.",
+    "audience": "The crowd at the Lincoln Memorial, live television viewers, and lawmakers considering civil rights legislation.",
+    "strategies": [
+      { "name": "Metaphor", "description": "According to the King Institute, adviser Clarence Jones suggested an extended financial metaphor about an unpaid promise, which King adopted." },
+      { "name": "Allusion", "description": "King draws on Lincoln, the founding documents, and biblical prophets such as Amos and Isaiah." },
+      { "name": "Refrain", "description": "The famous \"dream\" refrain builds through repetition at the start of successive sentences." }
+    ],
+    "delivery": "The King Institute notes that a typed version was given to the press, but King did not simply read it. The \"dream\" passages draw on language he had used in earlier speeches, including in Detroit two months before. This is a powerful example of a prepared speaker adapting in the moment.",
+    "critical": "The speech is often remembered mainly for its final passages. Read the King Institute's account of the March: the event focused on jobs and freedom, and some activists criticized it. Ask: what is lost when a speech is remembered through one famous section?",
+    "questions": [
+      "Why might King have moved away from his prepared text? What does that suggest about extemporaneous delivery?",
+      "How do the allusions connect his message to his audience's existing values?",
+      "How does the setting (the Lincoln Memorial, the centennial year) shape the speech's meaning?"
+    ],
+    "identify": [
+      { "id": "k1", "prompt": "Repeating the same phrase at the start of several sentences is called...",
+        "options": [
+          { "text": "Anaphora", "correct": true, "feedback": "Yes. Listen for it in the speech's final section." },
+          { "text": "Alliteration", "feedback": "Alliteration repeats initial sounds within a phrase." } ] },
+      { "id": "k2", "prompt": "Speaking at the Lincoln Memorial in the Emancipation Proclamation's centennial year is an example of using...",
+        "options": [
+          { "text": "Physical and historical context", "correct": true, "feedback": "The setting itself carries meaning, a layer of context described in Section 1.3." },
+          { "text": "Presentation aids", "feedback": "The setting is context, not a prepared aid." } ] }
+    ],
+    "connection": "Is there a place, date, or shared memory that could give your speech extra meaning for your audience?",
+    "sources": [
+      { "label": "Stanford King Institute: \"I Have a Dream\" (history of the speech)", "url": "https://kinginstitute.stanford.edu/i-have-dream", "kind": "context" },
+      { "label": "Stanford King Institute: March on Washington for Jobs and Freedom", "url": "https://kinginstitute.stanford.edu/march-washington-jobs-and-freedom", "kind": "context" }
+    ],
+    "textbook": [{ "chapter": 1, "section": "1.3" }, { "chapter": 10, "section": "10.2" }, { "chapter": 11, "section": "11.2" }]
+  },
+  {
+    "id": "jordan-1976",
+    "speaker": "Barbara Jordan",
+    "title": "Keynote Address, 1976 Democratic National Convention",
+    "date": "July 12, 1976",
+    "place": "Madison Square Garden, New York City",
+    "theme": "Democracy and national community",
+    "rights": "Rights status of the text is uncertain. Watch the full speech through the Texas Archive of the Moving Image.",
+    "context": "Representative Barbara Jordan of Texas, a former champion debater at Texas Southern University, became the first African American woman to deliver a keynote address at a Democratic National Convention. She was nationally known for her statement during the 1974 House Judiciary Committee impeachment hearings.",
+    "purpose": "To define shared national values and call for a \"national community\" at a time of public distrust.",
+    "audience": "Convention delegates and a national television audience. Note: this is a partisan political speech. The Speaking Lab examines its rhetorical techniques, not its political positions.",
+    "strategies": [
+      { "name": "Ethos through self-reference", "description": "She opens by noting how unusual it would once have been for a party to ask someone like her to give this address, turning her identity into evidence of progress." },
+      { "name": "Stated choice of approach", "description": "She tells the audience what she will not do (spend the time attacking opponents), which frames her as fair-minded." },
+      { "name": "Rhetorical questions", "description": "She asks who will speak for the common good, inviting listeners to answer for themselves." },
+      { "name": "Closing quotation", "description": "She ends by quoting Abraham Lincoln, a president from the opposing party, reinforcing her unifying theme." }
+    ],
+    "delivery": "Watch for her deliberate pace, precise articulation, and pauses. Accounts report repeated applause and a long ovation.",
+    "critical": "Keynotes are designed to unify a party, so evaluate how a message of \"national community\" functions at a partisan event. Read a speech from the other party's convention and compare techniques.",
+    "questions": [
+      "How does Jordan turn the historic nature of her appearance into credibility?",
+      "Why might quoting a president from the other party strengthen her message?",
+      "Which delivery choices would you like to borrow?"
+    ],
+    "identify": [
+      { "id": "b1", "prompt": "Jordan says she will not spend her time attacking the other party. This mainly builds...",
+        "options": [
+          { "text": "Ethos (character and fairness)", "correct": true, "feedback": "Signaling restraint presents her as trustworthy and unifying." },
+          { "text": "Logos", "feedback": "No evidence or reasoning is presented in that move." } ] }
+    ],
+    "connection": "What could you say in your introduction that shows fairness to people who disagree with you?",
+    "sources": [
+      { "label": "Texas Archive of the Moving Image: full video (from TSU's Barbara Jordan archives)", "url": "https://texasarchive.org/2014_03974", "kind": "video" },
+      { "label": "American Rhetoric: transcript", "url": "https://www.americanrhetoric.com/speeches/barbarajordan1976dnc.html", "kind": "text" }
+    ],
+    "textbook": [{ "chapter": 3, "section": "3.2" }, { "chapter": 8, "section": "8.2" }, { "chapter": 11, "section": "11.5" }]
+  },
+  {
+    "id": "malala-2014",
+    "speaker": "Malala Yousafzai",
+    "title": "Nobel Lecture",
+    "date": "December 10, 2014",
+    "place": "Oslo City Hall, Norway",
+    "theme": "Education and youth advocacy",
+    "rights": "Text and video are copyrighted by the Nobel Foundation. Read and watch on NobelPrize.org.",
+    "context": "Malala Yousafzai, an activist for girls' education from Pakistan's Swat Valley who survived being shot in 2012, shared the 2014 Nobel Peace Prize with Kailash Satyarthi. She became the youngest laureate in the prize's history.",
+    "purpose": "To accept the prize on behalf of children denied education and to call world leaders to action.",
+    "audience": "The Nobel ceremony audience and a global audience.",
+    "strategies": [
+      { "name": "Humor and humility", "description": "She jokes about still arguing with her younger brothers, which makes a solemn occasion personal." },
+      { "name": "Speaking for others", "description": "She names girls she has met and identifies her voice with theirs, expanding the speech beyond her own story." },
+      { "name": "Narrative", "description": "She contrasts her childhood love of learning with the violence that closed schools in her region." },
+      { "name": "Call to action", "description": "She ends with concrete commitments and challenges to leaders." }
+    ],
+    "delivery": "She was 17. Watch for her steady pace, smiles during humorous moments, and direct address to the audience.",
+    "critical": "Acceptance speeches are a special occasion genre (Section 15.2), but this one also persuades. Ask: how does she balance gratitude, celebration, and advocacy? Does that blend work?",
+    "questions": [
+      "How does humor change the tone of a serious occasion?",
+      "What is the effect of naming other girls?",
+      "Which special occasion type does this fit, and how does it go beyond it?"
+    ],
+    "identify": [
+      { "id": "m1", "prompt": "Naming other girls and identifying her voice with theirs mainly serves to...",
+        "options": [
+          { "text": "Show the issue is larger than one person's story", "correct": true, "feedback": "It turns a personal honor into collective advocacy." },
+          { "text": "Provide statistical proof", "feedback": "Names and stories are narrative and testimony, not statistics." } ] }
+    ],
+    "connection": "Whose voices beyond your own could your speech represent fairly and accurately?",
+    "sources": [
+      { "label": "NobelPrize.org: Nobel Lecture text", "url": "https://www.nobelprize.org/prizes/peace/2014/yousafzai/lecture/", "kind": "text" },
+      { "label": "NobelPrize.org: video of the lecture", "url": "https://mediaplayer.nobelprize.org/mediaplayer/?id=2424", "kind": "video" }
+    ],
+    "textbook": [{ "chapter": 15, "section": "15.2", "note": "Speeches of acceptance" }, { "chapter": 7, "section": "7.2", "note": "Narratives" }]
+  }
+]

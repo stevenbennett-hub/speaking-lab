@@ -1,0 +1,32 @@
+[
+  { "id": "a1", "context": "Topic: how vaccines train the immune system. You gave this speech to a nursing club. Now you will give it to a fifth-grade class.",
+    "prompt": "Which adaptation fits the new audience best?",
+    "options": [
+      { "text": "Keep the same slides; the science is the same.", "feedback": "The facts don't change, but the audience's knowledge does. Terms like \"antigen\" need translation or examples." },
+      { "text": "Use an analogy (a \"wanted poster\" that helps the body recognize a germ), define new words, and keep accuracy.", "correct": true, "feedback": "Yes. Analogies and definitions are supporting materials from Chapter 7. You simplify the language, not the truth." },
+      { "text": "Skip the science and tell a funny story instead.", "feedback": "Engagement matters, but the audience still deserves to learn the content." } ] },
+  { "id": "a2", "context": "You are asking members of a senior center to support a new skatepark near their building.",
+    "prompt": "What is the most audience-centered first step?",
+    "options": [
+      { "text": "Assume they will oppose it because they are older, and prepare to argue.", "feedback": "That is a stereotype. Age may suggest some shared experiences, but it doesn't tell you what any person thinks." },
+      { "text": "Ask a few members or the center director what concerns and hopes they have about the park.", "correct": true, "feedback": "Yes. The textbook emphasizes gathering real information. You may find shared values, such as safe places for grandchildren." },
+      { "text": "Speak louder and slower than normal for the whole speech.", "feedback": "Adjust volume for the room, not for assumptions about listeners." } ] },
+  { "id": "a3", "context": "At a family night, many parents speak languages other than English, and interpreters may be present.",
+    "prompt": "Which adaptation is most respectful and effective?",
+    "options": [
+      { "text": "Use plain language, avoid idioms, pause for interpreters, and show key information visually.", "correct": true, "feedback": "Yes. Clear language and visuals help everyone. Idioms (\"hit it out of the park\") often do not translate." },
+      { "text": "Talk more slowly and simplify the ideas because the audience may not understand complex topics.", "feedback": "Pacing can help, but simplifying the ideas assumes something about the audience's thinking. Language proficiency is not the same as understanding." },
+      { "text": "Keep it exactly as written; adapting would be unfair to English speakers.", "feedback": "Adaptations like clear language and visuals usually help all listeners." } ] },
+  { "id": "a4", "context": "Last year the school board voted down the same proposal you are presenting. Several members are still on the board.",
+    "prompt": "How should you open?",
+    "options": [
+      { "text": "Ignore last year's vote and present it as a brand-new idea.", "feedback": "The board remembers. Ignoring historical context can damage your credibility." },
+      { "text": "Acknowledge last year's concerns, explain what has changed, and start from shared goals.", "correct": true, "feedback": "Yes. Recognizing historical context and building common ground helps a skeptical audience listen." },
+      { "text": "Criticize last year's decision so they know you're serious.", "feedback": "Attacking the listeners you need to persuade makes them defensive." } ] },
+  { "id": "a5", "context": "Your speech will be delivered live on a video call to a class you cannot see well.",
+    "prompt": "Which adaptation best addresses the online context?",
+    "options": [
+      { "text": "Look at the camera when making key points, check lighting and audio beforehand, and build in moments for chat or questions.", "correct": true, "feedback": "Yes. Appendix C covers online preparation. The camera is your audience's eyes, and you need deliberate ways to get feedback." },
+      { "text": "Read from a script on screen since no one can tell.", "feedback": "Audiences often notice reading eyes, and you lose conversational delivery." },
+      { "text": "Turn off your camera so you feel less nervous.", "feedback": "Your nonverbal delivery is part of the message. Ask your instructor about camera expectations." } ] }
+]

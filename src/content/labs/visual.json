@@ -1,0 +1,29 @@
+[
+  { "id": "v1", "prompt": "Which slide better supports a speech about how much water household activities use?",
+    "slides": ["textwall", "chart"],
+    "options": [
+      { "text": "Slide A", "feedback": "The audience will read the paragraph instead of listening, and the speaker is tempted to read it aloud. The textbook's advice: one message per slide." },
+      { "text": "Slide B", "correct": true, "feedback": "One graph, one point, and a title that states the takeaway. The speaker explains; the slide shows." } ] },
+  { "id": "v2", "prompt": "What is the biggest problem with this slide?",
+    "slides": ["busy"],
+    "options": [
+      { "text": "Too few images", "feedback": "The problem is the opposite." },
+      { "text": "Competing elements break unity, so the audience doesn't know where to look", "correct": true, "feedback": "Yes. Section 9.4 lists unity and emphasis among the design principles. \"Just because you can doesn't mean you should.\"" },
+      { "text": "The title is too short", "feedback": "The title is not the main issue." } ] },
+  { "id": "v3", "prompt": "What would most improve this slide?",
+    "slides": ["lowcontrast"],
+    "options": [
+      { "text": "Add a sound effect", "feedback": "The textbook strongly discourages sound effects on slides." },
+      { "text": "Increase contrast between text and background, and enlarge the text", "correct": true, "feedback": "Yes. If the back row cannot read it, the slide fails at its job. Strong contrast also supports viewers with low vision." },
+      { "text": "Switch to a decorative script font", "feedback": "Decorative fonts are usually harder to read from a distance." } ] },
+  { "id": "v4", "prompt": "Which slide makes its point faster?",
+    "slides": ["chart3d", "chart"],
+    "options": [
+      { "text": "Slide A", "feedback": "Extra effects and a vague title make the audience work to find the point." },
+      { "text": "Slide B", "correct": true, "feedback": "A plain bar graph with a title that states the takeaway is processed almost instantly." } ] },
+  { "id": "v5", "prompt": "You have four short points on a slide. How should they appear?",
+    "options": [
+      { "text": "All at once, so the audience can read ahead", "feedback": "Audiences read ahead and stop listening. Control what they see." },
+      { "text": "One at a time as you discuss each point", "correct": true, "feedback": "Yes. The textbook notes that controlled entrance animation keeps attention on you and the current point." },
+      { "text": "Each spinning in with a different effect", "feedback": "Mixed, flashy effects break consistency and distract." } ] }
+]
