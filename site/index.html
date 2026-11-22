@@ -1069,6 +1069,7 @@ try { document.documentElement.dataset.theme = localStorage.getItem("speakup-the
 #listenlab .ll-tr { margin: 10px 0 0; padding-left: 22px; display: grid; gap: 4px; }
 #listenlab .ll-tr li { padding: 2px 6px; border-radius: 6px; }
 #listenlab .ll-tr li.now { background: var(--zone-soft); outline: 2px solid var(--zone); }
+#listenlab .ll-vnote { margin: 6px 0 0; font-size: 12px; color: var(--muted); }
 #listenlab .ll-pstat { margin: 6px 0 0; font-size: 13px; color: var(--muted); min-height: 1em; }
 
 /* 1. Concepts */
@@ -6636,11 +6637,13 @@ window.LL_DATA = (function () {
   if (TTS.ok && speechSynthesis.addEventListener) speechSynthesis.addEventListener("voiceschanged", () => { if (root && !TTS.playing) syncPlayers(); });
   const canSpeak = () => TTS.ok && !!voiceFor(SL.isEs() ? "es" : "en");
   function stopTTS(keepIndex) {
-    TTS.tok++; const was = TTS.key; TTS.playing = false; if (!keepIndex) TTS.i = 0;
+    TTS.tok++; const was = TTS.key; TTS.playing = false; if (!keepIndex) { TTS.i = 0; AUD.resume = null; stopAudio(true); } else stopAudio(false);
     try { if (TTS.ok) speechSynthesis.cancel(); } catch (e) {}
     if (was) syncPlayer(was);
   }
   function speakAt(key, i, hooks) {
+    if (hasAudio(key)) return audioAt(key, i, hooks, hooks && hooks.resumeAt);
+    TTS.mode = "speech";
     const sc = D.SCRIPTS[key]; if (!sc || !canSpeak()) return false;
     if (TTS.key && TTS.key !== key) syncPlayer(TTS.key, true);
     TTS.key = key; TTS.i = i; TTS.playing = true; TTS.hooks = hooks || null; const tok = ++TTS.tok;
@@ -6658,11 +6661,50 @@ window.LL_DATA = (function () {
     TTS.keep = [u]; speechSynthesis.speak(u); syncPlayer(key);
     return true;
   }
+  /* ---------- Recorded audio (site/audio/{key}-{en|es}.mp3), preferred over browser speech ----------
+     Files are optional: any missing file falls back to browser speech, then to the transcript.
+     Sentence highlighting for recordings is estimated from each sentence's share of the text. */
+  const AUD = { st: {}, el: null, key: null, timer: null };
+  const audLang = () => SL.isEs() ? "es" : "en";
+  const audSrc = key => `audio/${key}-${audLang()}.mp3`;
+  function audProbe(key) {
+    const id = key + "-" + audLang(); if (AUD.st[id]) return AUD.st[id];
+    AUD.st[id] = "probe"; const a = new Audio(); a.preload = "metadata";
+    a.addEventListener("loadedmetadata", () => { AUD.st[id] = { dur: a.duration }; const ae = document.activeElement, typing = ae && root && root.contains(ae) && /^(TEXTAREA|INPUT|SELECT)$/.test(ae.tagName); const dlg = root && root.querySelector("#ll-pres"); if (root && !TTS.playing && !typing && !(dlg && dlg.open) && (root.querySelector(`.ll-player[data-script="${key}"]`) || (key === "barrier" && st.tab === "barr"))) render(); }, { once: true });
+    a.addEventListener("error", () => { AUD.st[id] = "missing"; }, { once: true });
+    a.src = audSrc(key); return "probe";
+  }
+  const hasAudio = key => { const v = audProbe(key); return typeof v === "object"; };
+  function starts(key, dur) {
+    const sents = D.SCRIPTS[key].s.map(x => T(x)), w = sents.map(x => x.length + 12), tot = w.reduce((a, b) => a + b, 0);
+    let acc = 0; return w.map(x => { const t = dur * acc / tot; acc += x; return t; });
+  }
+  function audioAt(key, i, hooks, resumeAt) {
+    const id = key + "-" + audLang(), info = AUD.st[id]; if (typeof info !== "object") return false;
+    if (TTS.key && TTS.key !== key) syncPlayer(TTS.key, true);
+    stopAudio(true);
+    const tok = ++TTS.tok; TTS.key = key; TTS.i = i; TTS.playing = true; TTS.hooks = hooks || null; TTS.mode = "audio";
+    if (i === 0 && resumeAt == null && !(hooks && hooks.cont)) { st.plays[key] = (st.plays[key] || 0) + 1; save(); }
+    const a = AUD.el = new Audio(audSrc(key)); AUD.key = key;
+    const st0 = starts(key, info.dur || a.duration || 60);
+    a.volume = st.tts.vol; a.playbackRate = st.tts.rate;
+    let last = -1;
+    const tick = () => { if (tok !== TTS.tok) return; const sts = starts(key, a.duration || info.dur || 60); let k = 0; while (k + 1 < sts.length && a.currentTime >= sts[k + 1]) k++;
+      if (k !== last) { last = k; TTS.i = k; syncPlayer(key); if (TTS.hooks && TTS.hooks.onSentence) TTS.hooks.onSentence(k); } };
+    a.addEventListener("timeupdate", tick);
+    a.addEventListener("ended", () => { if (tok !== TTS.tok) return; TTS.playing = false; TTS.i = 0; AUD.resume = null; syncPlayer(key); const h = TTS.hooks; if (h && h.onDone) h.onDone(); if (root && !(h && h.noRender)) render(); });
+    a.addEventListener("error", () => { if (tok !== TTS.tok) return; TTS.playing = false; AUD.st[id] = "missing"; syncPlayer(key, false, L("The recording couldn’t play. Use the transcript, or try again.", "No se pudo reproducir la grabación. Usa la transcripción o inténtalo de nuevo.")); });
+    const go = () => { try { a.currentTime = resumeAt != null ? resumeAt : (st0[i] || 0); } catch (e) {} const pr = a.play(); if (pr && pr.catch) pr.catch(() => { if (tok === TTS.tok) { TTS.playing = false; syncPlayer(key, false, L("Select Play to start the audio.", "Selecciona Reproducir para iniciar el audio.")); } }); tick(); };
+    if (a.readyState >= 1) go(); else a.addEventListener("loadedmetadata", go, { once: true });
+    syncPlayer(key); return true;
+  }
+  function stopAudio(silent) { if (AUD.el) { try { AUD.el.pause(); } catch (e) {} if (!silent) AUD.resume = AUD.el.currentTime; AUD.el = null; } }
+  const VOICE_NOTE = ["Voices: AI-generated with ElevenLabs. The speakers are fictional students and teachers.", "Voces: generadas con IA mediante ElevenLabs. Los oradores son estudiantes y maestros ficticios."];
   const playsLeft = key => 2 - (st.plays[key] || 0);
   function player(key, o) {
     o = o || {}; const sc = D.SCRIPTS[key], es = SL.isEs();
     const trOpen = o.noTr ? false : (st.tr[key] != null ? st.tr[key] : !canSpeak());
-    const speak = canSpeak();
+    const rec = hasAudio(key), speak = rec || canSpeak();
     const noVoiceMsg = TTS.ok ? L("This computer doesn’t have a voice for this language. Read the transcript: it’s the same message.", "Esta computadora no tiene una voz para este idioma. Lee la transcripción: es el mismo mensaje.") : L("Read-aloud isn’t available in this browser. Read the transcript: it’s the same message.", "La lectura en voz alta no está disponible en este navegador. Lee la transcripción: es el mismo mensaje.");
     const limitHit = o.limit && playsLeft(key) <= 0;
     return `<div class="ll-player" data-script="${key}">
@@ -6674,7 +6716,7 @@ window.LL_DATA = (function () {
         ${o.limit ? `<p class="ll-plays">${limitHit ? L("You’ve used both plays. Answer from what you remember.", "Usaste las dos reproducciones. Responde con lo que recuerdes.") : SL.fmt(["Challenge mode: {n} of 2 plays left.", "Modo reto: te quedan {n} de 2 reproducciones."], { n: playsLeft(key) })}</p>` : ""}` : `<p class="ll-novoice">${noVoiceMsg}</p>`}
       ${o.noTr ? `<p class="pl-note">${o.noTrMsg ? E(T(o.noTrMsg)) : ""}</p>` : `<button type="button" class="linkbtn ll-trb" data-ll="tr" data-k="${key}" aria-expanded="${trOpen}">${trOpen ? L("Hide transcript", "Ocultar transcripción") : L("Show transcript", "Mostrar transcripción")}</button>
       <ol class="ll-tr" id="ll-tr-${key}" lang="${es ? "es" : "en"}"${trOpen ? "" : " hidden"}>${sc.s.map((x, i) => `<li data-i="${i}">${E(T(x))}</li>`).join("")}</ol>`}
-      <p class="ll-pstat" role="status" aria-live="polite"></p>
+      <p class="ll-pstat" role="status" aria-live="polite"></p>${rec ? `<p class="ll-vnote">${E(T(VOICE_NOTE))}</p>` : ""}
     </div>`;
   }
   function syncPlayer(key, off, msg) {
@@ -6786,7 +6828,7 @@ window.LL_DATA = (function () {
       <fieldset class="ll-opts"><legend>${L("Simulation settings", "Opciones de la simulación")}</legend>
         <label><input type="checkbox" data-llck="barr.fx"${b.fx ? " checked" : ""}> ${L("Show on-screen distractions (they slide in gently; nothing flashes)", "Mostrar distracciones en pantalla (aparecen suavemente; nada parpadea)")}</label>
         <label><input type="checkbox" data-llck="barr.snd"${b.snd ? " checked" : ""}> ${L("Add a quiet notification sound (off by default)", "Añadir un sonido suave de notificación (apagado por defecto)")}</label>
-        <p class="pl-note">${canSpeak() ? L("The announcement plays aloud with captions underneath.", "El anuncio se reproduce en voz alta con subtítulos abajo.") : L("No voice is available, so the announcement appears as timed captions.", "No hay voz disponible, así que el anuncio aparece como subtítulos con tiempo.")} ${L("Screen reader users: the on-screen distractions are visual only. For a similar effect, turn on the sound or ask a partner to talk quietly during Round 1.", "Usuarios de lectores de pantalla: las distracciones en pantalla son solo visuales. Para un efecto similar, activa el sonido o pide a un compañero que hable en voz baja durante la Ronda 1.")}</p></fieldset>
+        <p class="pl-note">${hasAudio("barrier") || canSpeak() ? L("The announcement plays aloud with captions underneath.", "El anuncio se reproduce en voz alta con subtítulos abajo.") : L("No voice is available, so the announcement appears as timed captions.", "No hay voz disponible, así que el anuncio aparece como subtítulos con tiempo.")} ${L("Screen reader users: the on-screen distractions are visual only. For a similar effect, turn on the sound or ask a partner to talk quietly during Round 1.", "Usuarios de lectores de pantalla: las distracciones en pantalla son solo visuales. Para un efecto similar, activa el sonido o pide a un compañero que hable en voz baja durante la Ronda 1.")}</p></fieldset>
       ${section(["Round 1: With distractions", "Ronda 1: Con distracciones"], `${stage(1)}<button type="button" class="btn primary" data-llsim="1"${sim.round ? " disabled" : ""}>${r1.done ? L("Run Round 1 again", "Repetir la Ronda 1") : L("Start Round 1", "Empezar la Ronda 1")}</button>
         ${r1.done ? `<ol class="ll-qs">${barrQs("r1")}</ol>${r1.sub ? `<div class="pl-fb ok"><b>${SL.fmt(["Round 1: {c} of 4.", "Ronda 1: {c} de 4."], { c: barrScore("r1") })}</b></div>` : `<button type="button" class="btn" data-llbsub="r1">${L("Check Round 1", "Revisar la Ronda 1")}</button>`}` : ""}`)}
       ${r1.sub ? section(["Round 2: Focused listening", "Ronda 2: Escucha concentrada"], `${stage(2)}<button type="button" class="btn primary" data-llsim="2"${sim.round ? " disabled" : ""}>${r2.done ? L("Run Round 2 again", "Repetir la Ronda 2") : L("Start Round 2", "Empezar la Ronda 2")}</button>
@@ -6813,7 +6855,7 @@ window.LL_DATA = (function () {
   function runSim(r) {
     stopTTS(); clearInterval(sim.timer); sim.round = r; sim.i = -1; st.barr["r" + r] = { ans: {}, sub: false, done: false }; save(); render();
     const n = D.SCRIPTS.barrier.s.length;
-    if (canSpeak()) { speakAt("barrier", 0, { onSentence: i => simSentence(r, i), onDone: () => simEnd(r), noRender: true }); return; }
+    if (hasAudio("barrier") || canSpeak()) { speakAt("barrier", 0, { onSentence: i => simSentence(r, i), onDone: () => simEnd(r), noRender: true }); return; }
     let i = 0; simSentence(r, 0);
     sim.timer = setInterval(() => { i++; if (i >= n) simEnd(r); else simSentence(r, i); }, 4500 / st.tts.rate);
   }
@@ -7033,7 +7075,7 @@ window.LL_DATA = (function () {
       if (d.ll === "play") { const k = d.k; if (TTS.playing && TTS.key === k) { stopTTS(true); return; }
         const lim = st.tab === "main" && st.main.mode === "challenge" && !st.main.sub && k === "main";
         if (lim && playsLeft(k) <= 0) return;
-        const from = TTS.key === k ? TTS.i : 0; speakAt(k, from, from > 0 ? { cont: true } : null); if (lim && from === 0) { render(`[data-ll="play"][data-k="${k}"]`); } return; }
+        const from = TTS.key === k ? TTS.i : 0; const resumeAt = TTS.key === k && hasAudio(k) && AUD.resume != null ? AUD.resume : null; speakAt(k, from, from > 0 || resumeAt != null ? { cont: true, resumeAt } : null); if (lim && from === 0) { render(`[data-ll="play"][data-k="${k}"]`); } return; }
       if (d.ll === "restart") { const lim = st.tab === "main" && st.main.mode === "challenge" && !st.main.sub && d.k === "main"; if (lim && playsLeft(d.k) <= 0) return; stopTTS(); speakAt(d.k, 0); if (lim) render(`[data-ll="restart"][data-k="${d.k}"]`); return; }
       if (d.ll === "tr") { const open = t.getAttribute("aria-expanded") !== "true"; st.tr[d.k] = open; save(); const ol = root.querySelector("#ll-tr-" + d.k); if (ol) ol.hidden = !open; t.setAttribute("aria-expanded", String(open)); t.textContent = open ? L("Hide transcript", "Ocultar transcripción") : L("Show transcript", "Mostrar transcripción"); syncPlayer(d.k); return; }
       if (d.llframe) { setP(d.llframe, d.text + " "); save(); render(`[data-pt="${d.llframe}"]`); const ta = root.querySelector(`[data-pt="${d.llframe}"]`); if (ta) { ta.selectionStart = ta.selectionEnd = ta.value.length; } return; }
@@ -7066,27 +7108,28 @@ window.LL_DATA = (function () {
         const batch = /^(open|main\.ans|barr\.r\d\.ans|mem\.r\d\.ans|fin\.ans)/.test(d.p); if (batch) return; return render(`input[data-p="${d.p}"][value="${v}"]`); }
       if (d.llsel) { setP(d.llsel, t.value); save(); return; }
       if (d.llck) { setP(d.llck, t.checked); save(); return; }
-      if (d.llrate !== undefined) { st.tts.rate = +t.value; save(); if (TTS.playing && TTS.key) speakAt(TTS.key, TTS.i, Object.assign({}, TTS.hooks, { cont: true })); return; }
+      if (d.llrate !== undefined) { st.tts.rate = +t.value; save(); if (AUD.el) { AUD.el.playbackRate = st.tts.rate; return; } if (TTS.playing && TTS.key) speakAt(TTS.key, TTS.i, Object.assign({}, TTS.hooks, { cont: true })); return; }
       if (t.dataset.llpsel) { if (t.dataset.llpsel === "sc") { pres.sc = +t.value; pres.reveal = false; } else { stopTTS(); pres.ex = t.value; pres.showQ = false; pres.exReveal = false; } return presDraw(); }
     });
     root.addEventListener("input", e => {
       const t = e.target, d = t.dataset;
-      if (d.llvol !== undefined) { st.tts.vol = +t.value; save(); return; }
+      if (d.llvol !== undefined) { st.tts.vol = +t.value; save(); if (AUD.el) AUD.el.volume = st.tts.vol; return; }
       if (!d.pt) return; setP(d.pt, t.value); save();
       if (d.pt.startsWith("emp.w.")) { const id = d.pt.slice(6), ul = root.querySelector("#ll-flags-" + id); if (ul) ul.innerHTML = empFlags(id); }
       if (d.pt === "aud.q") { const p = root.querySelector("#ll-audflag"); if (p) p.textContent = D.HARSH.test(t.value) ? L("Your question includes a word that could feel like an attack. Try naming what you understood, then ask about the gap.", "Tu pregunta incluye una palabra que podría sentirse como un ataque. Intenta decir lo que entendiste y luego pregunta por el hueco.") : ""; }
       if (d.pt === "self.goal") { const b = root.querySelector('[data-ll="selfSave"]'); if (b) b.disabled = !(D.SELF.every((_, i) => st.self.r[i] != null) && SL.words(st.self.goal) >= 4); }
     });
     root.addEventListener("cancel", e => { if (e.target.id === "ll-pres") { e.preventDefault(); closePres(); } }, true);
+    Object.keys(D.SCRIPTS).forEach(audProbe);
     render();
   }
   let lastLang = null;
   window.ListenLab = {
     mount,
-    render: () => { const now = SL.isEs() ? "es" : "en"; if (lastLang && lastLang !== now) stopTTS(); lastLang = now; const d = presEl(); if (d && d.open) { presDraw(); return; } render(); },
+    render: () => { const now = SL.isEs() ? "es" : "en"; if (lastLang && lastLang !== now) stopTTS(); lastLang = now; Object.keys(D.SCRIPTS).forEach(audProbe); const d = presEl(); if (d && d.open) { presDraw(); return; } render(); },
     open: id => { if (TABS.some(t => t[0] === id)) go(id); },
     present: mode => { if (root) openPres(mode || "refresh"); },
-    _summary: () => summary(), _tts: TTS
+    _summary: () => summary(), _tts: TTS, _aud: AUD
   };
 })();
 
