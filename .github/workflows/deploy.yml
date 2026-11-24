@@ -1,8 +1,13 @@
-name: Deploy to GitHub Pages
+name: Test, and deploy main to GitHub Pages
 
+# Tests run on every branch (dev included) and on pull requests.
+# Only the main branch can deploy to the live site. Two locks:
+#   1. the build and deploy jobs below run only when the ref is refs/heads/main, even if someone
+#      starts this workflow by hand on another branch;
+#   2. recommended repo setting: Settings > Environments > github-pages > Deployment branches = main only.
 on:
   push:
-    branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -11,21 +16,35 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # The live site is the standalone page in site/ (Speak Up Public Speaking).
-      # The React app in src/ is kept in the repo but no longer built or deployed.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Built-in Node test runner: no packages to install. A failing test stops the deploy.
+      - run: node --test tests/*.test.mjs
+  build:
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Third lock: the development preview switch file must never reach the live site (see site/js/build.js).
+      - name: Refuse to deploy a preview build
+        run: test ! -e site/data/preview.json || { echo "site/data/preview.json is for the preview repository only"; exit 1; }
+      # The live site is site/ (Speak Up). The React app in src/ is kept for its content but not deployed.
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
   deploy:
     needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
