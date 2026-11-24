@@ -1,7 +1,7 @@
 // Student experience (Slice 3): progress reading, studios, access, preview gating, script health.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import vm from "node:vm";
 
 const read = p => readFileSync(new URL(p, import.meta.url), "utf8");
@@ -32,8 +32,8 @@ test("studios: coming-soon items have no link; available ones open a real site o
   for (const x of studios) {
     assert.ok(x.title.en && x.title.es && x.blurb.en && x.blurb.es, x.id);
     assert.ok(x.units.length && x.units.every(u => u >= 1 && u <= 6) && x.units.includes(x.introduces), x.id);
-    if (x.status === "coming") assert.ok(!x.href && !x.lab, `${x.id} must not look functional`);
-    else assert.ok(x.href ? /^https:\/\//.test(x.href) : units.labNames[x.lab], `${x.id} opens something real`);
+    if (x.status === "coming") assert.ok(!x.href && !x.lab && !x.route, `${x.id} must not look functional`);
+    else assert.ok(x.href ? /^https:\/\//.test(x.href) : x.route ? /^#\/(btp\/\d+|ai)$/.test(x.route) && (x.episode || x.content) && existsSync(new URL("../site/" + (x.episode || x.content), import.meta.url)) : units.labNames[x.lab], `${x.id} opens something real`);
   }
   const by = id => studios.find(x => x.id === id);
   assert.deepEqual(by("ad-detective").units, [6]); assert.equal(by("ad-detective").featured, true);
@@ -48,7 +48,10 @@ test("teacher preview needs the teacher code; ?date= alone does nothing", () => 
   const boot = read("../site/js/boot.js");
   const gate = boot.indexOf('localStorage.getItem("speakup-teacher-ok")'), setp = boot.indexOf("SLSchedule.setPreviewDate(");
   assert.ok(gate > 0 && setp > gate, "preview is set only after the teacher check");
-  assert.match(boot, /if \(teacher && window\.SLSchedule\) preview = SLSchedule\.setPreviewDate/);
+  // Slice 7: the development preview build may also use ?date= (dev is only true on the preview address with its
+  // preview file; see tests/preview.test.mjs). On the student site the teacher code is still required.
+  assert.match(boot, /var dev = !!\(B && B\.preview\);/);
+  assert.match(boot, /if \(\(teacher \|\| dev\) && window\.SLSchedule\) preview = SLSchedule\.setPreviewDate/);
   assert.match(access.teacher.codeHash, /^[0-9a-f]{8}$/);
   const page = read("../site/index.html");
   assert.ok(page.includes('!k.startsWith("speakup-teacher-")'), "teacher unlock, drafts and preview are never copied into student backups");
@@ -56,7 +59,7 @@ test("teacher preview needs the teacher code; ?date= alone does nothing", () => 
 
 test("new scripts parse and load after the page scripts", () => {
   for (const f of ["../site/js/student.js", "../site/js/progress.js", "../site/js/achievements.js", "../site/js/manage.js", "../site/js/teacher.js", "../site/js/boot.js", "../site/js/schedule.js"]) assert.doesNotThrow(() => new vm.Script(read(f)), f);
-  assert.match(read("../site/js/boot.js"), /var AFTER = \["js\/progress\.js", "js\/achievements\.js", "js\/manage\.js", "js\/student\.js", "js\/teacher\.js"\];/);
+  assert.match(read("../site/js/boot.js"), /var AFTER = \["js\/progress\.js", "js\/achievements\.js", "js\/manage\.js", "js\/student\.js", "js\/teacher\.js", "js\/btp\.js", "js\/aistudio\.js"\];/);
   assert.ok(read("../site/index.html").includes('<link rel="stylesheet" href="css/student.css">'));
 });
 

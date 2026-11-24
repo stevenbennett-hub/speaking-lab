@@ -1,0 +1,2526 @@
+{
+ "$comment": "AI Coaching Studio content (js/aistudio.js). Loaded only when the studio opens. Grew from the AI Coach in src/content/aiCoach.json (its eight sort items, six coaching stages and five prompts are all kept here, translated). No AI service is connected: students copy prompts into a district-approved tool only when the assignment allows it. Fact Checker material is simulated and fictional, labeled as such. Spanish is a draft for teacher review (status). Every prompt guides, questions, explains or gives feedback; none asks AI to do the student's thinking or writing (tests check).",
+ "version": 1,
+ "status": {
+  "en": "draft",
+  "es": "draft"
+ },
+ "title": {
+  "en": "AI Coaching Studio",
+  "es": "Estudio de coaching con IA"
+ },
+ "tagline": {
+  "en": "Your Thinking. Your Voice.",
+  "es": "Tu pensamiento. Tu voz."
+ },
+ "principle": {
+  "en": "AI is a coach, not an author.",
+  "es": "La IA es un entrenador, no un autor."
+ },
+ "promise": {
+  "en": "A speech is a promise that the person in front of the audience did the thinking. Your ideas, reasoning, stories, research and words stay yours. AI can ask, explain and give feedback; you decide and you do the work.",
+  "es": "Un discurso es una promesa de que la persona frente al público hizo el pensamiento. Tus ideas, tu razonamiento, tus historias, tu investigación y tus palabras siguen siendo tuyos. La IA puede preguntar, explicar y dar comentarios; tú decides y tú haces el trabajo."
+ },
+ "noLiveAi": {
+  "en": "There is no AI chat on this site, on purpose. A live AI tool would need a paid service, a secure server for its key, a privacy review for students under 18 and district approval. Nothing you type here is sent anywhere. When your assignment allows it, you copy a prompt into a district-approved AI tool yourself.",
+  "es": "A propósito, este sitio no tiene un chat de IA. Una herramienta de IA en vivo necesitaría un servicio pagado, un servidor seguro para su clave, una revisión de privacidad para estudiantes menores de 18 años y la aprobación del distrito. Nada de lo que escribes aquí se envía a ningún lugar. Cuando tu tarea lo permite, tú copias un prompt en una herramienta de IA aprobada por el distrito."
+ },
+ "ownership": {
+  "intro": {
+   "en": "Use the five steps in order. The thinking starts and ends with you.",
+   "es": "Usa los cinco pasos en orden. El pensamiento empieza y termina contigo."
+  },
+  "stages": [
+   {
+    "id": "think",
+    "name": {
+     "en": "Think",
+     "es": "Piensa"
+    },
+    "what": {
+     "en": "Develop your own ideas first: topic, purpose, main points, what you already know.",
+     "es": "Primero desarrolla tus propias ideas: tema, propósito, puntos principales, lo que ya sabes."
+    },
+    "ask": {
+     "en": "What do I think, before anyone else tells me?",
+     "es": "¿Qué pienso yo, antes de que alguien más me lo diga?"
+    }
+   },
+   {
+    "id": "consult",
+    "name": {
+     "en": "Consult",
+     "es": "Consulta"
+    },
+    "what": {
+     "en": "If your assignment allows it, ask AI to question you, explain a concept or give feedback on work you wrote.",
+     "es": "Si tu tarea lo permite, pide a la IA que te haga preguntas, te explique un concepto o comente un trabajo que tú escribiste."
+    },
+    "ask": {
+     "en": "Is this use allowed, and am I asking for coaching instead of answers?",
+     "es": "¿Está permitido este uso y estoy pidiendo coaching en lugar de respuestas?"
+    }
+   },
+   {
+    "id": "evaluate",
+    "name": {
+     "en": "Evaluate",
+     "es": "Evalúa"
+    },
+    "what": {
+     "en": "Question the feedback. Is it accurate? Does it fit your audience, rubric and purpose? Can you verify it?",
+     "es": "Cuestiona los comentarios. ¿Son correctos? ¿Encajan con tu público, la rúbrica y tu propósito? ¿Puedes verificarlos?"
+    },
+    "ask": {
+     "en": "Do I agree, and why? What would I check?",
+     "es": "¿Estoy de acuerdo y por qué? ¿Qué verificaría?"
+    }
+   },
+   {
+    "id": "revise",
+    "name": {
+     "en": "Revise",
+     "es": "Revisa"
+    },
+    "what": {
+     "en": "Make your own decisions and changes, in your own words. You can reject feedback.",
+     "es": "Toma tus propias decisiones y haz los cambios con tus propias palabras. Puedes rechazar comentarios."
+    },
+    "ask": {
+     "en": "Did I make this change, or did I paste it?",
+     "es": "¿Hice yo este cambio o lo pegué?"
+    }
+   },
+   {
+    "id": "own",
+    "name": {
+     "en": "Own",
+     "es": "Hazlo tuyo"
+    },
+    "what": {
+     "en": "Explain and defend your final work: why you chose your topic, structure, evidence and words. Disclose any AI use.",
+     "es": "Explica y defiende tu trabajo final: por qué elegiste tu tema, estructura, evidencia y palabras. Declara cualquier uso de IA."
+    },
+    "ask": {
+     "en": "Could I explain every choice to Mr. Bennett without notes?",
+     "es": "¿Podría explicarle cada decisión al Sr. Bennett sin notas?"
+    }
+   }
+  ],
+  "check": {
+   "en": "For each student, decide: did they keep ownership of the thinking, or hand it over? Retry as often as you like.",
+   "es": "Para cada estudiante, decide: ¿conservó el pensamiento o lo entregó? Inténtalo cuantas veces quieras."
+  },
+  "scenarios": [
+   {
+    "id": "o1",
+    "stage": "think",
+    "answer": "kept",
+    "text": {
+     "en": "Maya lists three topics she cares about and what she already knows about each before opening an AI tool.",
+     "es": "Maya escribe tres temas que le importan y lo que ya sabe de cada uno antes de abrir una herramienta de IA."
+    },
+    "why": {
+     "en": "She did the first thinking herself, so anything AI adds is something she can judge.",
+     "es": "Ella hizo el primer pensamiento, así que puede juzgar lo que la IA agregue."
+    }
+   },
+   {
+    "id": "o2",
+    "stage": "think",
+    "answer": "gave",
+    "text": {
+     "en": "Leo asks AI, \"What should my speech be about?\" and uses the first topic it gives.",
+     "es": "Leo le pregunta a la IA: \"¿De qué debería tratar mi discurso?\" y usa el primer tema que le da."
+    },
+    "why": {
+     "en": "Choosing a topic is the thinking. He skipped Think and let AI decide.",
+     "es": "Elegir el tema es el pensamiento. Se saltó Piensa y dejó que la IA decidiera."
+    }
+   },
+   {
+    "id": "o3",
+    "stage": "consult",
+    "answer": "kept",
+    "text": {
+     "en": "With guided coaching allowed, Ana asks AI to ask her one question at a time about her thesis and not to rewrite it.",
+     "es": "Con el coaching guiado permitido, Ana le pide a la IA que le haga una pregunta a la vez sobre su tesis y que no la reescriba."
+    },
+    "why": {
+     "en": "AI questions; Ana answers. The thesis stays hers.",
+     "es": "La IA pregunta; Ana responde. La tesis sigue siendo suya."
+    }
+   },
+   {
+    "id": "o4",
+    "stage": "consult",
+    "answer": "gave",
+    "text": {
+     "en": "Sam asks AI to \"make my outline better\" and pastes the new outline into his document.",
+     "es": "Sam le pide a la IA que \"mejore mi esquema\" y pega el esquema nuevo en su documento."
+    },
+    "why": {
+     "en": "The organization is now AI's, not his. Asking for feedback would have kept it his.",
+     "es": "La organización ahora es de la IA, no de él. Pedir comentarios lo habría mantenido suyo."
+    }
+   },
+   {
+    "id": "o5",
+    "stage": "evaluate",
+    "answer": "kept",
+    "text": {
+     "en": "Jada compares AI's feedback with the rubric and rejects one suggestion because it doesn't fit her audience.",
+     "es": "Jada compara los comentarios de la IA con la rúbrica y rechaza una sugerencia porque no encaja con su público."
+    },
+    "why": {
+     "en": "Judging feedback, and sometimes saying no, is ownership.",
+     "es": "Juzgar los comentarios, y a veces decir que no, es apropiarse del trabajo."
+    }
+   },
+   {
+    "id": "o6",
+    "stage": "evaluate",
+    "answer": "gave",
+    "text": {
+     "en": "Chris accepts every AI suggestion because \"AI knows more than I do.\"",
+     "es": "Chris acepta todas las sugerencias de la IA porque \"la IA sabe más que yo\"."
+    },
+    "why": {
+     "en": "AI can be wrong or off-target. Accepting everything hands over the judgment.",
+     "es": "La IA puede equivocarse o no dar en el blanco. Aceptarlo todo entrega el juicio."
+    }
+   },
+   {
+    "id": "o7",
+    "stage": "revise",
+    "answer": "kept",
+    "text": {
+     "en": "Told her hook is weak, Priya writes two new hooks in her own words and picks one.",
+     "es": "Le dicen que su gancho es débil; Priya escribe dos ganchos nuevos con sus palabras y elige uno."
+    },
+    "why": {
+     "en": "The feedback pointed at a problem; Priya made the fix.",
+     "es": "Los comentarios señalaron un problema; Priya hizo el arreglo."
+    }
+   },
+   {
+    "id": "o8",
+    "stage": "revise",
+    "answer": "gave",
+    "text": {
+     "en": "Omar copies an AI-written rebuttal word for word into his persuasive speech.",
+     "es": "Omar copia palabra por palabra una refutación escrita por la IA en su discurso persuasivo."
+    },
+    "why": {
+     "en": "Building the rebuttal is the persuasive thinking the assignment checks.",
+     "es": "Construir la refutación es el pensamiento persuasivo que revisa la tarea."
+    }
+   },
+   {
+    "id": "o9",
+    "stage": "own",
+    "answer": "kept",
+    "text": {
+     "en": "Kim keeps a short process log and can explain why she made each revision.",
+     "es": "Kim lleva un registro breve de su proceso y puede explicar por qué hizo cada revisión."
+    },
+    "why": {
+     "en": "Being able to explain and defend the work is the clearest sign it is yours.",
+     "es": "Poder explicar y defender el trabajo es la señal más clara de que es tuyo."
+    }
+   },
+   {
+    "id": "o10",
+    "stage": "own",
+    "answer": "gave",
+    "text": {
+     "en": "When Mr. Bennett asks Diego why he ordered his main points that way, Diego can't say.",
+     "es": "Cuando el Sr. Bennett le pregunta a Diego por qué ordenó así sus puntos principales, Diego no sabe decirlo."
+    },
+    "why": {
+     "en": "If you can't explain a choice, you probably didn't make it.",
+     "es": "Si no puedes explicar una decisión, probablemente no la tomaste tú."
+    }
+   }
+  ]
+ },
+ "academy": {
+  "intro": {
+   "en": "Thirteen short lessons. Read, try the scenario, then answer the check. Retry as often as you like.",
+   "es": "Trece lecciones cortas. Lee, prueba el escenario y responde la pregunta. Inténtalo cuantas veces quieras."
+  },
+  "topics": [
+   {
+    "id": "what",
+    "title": {
+     "en": "What generative AI is",
+     "es": "Qué es la IA generativa"
+    },
+    "explain": {
+     "en": "Generative AI tools (chatbots, image makers) learned patterns from huge amounts of text and images. When you type a prompt, they predict likely next words or pixels. They do not look things up the way you do unless a search feature is added, and they do not understand or know things the way people do.",
+     "es": "Las herramientas de IA generativa (chatbots, creadores de imágenes) aprendieron patrones de enormes cantidades de texto e imágenes. Cuando escribes un prompt, predicen las palabras o píxeles más probables. No buscan información como tú, a menos que tengan una función de búsqueda, y no entienden ni saben las cosas como las personas."
+    },
+    "points": {
+     "en": [
+      "It predicts likely words; likely is not the same as true.",
+      "It sounds confident whether it is right or wrong.",
+      "It has no experiences, opinions or memories of your life."
+     ],
+     "es": [
+      "Predice palabras probables; probable no es lo mismo que verdadero.",
+      "Suena seguro tanto si acierta como si se equivoca.",
+      "No tiene experiencias, opiniones ni recuerdos de tu vida."
+     ]
+    },
+    "check": {
+     "q": {
+      "en": "Which statement best describes how a chatbot writes an answer?",
+      "es": "¿Qué afirmación describe mejor cómo un chatbot escribe una respuesta?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "It predicts likely words based on patterns in its training.",
+        "es": "Predice palabras probables según patrones de su entrenamiento."
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "It checks every fact in a library before answering.",
+        "es": "Revisa cada dato en una biblioteca antes de responder."
+       }
+      },
+      {
+       "t": {
+        "en": "It remembers its own experiences, like a person.",
+        "es": "Recuerda sus propias experiencias, como una persona."
+       }
+      }
+     ],
+     "why": {
+      "en": "Prediction from patterns explains why answers can sound right and still be wrong.",
+      "es": "La predicción por patrones explica por qué las respuestas pueden sonar bien y aun así estar mal."
+     }
+    }
+   },
+   {
+    "id": "can",
+    "title": {
+     "en": "What AI can and cannot reliably do",
+     "es": "Lo que la IA puede y no puede hacer de forma confiable"
+    },
+    "explain": {
+     "en": "AI is often useful for explaining a concept in simpler words, asking practice questions and pointing out grammar errors. It is unreliable for exact facts, quotes, statistics, sources, recent events and anything about your own life or community.",
+     "es": "La IA suele ser útil para explicar un concepto con palabras más sencillas, hacer preguntas de práctica y señalar errores de gramática. No es confiable para datos exactos, citas, estadísticas, fuentes, eventos recientes ni nada sobre tu vida o tu comunidad."
+    },
+    "points": {
+     "en": [
+      "Often helpful: explaining, questioning, spotting grammar errors.",
+      "Unreliable: facts, numbers, quotes, sources, recent news.",
+      "Not possible: your experiences, your opinions, your voice."
+     ],
+     "es": [
+      "Suele ayudar: explicar, preguntar, encontrar errores de gramática.",
+      "No es confiable: datos, números, citas, fuentes, noticias recientes.",
+      "No puede: tus experiencias, tus opiniones, tu voz."
+     ]
+    },
+    "check": {
+     "q": {
+      "en": "For which job is AI least reliable?",
+      "es": "¿Para qué trabajo es menos confiable la IA?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "Giving an exact statistic with its source",
+        "es": "Dar una estadística exacta con su fuente"
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "Asking you practice questions about your topic",
+        "es": "Hacerte preguntas de práctica sobre tu tema"
+       }
+      },
+      {
+       "t": {
+        "en": "Pointing out a spelling mistake",
+        "es": "Señalar un error de ortografía"
+       }
+      }
+     ],
+     "why": {
+      "en": "Exact numbers and sources are where AI most often invents things.",
+      "es": "Los números exactos y las fuentes son donde la IA inventa cosas con más frecuencia."
+     }
+    }
+   },
+   {
+    "id": "offload",
+    "title": {
+     "en": "Cognitive offloading",
+     "es": "Descarga cognitiva"
+    },
+    "explain": {
+     "en": "Cognitive offloading means letting a tool do mental work for you. A calendar remembering dates is helpful offloading. Letting AI do the thinking a class is trying to teach you (finding ideas, organizing, arguing) means you don't practice that skill, so it doesn't grow.",
+     "es": "La descarga cognitiva es dejar que una herramienta haga trabajo mental por ti. Un calendario que recuerda fechas es una descarga útil. Dejar que la IA haga el pensamiento que la clase intenta enseñarte (buscar ideas, organizar, argumentar) significa que no practicas esa habilidad, así que no crece."
+    },
+    "points": {
+     "en": [
+      "Some offloading is fine: reminders, spell-check.",
+      "Offloading the skill you are learning skips the learning.",
+      "Ask: is this the part I'm supposed to get better at?"
+     ],
+     "es": [
+      "Alguna descarga está bien: recordatorios, corrector ortográfico.",
+      "Descargar la habilidad que estás aprendiendo se salta el aprendizaje.",
+      "Pregúntate: ¿esta es la parte en la que debo mejorar?"
+     ]
+    },
+    "check": {
+     "q": {
+      "en": "Your assignment is to practice organizing a speech. Which is offloading the skill itself?",
+      "es": "Tu tarea es practicar cómo organizar un discurso. ¿Cuál es descargar la habilidad misma?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "Asking AI to put your points in the best order",
+        "es": "Pedirle a la IA que ponga tus puntos en el mejor orden"
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "Setting a phone reminder for the due date",
+        "es": "Poner un recordatorio en el teléfono para la fecha de entrega"
+       }
+      },
+      {
+       "t": {
+        "en": "Using spell-check on your final outline",
+        "es": "Usar el corrector ortográfico en tu esquema final"
+       }
+      }
+     ],
+     "why": {
+      "en": "Ordering the points is exactly what you are practicing.",
+      "es": "Ordenar los puntos es exactamente lo que estás practicando."
+     }
+    }
+   },
+   {
+    "id": "independent",
+    "title": {
+     "en": "Independent thinking",
+     "es": "Pensamiento independiente"
+    },
+    "explain": {
+     "en": "Independent thinking means forming your own view, with reasons, before and after you hear others, including AI. It doesn't mean ignoring help. It means help doesn't replace your judgment.",
+     "es": "El pensamiento independiente es formar tu propia opinión, con razones, antes y después de escuchar a otros, incluida la IA. No significa ignorar la ayuda. Significa que la ayuda no reemplaza tu juicio."
+    },
+    "points": {
+     "en": [
+      "Write your idea first, even if it's rough.",
+      "Compare, don't copy.",
+      "Keep the reasons that convince you, in your words."
+     ],
+     "es": [
+      "Escribe tu idea primero, aunque esté en borrador.",
+      "Compara, no copies.",
+      "Quédate con las razones que te convencen, con tus palabras."
+     ]
+    },
+    "check": {
+     "q": {
+      "en": "What is the best first step before consulting AI about a speech topic?",
+      "es": "¿Cuál es el mejor primer paso antes de consultar a la IA sobre un tema de discurso?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "Write down your own ideas and what you already know",
+        "es": "Escribir tus propias ideas y lo que ya sabes"
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "Ask AI for the most popular topics",
+        "es": "Pedirle a la IA los temas más populares"
+       }
+      },
+      {
+       "t": {
+        "en": "Wait to think until AI answers",
+        "es": "Esperar a pensar hasta que la IA responda"
+       }
+      }
+     ],
+     "why": {
+      "en": "Thinking first gives you something of your own to compare against.",
+      "es": "Pensar primero te da algo propio con qué comparar."
+     }
+    }
+   },
+   {
+    "id": "agency",
+    "title": {
+     "en": "Human agency",
+     "es": "Agencia humana"
+    },
+    "explain": {
+     "en": "Agency means you are the one deciding and acting. With AI, you decide whether to use it, what to ask, what to accept and what to say. You are responsible for everything you present, no matter where an idea came from.",
+     "es": "Agencia significa que tú decides y actúas. Con la IA, tú decides si usarla, qué preguntar, qué aceptar y qué decir. Eres responsable de todo lo que presentas, sin importar de dónde vino una idea."
+    },
+    "points": {
+     "en": [
+      "You choose; the tool suggests.",
+      "\"The AI said so\" is never an excuse.",
+      "You can always say no to a suggestion."
+     ],
+     "es": [
+      "Tú eliges; la herramienta sugiere.",
+      "\"La IA lo dijo\" nunca es una excusa.",
+      "Siempre puedes decir que no a una sugerencia."
+     ]
+    },
+    "check": {
+     "q": {
+      "en": "A statistic in your speech turns out to be false. It came from AI. Who is responsible?",
+      "es": "Una estadística de tu discurso resulta ser falsa. Vino de la IA. ¿Quién es responsable?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "You, the speaker",
+        "es": "Tú, el orador"
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "The AI company",
+        "es": "La empresa de IA"
+       }
+      },
+      {
+       "t": {
+        "en": "No one, because AI wrote it",
+        "es": "Nadie, porque lo escribió la IA"
+       }
+      }
+     ],
+     "why": {
+      "en": "The speaker answers for every claim made to the audience.",
+      "es": "El orador responde por cada afirmación que hace ante el público."
+     }
+    }
+   },
+   {
+    "id": "halluc",
+    "title": {
+     "en": "AI hallucinations",
+     "es": "Alucinaciones de la IA"
+    },
+    "explain": {
+     "en": "A hallucination is when AI states something false as if it were true: a made-up event, a wrong date, a quote no one said. It happens because the tool predicts plausible words, not checked facts.",
+     "es": "Una alucinación es cuando la IA dice algo falso como si fuera verdad: un evento inventado, una fecha equivocada, una cita que nadie dijo. Sucede porque la herramienta predice palabras plausibles, no datos verificados."
+    },
+    "points": {
+     "en": [
+      "Hallucinations sound just as confident as true answers.",
+      "Specific details (names, numbers, dates) are the riskiest.",
+      "Verify in a credible original source before you use it."
+     ],
+     "es": [
+      "Las alucinaciones suenan tan seguras como las respuestas verdaderas.",
+      "Los detalles específicos (nombres, números, fechas) son los más riesgosos.",
+      "Verifica en una fuente original confiable antes de usarlo."
+     ]
+    },
+    "check": {
+     "q": {
+      "en": "AI gives you a powerful quote from a famous leader. What do you do?",
+      "es": "La IA te da una cita poderosa de un líder famoso. ¿Qué haces?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "Find the quote in a credible original source before using it",
+        "es": "Buscar la cita en una fuente original confiable antes de usarla"
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "Use it; it sounds like something they would say",
+        "es": "Usarla; suena a algo que diría"
+       }
+      },
+      {
+       "t": {
+        "en": "Use it and say \"according to AI\"",
+        "es": "Usarla y decir \"según la IA\""
+       }
+      }
+     ],
+     "why": {
+      "en": "Naming AI doesn't make a quote real. Only a source can.",
+      "es": "Nombrar a la IA no hace real una cita. Solo una fuente puede hacerlo."
+     }
+    }
+   },
+   {
+    "id": "citations",
+    "title": {
+     "en": "Fabricated citations",
+     "es": "Citas inventadas"
+    },
+    "explain": {
+     "en": "AI can produce references that look perfect (authors, journal, year) for articles that do not exist, or attach a real author to a study they never wrote. A citation is only real if you can find and read the source.",
+     "es": "La IA puede producir referencias que parecen perfectas (autores, revista, año) de artículos que no existen, o atribuir a un autor real un estudio que nunca escribió. Una cita solo es real si puedes encontrar y leer la fuente."
+    },
+    "points": {
+     "en": [
+      "Search for the exact title in a library database or search engine.",
+      "Check that the author, journal and year match.",
+      "If you can't find it, you can't use it."
+     ],
+     "es": [
+      "Busca el título exacto en una base de datos de la biblioteca o un buscador.",
+      "Comprueba que el autor, la revista y el año coincidan.",
+      "Si no la encuentras, no la puedes usar."
+     ]
+    },
+    "check": {
+     "q": {
+      "en": "You search for an AI-provided article title and find nothing. What does that most likely mean?",
+      "es": "Buscas el título de un artículo que te dio la IA y no encuentras nada. ¿Qué significa probablemente?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "The source may not exist; don't use it",
+        "es": "La fuente puede no existir; no la uses"
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "It's too new to be online; use it anyway",
+        "es": "Es demasiado nueva para estar en línea; úsala de todos modos"
+       }
+      },
+      {
+       "t": {
+        "en": "Add \"(AI)\" to the citation and use it",
+        "es": "Agrega \"(IA)\" a la cita y úsala"
+       }
+      }
+     ],
+     "why": {
+      "en": "An unfindable source is a red flag for a fabricated citation.",
+      "es": "Una fuente que no se encuentra es una señal de alerta de una cita inventada."
+     }
+    }
+   },
+   {
+    "id": "bias",
+    "title": {
+     "en": "Bias",
+     "es": "Sesgo"
+    },
+    "explain": {
+     "en": "AI learned from human writing, including its stereotypes and blind spots. It may describe some groups unfairly, leave out perspectives, or present one side as the default. Your audience is real people; check AI output for fairness.",
+     "es": "La IA aprendió de textos humanos, incluidos sus estereotipos y puntos ciegos. Puede describir a algunos grupos de forma injusta, omitir perspectivas o presentar un lado como lo normal. Tu público son personas reales; revisa si lo que da la IA es justo."
+    },
+    "points": {
+     "en": [
+      "Ask: whose perspective is missing?",
+      "Watch for stereotypes in examples and images.",
+      "Compare with sources from the community you're describing."
+     ],
+     "es": [
+      "Pregúntate: ¿qué perspectiva falta?",
+      "Busca estereotipos en ejemplos e imágenes.",
+      "Compara con fuentes de la comunidad que describes."
+     ]
+    },
+    "check": {
+     "q": {
+      "en": "AI's examples of \"leaders\" for your speech are all from one group of people. Best response?",
+      "es": "Los ejemplos de \"líderes\" que da la IA para tu discurso son todos de un mismo grupo. ¿Mejor respuesta?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "Notice the gap and look for a wider range of examples yourself",
+        "es": "Notar la falta y buscar tú mismo una variedad más amplia de ejemplos"
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "Use them; AI is neutral",
+        "es": "Usarlos; la IA es neutral"
+       }
+      },
+      {
+       "t": {
+        "en": "Stop researching leaders",
+        "es": "Dejar de investigar líderes"
+       }
+      }
+     ],
+     "why": {
+      "en": "AI is not neutral; noticing who is missing is part of evaluating it.",
+      "es": "La IA no es neutral; notar quién falta es parte de evaluarla."
+     }
+    }
+   },
+   {
+    "id": "verify",
+    "title": {
+     "en": "Information verification",
+     "es": "Verificación de información"
+    },
+    "explain": {
+     "en": "To verify a claim, find where it really comes from. Go to the original source (the study, the official data, the full speech), check who published it and when, and see whether other credible sources agree.",
+     "es": "Para verificar una afirmación, encuentra de dónde viene realmente. Ve a la fuente original (el estudio, los datos oficiales, el discurso completo), revisa quién lo publicó y cuándo, y mira si otras fuentes confiables coinciden."
+    },
+    "points": {
+     "en": [
+      "Find the original, not a copy of a copy.",
+      "Check author, publisher, date and purpose.",
+      "Look for two independent credible sources."
+     ],
+     "es": [
+      "Busca el original, no una copia de una copia.",
+      "Revisa autor, editorial, fecha y propósito.",
+      "Busca dos fuentes confiables e independientes."
+     ]
+    },
+    "check": {
+     "q": {
+      "en": "Which is the strongest way to verify a statistic?",
+      "es": "¿Cuál es la mejor manera de verificar una estadística?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "Find the original study or data and who published it",
+        "es": "Encontrar el estudio o los datos originales y quién los publicó"
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "Ask the same AI if it is sure",
+        "es": "Preguntarle a la misma IA si está segura"
+       }
+      },
+      {
+       "t": {
+        "en": "See if it appears on many social media posts",
+        "es": "Ver si aparece en muchas publicaciones de redes sociales"
+       }
+      }
+     ],
+     "why": {
+      "en": "Popularity and AI's own confidence don't prove anything; the original source can.",
+      "es": "La popularidad y la seguridad de la IA no prueban nada; la fuente original sí puede."
+     }
+    }
+   },
+   {
+    "id": "privacy",
+    "title": {
+     "en": "Privacy",
+     "es": "Privacidad"
+    },
+    "explain": {
+     "en": "What you type into an AI tool may be stored and used by the company. Don't share personal information: your full name, address, phone, passwords, health details, or private things about friends and family. Use only district-approved tools for schoolwork.",
+     "es": "Lo que escribes en una herramienta de IA puede guardarse y usarse por la empresa. No compartas información personal: tu nombre completo, dirección, teléfono, contraseñas, datos de salud ni cosas privadas de amigos y familia. Usa solo herramientas aprobadas por el distrito para las tareas."
+    },
+    "points": {
+     "en": [
+      "Leave out names and personal details.",
+      "Never share another person's private information.",
+      "Use district-approved tools for school."
+     ],
+     "es": [
+      "Omite nombres y detalles personales.",
+      "Nunca compartas información privada de otra persona.",
+      "Usa herramientas aprobadas por el distrito para la escuela."
+     ]
+    },
+    "check": {
+     "q": {
+      "en": "You want feedback on a speech about a hard time in your family. What's safest?",
+      "es": "Quieres comentarios sobre un discurso de un momento difícil en tu familia. ¿Qué es lo más seguro?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "Ask a trusted person, or remove names and private details first, if AI is allowed",
+        "es": "Pedírselo a una persona de confianza, o quitar primero nombres y detalles privados, si la IA está permitida"
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "Paste the whole story with everyone's names",
+        "es": "Pegar toda la historia con los nombres de todos"
+       }
+      },
+      {
+       "t": {
+        "en": "Add your address so the AI understands the context",
+        "es": "Agregar tu dirección para que la IA entienda el contexto"
+       }
+      }
+     ],
+     "why": {
+      "en": "Private details can't be taken back once they're typed into a tool.",
+      "es": "Los detalles privados no se pueden recuperar una vez que se escriben en una herramienta."
+     }
+    }
+   },
+   {
+    "id": "integrity",
+    "title": {
+     "en": "Academic integrity",
+     "es": "Integridad académica"
+    },
+    "explain": {
+     "en": "Integrity means your work honestly shows your own learning. In this class, a speech AI wrote (or wrote major parts of), undisclosed AI use, or copied wording presented as yours gets no score and must be redone.",
+     "es": "Integridad significa que tu trabajo muestra honestamente tu propio aprendizaje. En esta clase, un discurso escrito por la IA (o con partes importantes escritas por la IA), el uso de IA no declarado o palabras copiadas presentadas como tuyas no reciben puntuación y deben rehacerse."
+    },
+    "points": {
+     "en": [
+      "Your ideas, your words, your research.",
+      "Follow each assignment's AI permission.",
+      "When unsure, ask Mr. Bennett before you use AI."
+     ],
+     "es": [
+      "Tus ideas, tus palabras, tu investigación.",
+      "Sigue el permiso de IA de cada tarea.",
+      "Si no estás seguro, pregunta al Sr. Bennett antes de usar IA."
+     ]
+    },
+    "check": {
+     "q": {
+      "en": "Which keeps your work honest?",
+      "es": "¿Qué mantiene honesto tu trabajo?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "Using AI only as the assignment allows and disclosing it",
+        "es": "Usar la IA solo como lo permite la tarea y declararlo"
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "Changing a few words in an AI-written speech",
+        "es": "Cambiar algunas palabras en un discurso escrito por la IA"
+       }
+      },
+      {
+       "t": {
+        "en": "Using AI but not mentioning it since no one will know",
+        "es": "Usar IA sin mencionarlo porque nadie se enterará"
+       }
+      }
+     ],
+     "why": {
+      "en": "Honest use is permitted use, openly disclosed.",
+      "es": "El uso honesto es el uso permitido, declarado abiertamente."
+     }
+    }
+   },
+   {
+    "id": "responsible",
+    "title": {
+     "en": "Responsible AI use",
+     "es": "Uso responsable de la IA"
+    },
+    "explain": {
+     "en": "Responsible use means using AI only when it's allowed, for coaching rather than authoring, protecting privacy, verifying anything factual, and staying honest about what you used. It also means knowing when not to use it at all.",
+     "es": "El uso responsable significa usar la IA solo cuando está permitido, para coaching y no para escribir, protegiendo la privacidad, verificando todo lo que sea un dato y siendo honesto sobre lo que usaste. También significa saber cuándo no usarla."
+    },
+    "points": {
+     "en": [
+      "Allowed? Coaching? Private? Verified? Disclosed?",
+      "Some assignments are AI-free on purpose.",
+      "Your growth matters more than a faster finish."
+     ],
+     "es": [
+      "¿Permitido? ¿Coaching? ¿Privado? ¿Verificado? ¿Declarado?",
+      "Algunas tareas son sin IA a propósito.",
+      "Tu crecimiento importa más que terminar rápido."
+     ]
+    },
+    "check": {
+     "q": {
+      "en": "Today's assignment says \"AI assistance not permitted.\" You want to check spelling. What do you do?",
+      "es": "La tarea de hoy dice \"No se permite ayuda de IA\". Quieres revisar la ortografía. ¿Qué haces?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "Check it yourself or ask a classmate or Mr. Bennett",
+        "es": "Revisarla tú mismo o pedir ayuda a un compañero o al Sr. Bennett"
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "Use AI anyway; grammar help is usually allowed",
+        "es": "Usar la IA de todos modos; la ayuda con gramática suele permitirse"
+       }
+      },
+      {
+       "t": {
+        "en": "Use AI and delete the history",
+        "es": "Usar la IA y borrar el historial"
+       }
+      }
+     ],
+     "why": {
+      "en": "The assignment's permission overrides the usual default.",
+      "es": "El permiso de la tarea está por encima de la regla general."
+     }
+    }
+   },
+   {
+    "id": "disclose",
+    "title": {
+     "en": "Ethical disclosure",
+     "es": "Declaración ética"
+    },
+    "explain": {
+     "en": "Disclosure means telling your teacher how you used AI: which tool, for what, what you did first, what feedback you got and what you changed. It makes your process visible and is required whenever you use AI on graded work.",
+     "es": "Declarar significa decirle a tu maestro cómo usaste la IA: qué herramienta, para qué, qué hiciste primero, qué comentarios recibiste y qué cambiaste. Hace visible tu proceso y es obligatorio cada vez que usas IA en un trabajo calificado."
+    },
+    "points": {
+     "en": [
+      "Use the AI-use disclosure in this studio.",
+      "Be specific: \"grammar check on my final draft.\"",
+      "Disclosure protects you; hiding use does not."
+     ],
+     "es": [
+      "Usa la declaración de uso de IA de este estudio.",
+      "Sé específico: \"revisión de gramática de mi borrador final\".",
+      "Declarar te protege; ocultar el uso no."
+     ]
+    },
+    "check": {
+     "q": {
+      "en": "Which disclosure is most useful?",
+      "es": "¿Qué declaración es más útil?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "\"I wrote my outline, then asked an approved AI tool to question my thesis. I revised the thesis myself.\"",
+        "es": "\"Escribí mi esquema y luego le pedí a una herramienta de IA aprobada que cuestionara mi tesis. Revisé la tesis yo mismo.\""
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "\"I used AI a little.\"",
+        "es": "\"Usé un poco la IA.\""
+       }
+      },
+      {
+       "t": {
+        "en": "\"No AI\" (even though you used it)",
+        "es": "\"Sin IA\" (aunque la usaste)"
+       }
+      }
+     ],
+     "why": {
+      "en": "Specific disclosure shows what you did and what AI did.",
+      "es": "Una declaración específica muestra lo que hiciste tú y lo que hizo la IA."
+     }
+    }
+   }
+  ],
+  "college": {
+   "integrity": {
+    "en": "College depth: academic integrity policies treat undisclosed generative AI use as unauthorized assistance. Attribution covers ideas and structure, not only wording; paraphrasing AI output without credit is still misrepresentation.",
+    "es": "Nivel universitario: las políticas de integridad académica tratan el uso no declarado de IA generativa como ayuda no autorizada. La atribución abarca ideas y estructura, no solo palabras; parafrasear lo que da la IA sin dar crédito sigue siendo una tergiversación."
+   },
+   "citations": {
+    "en": "College depth: follow your instructor's required style for citing or acknowledging AI. APA Style publishes guidance on citing generative AI at apastyle.apa.org. AI output is not a credible source for factual claims; cite the original sources you located and read.",
+    "es": "Nivel universitario: sigue el estilo que exige tu instructor para citar o reconocer la IA. APA Style publica orientación sobre cómo citar IA generativa en apastyle.apa.org. Lo que produce la IA no es una fuente confiable para datos; cita las fuentes originales que encontraste y leíste."
+   },
+   "bias": {
+    "en": "College depth: consider training-data representation, automation bias (trusting machine output over your own judgment) and how framing in a prompt can steer an answer toward one side.",
+    "es": "Nivel universitario: considera la representación en los datos de entrenamiento, el sesgo de automatización (confiar más en la máquina que en tu propio juicio) y cómo la forma de un prompt puede inclinar una respuesta hacia un lado."
+   },
+   "verify": {
+    "en": "College depth: trace claims to primary or peer-reviewed sources, check methods and sample, and distinguish correlation from causation before presenting a finding.",
+    "es": "Nivel universitario: rastrea las afirmaciones hasta fuentes primarias o revisadas por pares, revisa métodos y muestra, y distingue correlación de causalidad antes de presentar un hallazgo."
+   }
+  }
+ },
+ "coach": {
+  "intro": {
+   "en": "Think stage: answer these questions yourself, at the point you've reached in your speech. No AI needed. Your answers stay in this browser.",
+   "es": "Etapa Piensa: responde tú mismo estas preguntas, según dónde vas en tu discurso. No se necesita IA. Tus respuestas se quedan en este navegador."
+  },
+  "stages": [
+   {
+    "id": "discover",
+    "label": {
+     "en": "Finding a topic",
+     "es": "Encontrar un tema"
+    },
+    "questions": {
+     "en": [
+      "What have you experienced, studied, or done that most people your age haven't?",
+      "What problem in your school or community do you notice that others overlook?",
+      "Which of your ideas would your audience find new, useful, or surprising?",
+      "What do you already know about this, and what would you need to find out?"
+     ],
+     "es": [
+      "¿Qué has vivido, estudiado o hecho que la mayoría de las personas de tu edad no?",
+      "¿Qué problema de tu escuela o comunidad notas que otros pasan por alto?",
+      "¿Cuál de tus ideas le parecería nueva, útil o sorprendente a tu público?",
+      "¿Qué sabes ya sobre esto y qué necesitarías averiguar?"
+     ]
+    }
+   },
+   {
+    "id": "focus",
+    "label": {
+     "en": "Sharpening purpose and thesis",
+     "es": "Afinar el propósito y la tesis"
+    },
+    "questions": {
+     "en": [
+      "In one sentence, what should your audience know, believe, or do when you finish?",
+      "Does your specific purpose contain the word \"and\"? If so, which half is the real speech?",
+      "If a friend asked \"so what?\" after hearing your central idea, what would you say?",
+      "Is your verb (inform, persuade) honest about what you're doing?"
+     ],
+     "es": [
+      "En una oración, ¿qué debería saber, creer o hacer tu público cuando termines?",
+      "¿Tu propósito específico contiene la palabra \"y\"? Si es así, ¿cuál de las dos mitades es el verdadero discurso?",
+      "Si un amigo preguntara \"¿y qué?\" después de oír tu idea central, ¿qué le dirías?",
+      "¿Tu verbo (informar, persuadir) es honesto sobre lo que estás haciendo?"
+     ]
+    }
+   },
+   {
+    "id": "research",
+    "label": {
+     "en": "Researching",
+     "es": "Investigar"
+    },
+    "questions": {
+     "en": [
+      "Who created your strongest source, and why did they create it?",
+      "Have you gone upstream to the original study, document, or data?",
+      "What do other sources say about your most important source?",
+      "Which main point has the least support right now?"
+     ],
+     "es": [
+      "¿Quién creó tu fuente más fuerte y por qué la creó?",
+      "¿Fuiste hasta el estudio, documento o datos originales?",
+      "¿Qué dicen otras fuentes sobre tu fuente más importante?",
+      "¿Qué punto principal tiene menos apoyo en este momento?"
+     ]
+    }
+   },
+   {
+    "id": "organize",
+    "label": {
+     "en": "Organizing",
+     "es": "Organizar"
+    },
+    "questions": {
+     "en": [
+      "Why does your first main point come first?",
+      "Could a listener predict your next point from your transitions?",
+      "Which pattern did you choose, and what would change with a different one?",
+      "Does every main point support your central idea?"
+     ],
+     "es": [
+      "¿Por qué tu primer punto principal va primero?",
+      "¿Podría alguien del público adivinar tu siguiente punto gracias a tus transiciones?",
+      "¿Qué patrón elegiste y qué cambiaría con uno diferente?",
+      "¿Cada punto principal apoya tu idea central?"
+     ]
+    }
+   },
+   {
+    "id": "rehearse",
+    "label": {
+     "en": "Rehearsing",
+     "es": "Ensayar"
+    },
+    "questions": {
+     "en": [
+      "Where did you stumble in your last practice run, and why?",
+      "Which sentence matters most, and how will you deliver it?",
+      "Where will you pause?",
+      "What will you do if you lose your place?"
+     ],
+     "es": [
+      "¿Dónde te trabaste en tu último ensayo y por qué?",
+      "¿Qué oración importa más y cómo la vas a decir?",
+      "¿Dónde vas a hacer pausas?",
+      "¿Qué harás si pierdes el hilo?"
+     ]
+    }
+   },
+   {
+    "id": "reflect",
+    "label": {
+     "en": "Reflecting",
+     "es": "Reflexionar"
+    },
+    "questions": {
+     "en": [
+      "What did your audience respond to most?",
+      "What evidence do you have for that (not just a feeling)?",
+      "What is one specific thing you will do differently next time?",
+      "How does this speech compare to your first one?"
+     ],
+     "es": [
+      "¿A qué respondió más tu público?",
+      "¿Qué evidencia tienes de eso (no solo una sensación)?",
+      "¿Qué es una cosa específica que harás diferente la próxima vez?",
+      "¿Cómo se compara este discurso con el primero?"
+     ]
+    }
+   }
+  ]
+ },
+ "prompts": {
+  "intro": {
+   "en": "Coaching prompts for a district-approved AI tool. Each one asks AI to question, explain or give feedback, never to do your work. Check the permission for your assignment first: a prompt being here does not mean you may use it.",
+   "es": "Prompts de coaching para una herramienta de IA aprobada por el distrito. Cada uno le pide a la IA que pregunte, explique o comente, nunca que haga tu trabajo. Primero revisa el permiso de tu tarea: que un prompt esté aquí no significa que puedas usarlo."
+  },
+  "prep": {
+   "topic": {
+    "en": "What is your current speech topic?",
+    "es": "¿Cuál es el tema actual de tu discurso?"
+   },
+   "ideas": {
+    "en": "What ideas have you already developed?",
+    "es": "¿Qué ideas ya desarrollaste?"
+   },
+   "thesis": {
+    "en": "What is your current thesis (central idea)?",
+    "es": "¿Cuál es tu tesis actual (idea central)?"
+   },
+   "tried": {
+    "en": "What have you tried on your own?",
+    "es": "¿Qué has intentado por tu cuenta?"
+   },
+   "need": {
+    "en": "What specific feedback do you need?",
+    "es": "¿Qué comentarios específicos necesitas?"
+   },
+   "audience": {
+    "en": "Who is your audience?",
+    "es": "¿Quién es tu público?"
+   }
+  },
+  "prepNote": {
+   "en": "Think before you prompt (optional). Answering these first helps you know what you think. They fill in the prompt's brackets. Nothing here is saved or sent anywhere. Leave out names and personal details.",
+   "es": "Piensa antes de escribir el prompt (opcional). Responder esto primero te ayuda a saber lo que piensas. Las respuestas llenan los corchetes del prompt. Nada de esto se guarda ni se envía. Omite nombres y datos personales."
+  },
+  "categories": [
+   {
+    "id": "topic",
+    "name": {
+     "en": "Topic exploration",
+     "es": "Explorar temas"
+    }
+   },
+   {
+    "id": "socratic",
+    "name": {
+     "en": "Socratic brainstorming",
+     "es": "Lluvia de ideas socrática"
+    }
+   },
+   {
+    "id": "audience",
+    "name": {
+     "en": "Audience analysis",
+     "es": "Análisis del público"
+    }
+   },
+   {
+    "id": "thesis",
+    "name": {
+     "en": "Thesis evaluation",
+     "es": "Evaluar la tesis"
+    }
+   },
+   {
+    "id": "organize",
+    "name": {
+     "en": "Speech organization",
+     "es": "Organización del discurso"
+    }
+   },
+   {
+    "id": "outline",
+    "name": {
+     "en": "Outline feedback",
+     "es": "Comentarios sobre el esquema"
+    }
+   },
+   {
+    "id": "research",
+    "name": {
+     "en": "Research strategies",
+     "es": "Estrategias de investigación"
+    }
+   },
+   {
+    "id": "sources",
+    "name": {
+     "en": "Source evaluation",
+     "es": "Evaluar fuentes"
+    }
+   },
+   {
+    "id": "evidence",
+    "name": {
+     "en": "Evidence analysis",
+     "es": "Analizar evidencia"
+    }
+   },
+   {
+    "id": "persuade",
+    "name": {
+     "en": "Persuasive reasoning",
+     "es": "Razonamiento persuasivo"
+    }
+   },
+   {
+    "id": "counter",
+    "name": {
+     "en": "Counterarguments",
+     "es": "Contraargumentos"
+    }
+   },
+   {
+    "id": "fallacy",
+    "name": {
+     "en": "Logical fallacies",
+     "es": "Falacias lógicas"
+    }
+   },
+   {
+    "id": "grammar",
+    "name": {
+     "en": "Grammar and spelling",
+     "es": "Gramática y ortografía"
+    }
+   },
+   {
+    "id": "vocab",
+    "name": {
+     "en": "Vocabulary development",
+     "es": "Desarrollo de vocabulario"
+    }
+   },
+   {
+    "id": "anxiety",
+    "name": {
+     "en": "Presentation anxiety",
+     "es": "Ansiedad al presentar"
+    }
+   },
+   {
+    "id": "rehearse",
+    "name": {
+     "en": "Speech rehearsal",
+     "es": "Ensayo del discurso"
+    }
+   },
+   {
+    "id": "qa",
+    "name": {
+     "en": "Audience questions",
+     "es": "Preguntas del público"
+    }
+   },
+   {
+    "id": "reflect",
+    "name": {
+     "en": "Self-reflection",
+     "es": "Autorreflexión"
+    }
+   },
+   {
+    "id": "eld",
+    "name": {
+     "en": "English language development",
+     "es": "Desarrollo del idioma inglés"
+    }
+   }
+  ],
+  "items": [
+   {
+    "id": "p-topic",
+    "cat": "topic",
+    "level": "coach",
+    "prep": [
+     "topic",
+     "ideas"
+    ],
+    "origin": "aiCoach p1",
+    "title": {
+     "en": "Topic brainstorm partner",
+     "es": "Compañero para buscar tema"
+    },
+    "when": {
+     "en": "When you have some interests but no focused topic yet. Write your interests first.",
+     "es": "Cuando tienes algunos intereses pero todavía no un tema enfocado. Escribe primero tus intereses."
+    },
+    "text": {
+     "en": "Act as a speech coach, not a writer. I'm a {level} student preparing a speech. My possible topic area is: {topic}. Ideas I already have: {ideas}. Ask me five questions, one at a time, that help me find a focused topic. Wait for my answer each time. Do not suggest a finished topic or write any part of my speech. I will choose my own topic.",
+     "es": "Actúa como entrenador de oratoria, no como escritor. Soy estudiante de {level} y preparo un discurso. Mi posible tema es: {topic}. Ideas que ya tengo: {ideas}. Hazme cinco preguntas, una a la vez, que me ayuden a encontrar un tema enfocado. Espera mi respuesta cada vez. No sugieras un tema terminado ni escribas ninguna parte de mi discurso. Yo elegiré mi propio tema."
+    }
+   },
+   {
+    "id": "p-socratic",
+    "cat": "socratic",
+    "level": "coach",
+    "prep": [
+     "topic",
+     "ideas"
+    ],
+    "title": {
+     "en": "Socratic questioner",
+     "es": "Preguntas socráticas"
+    },
+    "when": {
+     "en": "When you have a rough idea and want to dig deeper by explaining your own reasoning.",
+     "es": "Cuando tienes una idea en borrador y quieres profundizar explicando tu propio razonamiento."
+    },
+    "text": {
+     "en": "Use the Socratic method with me. My topic is {topic} and my current ideas are: {ideas}. Ask me one probing question at a time about why I think what I think, what I'm assuming, and what evidence would change my mind. Do not give me ideas or answers. After five questions, tell me which of my answers seemed least supported, and explain why, without fixing it for me.",
+     "es": "Usa el método socrático conmigo. Mi tema es {topic} y mis ideas actuales son: {ideas}. Hazme una pregunta profunda a la vez sobre por qué pienso lo que pienso, qué estoy suponiendo y qué evidencia me haría cambiar de opinión. No me des ideas ni respuestas. Después de cinco preguntas, dime cuál de mis respuestas parecía tener menos apoyo y explica por qué, sin arreglarla por mí."
+    }
+   },
+   {
+    "id": "p-audience",
+    "cat": "audience",
+    "level": "coach",
+    "prep": [
+     "topic",
+     "audience"
+    ],
+    "title": {
+     "en": "Audience analysis interview",
+     "es": "Entrevista para analizar al público"
+    },
+    "when": {
+     "en": "Before organizing, to think about who will hear your speech.",
+     "es": "Antes de organizar, para pensar en quién escuchará tu discurso."
+    },
+    "text": {
+     "en": "Act as a speech coach helping me analyze my audience. My topic is {topic}. My audience is {audience}. Ask me questions, one at a time, about what my audience already knows, believes and cares about, and what might confuse or resist my message. Do not tell me what my audience thinks. Help me figure it out.",
+     "es": "Actúa como entrenador de oratoria y ayúdame a analizar a mi público. Mi tema es {topic}. Mi público es {audience}. Hazme preguntas, una a la vez, sobre lo que mi público ya sabe, cree y le importa, y qué podría confundirlo o hacer que se resista a mi mensaje. No me digas lo que piensa mi público. Ayúdame a descubrirlo."
+    }
+   },
+   {
+    "id": "p-thesis",
+    "cat": "thesis",
+    "level": "coach",
+    "prep": [
+     "thesis"
+    ],
+    "origin": "aiCoach p2",
+    "title": {
+     "en": "Purpose and thesis check",
+     "es": "Revisión del propósito y la tesis"
+    },
+    "when": {
+     "en": "After you have written your specific purpose and central idea.",
+     "es": "Después de escribir tu propósito específico y tu idea central."
+    },
+    "text": {
+     "en": "Act as a speech coach. Here is my central idea: {thesis}. Here is my specific purpose: [paste]. Using these guidelines (one idea; purpose as an infinitive phrase; central idea as a complete declarative sentence; precise wording), tell me which guideline each statement meets or misses and why. Then ask me a question that helps me revise. Do not rewrite them for me.",
+     "es": "Actúa como entrenador de oratoria. Esta es mi idea central: {thesis}. Este es mi propósito específico: [pegar]. Según estas pautas (una sola idea; propósito como frase con infinitivo; idea central como oración declarativa completa; palabras precisas), dime qué pauta cumple o no cumple cada una y por qué. Luego hazme una pregunta que me ayude a revisarlas. No las reescribas por mí."
+    }
+   },
+   {
+    "id": "p-organize",
+    "cat": "organize",
+    "level": "coach",
+    "prep": [
+     "thesis",
+     "ideas"
+    ],
+    "title": {
+     "en": "Organization pattern coach",
+     "es": "Entrenador de patrones de organización"
+    },
+    "when": {
+     "en": "When you have main points and need to decide how to order them.",
+     "es": "Cuando tienes puntos principales y necesitas decidir en qué orden ponerlos."
+    },
+    "text": {
+     "en": "Act as a speech coach. My central idea is {thesis} and my main points are: {ideas}. Briefly explain two or three organizational patterns (for example topical, chronological, problem-solution, Monroe's Motivated Sequence) in general terms. Then ask me which one fits my purpose and why. Do not choose for me or reorder my points.",
+     "es": "Actúa como entrenador de oratoria. Mi idea central es {thesis} y mis puntos principales son: {ideas}. Explica brevemente, en términos generales, dos o tres patrones de organización (por ejemplo, por temas, cronológico, problema-solución, la Secuencia Motivada de Monroe). Luego pregúntame cuál encaja con mi propósito y por qué. No elijas por mí ni reordenes mis puntos."
+    }
+   },
+   {
+    "id": "p-outline",
+    "cat": "outline",
+    "level": "coach",
+    "prep": [
+     "thesis",
+     "need"
+    ],
+    "origin": "aiCoach p4",
+    "title": {
+     "en": "Outline coach: one question at a time",
+     "es": "Entrenador del esquema: una pregunta a la vez"
+    },
+    "when": {
+     "en": "After you have written a full outline yourself.",
+     "es": "Después de que escribiste tú mismo un esquema completo."
+    },
+    "text": {
+     "en": "Act as my speech coach. Review the outline I have written: [paste my outline]. My central idea is {thesis}. The feedback I need: {need}. Ask me one question at a time that helps me identify weaknesses in my organization, missing evidence or missing transitions. Explain your feedback, but do not rewrite my outline or generate replacement content. I am responsible for making my own revisions.",
+     "es": "Actúa como mi entrenador de oratoria. Revisa el esquema que escribí: [pegar mi esquema]. Mi idea central es {thesis}. Los comentarios que necesito: {need}. Hazme una pregunta a la vez que me ayude a encontrar debilidades en mi organización, evidencia que falta o transiciones que faltan. Explica tus comentarios, pero no reescribas mi esquema ni generes contenido de reemplazo. Yo soy responsable de hacer mis propias revisiones."
+    }
+   },
+   {
+    "id": "p-research",
+    "cat": "research",
+    "level": "coach",
+    "prep": [
+     "topic",
+     "tried"
+    ],
+    "title": {
+     "en": "Research strategy coach",
+     "es": "Entrenador de estrategias de investigación"
+    },
+    "when": {
+     "en": "When you're stuck finding sources. AI suggests where and how to search; you find and read the sources.",
+     "es": "Cuando no encuentras fuentes. La IA sugiere dónde y cómo buscar; tú encuentras y lees las fuentes."
+    },
+    "text": {
+     "en": "Act as a research coach. My topic is {topic}. What I've already searched and found: {tried}. Suggest types of credible sources and search keywords I could try, and explain why each type is credible. Do not give me specific facts, statistics, quotes or citations; I will find and read the sources myself.",
+     "es": "Actúa como entrenador de investigación. Mi tema es {topic}. Lo que ya busqué y encontré: {tried}. Sugiere tipos de fuentes confiables y palabras clave que podría probar, y explica por qué cada tipo es confiable. No me des datos, estadísticas, citas ni referencias específicas; yo encontraré y leeré las fuentes."
+    }
+   },
+   {
+    "id": "p-sources",
+    "cat": "sources",
+    "level": "coach",
+    "prep": [
+     "tried"
+    ],
+    "title": {
+     "en": "Source credibility questions",
+     "es": "Preguntas sobre la credibilidad de una fuente"
+    },
+    "when": {
+     "en": "When you've found a source and need to judge it yourself.",
+     "es": "Cuando encontraste una fuente y necesitas juzgarla tú mismo."
+    },
+    "text": {
+     "en": "Act as a research coach. I found this source: [paste the title, author, publisher and date]. Ask me questions, one at a time, that help me judge its credibility: who wrote it, their expertise, the publisher's purpose, the date, and whether other sources agree. Do not tell me whether it is credible; help me decide.",
+     "es": "Actúa como entrenador de investigación. Encontré esta fuente: [pegar título, autor, editorial y fecha]. Hazme preguntas, una a la vez, que me ayuden a juzgar su credibilidad: quién la escribió, su experiencia, el propósito de quien la publica, la fecha y si otras fuentes coinciden. No me digas si es confiable; ayúdame a decidir."
+    }
+   },
+   {
+    "id": "p-evidence",
+    "cat": "evidence",
+    "level": "coach",
+    "prep": [
+     "thesis"
+    ],
+    "title": {
+     "en": "Does my evidence support my claim?",
+     "es": "¿Mi evidencia apoya mi afirmación?"
+    },
+    "when": {
+     "en": "When you have a claim and evidence from a source you read.",
+     "es": "Cuando tienes una afirmación y evidencia de una fuente que leíste."
+    },
+    "text": {
+     "en": "Act as a debate coach. My claim is: [paste]. My evidence is: [paste, with its source]. Explain whether the evidence actually supports the claim, is too weak, or proves something slightly different. Ask me how I would explain the connection to my audience. Do not add new evidence or rewrite my claim.",
+     "es": "Actúa como entrenador de debate. Mi afirmación es: [pegar]. Mi evidencia es: [pegar, con su fuente]. Explica si la evidencia realmente apoya la afirmación, si es demasiado débil o si prueba algo un poco diferente. Pregúntame cómo le explicaría la conexión a mi público. No agregues evidencia nueva ni reescribas mi afirmación."
+    }
+   },
+   {
+    "id": "p-persuade",
+    "cat": "persuade",
+    "level": "coach",
+    "prep": [
+     "thesis",
+     "audience"
+    ],
+    "title": {
+     "en": "Appeals check: ethos, pathos, logos",
+     "es": "Revisión de apelaciones: ethos, pathos, logos"
+    },
+    "when": {
+     "en": "After drafting a persuasive speech.",
+     "es": "Después de escribir el borrador de un discurso persuasivo."
+    },
+    "text": {
+     "en": "Act as a persuasion coach. My persuasive claim is {thesis} and my audience is {audience}. Here is my draft: [paste]. Point out where I use ethos, pathos and logos and where one is weak, and explain why. Ask me one question about how I could strengthen the weakest appeal. Do not write new arguments or sentences for me.",
+     "es": "Actúa como entrenador de persuasión. Mi afirmación persuasiva es {thesis} y mi público es {audience}. Este es mi borrador: [pegar]. Señala dónde uso ethos, pathos y logos y dónde alguno es débil, y explica por qué. Hazme una pregunta sobre cómo podría fortalecer la apelación más débil. No escribas argumentos ni oraciones nuevas por mí."
+    }
+   },
+   {
+    "id": "p-counter",
+    "cat": "counter",
+    "level": "coach",
+    "prep": [
+     "thesis"
+    ],
+    "title": {
+     "en": "Skeptical audience member",
+     "es": "Miembro escéptico del público"
+    },
+    "origin": "aiCoach p3",
+    "when": {
+     "en": "When your argument is ready and you want to test it against objections you answer yourself.",
+     "es": "Cuando tu argumento está listo y quieres ponerlo a prueba contra objeciones que tú mismo respondes."
+    },
+    "text": {
+     "en": "Play a fair but skeptical audience member. My persuasive claim is: {thesis}. My main reasons are: [list]. Raise one objection at a time and wait for my answer. After each answer, tell me whether I used evidence or only opinion. Do not write my rebuttals for me.",
+     "es": "Haz el papel de un miembro del público justo pero escéptico. Mi afirmación persuasiva es: {thesis}. Mis razones principales son: [lista]. Plantea una objeción a la vez y espera mi respuesta. Después de cada respuesta, dime si usé evidencia o solo opinión. No escribas mis refutaciones por mí."
+    }
+   },
+   {
+    "id": "p-fallacy",
+    "cat": "fallacy",
+    "level": "coach",
+    "prep": [],
+    "title": {
+     "en": "Fallacy spotter (my own draft)",
+     "es": "Detector de falacias (mi propio borrador)"
+    },
+    "when": {
+     "en": "After drafting an argument, to check your own reasoning.",
+     "es": "Después de escribir un argumento, para revisar tu propio razonamiento."
+    },
+    "text": {
+     "en": "Act as a logic coach. Here is an argument I wrote: [paste]. If you see a possible logical fallacy, name it, quote the words, and explain why it might be a fallacy. Then ask me how I could fix the reasoning. Do not rewrite the argument for me. If you see none, say so.",
+     "es": "Actúa como entrenador de lógica. Este es un argumento que escribí: [pegar]. Si ves una posible falacia lógica, nómbrala, cita las palabras y explica por qué podría ser una falacia. Luego pregúntame cómo podría arreglar el razonamiento. No reescribas el argumento por mí. Si no ves ninguna, dilo."
+    }
+   },
+   {
+    "id": "p-grammar",
+    "cat": "grammar",
+    "level": "grammar",
+    "prep": [],
+    "title": {
+     "en": "Grammar and spelling check (no rewriting)",
+     "es": "Revisión de gramática y ortografía (sin reescribir)"
+    },
+    "when": {
+     "en": "On writing you have finished. Allowed by default unless today's assignment says no AI.",
+     "es": "En un escrito que ya terminaste. Permitido por defecto, a menos que la tarea de hoy diga sin IA."
+    },
+    "text": {
+     "en": "Check only the grammar and spelling of the text I wrote below. List each error, quote it, and explain the rule in one sentence. Do not rewrite my sentences, change my wording or style, or add content. I will make the corrections myself. Text: [paste]",
+     "es": "Revisa solo la gramática y la ortografía del texto que escribí abajo. Enumera cada error, cítalo y explica la regla en una oración. No reescribas mis oraciones, no cambies mis palabras ni mi estilo, ni agregues contenido. Yo haré las correcciones. Texto: [pegar]"
+    }
+   },
+   {
+    "id": "p-vocab",
+    "cat": "vocab",
+    "level": "coach",
+    "prep": [],
+    "origin": "aiCoach p5",
+    "title": {
+     "en": "Word or concept explainer",
+     "es": "Explicador de palabras o conceptos"
+    },
+    "when": {
+     "en": "When a word or idea from class or a source is unclear.",
+     "es": "Cuando una palabra o idea de la clase o de una fuente no está clara."
+    },
+    "text": {
+     "en": "Explain [word or concept] to a {level} student in plain language with one original example that is NOT about my speech topic. Then ask me to explain it back in my own words, and tell me what I got right or missed. Do not write anything for my speech.",
+     "es": "Explícale [palabra o concepto] a un estudiante de {level} con lenguaje sencillo y un ejemplo original que NO sea sobre el tema de mi discurso. Luego pídeme que te lo explique con mis propias palabras y dime qué entendí bien o qué me faltó. No escribas nada para mi discurso."
+    }
+   },
+   {
+    "id": "p-anxiety",
+    "cat": "anxiety",
+    "level": "coach",
+    "prep": [],
+    "title": {
+     "en": "Speaking anxiety coach",
+     "es": "Entrenador para la ansiedad al hablar"
+    },
+    "when": {
+     "en": "Before a speech, to plan how you'll manage nerves. Keep it general; don't share health details.",
+     "es": "Antes de un discurso, para planear cómo manejar los nervios. Mantenlo general; no compartas datos de salud."
+    },
+    "text": {
+     "en": "Act as a public speaking coach. I get nervous before speeches. Explain three common, research-based strategies for managing speaking anxiety (for example preparation, breathing, practice) in plain language. Then ask me which one I will try and how. Do not diagnose me; if my nerves feel overwhelming, remind me to talk to a trusted adult or counselor.",
+     "es": "Actúa como entrenador de oratoria. Me pongo nervioso antes de los discursos. Explica con lenguaje sencillo tres estrategias comunes y basadas en investigación para manejar la ansiedad al hablar (por ejemplo, preparación, respiración, práctica). Luego pregúntame cuál voy a probar y cómo. No me diagnostiques; si los nervios se sienten abrumadores, recuérdame hablar con un adulto de confianza o un consejero."
+    }
+   },
+   {
+    "id": "p-rehearse",
+    "cat": "rehearse",
+    "level": "coach",
+    "prep": [
+     "need"
+    ],
+    "title": {
+     "en": "Rehearsal checklist partner",
+     "es": "Compañero para la lista de ensayo"
+    },
+    "when": {
+     "en": "During practice, after you have rehearsed out loud at least once.",
+     "es": "Durante la práctica, después de ensayar en voz alta al menos una vez."
+    },
+    "text": {
+     "en": "Act as my rehearsal coach. I just practiced my speech out loud. What I want to improve: {need}. Ask me questions, one at a time, about my timing, eye contact, pauses, volume and the parts where I stumbled. Help me make my own practice plan. Do not change my speech.",
+     "es": "Actúa como mi entrenador de ensayo. Acabo de practicar mi discurso en voz alta. Lo que quiero mejorar: {need}. Hazme preguntas, una a la vez, sobre mi tiempo, contacto visual, pausas, volumen y las partes donde me trabé. Ayúdame a hacer mi propio plan de práctica. No cambies mi discurso."
+    }
+   },
+   {
+    "id": "p-qa",
+    "cat": "qa",
+    "level": "coach",
+    "prep": [
+     "topic",
+     "thesis"
+    ],
+    "title": {
+     "en": "Q&A practice",
+     "es": "Práctica de preguntas y respuestas"
+    },
+    "when": {
+     "en": "When your speech is ready and you want to practice answering questions.",
+     "es": "Cuando tu discurso está listo y quieres practicar cómo responder preguntas."
+    },
+    "text": {
+     "en": "Pretend to be an audience member after my speech on {topic}. My central idea is {thesis}. Ask me one realistic question at a time and wait for my answer. After each answer, tell me whether it was clear, honest and supported, and explain why. Do not answer the questions for me.",
+     "es": "Haz como si fueras alguien del público después de mi discurso sobre {topic}. Mi idea central es {thesis}. Hazme una pregunta realista a la vez y espera mi respuesta. Después de cada respuesta, dime si fue clara, honesta y con apoyo, y explica por qué. No respondas las preguntas por mí."
+    }
+   },
+   {
+    "id": "p-reflect",
+    "cat": "reflect",
+    "level": "coach",
+    "prep": [],
+    "title": {
+     "en": "Reflection interviewer",
+     "es": "Entrevistador de reflexión"
+    },
+    "when": {
+     "en": "After a speech, to think about what you learned.",
+     "es": "Después de un discurso, para pensar en lo que aprendiste."
+    },
+    "text": {
+     "en": "Act as a reflection coach. I just gave a speech. Ask me four questions, one at a time, about what went well, what I'd change, what I learned, and what my next goal is. Do not write my reflection; help me think it through.",
+     "es": "Actúa como entrenador de reflexión. Acabo de dar un discurso. Hazme cuatro preguntas, una a la vez, sobre lo que salió bien, lo que cambiaría, lo que aprendí y cuál es mi próxima meta. No escribas mi reflexión; ayúdame a pensarla."
+    }
+   },
+   {
+    "id": "p-eld-check",
+    "cat": "eld",
+    "level": "grammar",
+    "prep": [],
+    "title": {
+     "en": "English learner: explain my errors",
+     "es": "Estudiante de inglés: explícame mis errores"
+    },
+    "when": {
+     "en": "For multilingual learners, on English you already wrote.",
+     "es": "Para estudiantes multilingües, en un texto en inglés que ya escribiste."
+    },
+    "text": {
+     "en": "I am learning English. Here is a paragraph I wrote: [paste]. Find up to five grammar or spelling errors. For each one, quote it, explain the rule simply, and give the explanation in Spanish too. Do not rewrite my paragraph. I will fix it myself.",
+     "es": "Estoy aprendiendo inglés. Este es un párrafo que escribí: [pegar]. Encuentra hasta cinco errores de gramática u ortografía. Para cada uno, cítalo, explica la regla de forma sencilla y da la explicación también en español. No reescribas mi párrafo. Yo lo corregiré."
+    }
+   },
+   {
+    "id": "p-eld-frames",
+    "cat": "eld",
+    "level": "coach",
+    "prep": [
+     "topic"
+    ],
+    "title": {
+     "en": "English learner: sentence frames practice",
+     "es": "Estudiante de inglés: práctica con marcos de oración"
+    },
+    "when": {
+     "en": "For multilingual learners practicing academic speaking.",
+     "es": "Para estudiantes multilingües que practican el habla académica."
+    },
+    "text": {
+     "en": "I am learning English and practicing for a speech on {topic}. Teach me three general sentence frames for speeches (for example \"One reason is ___ because ___\"), with the meaning in Spanish. Then ask me to say my own sentence with each frame, and give me feedback on my English. Do not write sentences about my topic for me.",
+     "es": "Estoy aprendiendo inglés y practico para un discurso sobre {topic}. Enséñame tres marcos de oración generales para discursos (por ejemplo \"One reason is ___ because ___\"), con el significado en español. Luego pídeme decir mi propia oración con cada marco y dame comentarios sobre mi inglés. No escribas oraciones sobre mi tema por mí."
+    }
+   }
+  ]
+ },
+ "ethics": {
+  "intro": {
+   "en": "Classify each situation using Mr. Bennett's AI policy, then choose the best reason. Retry as often as you like.",
+   "es": "Clasifica cada situación según la política de IA del Sr. Bennett y luego elige la mejor razón. Inténtalo cuantas veces quieras."
+  },
+  "choices": {
+   "ok": {
+    "en": "Appropriate",
+    "es": "Apropiado"
+   },
+   "ask": {
+    "en": "Needs instructor permission",
+    "es": "Necesita permiso del maestro"
+   },
+   "not": {
+    "en": "Not appropriate",
+    "es": "No apropiado"
+   }
+  },
+  "scenarios": [
+   {
+    "id": "e1",
+    "answer": "not",
+    "text": {
+     "en": "A student asks AI to write an entire speech and plans to present it.",
+     "es": "Un estudiante le pide a la IA que escriba un discurso completo y piensa presentarlo."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "It replaces the student's thinking and misrepresents who wrote it.",
+       "es": "Reemplaza el pensamiento del estudiante y engaña sobre quién lo escribió."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "It's fine if the student practices it a lot.",
+       "es": "Está bien si el estudiante lo practica mucho."
+      }
+     },
+     {
+      "t": {
+       "en": "It's fine if the AI tool is free.",
+       "es": "Está bien si la herramienta de IA es gratis."
+      }
+     }
+    ],
+    "why": {
+     "en": "AI as author: no score, and the work must be redone.",
+     "es": "La IA como autor: sin puntuación y el trabajo debe rehacerse."
+    }
+   },
+   {
+    "id": "e2",
+    "answer": "ask",
+    "text": {
+     "en": "A student who wrote an outline independently asks AI for feedback on its organization.",
+     "es": "Un estudiante que escribió su esquema por su cuenta le pide a la IA comentarios sobre su organización."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "It's coaching on the student's own work, which needs guided-coaching permission for that assignment.",
+       "es": "Es coaching sobre el trabajo propio del estudiante, que necesita permiso de coaching guiado para esa tarea."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Feedback is always cheating.",
+       "es": "Recibir comentarios siempre es hacer trampa."
+      }
+     },
+     {
+      "t": {
+       "en": "Grammar help covers any kind of feedback.",
+       "es": "La ayuda de gramática cubre cualquier tipo de comentario."
+      }
+     }
+    ],
+    "why": {
+     "en": "Good use of AI as a coach, when the assignment allows guided coaching. Disclose it.",
+     "es": "Buen uso de la IA como entrenador, cuando la tarea permite coaching guiado. Decláralo."
+    }
+   },
+   {
+    "id": "e3",
+    "answer": "not",
+    "text": {
+     "en": "A student puts AI-generated statistics and sources in a speech without checking them.",
+     "es": "Un estudiante pone en su discurso estadísticas y fuentes generadas por la IA sin verificarlas."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "AI can invent sources and numbers; every source must be found and read.",
+       "es": "La IA puede inventar fuentes y números; cada fuente debe encontrarse y leerse."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Statistics don't need sources in a speech.",
+       "es": "Las estadísticas no necesitan fuentes en un discurso."
+      }
+     },
+     {
+      "t": {
+       "en": "It's fine if the numbers sound reasonable.",
+       "es": "Está bien si los números suenan razonables."
+      }
+     }
+    ],
+    "why": {
+     "en": "Unverified AI research can put false claims in front of an audience.",
+     "es": "La investigación de IA sin verificar puede poner afirmaciones falsas frente al público."
+    }
+   },
+   {
+    "id": "e4",
+    "answer": "ask",
+    "text": {
+     "en": "A student uses AI to explain an unfamiliar vocabulary word from a source.",
+     "es": "Un estudiante usa la IA para que le explique una palabra desconocida de una fuente."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "Explaining goes beyond grammar and spelling, so it needs coaching permission; a dictionary or Mr. Bennett works too.",
+       "es": "Explicar va más allá de la gramática y la ortografía, así que necesita permiso de coaching; un diccionario o el Sr. Bennett también sirven."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Learning new words is never allowed.",
+       "es": "Aprender palabras nuevas nunca está permitido."
+      }
+     },
+     {
+      "t": {
+       "en": "It's grammar, so it's always allowed.",
+       "es": "Es gramática, así que siempre está permitido."
+      }
+     }
+    ],
+    "why": {
+     "en": "A helpful tutoring use when allowed. Check the meaning against a dictionary.",
+     "es": "Un uso útil como tutor cuando está permitido. Comprueba el significado con un diccionario."
+    }
+   },
+   {
+    "id": "e5",
+    "answer": "not",
+    "text": {
+     "en": "A student asks AI to build the persuasive arguments for a speech.",
+     "es": "Un estudiante le pide a la IA que construya los argumentos persuasivos de su discurso."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "Building the arguments is the intellectual work the assignment assesses.",
+       "es": "Construir los argumentos es el trabajo intelectual que evalúa la tarea."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Arguments from AI are more logical, so it's better.",
+       "es": "Los argumentos de la IA son más lógicos, así que es mejor."
+      }
+     },
+     {
+      "t": {
+       "en": "It's fine if the student disagrees with them.",
+       "es": "Está bien si el estudiante no está de acuerdo con ellos."
+      }
+     }
+    ],
+    "why": {
+     "en": "AI as author of your reasoning. Ask it to question your arguments instead (with permission).",
+     "es": "La IA como autora de tu razonamiento. Pídele mejor que cuestione tus argumentos (con permiso)."
+    }
+   },
+   {
+    "id": "e6",
+    "answer": "ask",
+    "text": {
+     "en": "A student uses AI to practice answering audience questions about their finished speech.",
+     "es": "Un estudiante usa la IA para practicar cómo responder preguntas del público sobre su discurso terminado."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "Practice where the student answers is coaching; it needs coaching permission.",
+       "es": "Una práctica en la que el estudiante responde es coaching; necesita permiso de coaching."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Practice is never allowed with AI.",
+       "es": "La práctica nunca está permitida con IA."
+      }
+     },
+     {
+      "t": {
+       "en": "It's grammar help.",
+       "es": "Es ayuda de gramática."
+      }
+     }
+    ],
+    "why": {
+     "en": "The answers stay the student's. A strong use when allowed.",
+     "es": "Las respuestas siguen siendo del estudiante. Un buen uso cuando está permitido."
+    }
+   },
+   {
+    "id": "e7",
+    "answer": "not",
+    "text": {
+     "en": "Today's assignment says \"Grammar and spelling only,\" and a student uses AI to reorganize the speech anyway.",
+     "es": "La tarea de hoy dice \"Solo gramática y ortografía\" y un estudiante usa la IA para reorganizar el discurso de todos modos."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "It goes beyond the assignment's permission.",
+       "es": "Va más allá del permiso de la tarea."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Reorganizing is a kind of grammar.",
+       "es": "Reorganizar es un tipo de gramática."
+      }
+     },
+     {
+      "t": {
+       "en": "It's fine if the student discloses it afterward.",
+       "es": "Está bien si el estudiante lo declara después."
+      }
+     }
+    ],
+    "why": {
+     "en": "Disclosure doesn't make unpermitted use permitted. Ask first.",
+     "es": "Declarar no convierte en permitido un uso no permitido. Pregunta primero."
+    }
+   },
+   {
+    "id": "e8",
+    "answer": "ok",
+    "text": {
+     "en": "On a grammar-only assignment, a student asks an approved AI tool to list spelling errors in their finished draft and fixes them personally.",
+     "es": "En una tarea de solo gramática, un estudiante le pide a una herramienta de IA aprobada que enumere los errores de ortografía de su borrador terminado y los corrige él mismo."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "It matches the permission, and the student makes the corrections.",
+       "es": "Coincide con el permiso, y el estudiante hace las correcciones."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Spelling help is never allowed.",
+       "es": "La ayuda de ortografía nunca está permitida."
+      }
+     },
+     {
+      "t": {
+       "en": "It's fine to let the tool rewrite the paragraphs too.",
+       "es": "También está bien dejar que la herramienta reescriba los párrafos."
+      }
+     }
+    ],
+    "why": {
+     "en": "Permitted, limited, and the student stays in charge of the writing.",
+     "es": "Permitido, limitado, y el estudiante sigue a cargo de la escritura."
+    }
+   },
+   {
+    "id": "e9",
+    "answer": "not",
+    "text": {
+     "en": "A student asks AI to invent a personal story for a narrative speech.",
+     "es": "Un estudiante le pide a la IA que invente una historia personal para un discurso narrativo."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "A personal narrative must be the student's real experience.",
+       "es": "Una narración personal debe ser una experiencia real del estudiante."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Stories don't need to be true in speeches.",
+       "es": "Las historias no tienen que ser verdaderas en los discursos."
+      }
+     },
+     {
+      "t": {
+       "en": "It's fine if the story is short.",
+       "es": "Está bien si la historia es corta."
+      }
+     }
+    ],
+    "why": {
+     "en": "A fabricated personal story deceives the audience.",
+     "es": "Una historia personal inventada engaña al público."
+    }
+   },
+   {
+    "id": "e10",
+    "answer": "ask",
+    "text": {
+     "en": "A student asks AI to list possible topic areas related to their interest in marine biology, then chooses and researches one.",
+     "es": "Un estudiante le pide a la IA posibles áreas de tema relacionadas con su interés en la biología marina y luego elige e investiga una."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "Brainstorming help is coaching; the student still chooses and researches. It needs coaching permission.",
+       "es": "La ayuda para generar ideas es coaching; el estudiante igual elige e investiga. Necesita permiso de coaching."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Any AI help with topics is cheating.",
+       "es": "Cualquier ayuda de IA con temas es trampa."
+      }
+     },
+     {
+      "t": {
+       "en": "It's grammar help.",
+       "es": "Es ayuda de gramática."
+      }
+     }
+    ],
+    "why": {
+     "en": "Widening options is fine when allowed; the choice and research stay the student's.",
+     "es": "Ampliar opciones está bien cuando se permite; la decisión y la investigación siguen siendo del estudiante."
+    }
+   },
+   {
+    "id": "e11",
+    "answer": "not",
+    "text": {
+     "en": "A student copies an AI analysis of a famous speech into their own reflection.",
+     "es": "Un estudiante copia en su reflexión un análisis de la IA sobre un discurso famoso."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "The analysis is the skill being learned; copying it presents AI work as the student's.",
+       "es": "El análisis es la habilidad que se aprende; copiarlo presenta el trabajo de la IA como del estudiante."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Reflections aren't graded, so it's fine.",
+       "es": "Las reflexiones no se califican, así que está bien."
+      }
+     },
+     {
+      "t": {
+       "en": "It's fine if the analysis is good.",
+       "es": "Está bien si el análisis es bueno."
+      }
+     }
+    ],
+    "why": {
+     "en": "Use AI ideas only as something to agree or argue with, and say so.",
+     "es": "Usa las ideas de la IA solo para estar de acuerdo o discutirlas, y dilo."
+    }
+   },
+   {
+    "id": "e12",
+    "answer": "not",
+    "text": {
+     "en": "Today's assignment says \"AI assistance not permitted,\" and a student uses AI just to fix spelling.",
+     "es": "La tarea de hoy dice \"No se permite ayuda de IA\" y un estudiante usa la IA solo para corregir la ortografía."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "The assignment's rule overrides the usual grammar-and-spelling default.",
+       "es": "La regla de la tarea está por encima de la regla general de gramática y ortografía."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Spelling never counts as AI use.",
+       "es": "La ortografía nunca cuenta como uso de IA."
+      }
+     },
+     {
+      "t": {
+       "en": "It's fine for short assignments.",
+       "es": "Está bien en tareas cortas."
+      }
+     }
+    ],
+    "why": {
+     "en": "Some assignments are AI-free on purpose.",
+     "es": "Algunas tareas son sin IA a propósito."
+    }
+   }
+  ],
+  "college": [
+   {
+    "id": "c1",
+    "answer": "not",
+    "text": {
+     "en": "College: a student uses an AI image generator to create a realistic \"photo\" of a historical protest and presents it as real.",
+     "es": "Universidad: un estudiante usa un generador de imágenes de IA para crear una \"foto\" realista de una protesta histórica y la presenta como real."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "Presenting a generated image as a real record misleads the audience; label it or use an authentic, credited photo.",
+       "es": "Presentar una imagen generada como un registro real engaña al público; identifícala o usa una foto auténtica con crédito."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Images don't need attribution.",
+       "es": "Las imágenes no necesitan atribución."
+      }
+     },
+     {
+      "t": {
+       "en": "It's fine if it looks accurate.",
+       "es": "Está bien si se ve exacta."
+      }
+     }
+    ],
+    "why": {
+     "en": "Research integrity covers visuals as well as words.",
+     "es": "La integridad en la investigación abarca las imágenes además de las palabras."
+    }
+   },
+   {
+    "id": "c2",
+    "answer": "ask",
+    "text": {
+     "en": "College: a student asks AI to summarize a peer-reviewed article they will cite, to check their own understanding.",
+     "es": "Universidad: un estudiante le pide a la IA que resuma un artículo revisado por pares que va a citar, para comprobar su propia comprensión."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "It needs instructor authorization; the student must still read the article, and the summary is not citable.",
+       "es": "Necesita autorización del instructor; el estudiante todavía debe leer el artículo y el resumen no se puede citar."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "AI summaries can replace reading the article.",
+       "es": "Los resúmenes de IA pueden reemplazar la lectura del artículo."
+      }
+     },
+     {
+      "t": {
+       "en": "Cite the AI summary instead of the article.",
+       "es": "Citar el resumen de la IA en lugar del artículo."
+      }
+     }
+    ],
+    "why": {
+     "en": "Summaries can misstate methods and findings; your citation must reflect your reading of the original.",
+     "es": "Los resúmenes pueden describir mal los métodos y hallazgos; tu cita debe reflejar tu lectura del original."
+    }
+   }
+  ]
+ },
+ "factcheck": {
+  "label": {
+   "en": "SIMULATED: This AI answer, its researcher, journal and lookups are fictional, written for practice. Do not use them as research.",
+   "es": "SIMULADO: Esta respuesta de IA, su investigadora, su revista y las búsquedas son ficticias, escritas para practicar. No las uses como investigación."
+  },
+  "question": {
+   "en": "A student asked an AI tool: \"Why are people afraid of public speaking? Give me statistics and sources for my speech.\"",
+   "es": "Un estudiante le preguntó a una herramienta de IA: \"¿Por qué la gente le tiene miedo a hablar en público? Dame estadísticas y fuentes para mi discurso\"."
+  },
+  "claims": [
+   {
+    "id": "c1",
+    "answer": "plausible",
+    "text": {
+     "en": "Fear of public speaking is one of the most common fears people report.",
+     "es": "El miedo a hablar en público es uno de los miedos más comunes que reporta la gente."
+    },
+    "why": {
+     "en": "Widely discussed and plausible, but no source is given. Verify it in a credible source (your course textbook, a university or health organization) before using it.",
+     "es": "Es un tema muy tratado y plausible, pero no da fuente. Verifícalo en una fuente confiable (tu libro de texto, una universidad u organización de salud) antes de usarlo."
+    }
+   },
+   {
+    "id": "c2",
+    "answer": "unsupported",
+    "text": {
+     "en": "Exactly 75% of all people worldwide have glossophobia.",
+     "es": "Exactamente el 75% de todas las personas del mundo tiene glosofobia."
+    },
+    "why": {
+     "en": "A precise worldwide number with no study, sample or source. Figures like this get repeated online without a traceable original.",
+     "es": "Un número mundial exacto sin estudio, muestra ni fuente. Cifras así se repiten en internet sin un original que se pueda rastrear."
+    }
+   },
+   {
+    "id": "c3",
+    "answer": "fabricated",
+    "text": {
+     "en": "A 2019 Harvard study by Dr. Ellen Marsh found that practicing in front of a mirror cuts speaking anxiety by 90%.",
+     "es": "Un estudio de Harvard de 2019 de la Dra. Ellen Marsh encontró que practicar frente a un espejo reduce la ansiedad al hablar en un 90%."
+    },
+    "why": {
+     "en": "The lookup finds no such study or researcher. A famous university name and a dramatic number are common features of fabricated citations.",
+     "es": "La búsqueda no encuentra ese estudio ni a esa investigadora. Un nombre de universidad famosa y un número llamativo son rasgos comunes de las citas inventadas."
+    }
+   },
+   {
+    "id": "c4",
+    "answer": "misleading",
+    "text": {
+     "en": "According to the Journal of Speech Confidence, people fear public speaking more than death.",
+     "es": "Según el Journal of Speech Confidence, la gente le teme más a hablar en público que a la muerte."
+    },
+    "why": {
+     "en": "The journal can't be found, and the claim twists list-style surveys of what people say they fear. Ranking a fear on a list doesn't mean people would rather die.",
+     "es": "La revista no se encuentra, y la afirmación distorsiona encuestas tipo lista sobre lo que la gente dice temer. Poner un miedo en una lista no significa que la gente prefiera morir."
+    }
+   },
+   {
+    "id": "c5",
+    "answer": "plausible",
+    "text": {
+     "en": "Speaking anxiety often goes down with preparation and practice.",
+     "es": "La ansiedad al hablar suele disminuir con preparación y práctica."
+    },
+    "why": {
+     "en": "Plausible and common advice, still without a source. Check it in your course textbook or another credible source, and cite that source, not the AI.",
+     "es": "Es un consejo plausible y común, pero sin fuente. Compruébalo en tu libro de texto u otra fuente confiable, y cita esa fuente, no la IA."
+    }
+   },
+   {
+    "id": "c6",
+    "answer": "misleading",
+    "text": {
+     "en": "So the best advice is to avoid giving speeches until your fear is completely gone.",
+     "es": "Así que el mejor consejo es evitar dar discursos hasta que el miedo desaparezca por completo."
+    },
+    "why": {
+     "en": "A conclusion that doesn't follow, and works against the earlier point that practice helps.",
+     "es": "Una conclusión que no se sigue de lo anterior y contradice lo dicho antes de que la práctica ayuda."
+    }
+   }
+  ],
+  "verdicts": {
+   "plausible": {
+    "en": "Plausible, but needs a source",
+    "es": "Plausible, pero necesita fuente"
+   },
+   "unsupported": {
+    "en": "Unsupported statistic",
+    "es": "Estadística sin apoyo"
+   },
+   "fabricated": {
+    "en": "Fabricated reference",
+    "es": "Referencia inventada"
+   },
+   "misleading": {
+    "en": "Misleading claim or conclusion",
+    "es": "Afirmación o conclusión engañosa"
+   }
+  },
+  "sources": [
+   {
+    "id": "s1",
+    "text": "Marsh, E. (2019). Mirror practice and speaking anxiety. Harvard University.",
+    "missing": [
+     "journal",
+     "link"
+    ],
+    "fake": true,
+    "lookup": {
+     "en": "Simulated library search: no article with this title; no researcher named Ellen Marsh publishing on speaking anxiety. No journal, report number or link is given to check.",
+     "es": "Búsqueda simulada en la biblioteca: ningún artículo con este título; ninguna investigadora llamada Ellen Marsh que publique sobre ansiedad al hablar. No hay revista, número de informe ni enlace para comprobar."
+    }
+   },
+   {
+    "id": "s2",
+    "text": "Journal of Speech Confidence, Vol. 12 (2021).",
+    "missing": [
+     "author",
+     "title",
+     "link"
+    ],
+    "fake": true,
+    "lookup": {
+     "en": "Simulated database search: no journal by this name is indexed. There is no author, article title, pages or DOI.",
+     "es": "Búsqueda simulada en bases de datos: no hay ninguna revista con este nombre. No hay autor, título del artículo, páginas ni DOI."
+    }
+   },
+   {
+    "id": "s3",
+    "text": "Tucker, B., Barton, K., et al. Exploring Public Speaking.",
+    "missing": [
+     "year",
+     "journal"
+    ],
+    "fake": false,
+    "lookup": {
+     "en": "This is a real open textbook (this course's reading). The citation is missing the year, edition and publisher, which you can find on the book's title page. The AI did not say which page supports which claim, so you must read it yourself.",
+     "es": "Este es un libro de texto abierto real (la lectura de este curso). A la cita le faltan el año, la edición y la editorial, que puedes encontrar en la portada del libro. La IA no dijo qué página apoya cada afirmación, así que debes leerlo tú mismo."
+    }
+   }
+  ],
+  "fields": {
+   "author": {
+    "en": "Author",
+    "es": "Autor"
+   },
+   "year": {
+    "en": "Year",
+    "es": "Año"
+   },
+   "title": {
+    "en": "Title of the work",
+    "es": "Título de la obra"
+   },
+   "journal": {
+    "en": "Journal or publisher",
+    "es": "Revista o editorial"
+   },
+   "link": {
+    "en": "DOI or link",
+    "es": "DOI o enlace"
+   }
+  },
+  "final": {
+   "q": {
+    "en": "What should the student do with this AI answer?",
+    "es": "¿Qué debería hacer el estudiante con esta respuesta de IA?"
+   },
+   "options": [
+    {
+     "t": {
+      "en": "Use none of it as evidence yet; verify the plausible claims in credible sources, drop the fabricated and misleading ones, and cite the real sources found.",
+      "es": "No usar nada como evidencia todavía; verificar las afirmaciones plausibles en fuentes confiables, descartar las inventadas y engañosas, y citar las fuentes reales encontradas."
+     },
+     "ok": true
+    },
+    {
+     "t": {
+      "en": "Use it all, since it includes citations.",
+      "es": "Usarlo todo, ya que incluye citas."
+     }
+    },
+    {
+     "t": {
+      "en": "Use the statistics but cite \"AI\" as the source.",
+      "es": "Usar las estadísticas pero citar \"IA\" como fuente."
+     }
+    }
+   ],
+   "why": {
+    "en": "AI output is a starting point for questions, not evidence. Only sources you find and read can support your claims.",
+    "es": "Lo que da la IA es un punto de partida para hacer preguntas, no evidencia. Solo las fuentes que encuentras y lees pueden apoyar tus afirmaciones."
+   }
+  },
+  "research": {
+   "en": "Practice more in the Research & Source Lab (\"Evaluating AI-generated information\"). The full Research & Academic Integrity Studio comes later.",
+   "es": "Practica más en el Laboratorio de investigación y fuentes (\"Evaluar información generada por IA\"). El Estudio completo de investigación e integridad académica llegará después."
+  }
+ },
+ "disclosure": {
+  "intro": {
+   "en": "Fill this in whenever you use AI on graded work, print it or copy it into Canvas, and turn it in with your work. It stays in this browser until you clear it.",
+   "es": "Complétala cada vez que uses IA en un trabajo calificado, imprímela o cópiala en Canvas, y entrégala con tu trabajo. Se queda en este navegador hasta que la borres."
+  },
+  "fields": [
+   {
+    "id": "assignment",
+    "label": {
+     "en": "Assignment",
+     "es": "Tarea"
+    }
+   },
+   {
+    "id": "permission",
+    "label": {
+     "en": "AI permission for this assignment",
+     "es": "Permiso de IA de esta tarea"
+    }
+   },
+   {
+    "id": "tool",
+    "label": {
+     "en": "AI tool used (district-approved)",
+     "es": "Herramienta de IA usada (aprobada por el distrito)"
+    }
+   },
+   {
+    "id": "purpose",
+    "label": {
+     "en": "Purpose of the assistance",
+     "es": "Propósito de la ayuda"
+    }
+   },
+   {
+    "id": "before",
+    "label": {
+     "en": "Independent work I completed before consulting AI",
+     "es": "Trabajo independiente que hice antes de consultar a la IA"
+    }
+   },
+   {
+    "id": "feedback",
+    "label": {
+     "en": "Feedback I received",
+     "es": "Comentarios que recibí"
+    }
+   },
+   {
+    "id": "evaluated",
+    "label": {
+     "en": "How I evaluated the feedback (what I accepted, rejected and why)",
+     "es": "Cómo evalué los comentarios (qué acepté, qué rechacé y por qué)"
+    }
+   },
+   {
+    "id": "revisions",
+    "label": {
+     "en": "Revisions I made myself",
+     "es": "Revisiones que hice yo mismo"
+    }
+   },
+   {
+    "id": "verified",
+    "label": {
+     "en": "How I verified any factual claims",
+     "es": "Cómo verifiqué las afirmaciones de datos"
+    }
+   },
+   {
+    "id": "ownership",
+    "label": {
+     "en": "How I kept ownership of my thinking",
+     "es": "Cómo conservé el control de mi pensamiento"
+    }
+   }
+  ],
+  "sign": {
+   "en": "I confirm this describes all AI use on this assignment.",
+   "es": "Confirmo que esto describe todo el uso de IA en esta tarea."
+  },
+  "teacher": {
+   "en": "For the teacher: AI detection software is not definitive evidence of misconduct. Look at the process: drafts, this disclosure, a short conference, and the student explaining their choices aloud.",
+   "es": "Para el maestro: el software de detección de IA no es evidencia definitiva de mala conducta. Observa el proceso: borradores, esta declaración, una breve conversación y que el estudiante explique sus decisiones en voz alta."
+  },
+  "student": {
+   "en": "Your work shows it's yours through your process: your drafts, this disclosure, and being able to explain your choices out loud. Mr. Bennett may ask you to talk through your work; that's normal.",
+   "es": "Tu trabajo muestra que es tuyo a través de tu proceso: tus borradores, esta declaración y poder explicar tus decisiones en voz alta. El Sr. Bennett puede pedirte que expliques tu trabajo; es normal."
+  }
+ },
+ "vocab": [
+  {
+   "en": "generative AI",
+   "es": "IA generativa"
+  },
+  {
+   "en": "prompt",
+   "es": "prompt (instrucción)"
+  },
+  {
+   "en": "hallucination",
+   "es": "alucinación"
+  },
+  {
+   "en": "fabricated citation",
+   "es": "cita inventada"
+  },
+  {
+   "en": "bias",
+   "es": "sesgo"
+  },
+  {
+   "en": "verify",
+   "es": "verificar"
+  },
+  {
+   "en": "cognitive offloading",
+   "es": "descarga cognitiva"
+  },
+  {
+   "en": "ownership",
+   "es": "autoría / control"
+  },
+  {
+   "en": "disclosure",
+   "es": "declaración"
+  },
+  {
+   "en": "academic integrity",
+   "es": "integridad académica"
+  },
+  {
+   "en": "privacy",
+   "es": "privacidad"
+  },
+  {
+   "en": "agency",
+   "es": "agencia"
+  }
+ ],
+ "frames": {
+  "en": [
+   "I thought about ___ first, then I asked AI to ___.",
+   "I accepted / rejected the feedback because ___.",
+   "I verified this claim by ___.",
+   "This use is / is not allowed because the assignment says ___.",
+   "The part that is my own thinking is ___."
+  ],
+  "es": [
+   "Primero pensé en ___ y luego le pedí a la IA que ___.",
+   "Acepté / rechacé el comentario porque ___.",
+   "Verifiqué esta afirmación al ___.",
+   "Este uso está / no está permitido porque la tarea dice ___.",
+   "La parte que es mi propio pensamiento es ___."
+  ]
+ }
+}

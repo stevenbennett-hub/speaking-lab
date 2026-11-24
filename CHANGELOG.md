@@ -1,6 +1,138 @@
 # Changelog
 
-## Unreleased (branch `dev`) — Speaking Lab 2.0, slice 5: Teacher Lesson Manager
+## Unreleased (branch `dev`) — Speaking Lab 2.0, slice 7: AI Coaching Studio and the development preview
+
+### Added: development preview build
+- `site/js/build.js` decides production or preview. Preview turns on only when the page is served from
+  `/speaking-lab-preview/` (or localhost) AND the preview workflow added `site/data/preview.json`
+  (`{"channel": "preview"}`). The production address never requests that file.
+- Preview behavior: "DEVELOPMENT PREVIEW" bar with a date picker and "Clear preview progress", a corner label,
+  "[Preview]" tab title; all six high school units open; any date viewable without the teacher code; progress
+  stored under `slpreview:` so it never touches students' real progress on the shared github.io address.
+  College gate and teacher-view code unchanged.
+- Safeguards: a test fails if `site/data/preview.json` is committed; the production workflow refuses to deploy
+  it; tests prove the production path cannot activate preview.
+- `docs/preview/deploy-preview.yml` and `docs/preview/README.md` for the separate preview repository (checks out
+  `dev`, runs tests, adds the preview file, deploys). Its current workflow could not be read from this session.
+
+### Added: AI Coaching Studio — "Your Thinking. Your Voice." (`#/ai`, all six units)
+- Guiding principle "AI is a coach, not an author" and the five-step Cognitive Ownership framework (Think,
+  Consult, Evaluate, Revise, Own) on the studio front page.
+- **AI Literacy Academy**: 13 short lessons (what generative AI is, what it can and can't do, cognitive
+  offloading, independent thinking, human agency, hallucinations, fabricated citations, bias, verification,
+  privacy, academic integrity, responsible use, ethical disclosure), each with a realistic check and feedback;
+  college-depth notes on integrity, citations, bias and verification for the authorized college pathway.
+- **Cognitive Ownership**: ten scenarios across the five steps; students decide whether ownership was kept
+  or given away, with explanations and unlimited retries.
+- **Think first: Speech Coach**: the six stages and 24 questions from the original AI Coach (src/), now with
+  Spanish, answered without AI and saved only in this browser.
+- **Prompt Library**: 20 prompts in all 19 requested categories, searchable and filterable, copy to clipboard,
+  "when to use it" for each. Every prompt tells the AI what not to do (tests check). Includes the five original
+  AI Coach prompts and Mr. Bennett's outline example. Optional **Think before you prompt** fields fill the
+  prompt's brackets; they are not saved or sent.
+- **Assignment-specific AI permissions**: four levels in `data/ai-permissions.json` (not permitted; grammar and
+  spelling only = class default; guided coaching; expanded with a required note). Set per lesson in the Lesson
+  Manager; shown on the Daily Learning Dashboard, in presentation mode, in the substitute plan and in the studio.
+  The library only copies prompts the current assignment allows; others stay readable with "Not allowed on your
+  current assignment."
+- **AI Ethics Lab**: 12 situations (the seven requested plus the original AI Coach sort items) classified as
+  appropriate / needs instructor permission / not appropriate under the class policy, each with a reason to
+  choose; two extra college situations.
+- **AI Fact Checker**: a clearly labeled SIMULATED AI answer with six claims (plausible, unsupported statistic,
+  fabricated reference, misleading) and three references (two fictional, one the real course textbook) to
+  check for missing publication information and look up (simulated); a final decision. Links to the Research &
+  Source Lab; integration point for the future Research & Academic Integrity Studio.
+- **AI-use disclosure**: printable/copyable template with the eight requested parts plus assignment and
+  permission; student and teacher notes that AI detectors are not definitive evidence and that process,
+  conferences and oral explanation show ownership.
+- Spanish for all studio text (draft, flagged for review), sentence frames, vocabulary, side-by-side supports.
+- **Independent Thinker is now active**: all Ethics Lab situations with correct reasons, all ownership
+  scenarios, and a complete fact-check. Copying prompts or visiting pages never counts. Each skill adds learning
+  points once. The badge says it is a digital practice, not teacher-verified performance.
+- Content review document: AI permission levels and every studio text pair (English/Spanish).
+- Tests: `tests/aistudio.test.mjs` (14), `tests/preview.test.mjs` (5), one Lesson Manager test (20 new; 111 total).
+
+### Changed
+- Lessons may carry `ai: { level, note }`; `SLManage.validate` checks it (expanded needs a note).
+- `studios.json`: AI Coaching Studio available with `route` `#/ai` and `content`.
+- `achievements.js`: criterion type `ai`, reads only dated `mastered` parts of `speakup-ai-v1`.
+- `boot.js` loads `data/ai-permissions.json`, `js/aistudio.js`; `index.html` loads `js/build.js` before boot.
+
+### Not done
+- Research & Academic Integrity Studio and APA Academy (next slice). No external AI, keys or accounts. Nothing deployed.
+
+## Slice 6: Beyond the Podium, Episode 1
+
+### Added
+- **Beyond the Podium: Communication in Real Life — Episode 1: The Misunderstanding** (`#/btp/1`), featured
+  in Unit 1 (Labs and studios). Seven stages, English and Spanish, every activity built from the official
+  transcript only (no invented visuals, emotions or timestamps):
+  1. Read the Room — observation vs. inference (sort six statements about the words; feedback, retries).
+     The thumbnail slot asks for one thing seen and one guessed, and never asks students to read emotions
+     from faces.
+  2. Watch the Film — questions before and after viewing, native player with keyboard controls, `preload=
+     metadata`, no autoplay, English captions, Spanish captions only once marked reviewed, replay button,
+     transcript always available.
+  3. Communication Detective — nine barriers; students tick the transcript line(s) that show each one and
+     may explain; wrong lines are named; technoference is correctly "no evidence in the words".
+  4. Beyond Words — verbal / nonverbal / paralanguage sort, one cue with many meanings, word–voice
+     mismatch; says plainly that body language cannot tell whether someone is lying.
+  5. Two Perspectives — what each student said vs. what we don't know; no villain; perception check.
+  6. Change the Conversation — two text-based branching scenes (as Jordan, as Alex), labeled practice
+     dialogue, feedback on every choice naming the skill (I-statements, open questions, paraphrasing,
+     empathy, perception checking, assertiveness, de-escalation, collaborative problem-solving), "change my
+     last choice", "start over", unlimited retries.
+  7. Reflect and Apply — five new situations (goal 4 of 5, best score kept, unlimited retries), three
+     reflection prompts that allow imagined situations, printable learning summary (`#/btp/1/summary`).
+  Vocabulary, sentence starters and an optional bilingual support line on every stage. Spanish marked as a
+  draft for teacher review (students in Spanish see "Traducción en borrador").
+- `site/js/btp.js` — one engine for every episode: an episode is `site/data/btp/episode-N.json` plus a
+  `studios.json` entry (`route`, `episode`). Progress key `speakup-btp-v1` (this browser only, included in
+  "Back up or move my progress").
+- **Bridge Builder is now active**: earned only after all three demonstrations — every barrier matched to
+  evidence, both practice scenes repaired, and 4 of 5 on the new situations. Watching, visiting or sorting
+  alone earns nothing. It says it recognizes practice in a digital lab, not real-life mastery. Each of the
+  three skills adds learning points once (recalculated, no duplicates).
+- The Unit 1 flex journal "When Communication Breaks Down" links to the lab from the Daily Learning
+  Dashboard, and the lab shows the journal prompt (handwritten, 10 minutes, stand and share).
+- Teacher view in the lab lists missing media and the lab text's review status.
+- The content review document now includes every English/Spanish pair in the lab.
+- `tests/btp.test.mjs` (13 tests): data, verbatim dialogue, evidence, honest media flags, no autoplay,
+  branching, mastery rules, retries, no duplicate awards or points, malformed records, reusable engine,
+  no sensitive disclosure, no lie-detection claims.
+
+### Missing dependencies (not in the repository, nothing was generated in their place)
+- `site/media/btp/ep1/beyond_the_podium_final.mp4` (the approved 55-second film)
+- `site/media/btp/ep1/beyond_the_podium_thumbnail.jpg` (plus a short description for its alt text)
+- `site/media/btp/ep1/captions.en.vtt` and `captions.es.vtt` (Spanish after review)
+To add one: upload the file to that path and set `available: true` in `site/data/btp/episode-1.json`
+(Spanish captions also `reviewed: true`). A test fails if a flag and the file disagree. Until then students
+see "The film will be added here by Mr. Bennett" and every activity works from the transcript.
+
+### Lesson Manager refinements (slice 5 review)
+- Invalid months/days (e.g. 2026-13-01, Feb 31) are rejected with a message instead of an exception; unit
+  release times must be a real date and time.
+- An empty journal library, a unit with no journals, null entries, a null lesson record, non-list fields and
+  non-object files are reported as clear errors; any unexpected problem returns "The file could not be
+  checked … Make sure it is a complete, unedited export." instead of crashing. Imports say "Not imported.
+  Fix first: …".
+- Approved text that is substantively edited goes back to draft for that language only (status changes
+  alone do not), with a message saying so.
+- The editor is titled "Reusable lesson"; it says edits change the lesson wherever it is used, while dates,
+  journal numbers and which journal each class wrote never change.
+- Known limitation (documented in the editor and CLAUDE.md): the archive shows the current wording of a
+  reusable lesson; earlier wording is not stored.
+
+### Changed
+- `studios.json`: Beyond the Podium is `available` with `route` and `episode`; available items may now open
+  an in-site route. Boot loads `js/btp.js` last.
+- `achievements.js`: criterion type `btp`; reads only the dated `mastered` parts of `speakup-btp-v1`,
+  ignores anything malformed.
+
+### Not done (needs separate approval)
+- Episode 2, AI Coaching Studio, Research & Academic Integrity Studio. Nothing deployed.
+
+## Slice 5: Teacher Lesson Manager
 
 ### Added
 - **Teacher Lesson Manager** (`#/teacher`, teacher view only; described as a classroom pacing control,

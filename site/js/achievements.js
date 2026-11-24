@@ -28,7 +28,36 @@
       plabDone: (PL && PL.done) || {},
       audBest: A.mc && A.mc.best != null ? Number(A.mc.best) : null,
       listenFinal: LI.fin && LI.fin.best != null ? Number(LI.fin.best) : null,
+      btp: btpParts(parse(env.get("speakup-btp-v1"))),
+      ai: aiParts(parse(env.get("speakup-ai-v1"))),
     };
+  }
+
+  /** Beyond the Podium (js/btp.js, key speakup-btp-v1): only mastery that js/btp.js recorded after checking
+      the student's answers counts. Anything malformed (wrong shape, not a real date) is ignored, never fatal.
+      A browser record is a motivational learning record, not a secure or official grade. */
+  const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;
+  function btpParts(rec) {
+    const out = {};
+    if (!rec || typeof rec !== "object" || rec.v !== 1 || !rec.eps || typeof rec.eps !== "object" || Array.isArray(rec.eps)) return out;
+    for (const [id, ep] of Object.entries(rec.eps)) {
+      if (!/^ep\d{1,2}$/.test(id) || !ep || typeof ep !== "object") continue;
+      const m = ep.mastered && typeof ep.mastered === "object" ? ep.mastered : {};
+      const ok = k => typeof m[k] === "string" && ISO_DAY.test(m[k]) && !isNaN(new Date(m[k] + "T12:00:00Z"));
+      out[id] = { detective: ok("detective"), change: ok("change"), apply: ok("apply") };
+    }
+    return out;
+  }
+
+  /** AI Coaching Studio (js/aistudio.js, key speakup-ai-v1): same rule as Beyond the Podium. Only the dated
+      `mastered` parts that js/aistudio.js recorded after checking answers count; copying prompts or visiting
+      pages records nothing. */
+  const AI_PARTS = ["ethics", "ownership", "factcheck"];
+  function aiParts(rec) {
+    const out = {};
+    if (!rec || typeof rec !== "object" || rec.v !== 1 || !rec.mastered || typeof rec.mastered !== "object" || Array.isArray(rec.mastered)) return out;
+    for (const k of AI_PARTS) { const d = rec.mastered[k]; out[k] = typeof d === "string" && ISO_DAY.test(d) && !isNaN(new Date(d + "T12:00:00Z")); }
+    return out;
   }
 
   /** Update the achievement record. Returns { store, newly } — newly = badges earned for the first time now. */
@@ -61,6 +90,8 @@
       }
       case "listenFinal": return { label, done: src.listenFinal != null && src.listenFinal >= c.min, have: src.listenFinal, need: c.min, kind: "score" };
       case "audCheck": return { label, done: src.audBest != null && src.audBest >= c.min, have: src.audBest, need: c.min, kind: "of10" };
+      case "btp": { const e = (src.btp || {})[c.episode] || {}; return { label, done: !!e[c.part], have: e[c.part] ? 1 : 0, need: 1, kind: "step" }; }
+      case "ai": { const v = !!(src.ai || {})[c.part]; return { label, done: v, have: v ? 1 : 0, need: 1, kind: "step" }; }
       case "improved": { const have = Object.keys((store && store.improved) || {}).length; return { label, done: have >= c.count, have: Math.min(have, c.count), need: c.count, kind: "count" }; }
       default: return { label, done: false, have: null, need: null, kind: c.type }; // teacher, external: never met online
     }
@@ -86,7 +117,10 @@
     const quiz = Object.values(sources.quiz).filter(v => v >= cfg.mastery).length;
     const test = Object.values(sources.test).filter(v => v >= cfg.mastery).length;
     const badges = results.filter(r => r.state === "earned").length;
-    return { total: lab * P.labActivity + quiz * P.quiz + test * P.test + badges * P.badge, lab, quiz, test, badges };
+    // Each Beyond the Podium mastery part counts once, like a lab activity.
+    const btp = Object.values(sources.btp || {}).reduce((n, e) => n + ["detective", "change", "apply"].filter(k => e[k]).length, 0);
+    const ai = AI_PARTS.filter(k => (sources.ai || {})[k]).length; // each AI Coaching Studio skill once
+    return { total: (lab + btp + ai) * P.labActivity + quiz * P.quiz + test * P.test + badges * P.badge, lab, btp, ai, quiz, test, badges };
   }
 
   /* ---------- badge artwork: one medallion design, a glyph per badge ---------- */

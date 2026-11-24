@@ -85,5 +85,25 @@ for u in data["units"]:
         rows.append([("Sentence starters",), "\n".join(j["frames"]["en"]), "\n".join(j["frames"]["es"])])
         rows.append([("Vocabulary",), ", ".join(j["vocab"]["en"]), ", ".join(j["vocab"]["es"])])
         table(rows, header=["", "English", "Spanish"], widths=[1.5, 2.65, 2.65])
+for e in data.get("btp", []):
+    doc.add_page_break()
+    p = doc.add_heading(f"Beyond the Podium lab — {e['title']}", 1)
+    status_tag(p, f"English {e['status']['en'].upper()} · Spanish {e['status']['es'].upper()}")
+    doc.add_paragraph("All lab text, written from the official transcript. The film's own dialogue (Transcript) is shown so you can check the Spanish translation; the English must match the approved film exactly. Practice dialogue in Change the Conversation is new text and is labeled for students as practice, not part of the film.")
+    if e["missing"]:
+        p = doc.add_paragraph(); p.add_run("Missing media (not in the repository; the lab uses the transcript until they are added): ").bold = True
+        p.add_run("; ".join(e["missing"]) + ".")
+    for name, rows in e["sections"]:
+        doc.add_heading(name, 2)
+        table([[(r[0],), r[1], r[2]] for r in rows], header=["", "English", "Spanish"], widths=[1.5, 2.65, 2.65])
+if data.get("ai"):
+    e = data["ai"]
+    doc.add_page_break()
+    p = doc.add_heading("AI Coaching Studio — Your Thinking. Your Voice.", 1)
+    status_tag(p, f"English {e['status']['en'].upper()} · Spanish {e['status']['es'].upper()}")
+    doc.add_paragraph("All studio text and the four AI permission levels. Every prompt asks AI to question, explain or give feedback and tells it not to do the student's work. The Fact Checker's researcher, journal and lookups are fictional and labeled as simulated for students. Set an assignment's permission in the Lesson Manager (lesson editor, \"AI permission for this lesson's work\"); the class default is grammar and spelling feedback only.")
+    for name, rows in e["sections"]:
+        doc.add_heading(name, 2)
+        table([[(r[0],), r[1], r[2]] for r in rows], header=["", "English", "Spanish"], widths=[1.5, 2.65, 2.65])
 doc.save(sys.argv[2])
 print("saved", sys.argv[2])

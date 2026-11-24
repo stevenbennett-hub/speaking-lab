@@ -11,7 +11,7 @@ const load = f => { const c = {}; vm.runInNewContext(read(f), c); return c; };
 const Mg = load("../site/js/manage.js").SLManage, S = load("../site/js/schedule.js").SLSchedule;
 const plain = x => JSON.parse(JSON.stringify(x));
 const data = () => ({ units: json("../site/data/units.json"), studios: json("../site/data/studios.json"), lessons: json("../site/data/lessons.json"),
-  journals: json("../site/data/journals.json"), overrides: json("../site/data/overrides.json"), calendar: json("../site/data/calendar-2026-27.json"), pacing: json("../site/data/pacing.json") });
+  journals: json("../site/data/journals.json"), overrides: json("../site/data/overrides.json"), calendar: json("../site/data/calendar-2026-27.json"), pacing: json("../site/data/pacing.json"), aiperm: json("../site/data/ai-permissions.json") });
 const TODAY = "2026-09-10";
 
 test("the published data passes the same validation the Lesson Manager uses", () => {
@@ -34,7 +34,7 @@ test("validation catches missing fields, bad dates, duplicates, bad links and ba
   d.overrides.overrides = [{ date: "2026-02-30", type: "closure", groups: "all", added: TODAY }, { date: "2026-09-20", type: "holiday", added: TODAY }, { date: "2026-09-21", type: "journal", journal: "nope", added: TODAY }, { date: "2026-09-22", type: "noJournal" }];
   d.overrides.releases = { "3": "2026-09-21 7am" };
   const v = Mg.validate(d), all = v.errors.map(e => `${e.file}|${e.where}|${e.msg}`).join("\n");
-  for (const want of ["w01d1|Learning objective: English is empty", "w01d2|Canvas link must start with https://", "duplicate journal id", "date must be a real date", "type must be one of", 'journal "nope" does not exist', "added (the date it was entered) is required", "release must be YYYY-MM-DDTHH:MM"]) assert.ok(all.includes(want), want);
+  for (const want of ["w01d1|Learning objective: English is empty", "w01d2|Canvas link must start with https://", "duplicate journal id", "date must be a real date", "type must be one of", 'journal "nope" does not exist', "added (the date it was entered) is required", "release must be a real date and time"]) assert.ok(all.includes(want), want);
   assert.ok(v.warnings.some(w => w.msg.includes('activity "not-a-lab"')), "unknown activity is a warning");
 });
 
@@ -135,4 +135,95 @@ test("academic-year calendar is configurable and separate from reusable lessons"
   assert.ok(readFileSync(new URL(`../site/${cfg.calendar}`, import.meta.url)));
   assert.match(read("../site/js/boot.js"), /if \(cfg && \/\^data\\\/calendar-\[0-9-\]\+\\\.json\$\/\.test\(cfg\.calendar \|\| ""\)\) FILES\.calendar = cfg\.calendar;/);
   assert.ok(!JSON.stringify(json("../site/data/lessons.json")).match(/20\d\d-\d\d-\d\d/), "lessons contain no dates");
+});
+
+/* ---------- Slice 5 refinements ---------- */
+test("realDate rejects impossible months and days without throwing", () => {
+  for (const d of ["2026-13-01", "2026-00-10", "2026-02-31", "2026-02-29", "2026-1-01", "", null, undefined, 20260101, {}]) assert.doesNotThrow(() => Mg.realDate(d));
+  assert.deepEqual(["2026-13-01", "2026-00-10", "2026-02-31", "2026-02-29"].map(Mg.realDate), [false, false, false, false]);
+  assert.equal(Mg.realDate("2028-02-29"), true, "leap day");
+  const d = data(); d.overrides.overrides = [{ date: "2026-13-01", type: "closure", groups: "all", added: "2026-14-02" }];
+  const v = Mg.validate(d);
+  assert.ok(v.errors.some(e => e.msg.startsWith("date must be a real date")) && v.errors.some(e => e.msg.startsWith("added")));
+});
+
+test("unit release dates must be real dates and times", () => {
+  for (const bad of ["2027-02-31T07:00", "2026-13-01T07:00", "2026-09-21T24:00", "2026-09-21T7:00"]) {
+    const d = data(); d.overrides.releases = { "3": bad };
+    assert.ok(Mg.validate(d).errors.some(e => e.where === "release 3"), bad);
+  }
+  const ok = data(); ok.overrides.releases = { "3": "2026-09-21T07:00" };
+  assert.equal(Mg.validate(ok).errors.length, 0);
+});
+
+test("an empty or broken journal library is an error, not a pass", () => {
+  const empty = data(); empty.journals.journals = [];
+  assert.ok(Mg.validate(empty).errors.some(e => e.msg === "the journal library is empty"));
+  const notList = data(); notList.journals.journals = { a: 1 };
+  assert.ok(Mg.validate(notList).errors.some(e => e.msg === "journals must be a list"));
+  const holes = data(); holes.journals.journals.push(null);
+  assert.ok(Mg.validate(holes).errors.some(e => e.msg === "journal entry is empty or not an object"));
+  const missingUnit = data(); missingUnit.journals.journals = missingUnit.journals.journals.filter(j => j.unit !== 4);
+  assert.ok(Mg.validate(missingUnit).errors.some(e => e.where === "Unit 4" && e.msg === "has no journals"));
+});
+
+test("null or malformed lesson records give clear errors instead of crashing", () => {
+  const d = data(); d.lessons.days.w01d1 = null; d.lessons.days.w01d2 = "text"; d.lessons.days.w01d3.learn = "just a string"; d.lessons.days.w01d4.success = null; d.lessons.days.w01d5.activities = "rlab";
+  let v; assert.doesNotThrow(() => { v = Mg.validate(d); });
+  const msgs = v.errors.map(e => `${e.where}: ${e.msg}`);
+  for (const want of ["w01d1: lesson record is empty or not an object", "w01d2: lesson record is empty or not an object", "w01d3: Learning objective: must have English and Spanish text", "w01d4: success criteria are missing", "w01d5: activities must be a list"]) assert.ok(msgs.some(m => m.startsWith(want)), want);
+});
+
+test("malformed imports return an actionable message, never an exception", () => {
+  const pub = data();
+  const cases = ["", "null", "[]", "42", "{\"days\": null}", "{\"days\": {\"w01d1\": null}}", "{\"journals\": []}", "{\"journals\": [null]}", "{\"overrides\": [null], \"releases\": \"x\"}", "{\"kind\": \"speakup-teacher-drafts\"}", "{\"kind\": \"speakup-teacher-drafts\", \"drafts\": {\"lessons\": {\"days\": 5}}}", "{oops"];
+  for (const text of cases) {
+    let r; assert.doesNotThrow(() => { r = Mg.importFile("x.json", text, pub); }, text);
+    assert.equal(r.ok, false, text);
+    assert.ok(typeof r.msg === "string" && r.msg.length > 10, `message for ${text}`);
+  }
+  assert.doesNotThrow(() => Mg.validate(null)); assert.doesNotThrow(() => Mg.validate({ lessons: 5, journals: "x", overrides: [] }));
+});
+
+test("approval goes back to draft when approved text is edited; teacher approvals are kept", () => {
+  const before = { learn: { en: "I can A.", es: "Puedo A." }, lang: { en: "I can B.", es: "Puedo B." }, status: { en: "approved", es: "approved" } };
+  const T = Mg.LESSON_TEXT;
+  // Spanish edited, both left on "approved": Spanish resets, English stays.
+  assert.deepEqual(plain(Mg.reviewAfterEdit(before, { ...before, learn: { en: "I can A.", es: "Puedo A, revisado." } }, { en: "approved", es: "approved" }, T)), { en: "approved", es: "draft" });
+  // Whitespace only is not a substantive edit.
+  assert.deepEqual(plain(Mg.reviewAfterEdit(before, { ...before, learn: { en: "I can A.  ", es: " Puedo A." } }, { en: "approved", es: "approved" }, T)), { en: "approved", es: "approved" });
+  // Draft → approved in the same save is the teacher's decision and stays.
+  const draft = { ...before, status: { en: "draft", es: "draft" } };
+  assert.deepEqual(plain(Mg.reviewAfterEdit(draft, { ...draft, lang: { en: "I can C.", es: "Puedo C." } }, { en: "approved", es: "draft" }, T)), { en: "approved", es: "draft" });
+  // Never approves on its own.
+  assert.deepEqual(plain(Mg.reviewAfterEdit(draft, draft, { en: "draft", es: "draft" }, T)), { en: "draft", es: "draft" });
+  // Journals: list fields count too.
+  const j = { prompt: { en: "P", es: "P" }, frames: { en: ["A ___"], es: ["A ___"] }, status: { en: "approved", es: "approved" } };
+  assert.deepEqual(plain(Mg.reviewAfterEdit(j, { ...j, frames: { en: ["B ___"], es: ["A ___"] } }, { en: "approved", es: "approved" }, Mg.JOURNAL_TEXT)), { en: "draft", es: "approved" });
+  const t = read("../site/js/teacher.js");
+  assert.match(t, /ls\.status = M\.reviewAfterEdit\(/); assert.match(t, /j\.status = M\.reviewAfterEdit\(/);
+});
+
+test("the manager says plainly what editing reusable content does to archived classes", () => {
+  const t = read("../site/js/teacher.js");
+  assert.match(t, /You are editing reusable teaching content/);
+  assert.match(t, /The archive shows the current wording of a lesson/);
+  assert.match(t, /Dates, journal numbers and which journal each class wrote do not change/);
+});
+
+test("AI permission on a lesson: known levels only, bilingual note, expanded needs a note (slice 7)", () => {
+  const d = data(), k = Object.keys(d.lessons.days)[0], errs = () => Mg.validate(d, { today: TODAY }).errors.filter(e => e.where === k).map(e => e.msg).join(" | ");
+  d.lessons.days[k].ai = { level: "coach" }; assert.equal(errs(), "");
+  d.lessons.days[k].ai = { level: "anything" }; assert.match(errs(), /AI permission must be one of: none, grammar, coach, expanded/);
+  d.lessons.days[k].ai = null; assert.match(errs(), /AI permission must be one of/);
+  d.lessons.days[k].ai = { level: "expanded" }; assert.match(errs(), /expanded AI assistance needs a note/);
+  d.lessons.days[k].ai = { level: "expanded", note: { en: "You may ask AI to suggest three possible hooks; choose and rewrite one yourself.", es: "" } };
+  assert.equal(errs(), "", "an English note is enough to save; missing Spanish is a warning");
+  assert.ok(Mg.validate(d, { today: TODAY }).warnings.some(w => w.where === k && /AI permission note/.test(w.msg)));
+  d.lessons.days[k].ai = { level: "none", note: "x" }; assert.match(errs(), /note must have English and Spanish/);
+  const P = json("../site/data/ai-permissions.json");
+  assert.equal(P.default, "grammar", "class default: grammar and spelling feedback only");
+  assert.deepEqual(P.levels.map(l => [l.id, l.rank]), [["none", 0], ["grammar", 1], ["coach", 2], ["expanded", 3]]);
+  for (const l of P.levels) for (const f of ["name", "short", "explain"]) assert.ok(l[f].en && l[f].es, `${l.id} ${f}`);
+  assert.ok(!Object.values(data().lessons.days).some(x => x.ai), "no lesson changes the default until Mr. Bennett sets one");
 });

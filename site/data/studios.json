@@ -1,10 +1,11 @@
 {
-  "$comment": "Featured learning experiences and shared studios, shown inside the units they belong to. status: available = opens now (href = separate site, lab = a lab already in the Speaking Lab); coming = shown as \"Coming soon\" with no link, never as a working activity. units = where it appears; introduces = the unit that introduces it; audience = all or col (college pathway only). Future achievements can reference these ids.",
+  "$comment": "Featured learning experiences and shared studios, shown inside the units they belong to. status: available = opens now (href = separate site, lab = a lab already in the Speaking Lab, route = an experience inside the Speaking Lab, episode / content = its data file); coming = shown as \"Coming soon\" with no link, never as a working activity. units = where it appears; introduces = the unit that introduces it; audience = all or col (college pathway only). Future achievements can reference these ids.",
   "version": 1,
   "experiences": [
-    { "id": "beyond-the-podium-ep1", "kind": "experience", "status": "coming", "units": [1], "introduces": 1, "audience": "all",
+    { "id": "beyond-the-podium-ep1", "kind": "experience", "status": "available", "units": [1], "introduces": 1, "audience": "all", "featured": true,
+      "route": "#/btp/1", "episode": "data/btp/episode-1.json",
       "title": { "en": "Beyond the Podium · Episode 1: The Misunderstanding", "es": "Beyond the Podium · Episodio 1: El malentendido" },
-      "blurb": { "en": "A short film about two group partners whose conversation breaks down. Investigate what went wrong and rewrite the scene.", "es": "Un cortometraje sobre dos compañeros de grupo cuya conversación se rompe. Investiga qué salió mal y reescribe la escena." } },
+      "blurb": { "en": "A short film about two group partners whose conversation breaks down. Investigate what went wrong, see both sides, and practice changing the conversation. Earns Bridge Builder.", "es": "Un cortometraje sobre dos compañeros de grupo cuya conversación se rompe. Investiga qué salió mal, mira ambos lados y practica cómo cambiar la conversación. Otorga Constructor de puentes." } },
     { "id": "ad-detective", "kind": "experience", "status": "available", "units": [6], "introduces": 6, "audience": "all", "featured": true,
       "href": "https://stevenbennett-hub.github.io/ad-detective/",
       "title": { "en": "Ad Detective: The Art of Persuasion", "es": "Ad Detective: El arte de la persuasión" },
@@ -12,9 +13,10 @@
     { "id": "research-studio", "kind": "studio", "status": "available", "units": [2, 3, 4, 5, 6], "introduces": 2, "audience": "all", "lab": "rlab",
       "title": { "en": "Research & Academic Integrity", "es": "Investigación e integridad académica" },
       "blurb": { "en": "From evidence to credibility: find and judge sources, cite them aloud and in writing, and avoid plagiarism. Opens the Research & Source Lab for now; the full studio comes later.", "es": "De la evidencia a la credibilidad: encuentra y evalúa fuentes, cítalas en voz alta y por escrito, y evita el plagio. Por ahora abre el Laboratorio de investigación y fuentes; el estudio completo llegará después." } },
-    { "id": "ai-coach", "kind": "studio", "status": "coming", "units": [1, 2, 3, 4, 5, 6], "introduces": 1, "audience": "all",
-      "title": { "en": "AI Coaching Studio: Think First. Use AI Wisely.", "es": "Estudio de coaching con IA: Piensa primero. Usa la IA con criterio." },
-      "blurb": { "en": "Coming soon. Until then, follow each assignment's AI rule: help with grammar and spelling only, unless Mr. Bennett allows more.", "es": "Próximamente. Mientras tanto, sigue la regla de IA de cada tarea: solo ayuda con gramática y ortografía, a menos que el Sr. Bennett permita más." } },
+    { "id": "ai-coach", "kind": "studio", "status": "available", "units": [1, 2, 3, 4, 5, 6], "introduces": 1, "audience": "all",
+      "route": "#/ai", "content": "data/ai-studio.json",
+      "title": { "en": "AI Coaching Studio: Your Thinking. Your Voice.", "es": "Estudio de coaching con IA: Tu pensamiento. Tu voz." },
+      "blurb": { "en": "AI is a coach, not an author. Learn how AI works and fails, practice keeping ownership of your thinking, fact-check AI, find coaching prompts and fill in your AI-use disclosure. Each assignment's AI permission decides what you may use.", "es": "La IA es un entrenador, no un autor. Aprende cómo funciona y falla la IA, practica conservar tu pensamiento, verifica a la IA, encuentra prompts de coaching y completa tu declaración de uso de IA. El permiso de IA de cada tarea decide qué puedes usar." } },
     { "id": "apa-academy", "kind": "studio", "status": "coming", "units": [2, 3, 6], "introduces": 2, "audience": "col",
       "title": { "en": "APA Academy", "es": "Academia APA" },
       "blurb": { "en": "Coming soon for the authorized college pathway: APA 7 citations and references, checked against official APA guidance.", "es": "Próximamente para el nivel universitario autorizado: citas y referencias APA 7, revisadas con la guía oficial de APA." } }

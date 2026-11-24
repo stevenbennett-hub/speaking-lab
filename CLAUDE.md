@@ -1,10 +1,10 @@
 # Speaking Lab — notes for Claude
 
-Owner: Steven Bennett, Speech & Debate, Wyandotte High School (KCKPS). Full brief: `Speaking_Lab_2.0_Claude_Master_Prompt.md` (kept by the owner). Read `CHANGELOG.md` for what each slice did and `DEVELOPMENT_ROADMAP.md` for what is next. Slices 1–4 approved, slice 5 awaiting review; none deployed yet.
+Owner: Steven Bennett, Speech & Debate, Wyandotte High School (KCKPS). Full brief: `Speaking_Lab_2.0_Claude_Master_Prompt.md` (kept by the owner). Read `CHANGELOG.md` for what each slice did and `DEVELOPMENT_ROADMAP.md` for what is next. Slices 1–6 approved, slice 7 (AI Coaching Studio + development preview) awaiting review; none deployed yet.
 
 ## How the site runs
 - GitHub Pages deploys **`site/` from `main` only**, after `node --test tests/*.test.mjs` passes. Other branches and pull requests run tests only.
-- `site/index.html` is the classic one-page course (~2 MB, plain JS, EN/ES). Its scripts are `type="text/x-speakup"`; `site/js/boot.js` loads `site/data/*.json` into `window.SL_DATA`, runs those scripts in order, then loads `js/progress.js` and `js/student.js`. `js/schedule.js` loads first.
+- `site/index.html` is the classic one-page course (~2 MB, plain JS, EN/ES). Its scripts are `type="text/x-speakup"`; `site/js/boot.js` loads `site/data/*.json` into `window.SL_DATA`, runs those scripts in order, then loads `js/progress.js`, `js/achievements.js`, `js/manage.js`, `js/student.js`, `js/teacher.js`, `js/btp.js`, `js/aistudio.js`. `js/schedule.js` and `js/build.js` load first.
 - `js/student.js` is the student experience. Routes: `#/` dashboard (or `#/start` entrance on first visit), `#/unit/N` (Today), `/lessons`, `/day/YYYY-MM-DD`, `/guide`, `/labs`. Any other hash shows the classic page, so all old links work. Inside a unit it moves the page's `#units` and `#labs` sections in and back out (marker comments) instead of copying them.
 - `src/` (React) is NOT deployed; content source only (24 Learn modules, 9 labs, AI Coach JSON).
 
@@ -21,6 +21,9 @@ Owner: Steven Bennett, Speech & Debate, Wyandotte High School (KCKPS). Full brie
 | `journals.json` | Daily Learning Journals; flex journals with `before`; `experience` links |
 | `studios.json` | featured experiences/studios by unit; `coming` items never link |
 | `access.json` | college switch (off) + code hash; teacher view code hash |
+| `btp/episode-N.json` | Beyond the Podium episodes: transcript, seven stages, media flags, review status |
+| `ai-permissions.json` | four AI permission levels + class default (grammar); lessons set `ai: {level, note}` |
+| `ai-studio.json` | AI Coaching Studio content (loaded when the studio opens) |
 | `achievements.json` | every badge: level, status (active / pending-verification / coming), criteria, points |
 Never paste data back into `index.html`; tests fail if inline copies return.
 
@@ -46,8 +49,25 @@ Never paste data back into `index.html`; tests fail if inline copies return.
 
 ## Teacher Lesson Manager (`js/teacher.js`, `js/manage.js`)
 - Edits only lessons.json, journals.json, overrides.json (drafts in `speakup-teacher-drafts-v1`, this browser only; preview with `speakup-teacher-preview`). Never edits calendar or pacing. Export = changed files only, committed by the teacher; no tokens.
-- Past overrides are locked (`SLManage.removeOverride`, `addOverride` refuses past dates). Validation lives in `SLManage.validate` and is also run on the published data by `tests/manager.test.mjs`.
+- Past overrides are locked (`SLManage.removeOverride`, `addOverride` refuses past dates). Editing approved text resets that language to draft (`SLManage.reviewAfterEdit`). Lessons are reusable: the archive shows their current wording (earlier wording is not stored); dates and journal numbers never change. Validation lives in `SLManage.validate` and is also run on the published data by `tests/manager.test.mjs`.
 - Presentation `#/present`, substitute plan `#/sub/...`, weekly print `#/teacher/print/week/N`; all use `SL2.lessonModel` (same as the student dashboard).
+
+## Beyond the Podium (`js/btp.js`, `data/btp/`)
+- Routes `#/btp`, `#/btp/N`, `#/btp/N/<stage>`, `#/btp/N/summary`; registered with `SL2.addRoute`. Unit lock follows the unit's release.
+- Everything comes from the official transcript. Never invent visual details, emotions, timestamps or new film lines; practice dialogue is labeled as practice. Never regenerate the film, voices, characters or thumbnail.
+- Media flags must match the files (tests check). Missing now: film, thumbnail (+alt), EN/ES captions in `site/media/btp/ep1/`. No autoplay; Spanish captions only when `reviewed`.
+- `speakup-btp-v1` stores answers and dated `mastered` parts; achievements read only `mastered`. Bridge Builder = detective + change + apply; watching/visiting never counts. Browser records are motivational, not grades.
+- New episode = new data file + studios entry; do not build Episode 2 without approval.
+
+## Development preview (`js/build.js`, `docs/preview/`)
+- Preview = served from `/speaking-lab-preview/` (or localhost) AND `site/data/preview.json` `{"channel":"preview"}` written by the preview repo's workflow. Never commit that file (test + production workflow refuse it). Production never requests it.
+- Preview: banner, all six HS units open (`released()` in student.js is the only place), `?date=` without teacher code, storage namespaced `slpreview:`. College gate and teacher code unchanged. Don't add preview behavior anywhere else.
+
+## AI Coaching Studio (`js/aistudio.js`, `data/ai-studio.json`)
+- AI is a coach, not an author. No AI API, keys, accounts or data sent anywhere; the only fetch loads the content file. Prep answers are never saved.
+- Every prompt must tell AI not to do the student's work (tests). Prompt `level` is grammar or coach; copying is blocked when the current assignment's permission (`SL2.aiNow()`) is lower. Showing a prompt never authorizes it.
+- `speakup-ai-v1`; Independent Thinker = ethics + ownership + factcheck mastered via the check buttons only. Fact Checker material is fictional and labeled SIMULATED.
+- Original AI Coach (`src/content/aiCoach.json`) stays as content source; its stages/prompts/sort items live on in the studio (tests).
 
 ## Content review
 Regenerate the teacher review document after content changes: `node tests/tools/content-review.mjs > /tmp/r.json && python3 tests/tools/content-review.py /tmp/r.json review.docx`.

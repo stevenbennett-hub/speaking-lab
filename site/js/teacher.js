@@ -107,7 +107,8 @@
       <p>${L("Unit", "Unidad")} ${mod.unit} · ${mod.week === 0 ? L("Getting started", "Primeros días") : `${L("Week", "Semana")} ${mod.week}`} · ${L("Lesson:", "Lección:")} <b>${h(mod.title)}</b>${mod.extendOf ? ` · ${L("Extended from", "Extendida desde")} ${h(X.fmtShort(mod.extendOf))}` : ""}</p>
       <p>${j ? `${L("Journal", "Diario")} #${m.number} (${L("set", "grupo")} ${m.set}): ${h(pick(j.title || j.focus))}` : L("No journal for this class.", "Sin diario para esta clase.")}</p>
       <p class="sl2-btns"><a class="btn primary" href="#/present/${grp}/${day}">${L("Present", "Presentar")}</a> <a class="btn" href="#/sub/${grp}/${day}">${L("Substitute plan", "Plan para suplente")}</a> <a class="btn" href="?date=${day}#/unit/${mod.unit}/day/${day}">${L("Preview as a student", "Ver como estudiante")}</a>
-        ${mod.keys.map(k => `<a class="btn" href="#/teacher/day/${k}">${L("Edit lesson", "Editar lección")} ${k}</a>`).join(" ")}</p>
+        ${mod.keys.map(k => `<a class="btn" href="#/teacher/day/${k}">${L("Edit reusable lesson", "Editar lección reutilizable")} ${k}</a>`).join(" ")}</p>
+      <p class="sl2-small">${day < X.today() ? L("This class is in the archive. Its date, journal and journal number are fixed. Editing the reusable lesson changes the wording shown for every class that uses it, including this one.", "Esta clase está en el archivo. Su fecha, diario y número de diario son fijos. Editar la lección reutilizable cambia el texto de todas las clases que la usan, incluida esta.") : L("To change only this class, use Schedule and releases.", "Para cambiar solo esta clase, usa Horario y aperturas.")}</p>
       <h3 class="sl2-h3">${L("Objectives", "Objetivos")}</h3><ul>${mod.objectives.map(o => `<li>${h(pick(o.learn))}<br><span class="sl2-small">${h(pick(o.lang))}</span></li>`).join("")}</ul>
       <h3 class="sl2-h3">${L("Agenda", "Agenda")}</h3><ol>${mod.agenda.map(a => `<li>${h(a.t)}</li>`).join("")}</ol>
       <p class="sl2-small">${L("To change this day's schedule (snow day, assembly, extended lesson, a different journal), use Schedule and releases.", "Para cambiar el horario de este día (nieve, asamblea, lección extendida, otro diario), usa Horario y aperturas.")}</p>`;
@@ -138,10 +139,11 @@
     const st = M.statusOf(W.lessons, k), labs = Object.keys(D.units.labNames), studios = D.studios.experiences.filter(x => x.status === "available");
     const v = M.validate(fullData()), mine = [...v.errors, ...v.warnings].filter(e => e.file === "lessons" && e.where === k);
     return `<p><a href="#/teacher/week/${w}">← ${L(`Week ${w}`, `Semana ${w}`)}</a></p>
-      <h2 class="sl2-h2">${L("Lesson", "Lección")} ${k} · ${L("Week", "Semana")} ${w}, ${L("day", "día")} ${d}</h2>
+      <h2 class="sl2-h2">${L("Reusable lesson", "Lección reutilizable")} ${k} · ${L("Week", "Semana")} ${w}, ${L("day", "día")} ${d}</h2>
+      <p class="tm-note">${L("You are editing reusable teaching content: this lesson is used every semester, for both class groups. It is not a record of one class. To change one class only (a different journal, an extended lesson, no journal, no class), use Schedule and releases.", "Estás editando contenido reutilizable: esta lección se usa cada semestre, para ambos grupos. No es el registro de una clase. Para cambiar solo una clase (otro diario, lección extendida, sin diario, sin clase), usa Horario y aperturas.")}</p>
       <p><b>${L("Pacing guide (not changed here):", "Calendario (no se cambia aquí):")}</b> ${h(Array.isArray(p) ? `${p[0]} — ${L("College:", "Universidad:")} ${p[1]}` : p)}</p>
       <p class="sl2-small">${L(`This semester: ${groupLabel("odd", false)} ${pd.odd ? X.fmtShort(pd.odd) : "—"} · ${groupLabel("even", false)} ${pd.even ? X.fmtShort(pd.even) : "—"}.`, `Este semestre: ${groupLabel("odd", true)} ${pd.odd ? X.fmtShort(pd.odd) : "—"} · ${groupLabel("even", true)} ${pd.even ? X.fmtShort(pd.even) : "—"}.`)}
-        ${taught.length ? `<b>${L(`Already taught: ${taught.join(", ")}. Edits will also show in the archive for those days; journal numbers do not change.`, `Ya se enseñó: ${taught.join(", ")}. Los cambios también aparecerán en el archivo de esos días; los números de diario no cambian.`)}</b>` : ""}</p>
+        ${taught.length ? `<b>${L(`Already taught this semester: ${taught.join(", ")}. The archive shows the current wording of a lesson, so these edits will also appear when students look back at those days. Dates, journal numbers and which journal each class wrote do not change.`, `Ya se enseñó este semestre: ${taught.join(", ")}. El archivo muestra el texto actual de la lección, así que estos cambios también aparecerán cuando los estudiantes revisen esos días. Las fechas, los números de diario y el diario de cada clase no cambian.`)}</b>` : ""}</p>
       ${mine.length ? `<ul class="tm-issues">${mine.map(e => `<li>${h(e.msg)}</li>`).join("")}</ul>` : ""}
       <form class="tm-form" data-tm-lesson="${k}" novalidate>
         ${fieldPair("f-title", L("Lesson title (optional; otherwise the week's topic)", "Título de la lección (opcional; si no, el tema de la semana)"), ls.title)}
@@ -158,6 +160,11 @@
           <label>URL<input id="f-canvas-url" type="url" placeholder="https://…" value="${h((ls.canvas && ls.canvas.url) || "")}"></label>
           <label>${L("Label (English)", "Etiqueta (inglés)")}<input id="f-canvas-en" value="${h((ls.canvas && ls.canvas.label && ls.canvas.label.en) || "")}"></label>
           <label lang="es">${L("Label (Spanish)", "Etiqueta (español)")}<input id="f-canvas-es" value="${h((ls.canvas && ls.canvas.label && ls.canvas.label.es) || "")}"></label></fieldset>
+        <fieldset class="tm-pair"><legend>${L("AI permission for this lesson's work", "Permiso de IA para el trabajo de esta lección")}</legend>
+          <label>${L("Level", "Nivel")} <select id="f-ai">${opt("", L(`Class default (${pick(X.aiLevel(D.aiperm.default).name)})`, `Regla general (${pick(X.aiLevel(D.aiperm.default).name)})`), !(ls.ai && ls.ai.level))}${D.aiperm.levels.map(l => opt(l.id, pick(l.name), ls.ai && ls.ai.level === l.id)).join("")}</select></label>
+          <label>${L("Note to students (English; required for expanded)", "Nota para estudiantes (inglés; obligatoria para uso ampliado)")}<input id="f-ainote-en" value="${h((ls.ai && ls.ai.note && ls.ai.note.en) || "")}"></label>
+          <label lang="es">${L("Note to students (Spanish)", "Nota para estudiantes (español)")}<input id="f-ainote-es" value="${h((ls.ai && ls.ai.note && ls.ai.note.es) || "")}"></label>
+          <p class="sl2-small">${L("Students see this on the Daily Learning Dashboard, in presentation mode and in the AI Coaching Studio. Showing a prompt in the studio never authorizes it.", "Los estudiantes lo ven en el panel diario, en el modo de presentación y en el Estudio de coaching con IA. Mostrar un prompt en el estudio nunca lo autoriza.")}</p></fieldset>
         <fieldset class="tm-checks"><legend>${L("Review status (you decide; nothing is approved automatically)", "Estado de revisión (tú decides; nada se aprueba solo)")}</legend>
           <label>English <select id="f-st-en">${opt("draft", L("Draft", "Borrador"), st.en !== "approved")}${opt("approved", L("Approved", "Aprobado"), st.en === "approved")}</select></label>
           <label>Español <select id="f-st-es">${opt("draft", L("Draft", "Borrador"), st.es !== "approved")}${opt("approved", L("Approved", "Aprobado"), st.es === "approved")}</select></label></fieldset>
@@ -174,11 +181,15 @@
     const acts = [...document.querySelectorAll('.tm-form input[name="act"]:checked')].map(x => x.value), feat = [...document.querySelectorAll('.tm-form input[name="feat"]:checked')].map(x => x.value);
     if (acts.length) ls.activities = acts; else delete ls.activities;
     if (feat.length) ls.featured = feat; else delete ls.featured;
+    const aiv = val("f-ai"), an = { en: val("f-ainote-en"), es: val("f-ainote-es") };
+    if (aiv) { ls.ai = { level: aiv }; if (an.en || an.es) ls.ai.note = an; } else delete ls.ai;
     const url = val("f-canvas-url"); if (url) ls.canvas = { url, label: { en: val("f-canvas-en"), es: val("f-canvas-es") } }; else delete ls.canvas;
-    ls.status = { en: val("f-st-en") || "draft", es: val("f-st-es") || "draft" };
+    ls.status = M.reviewAfterEdit({ ...old, status: M.statusOf(W.lessons, k) }, ls, { en: val("f-st-en") || "draft", es: val("f-st-es") || "draft" }, M.LESSON_TEXT);
+    const reset = ["en", "es"].filter(l => val(`f-st-${l}`) === "approved" && ls.status[l] === "draft");
     W.lessons.days[k] = ls; saveDrafts();
     const v = M.validate(fullData()), mine = v.errors.filter(e => e.file === "lessons" && e.where === k);
-    say(mine.length ? L(`Saved as a draft, but fix: ${mine.map(e => e.msg).join("; ")}`, `Guardado como borrador, pero corrige: ${mine.map(e => e.msg).join("; ")}`) : L(`Lesson ${k} saved as a draft in this browser.`, `Lección ${k} guardada como borrador en este navegador.`));
+    const rs = reset.length ? L(` Because the ${reset.map(l => l === "en" ? "English" : "Spanish").join(" and ")} text changed, it is back to draft for review.`, ` Como cambió el texto en ${reset.map(l => l === "en" ? "inglés" : "español").join(" y ")}, volvió a borrador para revisión.`) : "";
+    say((mine.length ? L(`Saved as a draft, but fix: ${mine.map(e => e.msg).join("; ")}.`, `Guardado como borrador, pero corrige: ${mine.map(e => e.msg).join("; ")}.`) : L(`Lesson ${k} saved as a draft in this browser.`, `Lección ${k} guardada como borrador en este navegador.`)) + rs);
   }
 
   /* ---------- journal library ---------- */
@@ -210,10 +221,11 @@
     setPair("title", "j-title"); setPair("focus", "j-focus", true); setPair("prompt", "j-prompt", true); setPair("expect", "j-expect"); setPair("share", "j-share", true);
     const alt = pairVal("j-alt"); j.alt = alt.en || alt.es ? alt : null;
     j.frames = listVal("j-frames"); j.vocab = listVal("j-vocab");
-    j.status = { en: val("j-st-en") || "draft", es: val("j-st-es") || "draft" };
+    j.status = M.reviewAfterEdit(J[i], j, { en: val("j-st-en") || "draft", es: val("j-st-es") || "draft" }, M.JOURNAL_TEXT);
+    const reset = ["en", "es"].filter(l => val(`j-st-${l}`) === "approved" && j.status[l] === "draft");
     J[i] = j; saveDrafts();
     const errs = M.validate(fullData()).errors.filter(e => e.file === "journals" && e.where === id);
-    say(errs.length ? L(`Saved, but fix: ${errs.map(e => e.msg).join("; ")}`, `Guardado, pero corrige: ${errs.map(e => e.msg).join("; ")}`) : L("Journal saved as a draft in this browser.", "Diario guardado como borrador en este navegador."));
+    say((errs.length ? L(`Saved, but fix: ${errs.map(e => e.msg).join("; ")}.`, `Guardado, pero corrige: ${errs.map(e => e.msg).join("; ")}.`) : L("Journal saved as a draft in this browser.", "Diario guardado como borrador en este navegador.")) + (reset.length ? L(" The changed language is back to draft for review.", " El idioma cambiado volvió a borrador para revisión.") : ""));
   }
 
   /* ---------- schedule and releases ---------- */
@@ -313,6 +325,7 @@
             <p class="pr-small">${h(pick(j.expect || X.DEFAULT_EXPECT))} · ${L("Then stand and share with someone new:", "Luego ponte de pie y comparte con alguien nuevo:")} ${h(pick(j.share))}</p>` : `<h2>${L("No journal today", "Hoy no hay diario")}</h2>`}</section>
           ${j ? `<section><h2>${L("Vocabulary", "Vocabulario")}</h2><p>${j.vocab.en.map((w, i) => h(es() ? j.vocab.es[i] : w)).join(" · ")}</p>
             <h2>${L("Sentence starters", "Inicios de oración")}</h2><ul>${j.frames.en.map((f, i) => `<li>${h(es() ? j.frames.es[i] : f)}</li>`).join("")}</ul></section>` : ""}
+          ${(() => { const lv = X.aiLevel(mod.ai.level); return lv ? `<section class="pr-ai"><h2>${L("AI on today's work", "IA en el trabajo de hoy")}</h2><p><b>${h(pick(lv.name))}</b>${mod.ai.note ? ` · ${h(pick(mod.ai.note))}` : ""}</p></section>` : ""; })()}
           <section><h2>${L("Agenda", "Agenda")}</h2><ol><li>${L("Journal: 10 minutes, then stand and share", "Diario: 10 minutos y luego compartir")}</li>${mod.agenda.map(a => `<li>${h(a.t)}</li>`).join("")}${mod.exit ? `<li>${h(pick(mod.exit))}</li>` : ""}</ol></section>
         </div>`;
     return `<div class="pr" id="sl2-main" data-notr style="--pfs: ${size}px">
@@ -336,6 +349,7 @@
     return `<section class="sp-block"><h2>${h(X.fmtLong(mod.day))} · ${h(groupLabel(g, false))} (${h(GROUPS[g].d[0])}, ${L("90-minute block", "bloque de 90 minutos")})</h2>
       <p><b>${L("Unit", "Unidad")} ${mod.unit}, ${mod.week === 0 ? L("getting started", "primeros días") : `${L("week", "semana")} ${mod.week}`}:</b> ${h(mod.title)}${mod.extendOf ? ` (${L("continues", "continúa")} ${h(X.fmtShort(mod.extendOf))})` : ""}</p>
       <h3>${L("Objectives", "Objetivos")}</h3><ul>${mod.objectives.map(o => `<li>${h(pick(o.learn))}<br><i>${L("Language:", "Lenguaje:")}</i> ${h(pick(o.lang))}</li>`).join("")}</ul>
+      ${(() => { const lv = X.aiLevel(mod.ai.level); return lv ? `<p><b>${L("AI permission for today's work:", "Permiso de IA para el trabajo de hoy:")}</b> ${h(pick(lv.name))}${mod.ai.note ? ` (${h(pick(mod.ai.note))})` : ""}</p>` : ""; })()}
       <h3>${L("Journal (start of class)", "Diario (inicio de clase)")}</h3>
       ${j ? `<p>${L(`Display Journal #${m.number}. Students write by hand in their journals for about 10 minutes (no devices needed). Then they stand and share with someone new.`, `Muestre el Diario #${m.number}. Los estudiantes escriben a mano unos 10 minutos. Luego se ponen de pie y comparten con alguien nuevo.`)}</p>
         <p class="sp-quote">${h(pick(j.prompt))}</p><p><i>${L("Stand and share:", "Compartir:")}</i> ${h(pick(j.share))}</p>${j.alt ? `<p><i>${L("Students who prefer not to share something personal:", "Si prefieren no compartir algo personal:")}</i> ${h(pick(j.alt))}</p>` : ""}`
@@ -380,7 +394,7 @@
     else if (t.id === "tm-import" && t.files && t.files[0]) {
       const f = t.files[0], rd = new FileReader();
       rd.onload = () => { const r = M.importFile(f.name, String(rd.result), W);
-        if (!r.ok) { say(r.msg || L(`Not imported: ${r.v.errors.slice(0, 3).map(e => e.msg).join("; ")}`, `No se importó: ${r.v.errors.slice(0, 3).map(e => e.msg).join("; ")}`)); rerender(); return; }
+        if (!r.ok) { say(r.msg || L("Not imported: the file has problems.", "No se importó: el archivo tiene problemas.")); rerender(); return; }
         if (r.key === "backup") M.EDITABLE.forEach(k => { if (r.drafts[k]) W[k] = r.drafts[k]; }); else W[r.key] = r.data;
         saveDrafts(); say(L(`Imported ${r.key === "backup" ? "your backup" : f.name} as drafts.`, `Se importó ${r.key === "backup" ? "tu copia" : f.name} como borrador.`)); rerender(); };
       rd.readAsText(f);

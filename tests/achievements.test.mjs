@@ -17,7 +17,7 @@ const RLAB = ["primary", "scholarly", "credibility", "evidence", "ai", "misinfo"
 const GLAB = ["roles", "jury", "votes", "groupthink", "conflict", "stages"];
 
 test("configuration: every badge is bilingual, leveled, and uses only criteria the site can check", () => {
-  const types = { quiz: 1, test: 1, lab: 1, labDone: 1, listenFinal: 1, audCheck: 1, improved: 1, teacher: 1, external: 1 };
+  const types = { quiz: 1, test: 1, lab: 1, labDone: 1, listenFinal: 1, audCheck: 1, improved: 1, btp: 1, ai: 1, teacher: 1, external: 1 };
   const ids = new Set();
   for (const b of cfg.badges) {
     assert.ok(!ids.has(b.id), `unique ${b.id}`); ids.add(b.id);
@@ -52,6 +52,8 @@ test("nothing earned from an empty browser; teacher-verified and future badges n
     "speakup-test-v1": JSON.stringify({ 1: { best: 100 }, 2: { best: 100 }, 3: { best: 100 }, 4: { best: 100 }, 5: { best: 100 }, 6: { best: 100 } }),
     "speakup-aud-v1": JSON.stringify({ mc: { best: 10 } }), "speakup-listen-v1": JSON.stringify({ fin: { best: 100 } }),
     "speakup-plab-v1": JSON.stringify({ done: { appeals: true, fallacy: true } }),
+    "speakup-btp-v1": JSON.stringify({ v: 1, eps: { ep1: { mastered: { detective: "2026-11-24", change: "2026-11-24", apply: "2026-11-24" } } } }),
+    "speakup-ai-v1": JSON.stringify({ v: 1, mastered: { ethics: "2026-11-24", ownership: "2026-11-24", factcheck: "2026-11-24" } }),
   }, { rlab: lab(RLAB, RLAB), glab: lab(GLAB, GLAB) }));
   const r2 = A.evaluate(cfg, full, { v: 1, seen: {}, improved: { "quiz:1": "x", "quiz:2": "x", "test:3": "x" }, earned: {} });
   for (const r of r2) {
