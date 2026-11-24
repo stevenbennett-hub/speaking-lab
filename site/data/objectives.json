@@ -1,0 +1,154 @@
+{
+  "$comment": "Per-unit learning targets (hs / col), language objectives and sentence frames. Source: OBJ in site/index.html.",
+  "units": {
+    "1": {
+      "learn": {
+        "hs": [
+          "I can explain how a message travels from sender to receiver, and name the noise that gets in the way.",
+          "I can give a 1–2 minute speech that introduces me with a hook, three clear parts, and a strong ending.",
+          "I can explain what plagiarism is and how to give credit out loud."
+        ],
+        "col": [
+          "I can compare the linear and transactional models of communication and apply the transactional model to a real speech.",
+          "I can deliver a 2–3 minute extemporaneous speech built around a personal artifact, with a clear thesis and three main points.",
+          "I can explain the ethical responsibilities of a speaker, including honest use of sources and AI."
+        ]
+      },
+      "lang": [
+        "I can use the words sender, receiver, message, channel, noise, and feedback to describe a conversation.",
+        "I can introduce myself using complete sentences and time-order words (first, then, finally).",
+        "I can give a classmate feedback using a sentence frame."
+      ],
+      "frames": [
+        "The sender is ___, and the receiver is ___.",
+        "One kind of noise was ___ because ___.",
+        "I brought ___ because it shows that I ___.",
+        "One thing you did well was ___. Next time, try ___."
+      ]
+    },
+    "2": {
+      "learn": {
+        "hs": [
+          "I can describe my audience and explain how it changes what I say.",
+          "I can find three credible sources, including one from Gale, and cite them in APA.",
+          "I can write a thesis that previews three main points and build an outline from it."
+        ],
+        "col": [
+          "I can conduct an audience analysis (demographic and psychological) and adapt my topic to it.",
+          "I can evaluate sources for credibility and locate peer-reviewed research in Gale.",
+          "I can write an annotated bibliography and a full-sentence preparation outline in APA 7."
+        ]
+      },
+      "lang": [
+        "I can explain why a source is or is not credible using because and evidence words.",
+        "I can say an oral citation out loud with the author, credentials, and date.",
+        "I can write a thesis statement using a preview sentence frame."
+      ],
+      "frames": [
+        "According to ___, a ___ at ___, in ___ (year), …",
+        "This source is credible because ___.",
+        "Today I will tell you about ___: first ___, second ___, and finally ___."
+      ]
+    },
+    "3": {
+      "learn": {
+        "hs": [
+          "I can teach my class about an important person’s early life, achievements, challenges, and legacy.",
+          "I can use an introduction, transitions, and a conclusion that tie my speech together.",
+          "I can design slides with key words and visuals that teach, and cite three sources out loud."
+        ],
+        "col": [
+          "I can deliver a 5–7 minute informative speech organized chronologically, with depth and accurate detail.",
+          "I can connect a historical figure’s legacy to our community or nation today.",
+          "I can integrate five sources, including peer-reviewed research, with oral citations and credentials."
+        ]
+      },
+      "lang": [
+        "I can use past-tense verbs and time-order transitions to tell a life story (in 19__, later, after that).",
+        "I can explain cause and effect using because, as a result, and so.",
+        "I can pronounce my person’s name and key terms clearly in English."
+      ],
+      "frames": [
+        "___ was born in ___ in ___.",
+        "Because ___, ___ decided to ___.",
+        "One challenge ___ faced was ___. As a result, ___.",
+        "Today, ___’s legacy matters because ___."
+      ]
+    },
+    "4": {
+      "learn": {
+        "hs": [
+          "I can teach a process in 4–6 clear steps so my audience could repeat it.",
+          "I can use real props so everyone can see each step.",
+          "I can speak extemporaneously from brief notes."
+        ],
+        "col": [
+          "I can organize a demonstration with a clear pattern and signposts, and explain why each step matters.",
+          "I can handle props smoothly while staying connected with the whole room.",
+          "I can support a demonstration with two credible sources cited aloud."
+        ]
+      },
+      "lang": [
+        "I can give instructions using imperative verbs (cut, mix, fold, press).",
+        "I can use signpost words to move between steps (first, next, after that, finally).",
+        "I can name each prop and describe size, shape, and amount."
+      ],
+      "frames": [
+        "Today I will show you how to ___.",
+        "First, ___. Next, ___. After that, ___. Finally, ___.",
+        "Be careful not to ___ because ___.",
+        "Now you have a finished ___."
+      ]
+    },
+    "5": {
+      "learn": {
+        "hs": [
+          "I can tell a true story from my life using a story arc: hook, setting, build-up, turning point, resolution, and lesson.",
+          "I can use vivid details to show, not just tell, what happened.",
+          "I can share what the experience taught me and end with a memorable closing line."
+        ],
+        "col": [
+          "I can shape a personal story around one clear theme and a turning point.",
+          "I can use sensory language and devices such as dialogue, repetition, and callback naturally.",
+          "I can connect my story’s insight to my audience and deliver it extemporaneously."
+        ]
+      },
+      "lang": [
+        "I can use past-tense verbs and time words (first, then, suddenly, after that) to tell events in order.",
+        "I can use sensory words to describe what I saw, heard, and felt.",
+        "I can explain a lesson in the present tense (Now I…, Today I know…)."
+      ],
+      "frames": [
+        "It was ___, and I was ___.",
+        "Everything changed when ___.",
+        "I felt ___ because ___.",
+        "Now I know that ___."
+      ]
+    },
+    "6": {
+      "learn": {
+        "hs": [
+          "I can take a clear side on a ProCon question and support it with three arguments.",
+          "I can use ethos, pathos, and logos, and spot weak reasoning (fallacies).",
+          "I can answer the strongest counterargument with evidence."
+        ],
+        "col": [
+          "I can use Monroe’s Motivated Sequence to ask a real decision-maker to solve a local problem.",
+          "I can prove a need with local and peer-reviewed evidence and show my plan is feasible.",
+          "I can answer the strongest objection and end with a specific who/what/when ask."
+        ]
+      },
+      "lang": [
+        "I can state a claim and give reasons using because, therefore, and for example.",
+        "I can respectfully disagree and rebut using contrast words (however, although, on the other hand).",
+        "I can use modal verbs to make a call to action (should, must, could)."
+      ],
+      "frames": [
+        "I believe ___ because ___.",
+        "For example, ___. This shows that ___.",
+        "Some people argue that ___. However, ___.",
+        "We should ___ by ___ (date)."
+      ]
+    }
+  }
+}

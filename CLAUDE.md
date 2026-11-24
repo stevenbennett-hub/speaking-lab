@@ -1,0 +1,56 @@
+# Speaking Lab — notes for Claude
+
+Owner: Steven Bennett, Speech & Debate, Wyandotte High School (KCKPS). Full brief: `Speaking_Lab_2.0_Claude_Master_Prompt.md` (kept by the owner). Read `CHANGELOG.md` for what each slice did and `DEVELOPMENT_ROADMAP.md` for what is next. Slices 1–4 approved, slice 5 awaiting review; none deployed yet.
+
+## How the site runs
+- GitHub Pages deploys **`site/` from `main` only**, after `node --test tests/*.test.mjs` passes. Other branches and pull requests run tests only.
+- `site/index.html` is the classic one-page course (~2 MB, plain JS, EN/ES). Its scripts are `type="text/x-speakup"`; `site/js/boot.js` loads `site/data/*.json` into `window.SL_DATA`, runs those scripts in order, then loads `js/progress.js` and `js/student.js`. `js/schedule.js` loads first.
+- `js/student.js` is the student experience. Routes: `#/` dashboard (or `#/start` entrance on first visit), `#/unit/N` (Today), `/lessons`, `/day/YYYY-MM-DD`, `/guide`, `/labs`. Any other hash shows the classic page, so all old links work. Inside a unit it moves the page's `#units` and `#labs` sections in and back out (marker comments) instead of copying them.
+- `src/` (React) is NOT deployed; content source only (24 Learn modules, 9 labs, AI Coach JSON).
+
+## Single source of truth (`site/data/`)
+| File | Holds |
+| --- | --- |
+| `units.json` | six units, unit labs, lab names (`UNITS`, `UNIT_LABS`, `LAB_NAMES`) |
+| `pacing.json` | 16 weeks × 5 planned days (`PACE`) |
+| `calendar-2026-27.json` | KCKPS no-school days, semesters, block schedule, `releaseTime` (07:00 CT) |
+| `overrides.json` | classroom overrides (each needs `added`; types closure, noJournal, journal, extend) and teacher-approved unit `releases` |
+| `objectives.json` | unit-level targets and frames (classic page) |
+| `lessons.json` | per planned day `wWWdD`: objectives, success criteria; optional title, agenda, exit, activities, featured, canvas; `status` {en, es} |
+| `config.json` | which academic-year calendar file to load |
+| `journals.json` | Daily Learning Journals; flex journals with `before`; `experience` links |
+| `studios.json` | featured experiences/studios by unit; `coming` items never link |
+| `access.json` | college switch (off) + code hash; teacher view code hash |
+| `achievements.json` | every badge: level, status (active / pending-verification / coming), criteria, points |
+Never paste data back into `index.html`; tests fail if inline copies return.
+
+## Rules that must hold (approved Nov 24, 2026)
+- Six real units and their pacing. Beyond the Podium → Unit 1 (journal `j-u1-flex` links it). Ad Detective → featured in Unit 6 (separate site, same origin, key `addetective-v1`). Research & Academic Integrity → introduced Unit 2, available Units 3–6. AI Coaching Studio → all units, gated by assignment-specific AI permission. APA Academy → college only.
+- Journals: one per 90-minute block, 10 min handwritten, then stand and share with someone new; 10 = one 100-point set; numbered per block group; short units keep first and last; flex once, before the reflection; past numbers never change (override `added` rule).
+- Units/lessons open at a Central Time date and time (`SLSchedule.chicagoNow()`), in the student view AND the classic guide (`student.js` wraps `renderUnit`/`renderTabs`); released units stay open; labs, vocabulary, research, rubrics stay available. Teacher view (code) opens future units and the `?date=` preview. All of it is a classroom pacing control, never security; never call the code a secure credential.
+- Achievements: only from activities that exist; communication badges stay pending until a real teacher verification process exists; coming badges are never awarded; points are recalculated (no duplicates); `js/achievements.js` reads progress keys and writes only `speakup-achieve-v1`. No leaderboards or streaks.
+- College off by default (`access.json`), verbatim enrollment notice, instructor code; client gates are deterrents only.
+- Preserve every `speakup-*` localStorage key (Voices of Change checks moved to `speakup-vcheck-v1` with a one-time copy from `speakup-listen-v1`, which now belongs to The Art of Listening only); read progress through `js/progress.js`; never rename keys without a tested migration. `speakup-col-ok` and `speakup-teacher-ok` stay out of backups.
+- Spanish (journals, lessons, notices) must be reviewed by the owner before production.
+
+## Working rules
+- Branch `dev`; production = `main`; never deploy without the owner's approval. This session has read-only git; the owner uploads the package.
+- Edit `index.html` with targeted replacements only. Run `node --test tests/*.test.mjs` after every change; for calendar changes also run `tests/browser/compare-baseline.py` locally.
+- Dates: ISO strings + `schedule.js` (UTC noon); today = `SLSchedule.chicagoToday()`, now = `SLSchedule.chicagoNow()`; page code uses `todayDate()`.
+- Do not change Ad Detective or regenerate media without approval. No trackers, accounts or student data.
+
+## Releasing and rolling back (main-only deploy)
+- Release: merge or upload `dev` into `main`; the push runs tests and deploys if they pass. Tag each release (`vX-YYYY-MM-DD`).
+- Roll back: on `main`, `git revert` the release commit(s) and push (or `git checkout <last-good-tag> -- site .github tests` and commit). The push redeploys. By hand: download the last good tag's ZIP from GitHub and upload its files to `main`. Running the workflow on a tag or another branch will not deploy.
+- Baseline before 2.0: tag `v1-live-2026-11-23` (`ca8f2de`).
+
+## Teacher Lesson Manager (`js/teacher.js`, `js/manage.js`)
+- Edits only lessons.json, journals.json, overrides.json (drafts in `speakup-teacher-drafts-v1`, this browser only; preview with `speakup-teacher-preview`). Never edits calendar or pacing. Export = changed files only, committed by the teacher; no tokens.
+- Past overrides are locked (`SLManage.removeOverride`, `addOverride` refuses past dates). Validation lives in `SLManage.validate` and is also run on the published data by `tests/manager.test.mjs`.
+- Presentation `#/present`, substitute plan `#/sub/...`, weekly print `#/teacher/print/week/N`; all use `SL2.lessonModel` (same as the student dashboard).
+
+## Content review
+Regenerate the teacher review document after content changes: `node tests/tools/content-review.mjs > /tmp/r.json && python3 tests/tools/content-review.py /tmp/r.json review.docx`.
+
+## Next (needs approval)
+See `DEVELOPMENT_ROADMAP.md`.
