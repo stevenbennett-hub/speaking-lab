@@ -1,0 +1,123 @@
+Speaking Lab privacy and network audit — 2026-11-24, branch dev, local copy of site/ served on localhost, Chromium (Playwright).
+Fictional test name: "Zqx Fictional-Student 7731"; fictional reflection: "ZQXREFL-4488 …".
+
+PASS  1 Open the certificate interface: no personal test string in storage, cookies, IndexedDB or the URL
+PASS  1 Open the certificate interface: no personal test string in any request (0 requests)
+PASS  name field: autocomplete off, spellcheck off, no form submission
+PASS  2 Enter a fictional name: no personal test string in storage, cookies, IndexedDB or the URL
+PASS  2 Enter a fictional name: no personal test string in any request (0 requests)
+PASS  3 Edit the name: no personal test string in storage, cookies, IndexedDB or the URL
+PASS  3 Edit the name: no personal test string in any request (0 requests)
+PASS  4 Switch certificate styles: no personal test string in storage, cookies, IndexedDB or the URL
+PASS  4 Switch certificate styles: no personal test string in any request (0 requests)
+PASS  5 Generate a personalized certificate (preview): no personal test string in storage, cookies, IndexedDB or the URL
+PASS  5 Generate a personalized certificate (preview): no personal test string in any request (0 requests)
+PASS  6 Download the certificate (PDF, PDF color, PNG, badge PNG): no personal test string in storage, cookies, IndexedDB or the URL
+PASS  6 Download the certificate (PDF, PDF color, PNG, badge PNG): no personal test string in any request (0 requests)
+PASS  7 Print the certificate (printer friendly): no personal test string in storage, cookies, IndexedDB or the URL
+PASS  7 Print the certificate (printer friendly): no personal test string in any request (0 requests)
+PASS  Print uses the browser's print dialog (window.print called)
+PASS  8 Save as PDF (downloaded PDF and print preview): no personal test string in storage, cookies, IndexedDB or the URL
+PASS  8 Save as PDF (downloaded PDF and print preview): no personal test string in any request (0 requests)
+PASS  9 Generate the complete portfolio: no personal test string in storage, cookies, IndexedDB or the URL
+PASS  9 Generate the complete portfolio: no personal test string in any request (0 requests)
+PASS  10 Enter a fictional reflection: no personal test string in storage, cookies, IndexedDB or the URL
+PASS  10 Enter a fictional reflection: no personal test string in any request (0 requests)
+PASS  11 Download and print the portfolio: no personal test string in storage, cookies, IndexedDB or the URL
+PASS  11 Download and print the portfolio: no personal test string in any request (0 requests)
+PASS  12 Prepare a generic email draft: no personal test string in storage, cookies, IndexedDB or the URL
+PASS  12 Prepare a generic email draft: no personal test string in any request (0 requests)
+PASS  mailto has no recipient, no name and no reflection  (mailto:?subject=My%20Speaking%20Lab%20Communication%20Achievement%20Portfolio&body=This%20)
+PASS  13 Download a progress backup: no personal test string in storage, cookies, IndexedDB or the URL
+PASS  13 Download a progress backup: no personal test string in any request (0 requests)
+PASS  progress backup contains no name or reflection
+PASS  progress backup contains no teacher or college codes
+PASS  14 Close the certificate interface: no personal test string in storage, cookies, IndexedDB or the URL
+PASS  14 Close the certificate interface: no personal test string in any request (0 requests)
+PASS  after closing, the name is gone from memory
+PASS  15 Navigate to another application view: no personal test string in storage, cookies, IndexedDB or the URL
+PASS  15 Navigate to another application view: no personal test string in any request (1 requests)
+PASS  after navigating away, name and reflections are cleared
+PASS  returning to the certificate shows an empty name field
+PASS  16 Refresh the website: no personal test string in storage, cookies, IndexedDB or the URL
+PASS  16 Refresh the website: no personal test string in any request (48 requests)
+PASS  after refresh, the name field is empty
+PASS  file speaking-lab-bridge-builder-print.pdf: name and reflection absent from the file bytes and metadata
+PASS  file speaking-lab-bridge-builder-print.pdf: no PDF metadata dictionary (/Info, /Title, /Author, XMP)
+PASS  file speaking-lab-bridge-builder.pdf: name and reflection absent from the file bytes and metadata
+PASS  file speaking-lab-bridge-builder.pdf: no PDF metadata dictionary (/Info, /Title, /Author, XMP)
+PASS  file speaking-lab-bridge-builder.png: name and reflection absent from the file bytes and metadata
+PASS  file speaking-lab-bridge-builder.png: no PNG text or EXIF metadata
+PASS  file speaking-lab-bridge-builder-badge.png: name and reflection absent from the file bytes and metadata
+PASS  file speaking-lab-bridge-builder-badge.png: no PNG text or EXIF metadata
+PASS  file print-preview-certificate.pdf: name and reflection absent from the file bytes and metadata
+PASS  file speaking-lab-achievement-portfolio-print.pdf: name and reflection absent from the file bytes and metadata
+PASS  file speaking-lab-achievement-portfolio-print.pdf: no PDF metadata dictionary (/Info, /Title, /Author, XMP)
+PASS  file speaking-lab-achievement-portfolio.pdf: name and reflection absent from the file bytes and metadata
+PASS  file speaking-lab-achievement-portfolio.pdf: no PDF metadata dictionary (/Info, /Title, /Author, XMP)
+PASS  file speak-up-backup-2026-08-24.json: name and reflection absent from the file bytes and metadata
+PASS  generated filenames are generic (no names)  (speaking-lab-bridge-builder-print.pdf, speaking-lab-bridge-builder.pdf, speaking-lab-bridge-builder.png, speaking-lab-bridge-builder-badge.png, speaking-lab-achievement-portfolio-print.pdf, speaking-lab-achievement-portfolio.pdf, speak-up-backup-2026-08-24.json)
+PASS  no third-party requests during the whole audit
+PASS  no POST, beacon or XHR body anywhere
+PASS  browser console: no personal test strings
+PASS  certificate generation made no network requests for documents (only site files)
+
+60 passed, 0 failed
+
+Hosts contacted: localhost:8768
+Not found (expected on a local copy): http://localhost:8768/data/preview.json
+Paths requested (site files only):
+  /audio/argue-en.mp3
+  /audio/audience-en.mp3
+  /audio/barrier-en.mp3
+  /audio/final-en.mp3
+  /audio/main-en.mp3
+  /audio/memA-en.mp3
+  /audio/memB-en.mp3
+  /audio/open-en.mp3
+  /css/app.css
+  /css/student.css
+  /data/access.json
+  /data/achievements.json
+  /data/activities.json
+  /data/ai-permissions.json
+  /data/calendar-2026-27.json
+  /data/config.json
+  /data/journals.json
+  /data/lessons.json
+  /data/objectives.json
+  /data/overrides.json
+  /data/pacing.json
+  /data/preview.json
+  /data/studios.json
+  /data/units.json
+  /fonts/atkinson-hyperlegible-next-latin-400-normal.woff2
+  /fonts/atkinson-hyperlegible-next-latin-600-normal.woff2
+  /fonts/atkinson-hyperlegible-next-latin-700-normal.woff2
+  /fonts/atkinson-hyperlegible-next-latin-800-normal.woff2
+  /fonts/bricolage-grotesque-latin-opsz-normal.woff2
+  /index.html
+  /js/achievements.js
+  /js/aistudio.js
+  /js/app.js
+  /js/boot.js
+  /js/btp.js
+  /js/build.js
+  /js/celebrate.js
+  /js/certificates.js
+  /js/manage.js
+  /js/playbook.js
+  /js/progress.js
+  /js/research.js
+  /js/schedule.js
+  /js/sound.js
+  /js/student.js
+  /js/teacher.js
+  /media/labs/btp-feature.jpg
+  /media/welcome-poster.jpg
+  /media/welcome.en.vtt
+mailto prepared: mailto:?subject=My%20Speaking%20Lab%20Communication%20Achievement%20Portfolio&body=This%20is%20my%20Communication%20Achievement%20Portfolio%20from%20Speaking%20...
+Storage keys after the last step: speakup-achieve-v1, speakup-ai-v1, speakup-aud-v1, speakup-backup-v1, speakup-btp-v1, speakup-group, speakup-imp-v1, speakup-lab, speakup-listen-v1, speakup-path, speakup-theme, speakup-u56swap, speakup-unlock-v1, speakup-vcheck-v1
+sessionStorage keys: s
+Cookies: 0  IndexedDB databases: none
+(The sessionStorage key "s" belongs to the audit script itself: it marks that the fictional test progress was seeded. Speaking Lab writes nothing to sessionStorage.)

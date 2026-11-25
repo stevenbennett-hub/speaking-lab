@@ -1,0 +1,199 @@
+{
+  "$comment": "District baseline pacing: 16 course weeks x 5 planned days. A [hs, college] pair means the two pathways differ that day. PACE_SPRING and PLAN3_SPRING are kept but unused (isSpringPlan() returns false).",
+  "weeks": {
+    "1": [
+      "Welcome, syllabus, and a tour of this site. Choose your course level. Name-game icebreaker.",
+      "Read Ch. 1. Section 1.3: the sender–receiver (transactional) model. Watch a communication-model video, then label the diagram: sender, receiver, message, channel, noise, feedback, context.",
+      "Model in action: back-to-back drawing. One partner describes a picture, the other draws it, first with no feedback, then with questions allowed. Name the noise you noticed.",
+      [
+        "Section 1.2: why nerves are normal; watch a speech-anxiety video. Introduce the Self-Introduction Speech and its rubric; choose your object.",
+        "Section 1.2: why nerves are normal; watch a speech-anxiety video. Introduce the Personal Artifact Speech and its rubric; choose your artifact."
+      ],
+      "Vocabulary check on the communication process. Delivery basics: eye contact, voice, posture. Partner practice."
+    ],
+    "2": [
+      "Read Ch. 3. Ethics, plagiarism, citing sources out loud, and the AI policy. Walk through the Academic Integrity slide.",
+      [
+        "Work day: finish slides and your note card. Rehearse with a partner.",
+        "Work day: finish slides. Key-word speaking outline due."
+      ],
+      "SPEECH Self-introduction speeches.",
+      "SPEECH Self-introduction speeches.",
+      "SPEECH Finish speeches. Reflection: one strength and one goal."
+    ],
+    "3": [
+      "Read Ch. 2. Audience analysis: who is in the room and what they already know.",
+      "Listening and peer feedback norms. Practice giving feedback on an example video.",
+      "Read Ch. 4. Choosing a topic. Brainstorm and sign up for your Heritage Month person (no repeats in a class).",
+      "Credible versus weak sources: sorting activity.",
+      "Gale orientation: logging in and searching for your person."
+    ],
+    "4": [
+      [
+        "Read Ch. 5. Gale deep dive: reference entries, articles, and the Cite tool.",
+        "Read Ch. 5. Gale deep dive: the Peer-Reviewed filter, reading a scholarly article, and the Cite tool."
+      ],
+      "APA 7 references. Practice with MyBib and Gale’s Cite tool.",
+      "Oral citations: saying a source out loud with its credentials.",
+      "Research work day.",
+      [
+        "Research work day. Source check with the teacher.",
+        "Research work day. Annotated bibliography check with the teacher."
+      ]
+    ],
+    "5": [
+      "Read Ch. 6. Thesis statements, main points, and organizational patterns.",
+      "Preparation outlines versus speaking outlines.",
+      "Read Ch. 7. Using evidence: facts, examples, and testimony.",
+      "Outline work day.",
+      [
+        "Research & Outline Lab due.",
+        "Annotated Bibliography & Preparation Outline due."
+      ]
+    ],
+    "6": [
+      "Read Ch. 12. Informative speaking. Launch the Heritage Month speech (1st semester: Hispanic Heritage Month; 2nd semester: Black History Month). Watch an example.",
+      "Read Ch. 8. Introductions, conclusions, and transitions. Draft your hook.",
+      "Build slides: Early Life & Roots, Achievements.",
+      "Build slides: Challenges Overcome, Legacy.",
+      "Storytelling: watch “The Magical Science of Storytelling” and add a story to each main point."
+    ],
+    "7": [
+      "Read Ch. 9. Presentation aids. Add and source a visual for each main point.",
+      [
+        "Work day: References slide.",
+        "Work day: References slides. Preparation outline due."
+      ],
+      "Peer rehearsal round 1 with a timer.",
+      "Revise. Peer rehearsal round 2.",
+      "Final rehearsal. Academic Integrity slide check."
+    ],
+    "8": [
+      "SPEECH Heritage Month speeches.",
+      "SPEECH Heritage Month speeches.",
+      "SPEECH Heritage Month speeches.",
+      "SPEECH Finish speeches and makeups.",
+      "Reflection and peer feedback. Celebrate the people we learned about."
+    ],
+    "9": [
+      "Read Ch. 11. Methods of delivery and why we speak extemporaneously. Watch a demonstration example.",
+      "Read Ch. 10. Clear, concrete language and signposts.",
+      "Choose a process. Review prop rules. Plan your steps.",
+      "Build slides and take your step photos.",
+      "Practice with your props."
+    ],
+    "10": [
+      [
+        "Full rehearsal with props and a timer.",
+        "Full rehearsal with props and a timer. Preparation outline due."
+      ],
+      "SPEECH How-to / demonstration speeches.",
+      "SPEECH How-to / demonstration speeches.",
+      "SPEECH How-to / demonstration speeches.",
+      "SPEECH Finish speeches. Reflection."
+    ],
+    "11": [
+      "Watch “The Magical Science of Storytelling.” Why stories work. Read 7.2 (Narratives) and 8.2 (Anecdotes).",
+      "Choose your story in the Story Builder. Your story, your choice: pick one you are comfortable sharing.",
+      "Map your story arc: hook, setting, build-up, turning point, after, lesson.",
+      "Bring it to life: vivid details, show don’t tell. Tell your story to a partner.",
+      "Make your key-word card. Rehearse with a timer (3–5 minutes)."
+    ],
+    "12": [
+      "SPEECH Narrative speeches.",
+      "SPEECH Narrative speeches.",
+      "SPEECH Narrative speeches.",
+      "SPEECH Finish speeches and makeups.",
+      "Reflection and peer feedback."
+    ],
+    "13": [
+      "Read Ch. 13. Ethos, pathos, and logos. Analyze a commercial.",
+      [
+        "Browse Britannica ProCon and choose your question.",
+        "Monroe’s Motivated Sequence. Watch the annotated example."
+      ],
+      [
+        "Write your thesis and plan three arguments.",
+        "Choose a community problem and the decision-maker who can fix it."
+      ],
+      "Research in Gale.",
+      [
+        "Research work day.",
+        "Research work day. Plan your local source or interview."
+      ]
+    ],
+    "14": [
+      "Read Ch. 14. Logical reasoning and fallacies.",
+      "Fallacy hunt: find weak reasoning in ads and posts.",
+      [
+        "Build slides: introduction and arguments.",
+        "Build slides: attention, need, and satisfaction."
+      ],
+      [
+        "Counterargument and rebuttal.",
+        "Answering the strongest objection."
+      ],
+      "Research and slide work day."
+    ],
+    "15": [
+      "Visuals and References slide.",
+      [
+        "Conclusion and clincher.",
+        "Visualization and action: your specific ask (who, what, by when)."
+      ],
+      "Peer rehearsal with a timer.",
+      "Revise. Academic Integrity slide check.",
+      "Final rehearsal."
+    ],
+    "16": [
+      "SPEECH Persuasive speeches.",
+      "SPEECH Persuasive speeches.",
+      "SPEECH Persuasive speeches.",
+      "SPEECH Finish speeches and makeups.",
+      "Semester reflection. Course celebration."
+    ]
+  },
+  "springWeeks": {
+    "6": [
+      "Read Ch. 12 and Ch. 8. Launch the Heritage Month speech (Black History Month). Introductions, conclusions, and transitions. Draft your hook.",
+      "Build slides: Early Life & Roots, Achievements.",
+      "Build slides: Challenges Overcome, Legacy. Watch “The Magical Science of Storytelling” and add a story to each main point.",
+      [
+        "Read Ch. 9. Presentation aids: add and source a visual for each main point. Work day: References slide.",
+        "Read Ch. 9. Presentation aids: add and source a visual for each main point. Work day: References slides. Preparation outline due."
+      ],
+      "Peer rehearsal with a timer. Academic Integrity slide check."
+    ],
+    "7": [
+      "Final rehearsal and revisions.",
+      "SPEECH Heritage Month speeches.",
+      "SPEECH Heritage Month speeches.",
+      "SPEECH Heritage Month speeches.",
+      "SPEECH Finish speeches and makeups."
+    ],
+    "8": [
+      "Reflection and peer feedback. Celebrate the people we learned about.",
+      "Makeups and catch-up day.",
+      "Voices of Change: finish the Frederick Douglass analysis with a partner.",
+      "Delivery workshop: impromptu speaking games to build extemporaneous skills.",
+      "Preview Unit 4: brainstorm processes you could demonstrate."
+    ]
+  },
+  "unit3SpringPlan": [
+    [
+      6,
+      "Informative speaking, slides, and rehearsal",
+      "Openings, transitions, slides, presentation aids, and a first peer rehearsal. Sign up for your person (no repeats in a class)."
+    ],
+    [
+      7,
+      "Speeches",
+      "2nd semester: speeches the last week of February, during Black History Month."
+    ],
+    [
+      8,
+      "Reflection and catch-up",
+      "Reflection, makeups, and a delivery workshop before Unit 4."
+    ]
+  ]
+}

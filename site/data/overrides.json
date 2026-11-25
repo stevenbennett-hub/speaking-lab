@@ -1,0 +1,6 @@
+{
+  "$comment": "Classroom overrides, kept apart from the district calendar. Each entry: date (YYYY-MM-DD), optional until (last day, inclusive), type, groups (\"all\" or [\"odd\"] / [\"even\"]), note, and added (the date you enter it; required). An override never changes a class dated before its added date, so past lessons and journal numbers stay as they were. Types: closure = no class (with groups \"all\" it also shifts the pacing guide, like a snow day); noJournal = class meets but no journal (assembly, testing); journal = assign a specific journal id to that class (journal: \"j05\"). releases: optional teacher-approved unit opening times in Central Time, e.g. {\"3\": \"2026-09-18T15:30\"}; otherwise a unit opens at the calendar releaseTime on its first class day. Example override: {\"date\": \"2027-02-03\", \"type\": \"closure\", \"groups\": \"all\", \"note\": \"Snow day\", \"added\": \"2027-02-03\"}",
+  "version": 1,
+  "overrides": [],
+  "releases": {}
+}

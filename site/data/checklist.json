@@ -1,0 +1,129 @@
+{
+  "$comment": "My Learning Checklist and weekly grading plan (js/checklist.js). Student tasks per planned day (lesson key wWWdD, reused every semester and for both class groups; dates come from the schedule engine). Unit 1 only: written from the Unit 1 Instructor Playbook and the pacing guide. Other units show the journal, speeches, readings and due items from the existing course data until Mr. Bennett adds tasks. kinds: learn | practice | graded | achievement (an activity may have several; 'graded' only when it points to an assessment). report: auto (Speaking Lab already records it: auto names the record), self (student checkbox), canvas (student reports a Canvas submission), none. min = estimated minutes. Assessments: status 'approved' = Mr. Bennett has designated it as graded; 'proposed' = a grading opportunity for his review, never shown to students as graded. Points only where already approved in the course data. The unit speech (units.json assign, points from its meta) and journal sets (10 journals = 100 points, the approved journal rule in js/schedule.js) are derived in code, not listed here. exceptions: weeks Mr. Bennett has designated as having no graded assignment, keyed by the Monday (YYYY-MM-DD) of that week. Canvas is the official gradebook; nothing here reads or writes Canvas. Status: draft for teacher review (English and Spanish).",
+  "version": 1,
+  "status": { "en": "draft", "es": "draft" },
+  "kinds": {
+    "learn": { "en": "Learn", "es": "Aprender", "what": { "en": "Readings, videos and lessons", "es": "Lecturas, videos y lecciones" } },
+    "practice": { "en": "Practice", "es": "Práctica", "what": { "en": "Journals, activities and skill practice", "es": "Diarios, actividades y práctica de habilidades" } },
+    "graded": { "en": "Graded", "es": "Calificado", "what": { "en": "Designated by Mr. Bennett; scored in Canvas", "es": "Designado por el Sr. Bennett; se califica en Canvas" } },
+    "achievement": { "en": "Achievement", "es": "Logro", "what": { "en": "Counts toward a Speaking Lab badge (not a grade)", "es": "Cuenta para una insignia de Speaking Lab (no es una calificación)" } }
+  },
+  "days": {
+    "w01d1": [
+      { "id": "w01d1-tour", "kinds": ["learn"], "req": true, "min": 10, "report": "self", "href": "#/today",
+        "title": { "en": "Find Today's Lesson and My Course", "es": "Encuentra la Lección de hoy y Mi curso" },
+        "how": { "en": "Follow the class tour. Find today's journal, your unit and My Achievements.", "es": "Sigue el recorrido de la clase. Encuentra el diario de hoy, tu unidad y Mis logros." } },
+      { "id": "w01d1-intro", "kinds": ["practice"], "req": true, "min": 20, "report": "self",
+        "title": { "en": "Partner introductions (name game)", "es": "Presentaciones en pareja (juego de nombres)" },
+        "how": { "en": "Introduce yourself and a classmate to the group in complete sentences.", "es": "Preséntate y presenta a un compañero al grupo con oraciones completas." } }
+    ],
+    "w01d2": [
+      { "id": "w01d2-read", "kinds": ["learn"], "req": true, "min": 20, "report": "self", "chapter": 1,
+        "title": { "en": "Read Chapter 1, section 1.3: the transactional model", "es": "Lee el capítulo 1, sección 1.3: el modelo transaccional" },
+        "how": { "en": "Read with a partner. Find the seven parts of the model.", "es": "Lee con un compañero. Encuentra las siete partes del modelo." } },
+      { "id": "w01d2-mlab", "kinds": ["practice"], "req": true, "min": 20, "report": "self", "href": "#/labs/mlab",
+        "title": { "en": "Communication Model Lab, level 1", "es": "Laboratorio del modelo de comunicación, nivel 1" },
+        "how": { "en": "Place each part of the model. The lab saves your progress; check this off when you finish level 1.", "es": "Coloca cada parte del modelo. El laboratorio guarda tu progreso; márcalo cuando termines el nivel 1." } },
+      { "id": "w01d2-diagram", "kinds": ["practice", "graded"], "assess": "u1-model-diagram", "req": true, "min": 10, "report": "self",
+        "title": { "en": "Label the communication model diagram", "es": "Rotula el diagrama del modelo de comunicación" },
+        "how": { "en": "Label sender, receiver, message, channel, noise, feedback and context.", "es": "Rotula emisor, receptor, mensaje, canal, ruido, retroalimentación y contexto." } }
+    ],
+    "w01d3": [
+      { "id": "w01d3-drawing", "kinds": ["practice"], "req": true, "min": 30, "report": "self",
+        "title": { "en": "Back-to-back drawing with a partner", "es": "Dibujo espalda con espalda con un compañero" },
+        "how": { "en": "Round 1 without feedback, round 2 with questions. Name one source of noise you noticed.", "es": "Ronda 1 sin retroalimentación, ronda 2 con preguntas. Nombra una fuente de ruido que notaste." } }
+    ],
+    "w01d4": [
+      { "id": "w01d4-read", "kinds": ["learn"], "req": true, "min": 15, "report": "self", "chapter": 1,
+        "title": { "en": "Read Chapter 1, section 1.2: why nerves are normal", "es": "Lee el capítulo 1, sección 1.2: por qué los nervios son normales" },
+        "how": { "en": "Read the section on speaking anxiety.", "es": "Lee la sección sobre la ansiedad al hablar." } },
+      { "id": "w01d4-strategies", "kinds": ["practice"], "req": true, "min": 10, "report": "self",
+        "title": { "en": "Choose two strategies for speaking nerves", "es": "Elige dos estrategias para los nervios al hablar" },
+        "how": { "en": "Write the two strategies you will use before your speech.", "es": "Escribe las dos estrategias que usarás antes de tu discurso." } },
+      { "id": "w01d4-object", "kinds": ["practice"], "req": true, "min": 5, "report": "self", "path": "hs",
+        "title": { "en": "Choose your object for the Self-Introduction Speech", "es": "Elige tu objeto para el Discurso de presentación personal" },
+        "how": { "en": "Pick one object that represents you and be ready to say why.", "es": "Elige un objeto que te represente y prepárate para decir por qué." } },
+      { "id": "w01d4-artifact", "kinds": ["practice"], "req": true, "min": 5, "report": "self", "path": "col",
+        "title": { "en": "Choose your artifact for the Personal Artifact Speech", "es": "Elige tu artefacto para el Discurso del artefacto personal" },
+        "how": { "en": "Choose an artifact that can carry a clear thesis about you.", "es": "Elige un artefacto que pueda sostener una tesis clara sobre ti." } },
+      { "id": "w01d4-rubric", "kinds": ["learn"], "req": true, "min": 10, "report": "self", "href": "#/unit/1/guide",
+        "title": { "en": "Read the speech assignment and rubric", "es": "Lee la tarea del discurso y la rúbrica" },
+        "how": { "en": "Open the Unit guide and read the requirements and the rubric.", "es": "Abre la guía de la unidad y lee los requisitos y la rúbrica." } }
+    ],
+    "w01d5": [
+      { "id": "w01d5-quiz", "kinds": ["practice", "graded", "achievement"], "assess": "u1-reading-check", "badge": "communication-explorer", "req": true, "min": 15, "report": "auto", "auto": "quiz:1", "href": "#/unit/1/guide",
+        "title": { "en": "Unit 1 reading check (80% or higher)", "es": "Comprobación de lectura de la Unidad 1 (80% o más)" },
+        "how": { "en": "Take the reading check in the Unit guide. Retakes are allowed; your best score is saved in this browser.", "es": "Haz la comprobación de lectura en la guía de la unidad. Se permite repetirla; tu mejor puntuación se guarda en este navegador." } },
+      { "id": "w01d5-delivery", "kinds": ["practice"], "req": true, "min": 20, "report": "self",
+        "title": { "en": "Delivery basics: partner practice", "es": "Bases de la expresión: práctica en pareja" },
+        "how": { "en": "Practice your opening with eye contact, a clear voice and steady posture.", "es": "Practica tu inicio con contacto visual, voz clara y postura firme." } }
+    ],
+    "w02d1": [
+      { "id": "w02d1-read", "kinds": ["learn"], "req": true, "min": 20, "report": "self", "chapter": 3,
+        "title": { "en": "Read Chapter 3: ethics in public speaking", "es": "Lee el capítulo 3: la ética al hablar en público" },
+        "how": { "en": "Read about plagiarism, honest credit and citing sources out loud.", "es": "Lee sobre el plagio, el crédito honesto y cómo citar fuentes en voz alta." } },
+      { "id": "w02d1-ai", "kinds": ["practice", "achievement"], "badge": "independent-thinker", "req": true, "min": 20, "report": "auto", "auto": "ai", "href": "#/ai",
+        "title": { "en": "AI Coaching Studio: Cognitive Ownership", "es": "Estudio de coaching con IA: Pensamiento propio" },
+        "how": { "en": "Work through the studio and learn when AI can coach and when it cannot write for you.", "es": "Trabaja en el estudio y aprende cuándo la IA puede orientarte y cuándo no puede escribir por ti." } }
+    ],
+    "w02d2": [
+      { "id": "w02d2-card", "kinds": ["practice"], "req": true, "min": 15, "report": "self", "path": "hs",
+        "title": { "en": "Finish your note card (key words only)", "es": "Termina tu tarjeta de notas (solo palabras clave)" },
+        "how": { "en": "One note card with key words, not sentences.", "es": "Una tarjeta con palabras clave, no oraciones." } },
+      { "id": "w02d2-outline", "kinds": ["practice", "graded"], "assess": "u1-outline-col", "req": true, "min": 20, "report": "canvas", "path": "col",
+        "title": { "en": "Key-word speaking outline", "es": "Esquema de palabras clave para hablar" },
+        "how": { "en": "Introduction with thesis, three main points, conclusion. Key words only.", "es": "Introducción con tesis, tres puntos principales y conclusión. Solo palabras clave." } },
+      { "id": "w02d2-rehearse", "kinds": ["practice", "graded"], "assess": "u1-rehearsal", "req": true, "min": 20, "report": "self",
+        "title": { "en": "Timed partner rehearsal", "es": "Ensayo cronometrado con un compañero" },
+        "how": { "en": "Rehearse with a timer and a partner. Note one thing to fix.", "es": "Ensaya con un cronómetro y un compañero. Anota una cosa que vas a mejorar." } }
+    ],
+    "w02d3": [
+      { "id": "w02d3-audience", "kinds": ["practice", "achievement"], "badge": "audience-awareness", "req": false, "min": 20, "report": "auto", "auto": "aud", "href": "#/labs/audlab",
+        "title": { "en": "The Respectful Audience Lab", "es": "El laboratorio del público respetuoso" },
+        "how": { "en": "Optional before or after speeches: practice what a respectful audience does.", "es": "Opcional antes o después de los discursos: practica lo que hace un público respetuoso." } }
+    ],
+    "w02d4": [
+      { "id": "w02d4-listen", "kinds": ["practice", "graded", "achievement"], "assess": "u1-listening", "badge": "active-listener", "req": true, "min": 20, "report": "auto", "auto": "listen", "href": "#/labs/listenlab",
+        "title": { "en": "The Art of Listening", "es": "El arte de escuchar" },
+        "how": { "en": "Complete the lab's final check after today's speeches.", "es": "Completa la revisión final del laboratorio después de los discursos de hoy." } }
+    ],
+    "w02d5": [
+      { "id": "w02d5-selfassess", "kinds": ["practice", "graded"], "assess": "u1-self-assess", "req": true, "min": 15, "report": "canvas",
+        "title": { "en": "Rubric self-assessment: one strength and one goal", "es": "Autoevaluación con la rúbrica: una fortaleza y una meta" },
+        "how": { "en": "Score yourself on the rubric. Write one strength (with a rubric row) and one specific goal.", "es": "Evalúate con la rúbrica. Escribe una fortaleza (con una fila de la rúbrica) y una meta específica." } }
+    ]
+  },
+  "assessments": [
+    { "id": "u1-model-diagram", "unit": 1, "key": "w01d2", "status": "proposed", "points": null,
+      "title": { "en": "Communication model diagram", "es": "Diagrama del modelo de comunicación" },
+      "what": { "en": "A labeled diagram of the transactional model.", "es": "Un diagrama rotulado del modelo transaccional." },
+      "evidence": { "en": "All seven parts placed correctly; feedback drawn as two-way.", "es": "Las siete partes bien colocadas; la retroalimentación en dos direcciones." },
+      "canvas": { "en": "If Mr. Bennett collects it, upload a photo of your diagram to the Canvas assignment.", "es": "Si el Sr. Bennett lo recoge, sube una foto de tu diagrama a la tarea de Canvas." } },
+    { "id": "u1-reading-check", "unit": 1, "key": "w01d5", "status": "proposed", "points": null, "rubric": "#/unit/1/guide",
+      "title": { "en": "Unit 1 reading check", "es": "Comprobación de lectura de la Unidad 1" },
+      "what": { "en": "The Unit 1 reading check on the communication process and speech anxiety. Retakes allowed.", "es": "La comprobación de lectura de la Unidad 1 sobre el proceso de comunicación y la ansiedad al hablar. Se permite repetirla." },
+      "evidence": { "en": "Best score of 80% or higher (Speaking Lab records the score in this browser).", "es": "Mejor puntuación de 80% o más (Speaking Lab guarda la puntuación en este navegador)." },
+      "canvas": { "en": "If the reading check is recorded in Canvas, paste your score or a screenshot into the Canvas assignment.", "es": "Si la comprobación se registra en Canvas, pega tu puntuación o una captura de pantalla en la tarea de Canvas." } },
+    { "id": "u1-outline-col", "unit": 1, "key": "w02d2", "path": "col", "status": "proposed", "points": null, "rubric": "#/unit/1/guide",
+      "title": { "en": "Key-word speaking outline", "es": "Esquema de palabras clave" },
+      "what": { "en": "The pacing guide lists the key-word speaking outline as due on this day.", "es": "El calendario indica que el esquema de palabras clave se entrega este día." },
+      "evidence": { "en": "Thesis, three main points and conclusion in key words.", "es": "Tesis, tres puntos principales y conclusión en palabras clave." },
+      "canvas": { "en": "Submit the outline in the Canvas assignment.", "es": "Entrega el esquema en la tarea de Canvas." } },
+    { "id": "u1-rehearsal", "unit": 1, "key": "w02d2", "status": "proposed", "points": null,
+      "title": { "en": "Timed speech rehearsal", "es": "Ensayo cronometrado del discurso" },
+      "what": { "en": "A timed rehearsal with a partner before speech day.", "es": "Un ensayo cronometrado con un compañero antes del día del discurso." },
+      "evidence": { "en": "Note card has key words only; rehearsal within the time limit.", "es": "La tarjeta solo tiene palabras clave; el ensayo está dentro del tiempo." },
+      "canvas": { "en": "Nothing to submit; Mr. Bennett observes rehearsals in class.", "es": "No hay nada que entregar; el Sr. Bennett observa los ensayos en clase." } },
+    { "id": "u1-listening", "unit": 1, "key": "w02d4", "status": "proposed", "points": null,
+      "title": { "en": "Listening reflection", "es": "Reflexión sobre la escucha" },
+      "what": { "en": "The listening sheet during speeches and The Art of Listening final check.", "es": "La hoja de escucha durante los discursos y la revisión final de El arte de escuchar." },
+      "evidence": { "en": "Identifies each speaker's hook and three parts; uses the feedback frame.", "es": "Identifica el gancho y las tres partes de cada orador; usa el marco de retroalimentación." },
+      "canvas": { "en": "If Mr. Bennett collects it, turn in your listening sheet or paste your final-check score in Canvas.", "es": "Si el Sr. Bennett la recoge, entrega tu hoja de escucha o pega tu puntuación final en Canvas." } },
+    { "id": "u1-self-assess", "unit": 1, "key": "w02d5", "status": "proposed", "points": null, "rubric": "#/unit/1/guide",
+      "title": { "en": "Rubric self-assessment and goal", "es": "Autoevaluación con la rúbrica y meta" },
+      "what": { "en": "A self-assessment on the speech rubric with one strength and one goal.", "es": "Una autoevaluación con la rúbrica del discurso, con una fortaleza y una meta." },
+      "evidence": { "en": "Strength backed by a rubric row; a specific, practicable goal.", "es": "Fortaleza respaldada por una fila de la rúbrica; una meta específica y realizable." },
+      "canvas": { "en": "Paste your strength and goal into the Canvas reflection if Mr. Bennett collects it there.", "es": "Pega tu fortaleza y tu meta en la reflexión de Canvas si el Sr. Bennett la recoge allí." } }
+  ],
+  "exceptions": {}
+}

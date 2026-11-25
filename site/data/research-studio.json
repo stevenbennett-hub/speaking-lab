@@ -1,0 +1,2936 @@
+{
+ "$comment": "Research & Academic Integrity Studio, \"From Evidence to Credibility\" (js/research.js). Loaded only when the studio opens. Builds on the Research & Source Lab (index.html, lab rlab) and the AI Fact Checker (data/ai-studio.json) instead of repeating them. Case files, people, sites, journals and source passages marked fictional were written for these activities; authentic examples name real kinds of sources without quoting their content. APA rules in apa.rules each name the apastyle.apa.org page they were checked against (Nov 24, 2026); do not add a rule without a source. Spanish is a draft for teacher review. Text in *asterisks* is shown in italics (APA titles).",
+ "version": 1,
+ "status": {
+  "en": "draft",
+  "es": "draft"
+ },
+ "title": {
+  "en": "Research & Academic Integrity Studio",
+  "es": "Estudio de investigación e integridad académica"
+ },
+ "tagline": {
+  "en": "From Evidence to Credibility",
+  "es": "De la evidencia a la credibilidad"
+ },
+ "principle": {
+  "en": "Become an independent, ethical and informed researcher: evaluate information, support claims with credible evidence, credit other people's work, and communicate responsibly.",
+  "es": "Conviértete en un investigador independiente, ético e informado: evalúa la información, apoya tus afirmaciones con evidencia confiable, da crédito al trabajo de otros y comunica con responsabilidad."
+ },
+ "fictional": {
+  "en": "Fictional: written for this activity. Not a real source.",
+  "es": "Ficticio: escrito para esta actividad. No es una fuente real."
+ },
+ "noAuto": {
+  "en": "No computer program, including this one, can decide for certain whether writing is plagiarized or AI-written. Plagiarism and AI-detection scores are clues, not proof. Mr. Bennett looks at your sources, notes, drafts and your explanation.",
+  "es": "Ningún programa, incluido este, puede decidir con certeza si un escrito es plagio o fue escrito por IA. Los puntajes de plagio y de detección de IA son pistas, no pruebas. El Sr. Bennett revisa tus fuentes, notas, borradores y tu explicación."
+ },
+ "ai": {
+  "title": {
+   "en": "Research and AI",
+   "es": "La investigación y la IA"
+  },
+  "points": {
+   "en": [
+    "AI-generated information must be verified in sources you find and read.",
+    "AI-generated citations may be fabricated: search for every one.",
+    "AI cannot replace your own source evaluation.",
+    "Your assignment's AI permission still applies here.",
+    "Your arguments stay yours: AI can question them, not build them."
+   ],
+   "es": [
+    "La información generada por IA debe verificarse en fuentes que tú encuentras y lees.",
+    "Las citas generadas por IA pueden ser inventadas: busca cada una.",
+    "La IA no puede reemplazar tu propia evaluación de fuentes.",
+    "El permiso de IA de tu tarea también aplica aquí.",
+    "Tus argumentos siguen siendo tuyos: la IA puede cuestionarlos, no construirlos."
+   ]
+  }
+ },
+ "sources": {
+  "intro": {
+   "en": "Look past the design, the logo and the web address. Investigate who made a source, why, how they know, and what other people say about it.",
+   "es": "Mira más allá del diseño, el logotipo y la dirección web. Investiga quién hizo la fuente, por qué, cómo lo sabe y qué dicen otros sobre ella."
+  },
+  "criteria": [
+   {
+    "id": "author",
+    "name": {
+     "en": "Author qualifications",
+     "es": "Credenciales del autor"
+    },
+    "ask": {
+     "en": "Who wrote it? What training, experience or role gives them expertise on this exact topic?",
+     "es": "¿Quién lo escribió? ¿Qué formación, experiencia o cargo le da experiencia en este tema exacto?"
+    }
+   },
+   {
+    "id": "pub",
+    "name": {
+     "en": "Publication credibility",
+     "es": "Credibilidad de la publicación"
+    },
+    "ask": {
+     "en": "Who published it? Do they check facts, correct mistakes, or review research before publishing?",
+     "es": "¿Quién lo publicó? ¿Verifican datos, corrigen errores o revisan la investigación antes de publicar?"
+    }
+   },
+   {
+    "id": "date",
+    "name": {
+     "en": "Publication date",
+     "es": "Fecha de publicación"
+    },
+    "ask": {
+     "en": "When was it published or updated? Is that recent enough for this topic?",
+     "es": "¿Cuándo se publicó o actualizó? ¿Es lo bastante reciente para este tema?"
+    }
+   },
+   {
+    "id": "primary",
+    "name": {
+     "en": "Primary or secondary",
+     "es": "Primaria o secundaria"
+    },
+    "ask": {
+     "en": "Is this the original (study, data, interview, document) or someone reporting on it?",
+     "es": "¿Es el original (estudio, datos, entrevista, documento) o alguien que informa sobre él?"
+    }
+   },
+   {
+    "id": "evidence",
+    "name": {
+     "en": "Evidence or opinion",
+     "es": "Evidencia u opinión"
+    },
+    "ask": {
+     "en": "Does it show evidence, or does it state a view? Can the claims be checked?",
+     "es": "¿Muestra evidencia o expresa una opinión? ¿Se pueden comprobar las afirmaciones?"
+    }
+   },
+   {
+    "id": "bias",
+    "name": {
+     "en": "Bias and conflicts of interest",
+     "es": "Sesgo y conflictos de interés"
+    },
+    "ask": {
+     "en": "Does the author or publisher gain money, power or attention if you believe this? What is left out?",
+     "es": "¿El autor o quien publica gana dinero, poder o atención si le crees? ¿Qué se omite?"
+    }
+   },
+   {
+    "id": "method",
+    "name": {
+     "en": "Research methods",
+     "es": "Métodos de investigación"
+    },
+    "ask": {
+     "en": "How was the information gathered? How many people, when, how were they chosen?",
+     "es": "¿Cómo se reunió la información? ¿Cuántas personas, cuándo, cómo se eligieron?"
+    }
+   },
+   {
+    "id": "relevance",
+    "name": {
+     "en": "Relevance",
+     "es": "Relevancia"
+    },
+    "ask": {
+     "en": "Does it actually address your question, your place and your audience?",
+     "es": "¿Responde de verdad a tu pregunta, tu lugar y tu público?"
+    }
+   },
+   {
+    "id": "accuracy",
+    "name": {
+     "en": "Accuracy",
+     "es": "Exactitud"
+    },
+    "ask": {
+     "en": "Do other credible sources agree? Are numbers and quotes correct and complete?",
+     "es": "¿Coinciden otras fuentes confiables? ¿Los números y las citas son correctos y completos?"
+    }
+   },
+   {
+    "id": "misinfo",
+    "name": {
+     "en": "Misinformation",
+     "es": "Desinformación"
+    },
+    "ask": {
+     "en": "Is it designed to make you angry or afraid fast? Is there a source behind the claim at all?",
+     "es": "¿Está hecho para enojarte o asustarte rápido? ¿Hay alguna fuente detrás de la afirmación?"
+    }
+   },
+   {
+    "id": "lateral",
+    "name": {
+     "en": "Lateral reading",
+     "es": "Lectura lateral"
+    },
+    "ask": {
+     "en": "Leave the page. Open new tabs and search for the author and publisher. What do other sources say about them?",
+     "es": "Sal de la página. Abre pestañas nuevas y busca al autor y a quien publica. ¿Qué dicen otras fuentes sobre ellos?"
+    }
+   },
+   {
+    "id": "original",
+    "name": {
+     "en": "Original source verification",
+     "es": "Verificar la fuente original"
+    },
+    "ask": {
+     "en": "Follow the claim back to where it started. Does the original really say that?",
+     "es": "Sigue la afirmación hasta donde empezó. ¿El original realmente dice eso?"
+    }
+   }
+  ],
+  "domains": {
+   "title": {
+    "en": "Web addresses are clues, not verdicts",
+    "es": "Las direcciones web son pistas, no veredictos"
+   },
+   "points": {
+    "en": [
+     ".org: anyone can register one, including businesses and advocacy groups. Check who runs it.",
+     ".edu: belongs to a college, but it can host student projects, personal pages and old class pages. Check who wrote the page.",
+     ".gov: official U.S. government, often strong for data and laws, but pages can be outdated or present an agency's position. Check the date and purpose.",
+     ".com and others: can be excellent (newspapers, publishers) or not. Investigate the publisher."
+    ],
+    "es": [
+     ".org: cualquiera puede registrar uno, incluso empresas y grupos de presión. Revisa quién lo maneja.",
+     ".edu: pertenece a una universidad, pero puede tener proyectos de estudiantes, páginas personales y páginas viejas de clases. Revisa quién escribió la página.",
+     ".gov: gobierno oficial de EE. UU., suele ser fuerte para datos y leyes, pero las páginas pueden estar desactualizadas o presentar la postura de una agencia. Revisa la fecha y el propósito.",
+     ".com y otros: pueden ser excelentes (periódicos, editoriales) o no. Investiga quién publica."
+    ]
+   }
+  },
+  "lateral": {
+   "en": [
+    "Stop: notice your reaction.",
+    "Leave the page: open a new tab.",
+    "Search the author and publisher.",
+    "Read what others say about them.",
+    "Return and decide: use, use with caution, or don't use."
+   ],
+   "es": [
+    "Detente: nota tu reacción.",
+    "Sal de la página: abre una pestaña nueva.",
+    "Busca al autor y a quien publica.",
+    "Lee lo que otros dicen de ellos.",
+    "Regresa y decide: usar, usar con cuidado o no usar."
+   ]
+  },
+  "verdicts": {
+   "use": {
+    "en": "Use it",
+    "es": "Úsala"
+   },
+   "caution": {
+    "en": "Use with caution (only for some purposes)",
+    "es": "Úsala con cuidado (solo para algunos fines)"
+   },
+   "no": {
+    "en": "Don't use it as evidence",
+    "es": "No la uses como evidencia"
+   }
+  },
+  "cases": [
+   {
+    "id": "s1",
+    "fictional": true,
+    "verdict": "no",
+    "flag": "bias",
+    "card": {
+     "title": {
+      "en": "“Energy Drinks Boost Teen Brain Power, Experts Agree”",
+      "es": "“Las bebidas energéticas aumentan el poder cerebral de los adolescentes, dicen los expertos”"
+     },
+     "by": "Wellness Team",
+     "site": "brightpeak-health.org",
+     "date": {
+      "en": "No date",
+      "es": "Sin fecha"
+     },
+     "note": {
+      "en": "A polished site with a clean logo. A “Shop our energy shots” button sits beside the article. No experts are named.",
+      "es": "Un sitio elegante con un logotipo limpio. Junto al artículo hay un botón de “Compra nuestras bebidas energéticas”. No se nombra a ningún experto."
+     }
+    },
+    "lookup": {
+     "en": "Simulated search: BrightPeak Health is a company that sells energy shots. No independent source mentions the “experts.”",
+     "es": "Búsqueda simulada: BrightPeak Health es una empresa que vende bebidas energéticas. Ninguna fuente independiente menciona a los “expertos”."
+    },
+    "why": {
+     "en": "A .org address and a professional design don't make it credible. The publisher profits if you believe it, there's no named author, no date and no evidence.",
+     "es": "Una dirección .org y un diseño profesional no la hacen confiable. Quien publica gana dinero si le crees, no hay autor, ni fecha, ni evidencia."
+    },
+    "also": [
+     "author",
+     "evidence",
+     "pub"
+    ]
+   },
+   {
+    "id": "s2",
+    "fictional": false,
+    "verdict": "use",
+    "flag": "primary",
+    "card": {
+     "title": {
+      "en": "QuickFacts table for Kansas City, Kansas",
+      "es": "Tabla QuickFacts de Kansas City, Kansas"
+     },
+     "by": "U.S. Census Bureau",
+     "site": "census.gov",
+     "date": {
+      "en": "Shows which survey and year each number comes from",
+      "es": "Indica de qué encuesta y año viene cada número"
+     },
+     "note": {
+      "en": "Authentic example (described, not quoted): official population and community statistics with notes on methods.",
+      "es": "Ejemplo auténtico (descrito, no citado): estadísticas oficiales de población y comunidad con notas sobre los métodos."
+     }
+    },
+    "lookup": {
+     "en": "The Census Bureau is the federal agency that collects this data. It explains its methods and margins of error.",
+     "es": "La Oficina del Censo es la agencia federal que reúne estos datos. Explica sus métodos y márgenes de error."
+    },
+    "why": {
+     "en": "Primary data from the agency that collected it, with methods and dates. Still check the year of each number and say it in your citation.",
+     "es": "Datos primarios de la agencia que los reunió, con métodos y fechas. Aun así, revisa el año de cada número y dilo en tu cita."
+    },
+    "also": [
+     "pub",
+     "method"
+    ]
+   },
+   {
+    "id": "s3",
+    "fictional": true,
+    "verdict": "caution",
+    "flag": "author",
+    "card": {
+     "title": {
+      "en": "“Why Social Media Is Ruining My Generation”",
+      "es": "“Por qué las redes sociales están arruinando a mi generación”"
+     },
+     "by": "J. Smith",
+     "site": "people.fairmont-state.edu/~jsmith/blog",
+     "date": {
+      "en": "2019",
+      "es": "2019"
+     },
+     "note": {
+      "en": "On a university web address. Written in the first person; no sources listed.",
+      "es": "En una dirección de universidad. Escrito en primera persona; no menciona fuentes."
+     }
+    },
+    "lookup": {
+     "en": "Simulated search: J. Smith was a first-year student; this was a class blog assignment.",
+     "es": "Búsqueda simulada: J. Smith era estudiante de primer año; esto fue una tarea de blog para una clase."
+    },
+    "why": {
+     "en": ".edu doesn't mean expert. A student's opinion blog can show one perspective, but it is not evidence for a factual claim.",
+     "es": ".edu no significa experto. El blog de opinión de un estudiante puede mostrar una perspectiva, pero no es evidencia para una afirmación de datos."
+    },
+    "also": [
+     "evidence",
+     "pub"
+    ]
+   },
+   {
+    "id": "s4",
+    "fictional": true,
+    "verdict": "caution",
+    "flag": "date",
+    "card": {
+     "title": {
+      "en": "“Text Messaging Habits of American Teenagers”",
+      "es": "“Hábitos de mensajes de texto de los adolescentes estadounidenses”"
+     },
+     "by": "R. Okafor, PhD (communication researcher)",
+     "site": "Journal of Youth Media Studies (peer-reviewed)",
+     "date": {
+      "en": "2008",
+      "es": "2008"
+     },
+     "note": {
+      "en": "A careful study with 1,200 participants. You want evidence about how teens use phones today.",
+      "es": "Un estudio cuidadoso con 1,200 participantes. Quieres evidencia de cómo usan hoy el teléfono los adolescentes."
+     }
+    },
+    "lookup": {
+     "en": "Simulated search: the journal is peer-reviewed and the author is a researcher. The study came out before most teens had smartphones.",
+     "es": "Búsqueda simulada: la revista es revisada por pares y la autora es investigadora. El estudio salió antes de que la mayoría de los adolescentes tuviera teléfono inteligente."
+    },
+    "why": {
+     "en": "Strong author and publisher, but too old for a claim about today. It could support a history-of-texting point.",
+     "es": "Buena autora y buena publicación, pero demasiado antiguo para una afirmación sobre el presente. Podría apoyar un punto sobre la historia de los mensajes."
+    },
+    "also": [
+     "relevance"
+    ]
+   },
+   {
+    "id": "s5",
+    "fictional": true,
+    "verdict": "no",
+    "flag": "misinfo",
+    "card": {
+     "title": {
+      "en": "Screenshot: “Harvard proves students who sit in the front row get 30% better grades!!”",
+      "es": "Captura: “¡¡Harvard demuestra que los estudiantes de la primera fila sacan 30% mejores notas!!”"
+     },
+     "by": "@studyhacks_daily",
+     "site": "social media post (2.1 million views)",
+     "date": {
+      "en": "Last week",
+      "es": "La semana pasada"
+     },
+     "note": {
+      "en": "No link to a study. Thousands of shares.",
+      "es": "Sin enlace a un estudio. Miles de veces compartido."
+     }
+    },
+    "lookup": {
+     "en": "Simulated search: no Harvard study with this finding can be found. Fact-checkers have not traced it to any research.",
+     "es": "Búsqueda simulada: no se encuentra ningún estudio de Harvard con este hallazgo. Los verificadores no lo han rastreado hasta ninguna investigación."
+    },
+    "why": {
+     "en": "Views and shares aren't evidence. A famous name with no traceable original is a sign of misinformation.",
+     "es": "Las vistas y las veces compartidas no son evidencia. Un nombre famoso sin un original rastreable es señal de desinformación."
+    },
+    "also": [
+     "original",
+     "lateral",
+     "evidence"
+    ]
+   },
+   {
+    "id": "s6",
+    "fictional": true,
+    "verdict": "use",
+    "flag": "original",
+    "card": {
+     "title": {
+      "en": "“Study: Teens Who Volunteer Report Stronger Sense of Purpose”",
+      "es": "“Estudio: los adolescentes que hacen voluntariado reportan un mayor sentido de propósito”"
+     },
+     "by": "M. Reyes, education reporter",
+     "site": "Kansas City Daily News (established newspaper)",
+     "date": {
+      "en": "March 2026",
+      "es": "Marzo de 2026"
+     },
+     "note": {
+      "en": "Links to the original study and quotes one of its researchers.",
+      "es": "Enlaza al estudio original y cita a uno de sus investigadores."
+     }
+    },
+    "lookup": {
+     "en": "Simulated search: the newspaper has an editorial team and a corrections policy. The linked study exists and matches the article.",
+     "es": "Búsqueda simulada: el periódico tiene un equipo editorial y una política de correcciones. El estudio enlazado existe y coincide con el artículo."
+    },
+    "why": {
+     "en": "A good secondary source that points to its original. Read the study it links, and cite what you actually read.",
+     "es": "Una buena fuente secundaria que señala su original. Lee el estudio que enlaza y cita lo que realmente leíste."
+    },
+    "also": [
+     "primary",
+     "pub"
+    ]
+   }
+  ]
+ },
+ "evidence": {
+  "intro": {
+   "en": "Good speeches answer a real question with evidence that actually fits the claim.",
+   "es": "Los buenos discursos responden una pregunta real con evidencia que de verdad encaja con la afirmación."
+  },
+  "speeches": {
+   "en": "Informative speech: evidence explains and teaches (facts, examples, expert explanations). Persuasive speech: evidence proves a claim and answers the other side (statistics, research, testimony, counterevidence).",
+   "es": "Discurso informativo: la evidencia explica y enseña (datos, ejemplos, explicaciones de expertos). Discurso persuasivo: la evidencia prueba una afirmación y responde al otro lado (estadísticas, investigación, testimonios, contraevidencia)."
+  },
+  "types": {
+   "example": {
+    "en": "Example",
+    "es": "Ejemplo"
+   },
+   "statistic": {
+    "en": "Statistic",
+    "es": "Estadística"
+   },
+   "testimony": {
+    "en": "Testimony (expert or firsthand)",
+    "es": "Testimonio (de experto o de primera mano)"
+   },
+   "finding": {
+    "en": "Research finding",
+    "es": "Hallazgo de investigación"
+   }
+  },
+  "items": [
+   {
+    "id": "q1",
+    "kind": "mc",
+    "group": "question",
+    "q": {
+     "en": "Which is the strongest research question for a persuasive speech?",
+     "es": "¿Cuál es la mejor pregunta de investigación para un discurso persuasivo?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "Should Kansas high schools start later in the morning, and what does research say about sleep and learning?",
+       "es": "¿Deberían las preparatorias de Kansas empezar más tarde, y qué dice la investigación sobre el sueño y el aprendizaje?"
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Is sleep good?",
+       "es": "¿Es bueno dormir?"
+      }
+     },
+     {
+      "t": {
+       "en": "What time does my school start?",
+       "es": "¿A qué hora empieza mi escuela?"
+      }
+     }
+    ],
+    "why": {
+     "en": "It's focused, debatable and researchable. The others are too broad or answered in one fact.",
+     "es": "Es enfocada, debatible e investigable. Las otras son demasiado amplias o se responden con un solo dato."
+    }
+   },
+   {
+    "id": "q2",
+    "kind": "mc",
+    "group": "search",
+    "q": {
+     "en": "Best search terms for that question in a library database?",
+     "es": "¿Mejores palabras de búsqueda para esa pregunta en una base de datos de la biblioteca?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "\"school start times\" AND adolescents AND sleep",
+       "es": "\"school start times\" AND adolescents AND sleep (horario escolar, adolescentes, sueño)"
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "why should school start later because I'm tired",
+       "es": "por qué la escuela debería empezar más tarde porque estoy cansado"
+      }
+     },
+     {
+      "t": {
+       "en": "sleep",
+       "es": "sueño"
+      }
+     }
+    ],
+    "why": {
+     "en": "Key concepts joined with AND, exact phrases in quotation marks, and no opinion words.",
+     "es": "Conceptos clave unidos con AND, frases exactas entre comillas y sin palabras de opinión."
+    }
+   },
+   {
+    "id": "t1",
+    "kind": "type",
+    "answer": "statistic",
+    "text": {
+     "en": "“In the district survey, 64% of students said they sleep fewer than seven hours on school nights.” (fictional)",
+     "es": "“En la encuesta del distrito, el 64% de los estudiantes dijo dormir menos de siete horas en noches de escuela.” (ficticio)"
+    }
+   },
+   {
+    "id": "t2",
+    "kind": "type",
+    "answer": "testimony",
+    "text": {
+     "en": "A school nurse explains what she sees when students arrive exhausted. (fictional)",
+     "es": "Una enfermera escolar explica lo que ve cuando los estudiantes llegan agotados. (ficticio)"
+    }
+   },
+   {
+    "id": "t3",
+    "kind": "type",
+    "answer": "example",
+    "text": {
+     "en": "One student describes falling asleep during a first-hour exam. (fictional)",
+     "es": "Un estudiante describe cómo se durmió durante un examen de primera hora. (ficticio)"
+    }
+   },
+   {
+    "id": "t4",
+    "kind": "type",
+    "answer": "finding",
+    "text": {
+     "en": "A peer-reviewed study compared attendance before and after a district changed its start time. (fictional)",
+     "es": "Un estudio revisado por pares comparó la asistencia antes y después de que un distrito cambiara su horario. (ficticio)"
+    }
+   },
+   {
+    "id": "c1",
+    "kind": "support",
+    "answer": "supports",
+    "claim": {
+     "en": "Claim: Our cafeteria creates a lot of food waste.",
+     "es": "Afirmación: Nuestra cafetería genera mucho desperdicio de comida."
+    },
+    "ev": {
+     "en": "Evidence: Over five school days, the student council weighed 410 pounds of uneaten food from lunch trays. (fictional)",
+     "es": "Evidencia: Durante cinco días de clase, el consejo estudiantil pesó 410 libras de comida sin comer de las bandejas. (ficticio)"
+    },
+    "why": {
+     "en": "Direct, local, measured evidence for exactly this claim.",
+     "es": "Evidencia directa, local y medida para exactamente esta afirmación."
+    }
+   },
+   {
+    "id": "c2",
+    "kind": "support",
+    "answer": "overstates",
+    "claim": {
+     "en": "Claim: Video games cause violence.",
+     "es": "Afirmación: Los videojuegos causan violencia."
+    },
+    "ev": {
+     "en": "Evidence: A survey found that some students who play violent games also reported more arguments with friends. (fictional)",
+     "es": "Evidencia: Una encuesta encontró que algunos estudiantes que juegan videojuegos violentos también reportaron más discusiones con amigos. (ficticio)"
+    },
+    "why": {
+     "en": "A link (correlation) in a survey doesn't prove that one thing causes another.",
+     "es": "Una relación (correlación) en una encuesta no prueba que una cosa cause la otra."
+    }
+   },
+   {
+    "id": "c3",
+    "kind": "support",
+    "answer": "not",
+    "claim": {
+     "en": "Claim: Our town needs more bike lanes.",
+     "es": "Afirmación: Nuestra ciudad necesita más carriles para bicicletas."
+    },
+    "ev": {
+     "en": "Evidence: Cycling is a popular sport in the Olympics.",
+     "es": "Evidencia: El ciclismo es un deporte popular en los Juegos Olímpicos."
+    },
+    "why": {
+     "en": "True, maybe, but it has nothing to do with local transportation needs.",
+     "es": "Quizás sea cierto, pero no tiene nada que ver con las necesidades de transporte locales."
+    }
+   },
+   {
+    "id": "m1",
+    "kind": "mc",
+    "group": "stats",
+    "q": {
+     "en": "“Thefts at the park DOUBLED this year!” The numbers: 2 last year, 4 this year. What's misleading?",
+     "es": "“¡Los robos en el parque se DUPLICARON este año!” Los números: 2 el año pasado, 4 este año. ¿Qué es engañoso?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "A big percentage change from very small numbers sounds alarming but means little.",
+       "es": "Un gran cambio porcentual con números muy pequeños suena alarmante pero significa poco."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Nothing; doubling is always serious.",
+       "es": "Nada; duplicarse siempre es grave."
+      }
+     },
+     {
+      "t": {
+       "en": "The numbers must be fake.",
+       "es": "Los números deben ser falsos."
+      }
+     }
+    ],
+    "why": {
+     "en": "Give the real numbers along with any percentage.",
+     "es": "Da los números reales junto con cualquier porcentaje."
+    }
+   },
+   {
+    "id": "m2",
+    "kind": "mc",
+    "group": "stats",
+    "q": {
+     "en": "A graph shows test scores rising from March to May only. What should you ask?",
+     "es": "Una gráfica muestra que las calificaciones suben solo de marzo a mayo. ¿Qué deberías preguntar?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "What happened over the rest of the year? A short time window can hide the full pattern.",
+       "es": "¿Qué pasó el resto del año? Un periodo corto puede ocultar el patrón completo."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Nothing; graphs are objective.",
+       "es": "Nada; las gráficas son objetivas."
+      }
+     },
+     {
+      "t": {
+       "en": "Whether the colors are accurate.",
+       "es": "Si los colores son correctos."
+      }
+     }
+    ],
+    "why": {
+     "en": "Cherry-picked time frames are a common way to mislead with true numbers.",
+     "es": "Elegir solo un periodo conveniente es una forma común de engañar con números verdaderos."
+    }
+   },
+   {
+    "id": "x1",
+    "kind": "mc",
+    "group": "quote",
+    "q": {
+     "en": "Full quote (fictional principal): “A later start might help some students, but we need more data before deciding.” A speech says: “Our principal agrees a later start would help students.” What happened?",
+     "es": "Cita completa (directora ficticia): “Un horario más tarde podría ayudar a algunos estudiantes, pero necesitamos más datos antes de decidir.” Un discurso dice: “Nuestra directora está de acuerdo en que un horario más tarde ayudaría a los estudiantes.” ¿Qué pasó?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "Selective quotation: it dropped “might,” “some” and the call for more data, changing the meaning.",
+       "es": "Cita selectiva: quitó “podría”, “algunos” y el pedido de más datos, cambiando el significado."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "A fair summary.",
+       "es": "Un resumen justo."
+      }
+     },
+     {
+      "t": {
+       "en": "A paraphrase, so anything goes.",
+       "es": "Una paráfrasis, así que todo vale."
+      }
+     }
+    ],
+    "why": {
+     "en": "Quotations and paraphrases must keep the speaker's meaning, including doubts and limits.",
+     "es": "Las citas y paráfrasis deben conservar el significado de quien habla, incluidas sus dudas y límites."
+    }
+   },
+   {
+    "id": "x2",
+    "kind": "mc",
+    "group": "counter",
+    "q": {
+     "en": "You find a credible study that disagrees with your persuasive claim. Best move?",
+     "es": "Encuentras un estudio confiable que no está de acuerdo con tu afirmación persuasiva. ¿Mejor decisión?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "Acknowledge it, explain its limits or why your evidence is stronger, or adjust your claim.",
+       "es": "Reconocerlo, explicar sus límites o por qué tu evidencia es más fuerte, o ajustar tu afirmación."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Leave it out so the audience doesn't hear it.",
+       "es": "Omitirlo para que el público no lo escuche."
+      }
+     },
+     {
+      "t": {
+       "en": "Say it is fake.",
+       "es": "Decir que es falso."
+      }
+     }
+    ],
+    "why": {
+     "en": "Answering counterevidence builds your credibility (ethos) and makes your argument honest.",
+     "es": "Responder a la contraevidencia aumenta tu credibilidad (ethos) y hace honesto tu argumento."
+    }
+   },
+   {
+    "id": "y1",
+    "kind": "mc",
+    "group": "synth",
+    "q": {
+     "en": "Source A (fictional): later start times improved attendance in one district. Source B: students slept about 30 more minutes. Source C: bus costs rose. Which sentence synthesizes them fairly?",
+     "es": "Fuente A (ficticia): un horario más tarde mejoró la asistencia en un distrito. Fuente B: los estudiantes durmieron unos 30 minutos más. Fuente C: subieron los costos de autobús. ¿Qué oración las sintetiza de forma justa?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "Later start times can improve sleep and attendance, but districts also face costs such as transportation.",
+       "es": "Un horario más tarde puede mejorar el sueño y la asistencia, pero los distritos también enfrentan costos como el transporte."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Every study proves later start times fix everything.",
+       "es": "Todos los estudios prueban que un horario más tarde lo arregla todo."
+      }
+     },
+     {
+      "t": {
+       "en": "Source A says one thing, Source B says another, Source C says another.",
+       "es": "La fuente A dice una cosa, la B otra y la C otra."
+      }
+     }
+    ],
+    "why": {
+     "en": "Synthesis connects sources into one accurate idea, including the trade-offs.",
+     "es": "La síntesis conecta las fuentes en una idea exacta, incluidas las ventajas y desventajas."
+    }
+   }
+  ],
+  "supportChoices": {
+   "supports": {
+    "en": "Supports the claim",
+    "es": "Apoya la afirmación"
+   },
+   "overstates": {
+    "en": "Related, but the claim goes too far",
+    "es": "Relacionada, pero la afirmación exagera"
+   },
+   "not": {
+    "en": "Doesn't support the claim",
+    "es": "No apoya la afirmación"
+   }
+  },
+  "procon": {
+   "title": {
+    "en": "Starting with ProCon.org",
+    "es": "Empezar con ProCon.org"
+   },
+   "intro": {
+    "en": "ProCon.org summarizes arguments on both sides of debated questions. It's a useful place to start, not the place to stop.",
+    "es": "ProCon.org resume argumentos de ambos lados de preguntas debatidas. Es un buen lugar para empezar, no para terminar."
+   },
+   "steps": {
+    "en": [
+     "Read both the pro and con arguments, even for the side you won't argue.",
+     "Pick the two or three arguments that fit your audience.",
+     "Find the footnote or source listed for each argument you want to use.",
+     "Open that original source (the study, report, law or article) and read the part that matters.",
+     "Check its author, date and publisher like any other source.",
+     "Quote or paraphrase the original, and cite the original source you read, not the summary.",
+     "If you can't find or open the original, don't use that claim as evidence."
+    ],
+    "es": [
+     "Lee los argumentos a favor y en contra, incluso los del lado que no vas a defender.",
+     "Elige los dos o tres argumentos que mejor se ajusten a tu público.",
+     "Busca la nota o fuente que aparece con cada argumento que quieras usar.",
+     "Abre esa fuente original (el estudio, informe, ley o artículo) y lee la parte que importa.",
+     "Revisa su autor, fecha y editorial como con cualquier otra fuente.",
+     "Cita o parafrasea el original y cita la fuente original que leíste, no el resumen.",
+     "Si no puedes encontrar o abrir el original, no uses esa afirmación como evidencia."
+    ]
+   }
+  }
+ },
+ "integrity": {
+  "intro": {
+   "en": "Each case file shows a source passage and part of a student's work. Decide what happened, explain why, and see how to fix it.",
+   "es": "Cada expediente muestra un pasaje de una fuente y parte del trabajo de un estudiante. Decide qué pasó, explica por qué y mira cómo arreglarlo."
+  },
+  "categories": {
+   "direct": {
+    "name": {
+     "en": "Direct plagiarism",
+     "es": "Plagio directo"
+    },
+    "def": {
+     "en": "The source's exact words, no quotation marks, no credit.",
+     "es": "Las palabras exactas de la fuente, sin comillas y sin crédito."
+    }
+   },
+   "patch": {
+    "name": {
+     "en": "Patchwriting",
+     "es": "Plagio por mosaico"
+    },
+    "def": {
+     "en": "Copied phrases stitched together with a few of the writer's own words, without quotation marks.",
+     "es": "Frases copiadas unidas con algunas palabras propias, sin comillas."
+    }
+   },
+   "weak": {
+    "name": {
+     "en": "Inadequate paraphrasing",
+     "es": "Paráfrasis insuficiente"
+    },
+    "def": {
+     "en": "Credits the source, but only swaps synonyms and keeps the source's sentence structure.",
+     "es": "Da crédito a la fuente, pero solo cambia sinónimos y conserva la estructura de la oración original."
+    }
+   },
+   "noattr": {
+    "name": {
+     "en": "Missing attribution",
+     "es": "Falta de atribución"
+    },
+    "def": {
+     "en": "Someone else's idea in the writer's own words, but no credit.",
+     "es": "La idea de otra persona con palabras propias, pero sin dar crédito."
+    }
+   },
+   "badquote": {
+    "name": {
+     "en": "Improper quotation",
+     "es": "Cita incorrecta"
+    },
+    "def": {
+     "en": "Credits the source but uses its exact words without quotation marks (or changes words inside quotation marks).",
+     "es": "Da crédito a la fuente pero usa sus palabras exactas sin comillas (o cambia palabras dentro de las comillas)."
+    }
+   },
+   "fabricated": {
+    "name": {
+     "en": "Fabricated citation",
+     "es": "Cita inventada"
+    },
+    "def": {
+     "en": "Credits a source, author or page that doesn't exist or wasn't used.",
+     "es": "Da crédito a una fuente, autor o página que no existe o que no se usó."
+    }
+   },
+   "misrep": {
+    "name": {
+     "en": "Misrepresentation of evidence",
+     "es": "Tergiversación de la evidencia"
+    },
+    "def": {
+     "en": "Credits the source but says it shows more (or something different) than it does.",
+     "es": "Da crédito a la fuente pero dice que muestra más (o algo distinto) de lo que muestra."
+    }
+   },
+   "ai": {
+    "name": {
+     "en": "Unauthorized AI-generated work",
+     "es": "Trabajo generado por IA sin autorización"
+    },
+    "def": {
+     "en": "AI wrote work the assignment required the student to write.",
+     "es": "La IA escribió un trabajo que la tarea exigía que escribiera el estudiante."
+    }
+   },
+   "goodpara": {
+    "name": {
+     "en": "Acceptable paraphrase",
+     "es": "Paráfrasis aceptable"
+    },
+    "def": {
+     "en": "Accurate, in the writer's own words and structure, with credit.",
+     "es": "Exacta, con palabras y estructura propias, y con crédito."
+    }
+   },
+   "goodquote": {
+    "name": {
+     "en": "Properly attributed quotation",
+     "es": "Cita bien atribuida"
+    },
+    "def": {
+     "en": "Exact words in quotation marks, with credit (and a page number when there is one).",
+     "es": "Palabras exactas entre comillas, con crédito (y número de página cuando lo hay)."
+    }
+   },
+   "common": {
+    "name": {
+     "en": "Common knowledge",
+     "es": "Conocimiento común"
+    },
+    "def": {
+     "en": "A widely known fact found in many general sources, not one person's idea or data. When in doubt, cite.",
+     "es": "Un dato muy conocido que aparece en muchas fuentes generales, no la idea o los datos de una persona. Si tienes dudas, cita."
+    }
+   }
+  },
+  "passages": {
+   "A": {
+    "by": "Dana Whitfield, “Quiet Rooms, Louder Voices,” *Speaking Today Review* (fictional), 2024, p. 12",
+    "en": "Students who rehearse a speech aloud at least three times report less anxiety than students who only read their notes silently, because spoken practice builds familiarity with both the words and the sound of their own voice.",
+    "es": "Los estudiantes que ensayan un discurso en voz alta al menos tres veces reportan menos ansiedad que quienes solo leen sus notas en silencio, porque la práctica hablada crea familiaridad tanto con las palabras como con el sonido de su propia voz."
+   },
+   "B": {
+    "by": "Kansas City Youth Council report (fictional), 2025",
+    "en": "In a survey of 300 local teens, 58 percent said they would attend more community meetings if meetings were held in the evening instead of during the school day.",
+    "es": "En una encuesta a 300 adolescentes de la zona, el 58 por ciento dijo que asistiría a más reuniones comunitarias si se hicieran por la tarde-noche en lugar de durante el horario escolar."
+   }
+  },
+  "cases": [
+   {
+    "id": "i1",
+    "passage": "A",
+    "answer": "direct",
+    "work": {
+     "en": "Students who rehearse a speech aloud at least three times report less anxiety than students who only read their notes silently.",
+     "es": "Los estudiantes que ensayan un discurso en voz alta al menos tres veces reportan menos ansiedad que quienes solo leen sus notas en silencio."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "It copies the source word for word with no quotation marks or credit.",
+       "es": "Copia la fuente palabra por palabra sin comillas ni crédito."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "It's fine because it's only one sentence.",
+       "es": "Está bien porque es solo una oración."
+      }
+     },
+     {
+      "t": {
+       "en": "It changes the meaning of the source.",
+       "es": "Cambia el significado de la fuente."
+      }
+     }
+    ],
+    "fix": {
+     "en": "Fix: put the exact words in quotation marks and credit Whitfield (2024, p. 12), or paraphrase in your own words and credit her.",
+     "es": "Arreglo: pon las palabras exactas entre comillas y da crédito a Whitfield (2024, p. 12), o parafrasea con tus palabras y dale crédito."
+    }
+   },
+   {
+    "id": "i2",
+    "passage": "A",
+    "answer": "patch",
+    "work": {
+     "en": "I think practice is key, since students who rehearse aloud at least three times feel calmer, because spoken practice builds familiarity with the sound of their own voice.",
+     "es": "Creo que practicar es clave, ya que los estudiantes que ensayan en voz alta al menos tres veces se sienten más tranquilos, porque la práctica hablada crea familiaridad con el sonido de su propia voz."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "Phrases are lifted from the source and mixed with the student's words, with no quotation marks or credit.",
+       "es": "Toma frases de la fuente y las mezcla con palabras propias, sin comillas ni crédito."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Adding “I think” makes the idea the student's.",
+       "es": "Agregar “Creo que” hace que la idea sea del estudiante."
+      }
+     },
+     {
+      "t": {
+       "en": "It's a quotation.",
+       "es": "Es una cita."
+      }
+     }
+    ],
+    "fix": {
+     "en": "Fix: set the source aside and explain the idea in your own words and order, then credit Whitfield. Quote any exact phrase you keep.",
+     "es": "Arreglo: deja la fuente a un lado y explica la idea con tus palabras y en tu orden; luego da crédito a Whitfield. Pon entre comillas cualquier frase exacta que conserves."
+    }
+   },
+   {
+    "id": "i3",
+    "passage": "A",
+    "answer": "weak",
+    "work": {
+     "en": "According to Whitfield (2024), pupils who practice a talk out loud at least three times state less nervousness than pupils who merely read their notes quietly, since verbal practice creates familiarity with the words and the sound of their voice.",
+     "es": "Según Whitfield (2024), los alumnos que practican una charla en voz alta al menos tres veces declaran menos nerviosismo que los alumnos que simplemente leen sus notas en silencio, ya que la práctica verbal crea familiaridad con las palabras y el sonido de su voz."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "It gives credit, but it's the source's sentence with synonyms swapped in.",
+       "es": "Da crédito, pero es la oración de la fuente con sinónimos."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Swapping synonyms makes it an acceptable paraphrase.",
+       "es": "Cambiar sinónimos la convierte en una paráfrasis aceptable."
+      }
+     },
+     {
+      "t": {
+       "en": "It invents a source.",
+       "es": "Inventa una fuente."
+      }
+     }
+    ],
+    "fix": {
+     "en": "Fix: a paraphrase needs your own structure, not just new words. Try: “Whitfield (2024) found that saying a speech out loud several times helps students feel less anxious than reading notes silently.”",
+     "es": "Arreglo: una paráfrasis necesita tu propia estructura, no solo palabras nuevas. Prueba: “Whitfield (2024) encontró que decir un discurso en voz alta varias veces ayuda a que los estudiantes se sientan menos ansiosos que leer las notas en silencio”."
+    }
+   },
+   {
+    "id": "i4",
+    "passage": "A",
+    "answer": "noattr",
+    "work": {
+     "en": "If you want to feel calmer before a speech, say it out loud a few times. Hearing yourself say the words makes them feel familiar.",
+     "es": "Si quieres sentirte más tranquilo antes de un discurso, dilo en voz alta varias veces. Escucharte decir las palabras hace que se sientan familiares."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "The words are the student's, but the idea and finding come from Whitfield and aren't credited.",
+       "es": "Las palabras son del estudiante, pero la idea y el hallazgo vienen de Whitfield y no se le da crédito."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Own words never need credit.",
+       "es": "Las palabras propias nunca necesitan crédito."
+      }
+     },
+     {
+      "t": {
+       "en": "It's common knowledge.",
+       "es": "Es conocimiento común."
+      }
+     }
+    ],
+    "fix": {
+     "en": "Fix: add the credit. In a speech: “According to communication writer Dana Whitfield…” In writing: (Whitfield, 2024).",
+     "es": "Arreglo: agrega el crédito. En un discurso: “Según la autora Dana Whitfield…”. Por escrito: (Whitfield, 2024)."
+    }
+   },
+   {
+    "id": "i5",
+    "passage": "A",
+    "answer": "badquote",
+    "work": {
+     "en": "Whitfield (2024) explains that spoken practice builds familiarity with both the words and the sound of their own voice (p. 12).",
+     "es": "Whitfield (2024) explica que la práctica hablada crea familiaridad tanto con las palabras como con el sonido de su propia voz (p. 12)."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "It credits the source, but the exact words need quotation marks.",
+       "es": "Da crédito a la fuente, pero las palabras exactas necesitan comillas."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "A page number replaces quotation marks.",
+       "es": "El número de página reemplaza las comillas."
+      }
+     },
+     {
+      "t": {
+       "en": "It's patchwriting with no credit.",
+       "es": "Es un mosaico sin crédito."
+      }
+     }
+    ],
+    "fix": {
+     "en": "Fix: Whitfield (2024) explains that “spoken practice builds familiarity with both the words and the sound of their own voice” (p. 12).",
+     "es": "Arreglo: Whitfield (2024) explica que “la práctica hablada crea familiaridad tanto con las palabras como con el sonido de su propia voz” (p. 12)."
+    }
+   },
+   {
+    "id": "i6",
+    "passage": "B",
+    "answer": "fabricated",
+    "work": {
+     "en": "Dr. Lena Ortiz of the Kansas Teen Institute (2025) found that 58 percent of teens want evening meetings.",
+     "es": "La Dra. Lena Ortiz del Instituto de Adolescentes de Kansas (2025) encontró que el 58 por ciento de los adolescentes quiere reuniones por la tarde-noche."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "The number came from the Youth Council report, but the citation names a person and institute that aren't the source.",
+       "es": "El número vino del informe del Consejo Juvenil, pero la cita nombra a una persona y un instituto que no son la fuente."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Any expert name makes a claim stronger.",
+       "es": "Cualquier nombre de experto fortalece una afirmación."
+      }
+     },
+     {
+      "t": {
+       "en": "It's acceptable because the number is right.",
+       "es": "Es aceptable porque el número es correcto."
+      }
+     }
+    ],
+    "fix": {
+     "en": "Fix: credit the real source: “According to a 2025 Kansas City Youth Council survey of 300 local teens…” Never invent authors, dates or titles.",
+     "es": "Arreglo: da crédito a la fuente real: “Según una encuesta de 2025 del Consejo Juvenil de Kansas City a 300 adolescentes de la zona…”. Nunca inventes autores, fechas ni títulos."
+    }
+   },
+   {
+    "id": "i7",
+    "passage": "B",
+    "answer": "misrep",
+    "work": {
+     "en": "The Kansas City Youth Council (2025) proved that most teens in America would go to community meetings if they were at night.",
+     "es": "El Consejo Juvenil de Kansas City (2025) demostró que la mayoría de los adolescentes de Estados Unidos iría a reuniones comunitarias si fueran de noche."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "It credits the source but stretches a local survey of 300 teens saying “would attend more” into proof about teens in America.",
+       "es": "Da crédito a la fuente pero convierte una encuesta local a 300 adolescentes que dicen que “asistirían más” en una prueba sobre los adolescentes de Estados Unidos."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Paraphrases can change the scope as long as there's a citation.",
+       "es": "Las paráfrasis pueden cambiar el alcance si hay una cita."
+      }
+     },
+     {
+      "t": {
+       "en": "It is direct plagiarism.",
+       "es": "Es plagio directo."
+      }
+     }
+    ],
+    "fix": {
+     "en": "Fix: keep the source's limits: “In a 2025 survey of 300 Kansas City teens, 58 percent said they would attend more meetings if they were held in the evening.”",
+     "es": "Arreglo: conserva los límites de la fuente: “En una encuesta de 2025 a 300 adolescentes de Kansas City, el 58 por ciento dijo que asistiría a más reuniones si fueran por la tarde-noche”."
+    }
+   },
+   {
+    "id": "i8",
+    "passage": "B",
+    "answer": "ai",
+    "work": {
+     "en": "Civic participation among adolescents is shaped by structural accessibility; when scheduling barriers are mitigated, engagement rises meaningfully across demographic groups. [The student's AI-use disclosure says an AI tool wrote this paragraph. The assignment allowed grammar and spelling feedback only.]",
+     "es": "La participación cívica de los adolescentes depende de la accesibilidad estructural; cuando se reducen las barreras de horario, la participación aumenta de forma significativa en todos los grupos demográficos. [La declaración de uso de IA del estudiante dice que una herramienta de IA escribió este párrafo. La tarea solo permitía comentarios de gramática y ortografía.]"
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "The student's own disclosure shows AI wrote work the assignment required the student to write.",
+       "es": "La propia declaración del estudiante muestra que la IA escribió un trabajo que la tarea exigía que escribiera el estudiante."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "It sounds advanced, so it must be AI; that's proof enough.",
+       "es": "Suena muy avanzado, así que debe ser IA; eso es prueba suficiente."
+      }
+     },
+     {
+      "t": {
+       "en": "A detector score above 80% proves it.",
+       "es": "Un puntaje de detector mayor al 80% lo prueba."
+      }
+     }
+    ],
+    "fix": {
+     "en": "Fix: rewrite the paragraph yourself from your notes, and talk with Mr. Bennett. Note: sounding “too good” or a detector score is never proof by itself; the disclosure and the student's process are what matter.",
+     "es": "Arreglo: reescribe el párrafo tú mismo a partir de tus notas y habla con el Sr. Bennett. Nota: sonar “demasiado bien” o un puntaje de detector nunca es prueba por sí solo; lo que importa es la declaración y el proceso del estudiante."
+    }
+   },
+   {
+    "id": "i9",
+    "passage": "A",
+    "answer": "goodpara",
+    "work": {
+     "en": "Whitfield (2024) found that saying a speech out loud several times helps students feel calmer than just reading it in their heads, partly because they get used to hearing their own voice.",
+     "es": "Whitfield (2024) encontró que decir un discurso en voz alta varias veces ayuda a que los estudiantes se sientan más tranquilos que solo leerlo mentalmente, en parte porque se acostumbran a escuchar su propia voz."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "Accurate meaning, the student's own words and structure, and credit.",
+       "es": "Significado exacto, palabras y estructura propias, y crédito."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Any sentence with a citation is acceptable.",
+       "es": "Cualquier oración con una cita es aceptable."
+      }
+     },
+     {
+      "t": {
+       "en": "It needs quotation marks.",
+       "es": "Necesita comillas."
+      }
+     }
+    ],
+    "fix": {
+     "en": "Nothing to fix. Adding the page number (p. 12) is also fine, and helpful in a long source.",
+     "es": "No hay nada que arreglar. Agregar el número de página (p. 12) también está bien y ayuda en una fuente larga."
+    }
+   },
+   {
+    "id": "i10",
+    "passage": "B",
+    "answer": "goodquote",
+    "work": {
+     "en": "The Youth Council reported that “58 percent said they would attend more community meetings if meetings were held in the evening” (Kansas City Youth Council, 2025).",
+     "es": "El Consejo Juvenil informó que “el 58 por ciento dijo que asistiría a más reuniones comunitarias si se hicieran por la tarde-noche” (Kansas City Youth Council, 2025)."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "Exact words in quotation marks with credit.",
+       "es": "Palabras exactas entre comillas con crédito."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Quotations never need credit.",
+       "es": "Las citas textuales nunca necesitan crédito."
+      }
+     },
+     {
+      "t": {
+       "en": "It misrepresents the survey.",
+       "es": "Tergiversa la encuesta."
+      }
+     }
+    ],
+    "fix": {
+     "en": "Nothing to fix. In a speech, say it naturally: “A 2025 Kansas City Youth Council survey found…”",
+     "es": "No hay nada que arreglar. En un discurso, dilo con naturalidad: “Una encuesta de 2025 del Consejo Juvenil de Kansas City encontró…”."
+    }
+   },
+   {
+    "id": "i11",
+    "passage": null,
+    "answer": "common",
+    "work": {
+     "en": "The United States declared its independence in 1776.",
+     "es": "Estados Unidos declaró su independencia en 1776."
+    },
+    "reasons": [
+     {
+      "t": {
+       "en": "A widely known fact found in many general sources; no one person's idea or data.",
+       "es": "Un dato muy conocido que aparece en muchas fuentes generales; no es la idea ni los datos de una persona."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Dates never need sources.",
+       "es": "Las fechas nunca necesitan fuentes."
+      }
+     },
+     {
+      "t": {
+       "en": "Anything you already knew is common knowledge.",
+       "es": "Todo lo que ya sabías es conocimiento común."
+      }
+     }
+    ],
+    "fix": {
+     "en": "Nothing to fix. But statistics, recent events, specific findings and other people's interpretations always need credit. When in doubt, cite.",
+     "es": "No hay nada que arreglar. Pero las estadísticas, los eventos recientes, los hallazgos específicos y las interpretaciones de otras personas siempre necesitan crédito. Si tienes dudas, cita."
+    }
+   }
+  ]
+ },
+ "paraphrase": {
+  "intro": {
+   "en": "A paraphrase explains someone else's idea in your own words and structure, keeps the meaning accurate, and gives credit. Changing a few words is not paraphrasing.",
+   "es": "Una paráfrasis explica la idea de otra persona con tus palabras y tu estructura, conserva el significado exacto y da crédito. Cambiar algunas palabras no es parafrasear."
+  },
+  "kinds": {
+   "quote": {
+    "name": {
+     "en": "Quote",
+     "es": "Cita textual"
+    },
+    "what": {
+     "en": "Exact words, in quotation marks, with credit. Use when the wording itself matters.",
+     "es": "Palabras exactas, entre comillas, con crédito. Úsala cuando importan las palabras mismas."
+    }
+   },
+   "para": {
+    "name": {
+     "en": "Paraphrase",
+     "es": "Paráfrasis"
+    },
+    "what": {
+     "en": "One idea, about the same length, in your words and structure, with credit.",
+     "es": "Una idea, más o menos del mismo largo, con tus palabras y estructura, con crédito."
+    }
+   },
+   "sum": {
+    "name": {
+     "en": "Summary",
+     "es": "Resumen"
+    },
+    "what": {
+     "en": "The main point of a longer passage, much shorter, in your words, with credit.",
+     "es": "El punto principal de un pasaje más largo, mucho más corto, con tus palabras, con crédito."
+    }
+   }
+  },
+  "sort": [
+   {
+    "id": "k1",
+    "answer": "sum",
+    "text": {
+     "en": "In two sentences, a student explains the main argument of a 10-page article and credits the author.",
+     "es": "En dos oraciones, un estudiante explica el argumento principal de un artículo de 10 páginas y da crédito al autor."
+    }
+   },
+   {
+    "id": "k2",
+    "answer": "quote",
+    "text": {
+     "en": "A student repeats a senator's exact memorable line in quotation marks and names the senator.",
+     "es": "Un estudiante repite entre comillas la frase exacta y memorable de una senadora y la nombra."
+    }
+   },
+   {
+    "id": "k3",
+    "answer": "para",
+    "text": {
+     "en": "A student restates one sentence-length idea from a report in new words and structure and credits the report.",
+     "es": "Un estudiante expresa una idea del largo de una oración de un informe con palabras y estructura nuevas y da crédito al informe."
+    }
+   }
+  ],
+  "steps": {
+   "en": [
+    "Read and understand the original.",
+    "Identify its central meaning.",
+    "Set the source aside.",
+    "Explain the idea in your own words and structure.",
+    "Compare your explanation with the original.",
+    "Check that the meaning is still accurate.",
+    "Cite the source."
+   ],
+   "es": [
+    "Lee y entiende el original.",
+    "Identifica su significado central.",
+    "Deja la fuente a un lado.",
+    "Explica la idea con tus palabras y tu estructura.",
+    "Compara tu explicación con el original.",
+    "Revisa que el significado siga siendo exacto.",
+    "Cita la fuente."
+   ]
+  },
+  "trap": {
+   "en": "Synonym swap (not a paraphrase): “Pupils who practice a talk out loud at least three times state less nervousness…” Same sentence, new words.",
+   "es": "Cambio de sinónimos (no es paráfrasis): “Los alumnos que practican una charla en voz alta al menos tres veces declaran menos nerviosismo…”. La misma oración con otras palabras."
+  },
+  "practice": [
+   {
+    "id": "pp1",
+    "scaffold": "full",
+    "by": "Marisol Grant, *Voices in the Room* (fictional book), 2023, p. 48",
+    "text": {
+     "en": "When a speaker pauses briefly after an important point, listeners have time to process the idea, and the silence signals that the point deserves attention.",
+     "es": "Cuando un orador hace una breve pausa después de un punto importante, el público tiene tiempo de procesar la idea, y el silencio indica que ese punto merece atención."
+    },
+    "checks": [
+     {
+      "id": "a",
+      "q": {
+       "en": "Step 1 · What is the passage about?",
+       "es": "Paso 1 · ¿De qué trata el pasaje?"
+      },
+      "options": [
+       {
+        "t": {
+         "en": "Why short pauses after key points help listeners",
+         "es": "Por qué las pausas cortas después de puntos clave ayudan al público"
+        },
+        "ok": true
+       },
+       {
+        "t": {
+         "en": "Why speakers should talk faster",
+         "es": "Por qué los oradores deberían hablar más rápido"
+        }
+       },
+       {
+        "t": {
+         "en": "How long a speech should be",
+         "es": "Cuánto debe durar un discurso"
+        }
+       }
+      ]
+     },
+     {
+      "id": "b",
+      "q": {
+       "en": "Step 2 · Which is the central meaning?",
+       "es": "Paso 2 · ¿Cuál es el significado central?"
+      },
+      "options": [
+       {
+        "t": {
+         "en": "A pause gives listeners time to think and shows the point matters.",
+         "es": "Una pausa le da tiempo al público para pensar y muestra que el punto importa."
+        },
+        "ok": true
+       },
+       {
+        "t": {
+         "en": "Silence is always awkward.",
+         "es": "El silencio siempre es incómodo."
+        }
+       },
+       {
+        "t": {
+         "en": "Listeners don't notice pauses.",
+         "es": "El público no nota las pausas."
+        }
+       }
+      ]
+     },
+     {
+      "id": "c",
+      "q": {
+       "en": "Step 7 · Which credit is complete for a written outline?",
+       "es": "Paso 7 · ¿Qué crédito está completo para un esquema escrito?"
+      },
+      "options": [
+       {
+        "t": {
+         "en": "(Grant, 2023, p. 48)",
+         "es": "(Grant, 2023, p. 48)"
+        },
+        "ok": true
+       },
+       {
+        "t": {
+         "en": "(Voices in the Room)",
+         "es": "(Voices in the Room)"
+        }
+       },
+       {
+        "t": {
+         "en": "(www.book.com)",
+         "es": "(www.book.com)"
+        }
+       }
+      ]
+     }
+    ],
+    "self": {
+     "en": [
+      "I used my own words, not the source's phrases.",
+      "My sentence structure is different from the original.",
+      "The meaning is the same: nothing added, nothing left out that matters.",
+      "I gave credit to the author."
+     ],
+     "es": [
+      "Usé mis propias palabras, no las frases de la fuente.",
+      "La estructura de mi oración es diferente a la original.",
+      "El significado es el mismo: no agregué nada ni omití algo importante.",
+      "Di crédito a la autora."
+     ]
+    }
+   },
+   {
+    "id": "pp2",
+    "scaffold": "light",
+    "by": "Kansas City Youth Council report (fictional), 2025",
+    "text": {
+     "en": "In a survey of 300 local teens, 58 percent said they would attend more community meetings if meetings were held in the evening instead of during the school day.",
+     "es": "En una encuesta a 300 adolescentes de la zona, el 58 por ciento dijo que asistiría a más reuniones comunitarias si se hicieran por la tarde-noche en lugar de durante el horario escolar."
+    },
+    "checks": [
+     {
+      "id": "a",
+      "q": {
+       "en": "Which detail must your paraphrase keep to stay accurate?",
+       "es": "¿Qué detalle debe conservar tu paráfrasis para ser exacta?"
+      },
+      "options": [
+       {
+        "t": {
+         "en": "It was 300 local teens, and they said they “would attend more” (not that they definitely will).",
+         "es": "Fueron 300 adolescentes de la zona, y dijeron que “asistirían más” (no que seguro lo harán)."
+        },
+        "ok": true
+       },
+       {
+        "t": {
+         "en": "That all teens everywhere prefer evening meetings.",
+         "es": "Que todos los adolescentes de todas partes prefieren reuniones por la noche."
+        }
+       },
+       {
+        "t": {
+         "en": "Nothing; numbers can be rounded freely.",
+         "es": "Nada; los números se pueden redondear como quieras."
+        }
+       }
+      ]
+     }
+    ],
+    "self": {
+     "en": [
+      "Own words and structure.",
+      "Accurate scope and numbers.",
+      "Credit included."
+     ],
+     "es": [
+      "Palabras y estructura propias.",
+      "Alcance y números exactos.",
+      "Crédito incluido."
+     ]
+    }
+   }
+  ],
+  "judge": {
+   "en": "This tool never grades your paraphrase. Check it with the list, then ask a partner or Mr. Bennett. Only a person reading your source and your writing can judge it.",
+   "es": "Esta herramienta nunca califica tu paráfrasis. Revísala con la lista y luego pídele a un compañero o al Sr. Bennett que la revise. Solo una persona que lee tu fuente y tu escrito puede juzgarla."
+  }
+ },
+ "cite": {
+  "intro": {
+   "en": "Credit sources three ways: out loud in your speech, in your written outline, and in your reference list. Each has a job.",
+   "es": "Da crédito a las fuentes de tres maneras: en voz alta en tu discurso, en tu esquema escrito y en tu lista de referencias. Cada una tiene una función."
+  },
+  "forms": [
+   {
+    "id": "oral",
+    "name": {
+     "en": "Oral citation (in your speech)",
+     "es": "Cita oral (en tu discurso)"
+    },
+    "what": {
+     "en": "Tell listeners who said it, why they're credible, and when, in natural speech. Never read a URL or a full reference aloud.",
+     "es": "Dile al público quién lo dijo, por qué es confiable y cuándo, con lenguaje natural. Nunca leas en voz alta un URL ni una referencia completa."
+    },
+    "ex": {
+     "en": "“According to the U.S. Census Bureau's 2023 data…”",
+     "es": "“Según los datos de 2023 de la Oficina del Censo de EE. UU.…”"
+    }
+   },
+   {
+    "id": "intext",
+    "name": {
+     "en": "In-text citation (in your outline)",
+     "es": "Cita en el texto (en tu esquema)"
+    },
+    "what": {
+     "en": "A short pointer, usually author and year, that matches an entry in your reference list. Add a page number for exact quotes.",
+     "es": "Una referencia breve, normalmente autor y año, que coincide con una entrada de tu lista de referencias. Agrega el número de página para citas textuales."
+    },
+    "ex": {
+     "en": "(Whitfield, 2024, p. 12)",
+     "es": "(Whitfield, 2024, p. 12)"
+    }
+   },
+   {
+    "id": "ref",
+    "name": {
+     "en": "Reference entry (at the end)",
+     "es": "Entrada de referencia (al final)"
+    },
+    "what": {
+     "en": "The full details so anyone can find the source: who, when, what, where.",
+     "es": "Todos los datos para que cualquiera encuentre la fuente: quién, cuándo, qué y dónde."
+    },
+    "ex": {
+     "en": "Author. (Date). Title. Source.",
+     "es": "Autor. (Fecha). Título. Fuente."
+    }
+   }
+  ],
+  "details": [
+   {
+    "id": "author",
+    "name": {
+     "en": "Author or organization",
+     "es": "Autor u organización"
+    },
+    "why": {
+     "en": "Who is responsible, so listeners can judge credibility.",
+     "es": "Quién es responsable, para que el público juzgue la credibilidad."
+    }
+   },
+   {
+    "id": "qual",
+    "name": {
+     "en": "Qualifications (oral)",
+     "es": "Credenciales (oral)"
+    },
+    "why": {
+     "en": "Why this person or group should be trusted on this topic.",
+     "es": "Por qué se debe confiar en esta persona o grupo sobre este tema."
+    }
+   },
+   {
+    "id": "date",
+    "name": {
+     "en": "Date",
+     "es": "Fecha"
+    },
+    "why": {
+     "en": "How current the information is.",
+     "es": "Qué tan actual es la información."
+    }
+   },
+   {
+    "id": "title",
+    "name": {
+     "en": "Title",
+     "es": "Título"
+    },
+    "why": {
+     "en": "Which specific work you used.",
+     "es": "Qué obra específica usaste."
+    }
+   },
+   {
+    "id": "source",
+    "name": {
+     "en": "Publication or publisher",
+     "es": "Publicación o editorial"
+    },
+    "why": {
+     "en": "Where it was published, which helps judge credibility and find it.",
+     "es": "Dónde se publicó, lo que ayuda a juzgar la credibilidad y a encontrarla."
+    }
+   },
+   {
+    "id": "link",
+    "name": {
+     "en": "DOI or URL (written only)",
+     "es": "DOI o URL (solo por escrito)"
+    },
+    "why": {
+     "en": "So readers can go straight to it. Not for saying aloud.",
+     "es": "Para que los lectores lleguen directamente. No es para decirlo en voz alta."
+    }
+   }
+  ],
+  "frames": {
+   "en": [
+    "According to [author or organization], in a [year] [report/article/study] published by [source], …",
+    "[Author], a [qualification], explained in [year] that …",
+    "A [year] study by [organization] of [who was studied] found that …",
+    "In [title], [author] writes, “[exact words].”"
+   ],
+   "es": [
+    "Según [autor u organización], en un [informe/artículo/estudio] de [año] publicado por [fuente], …",
+    "[Autor], [credencial], explicó en [año] que …",
+    "Un estudio de [año] de [organización] sobre [a quién estudiaron] encontró que …",
+    "En [título], [autor] escribe: “[palabras exactas]”."
+   ]
+  },
+  "builder": {
+   "en": "Fill in only what your source actually shows. Anything left blank stays as [brackets]: find it in the source, or say less. Never guess an author, date or title.",
+   "es": "Llena solo lo que tu fuente realmente muestra. Lo que dejes en blanco queda como [corchetes]: búscalo en la fuente o di menos. Nunca adivines un autor, una fecha ni un título."
+  },
+  "challenges": [
+   {
+    "id": "o1",
+    "q": {
+     "en": "Which is the best oral citation?",
+     "es": "¿Cuál es la mejor cita oral?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "“According to Dr. Ana Ruiz, a sleep researcher at the University of Kansas, in a 2024 interview with NPR…” (fictional details)",
+       "es": "“Según la Dra. Ana Ruiz, investigadora del sueño de la Universidad de Kansas, en una entrevista de 2024 con NPR…” (datos ficticios)"
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "“According to h-t-t-p-s colon slash slash w-w-w dot…”",
+       "es": "“Según h-t-t-p-s dos puntos barra barra w-w-w punto…”"
+      }
+     },
+     {
+      "t": {
+       "en": "“Some website said…”",
+       "es": "“Una página web dijo…”"
+      }
+     }
+    ],
+    "why": {
+     "en": "Name, credentials, date and publication, in natural speech. Listeners can't use a URL.",
+     "es": "Nombre, credenciales, fecha y publicación, con lenguaje natural. El público no puede usar un URL."
+    }
+   },
+   {
+    "id": "o2",
+    "q": {
+     "en": "Your source has no listed author: a 2025 webpage by the American Red Cross. Best oral citation?",
+     "es": "Tu fuente no tiene autor: una página web de 2025 de la Cruz Roja Americana. ¿Mejor cita oral?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "“The American Red Cross explains on its website, updated in 2025, that…”",
+       "es": "“La Cruz Roja Americana explica en su sitio web, actualizado en 2025, que…”"
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "“According to Dr. John Smith…” (a name you guessed)",
+       "es": "“Según el Dr. John Smith…” (un nombre que adivinaste)"
+      }
+     },
+     {
+      "t": {
+       "en": "“According to the internet…”",
+       "es": "“Según internet…”"
+      }
+     }
+    ],
+    "why": {
+     "en": "When there is no person, the organization is the author. Never invent one.",
+     "es": "Cuando no hay una persona, la organización es el autor. Nunca inventes uno."
+    }
+   },
+   {
+    "id": "w1",
+    "q": {
+     "en": "A written outline quotes page 12 of a 2024 article by Dana Whitfield. Which in-text citation is complete?",
+     "es": "Un esquema escrito cita textualmente la página 12 de un artículo de 2024 de Dana Whitfield. ¿Qué cita en el texto está completa?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "(Whitfield, 2024, p. 12)",
+       "es": "(Whitfield, 2024, p. 12)"
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "(Dana, 2024)",
+       "es": "(Dana, 2024)"
+      }
+     },
+     {
+      "t": {
+       "en": "(Whitfield)",
+       "es": "(Whitfield)"
+      }
+     }
+    ],
+    "why": {
+     "en": "Last name, year and, for an exact quote, the page.",
+     "es": "Apellido, año y, para una cita textual, la página."
+    }
+   },
+   {
+    "id": "r1",
+    "q": {
+     "en": "Put the four parts of a reference entry in order.",
+     "es": "Pon en orden las cuatro partes de una entrada de referencia."
+    },
+    "options": [
+     {
+      "t": {
+       "en": "Author → Date → Title → Source",
+       "es": "Autor → Fecha → Título → Fuente"
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Title → Source → Author → Date",
+       "es": "Título → Fuente → Autor → Fecha"
+      }
+     },
+     {
+      "t": {
+       "en": "Source → Author → Title → Date",
+       "es": "Fuente → Autor → Título → Fecha"
+      }
+     }
+    ],
+    "why": {
+     "en": "Who, when, what, where. (APA Style: Elements of Reference List Entries.)",
+     "es": "Quién, cuándo, qué, dónde. (APA Style: Elements of Reference List Entries.)"
+    }
+   }
+  ],
+  "missing": [
+   {
+    "id": "m1",
+    "text": "*Teens and Sleep*. Sleep Health Foundation.",
+    "missing": [
+     "author",
+     "date",
+     "link"
+    ],
+    "note": {
+     "en": "Fictional reference for practice.",
+     "es": "Referencia ficticia para practicar."
+    }
+   },
+   {
+    "id": "m2",
+    "text": "Whitfield, D. (2024). Quiet rooms, louder voices.",
+    "missing": [
+     "source"
+    ],
+    "note": {
+     "en": "Fictional reference for practice.",
+     "es": "Referencia ficticia para practicar."
+    }
+   }
+  ],
+  "missingFields": {
+   "author": {
+    "en": "Author",
+    "es": "Autor"
+   },
+   "date": {
+    "en": "Date",
+    "es": "Fecha"
+   },
+   "title": {
+    "en": "Title",
+    "es": "Título"
+   },
+   "source": {
+    "en": "Journal or publisher",
+    "es": "Revista o editorial"
+   },
+   "link": {
+    "en": "DOI or URL",
+    "es": "DOI o URL"
+   }
+  }
+ },
+ "portfolio": {
+  "intro": {
+   "en": "Keep track of every source for your speech. Your records stay in this browser on this computer. Print, download or copy them into Canvas when your assignment asks.",
+   "es": "Lleva el registro de cada fuente de tu discurso. Tus registros se quedan en este navegador y en esta computadora. Imprímelos, descárgalos o cópialos en Canvas cuando tu tarea lo pida."
+  },
+  "assignments": [
+   {
+    "id": "informative",
+    "name": {
+     "en": "Informative speech",
+     "es": "Discurso informativo"
+    },
+    "required": 3
+   },
+   {
+    "id": "persuasive",
+    "name": {
+     "en": "Persuasive speech",
+     "es": "Discurso persuasivo"
+    },
+    "required": 3
+   },
+   {
+    "id": "other",
+    "name": {
+     "en": "Speech without required outside sources",
+     "es": "Discurso sin fuentes externas obligatorias"
+    },
+    "required": 0
+   }
+  ],
+  "requiredNote": {
+   "en": "Mr. Bennett sets the requirements for each assignment. If your assignment sheet is different, follow the sheet and ask.",
+   "es": "El Sr. Bennett decide los requisitos de cada tarea. Si tu hoja de la tarea dice algo distinto, sigue la hoja y pregunta."
+  },
+  "fields": [
+   {
+    "id": "title",
+    "need": true,
+    "label": {
+     "en": "Source title",
+     "es": "Título de la fuente"
+    }
+   },
+   {
+    "id": "author",
+    "need": true,
+    "label": {
+     "en": "Author or organization",
+     "es": "Autor u organización"
+    }
+   },
+   {
+    "id": "qual",
+    "need": true,
+    "label": {
+     "en": "Author qualifications",
+     "es": "Credenciales del autor"
+    }
+   },
+   {
+    "id": "pub",
+    "need": true,
+    "label": {
+     "en": "Publication or publisher",
+     "es": "Publicación o editorial"
+    }
+   },
+   {
+    "id": "date",
+    "need": true,
+    "label": {
+     "en": "Publication date (write “no date” if there is none)",
+     "es": "Fecha de publicación (escribe “sin fecha” si no hay)"
+    }
+   },
+   {
+    "id": "link",
+    "need": false,
+    "label": {
+     "en": "URL or DOI",
+     "es": "URL o DOI"
+    }
+   },
+   {
+    "id": "accessed",
+    "need": false,
+    "label": {
+     "en": "Date accessed (for pages that change)",
+     "es": "Fecha de consulta (para páginas que cambian)"
+    }
+   },
+   {
+    "id": "kind",
+    "need": true,
+    "type": "select",
+    "label": {
+     "en": "Primary or secondary",
+     "es": "Primaria o secundaria"
+    },
+    "options": {
+     "primary": {
+      "en": "Primary",
+      "es": "Primaria"
+     },
+     "secondary": {
+      "en": "Secondary",
+      "es": "Secundaria"
+     },
+     "unsure": {
+      "en": "Not sure yet",
+      "es": "Todavía no sé"
+     }
+    }
+   },
+   {
+    "id": "main",
+    "need": true,
+    "long": true,
+    "label": {
+     "en": "Main idea (your words)",
+     "es": "Idea principal (con tus palabras)"
+    }
+   },
+   {
+    "id": "evidence",
+    "need": true,
+    "long": true,
+    "label": {
+     "en": "Relevant evidence (what you will use)",
+     "es": "Evidencia relevante (lo que vas a usar)"
+    }
+   },
+   {
+    "id": "quote",
+    "need": false,
+    "long": true,
+    "label": {
+     "en": "Direct quotation, if needed (exact words + page)",
+     "es": "Cita textual, si hace falta (palabras exactas + página)"
+    }
+   },
+   {
+    "id": "para",
+    "need": false,
+    "long": true,
+    "label": {
+     "en": "Your paraphrase",
+     "es": "Tu paráfrasis"
+    }
+   },
+   {
+    "id": "cred",
+    "need": true,
+    "long": true,
+    "label": {
+     "en": "Credibility evaluation (why trust it?)",
+     "es": "Evaluación de credibilidad (¿por qué confiar?)"
+    }
+   },
+   {
+    "id": "limits",
+    "need": true,
+    "long": true,
+    "label": {
+     "en": "Possible bias or limitations",
+     "es": "Posible sesgo o limitaciones"
+    }
+   },
+   {
+    "id": "claim",
+    "need": true,
+    "long": true,
+    "label": {
+     "en": "Claim this evidence supports",
+     "es": "Afirmación que apoya esta evidencia"
+    }
+   },
+   {
+    "id": "oral",
+    "need": true,
+    "long": true,
+    "label": {
+     "en": "Planned oral citation",
+     "es": "Cita oral planeada"
+    }
+   },
+   {
+    "id": "written",
+    "need": true,
+    "long": true,
+    "label": {
+     "en": "Written citation information (reference entry)",
+     "es": "Información de la cita escrita (entrada de referencia)"
+    }
+   }
+  ],
+  "warnCred": {
+   "en": "Complete fields don't make a source credible. Only your evaluation, and Mr. Bennett's review, can tell.",
+   "es": "Que los campos estén completos no hace confiable una fuente. Solo tu evaluación, y la revisión del Sr. Bennett, pueden decirlo."
+  },
+  "warnQuote": {
+   "en": "You have a quotation without a locator. Add the page, paragraph number, section heading or video timestamp where it came from.",
+   "es": "Tienes una cita textual sin ubicación. Agrega la página, el número de párrafo, el encabezado de la sección o la marca de tiempo del video de donde vino."
+  },
+  "warnUrl": {
+   "en": "Your planned oral citation includes a web address. Say the organization and date instead.",
+   "es": "Tu cita oral planeada incluye una dirección web. Mejor di la organización y la fecha."
+  },
+  "teacherNote": {
+   "en": "Teacher view: set each research assignment's requirements in the Lesson Manager (lesson editor → Research assignment). The defaults in site/data/research-studio.json apply when no lesson sets them.",
+   "es": "Vista del maestro: define los requisitos de cada tarea de investigación en el Gestor de lecciones (editor de lección → Tarea de investigación). Los valores de site/data/research-studio.json se aplican cuando ninguna lección los define."
+  },
+  "defaults": {
+   "written": {
+    "en": "High school: in your outline, credit each source with an APA-style author–date citation, for example (Whitfield, 2024), and list it in your references. College: full APA 7.",
+    "es": "Preparatoria: en tu esquema, da crédito a cada fuente con una cita de autor y fecha al estilo APA, por ejemplo (Whitfield, 2024), y anótala en tus referencias. Universidad: APA 7 completo."
+   },
+   "oral": {
+    "en": "Cite every source out loud the first time you use it: who, why they're credible, when, and where it was published. Never read a URL.",
+    "es": "Cita en voz alta cada fuente la primera vez que la uses: quién, por qué es confiable, cuándo y dónde se publicó. Nunca leas un URL."
+   }
+  },
+  "noneNote": {
+   "en": "This assignment doesn't require outside sources. You can still record any source you use.",
+   "es": "Esta tarea no requiere fuentes externas. Aun así puedes registrar cualquier fuente que uses."
+  }
+ },
+ "apa": {
+  "intro": {
+   "en": "APA Style, 7th edition, for the authorized College Public Speaking pathway. Every rule below names the official APA Style page it was checked against.",
+   "es": "Estilo APA, 7.ª edición, para el nivel universitario autorizado de Oratoria. Cada regla indica la página oficial de APA Style con la que se verificó."
+  },
+  "notice": {
+   "en": "Access to these resources does not mean concurrent enrollment or eligibility for college credit.",
+   "es": "El acceso a estos recursos no significa inscripción simultánea ni elegibilidad para créditos universitarios."
+  },
+  "oralVsWritten": {
+   "en": "APA citations are for writing (outlines, papers, slides' reference page). In a speech, use an oral citation: name, credentials, date and publication in natural language. Don't read APA entries aloud.",
+   "es": "Las citas APA son para lo escrito (esquemas, trabajos, la página de referencias de las diapositivas). En un discurso usa una cita oral: nombre, credenciales, fecha y publicación con lenguaje natural. No leas en voz alta las entradas APA."
+  },
+  "checked": "2026-11-24",
+  "rules": [
+   {
+    "id": "authordate",
+    "topic": {
+     "en": "Author–date citations",
+     "es": "Citas de autor y fecha"
+    },
+    "rule": {
+     "en": "In-text citations give the author's surname and the year. Parenthetical: (Luna, 2020). Narrative: Luna (2020).",
+     "es": "Las citas en el texto dan el apellido del autor y el año. Entre paréntesis: (Luna, 2020). Narrativa: Luna (2020)."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/citations/basic-principles/author-date"
+   },
+   {
+    "id": "narr",
+    "topic": {
+     "en": "Parenthetical vs. narrative",
+     "es": "Entre paréntesis o narrativa"
+    },
+    "rule": {
+     "en": "Parenthetical: author and date both in parentheses. Narrative: the author is part of the sentence and the year follows in parentheses.",
+     "es": "Entre paréntesis: autor y fecha dentro de los paréntesis. Narrativa: el autor forma parte de la oración y el año va después entre paréntesis."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/citations/basic-principles/parenthetical-versus-narrative"
+   },
+   {
+    "id": "two",
+    "topic": {
+     "en": "Two authors",
+     "es": "Dos autores"
+    },
+    "rule": {
+     "en": "Name both every time: (Salas & D'Agostino, 2020) with “&” in parentheses; Salas and D'Agostino (2020) with “and” in narrative.",
+     "es": "Nombra a ambos siempre: (Salas & D'Agostino, 2020) con “&” entre paréntesis; Salas and D'Agostino (2020) con “and” en la narrativa."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/citations/basic-principles/author-date"
+   },
+   {
+    "id": "etal",
+    "topic": {
+     "en": "Three or more authors",
+     "es": "Tres o más autores"
+    },
+    "rule": {
+     "en": "First author plus “et al.” in every citation, including the first: (Martin et al., 2020); Martin et al. (2020).",
+     "es": "Primer autor más “et al.” en todas las citas, incluida la primera: (Martin et al., 2020); Martin et al. (2020)."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/citations/basic-principles/author-date"
+   },
+   {
+    "id": "group",
+    "topic": {
+     "en": "Group authors",
+     "es": "Autores corporativos"
+    },
+    "rule": {
+     "en": "Spell out the group's name. Define an abbreviation only once, at first citation, then use it: (National Institute of Mental Health [NIMH], 2020), then (NIMH, 2020). Without an abbreviation: (Stanford University, 2020).",
+     "es": "Escribe el nombre completo del grupo. Define una abreviatura solo una vez, en la primera cita, y luego úsala: (National Institute of Mental Health [NIMH], 2020), luego (NIMH, 2020). Sin abreviatura: (Stanford University, 2020)."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/citations/basic-principles/author-date"
+   },
+   {
+    "id": "quote",
+    "topic": {
+     "en": "Direct quotations",
+     "es": "Citas textuales"
+    },
+    "rule": {
+     "en": "Fewer than 40 words: quotation marks, in your sentence. 40 words or more: block quotation on a new line, indented 0.5 in., double-spaced, no quotation marks, no period after the closing parenthesis.",
+     "es": "Menos de 40 palabras: entre comillas, dentro de tu oración. 40 palabras o más: cita en bloque en una línea nueva, con sangría de 0.5 pulg., a doble espacio, sin comillas y sin punto después del paréntesis final."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/citations/quotations"
+   },
+   {
+    "id": "pages",
+    "topic": {
+     "en": "Page locators",
+     "es": "Números de página"
+    },
+    "rule": {
+     "en": "Quotations need a locator: (Smith, 2020, p. 25) for one page; (Smith, 2020, pp. 34–36) for a range, with an en dash.",
+     "es": "Las citas textuales necesitan ubicación: (Smith, 2020, p. 25) para una página; (Smith, 2020, pp. 34–36) para un rango, con guion corto (en dash)."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/citations/quotations/page-numbers"
+   },
+   {
+    "id": "nopages",
+    "topic": {
+     "en": "No page numbers",
+     "es": "Sin números de página"
+    },
+    "rule": {
+     "en": "Use a paragraph number (Chamberlin, 2014, para. 1), a section heading, or both. For audiovisual works, a timestamp: (Cuddy, 2012, 2:12). Don't use Kindle location numbers.",
+     "es": "Usa el número de párrafo (Chamberlin, 2014, para. 1), el encabezado de la sección o ambos. Para obras audiovisuales, la marca de tiempo: (Cuddy, 2012, 2:12). No uses números de ubicación de Kindle."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/citations/quotations/no-page-numbers"
+   },
+   {
+    "id": "para",
+    "topic": {
+     "en": "Paraphrases",
+     "es": "Paráfrasis"
+    },
+    "rule": {
+     "en": "Cite every paraphrase with author and year. A page or paragraph number is not required but may be included, especially for long works.",
+     "es": "Cita cada paráfrasis con autor y año. El número de página o párrafo no es obligatorio, pero puedes incluirlo, sobre todo en obras largas."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/citations/paraphrasing"
+   },
+   {
+    "id": "secondary",
+    "topic": {
+     "en": "Secondary sources",
+     "es": "Fuentes secundarias"
+    },
+    "rule": {
+     "en": "Use sparingly; find and cite the primary source when you can. Otherwise: (Rabbitt, 1982, as cited in Lyon et al., 2014), and list only the source you read.",
+     "es": "Úsalas poco; busca y cita la fuente primaria cuando puedas. Si no: (Rabbitt, 1982, as cited in Lyon et al., 2014), y en las referencias incluye solo la fuente que leíste."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/citations/secondary-sources"
+   },
+   {
+    "id": "elements",
+    "topic": {
+     "en": "Reference elements",
+     "es": "Elementos de la referencia"
+    },
+    "rule": {
+     "en": "A reference has four elements: author, date, title, source. The date is in parentheses followed by a period; the title ends with a period.",
+     "es": "Una referencia tiene cuatro elementos: autor, fecha, título y fuente. La fecha va entre paréntesis seguida de punto; el título termina con punto."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/references/elements-list-entry"
+   },
+   {
+    "id": "missing",
+    "topic": {
+     "en": "Missing information",
+     "es": "Información que falta"
+    },
+    "rule": {
+     "en": "No author: move the title to the author position (don't write “Anonymous” unless the work is signed that way). No date: use “n.d.” in the reference and the citation. No title: describe the work in square brackets.",
+     "es": "Sin autor: pasa el título al lugar del autor (no escribas “Anonymous” a menos que la obra esté firmada así). Sin fecha: usa “n.d.” en la referencia y en la cita. Sin título: describe la obra entre corchetes."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/references/missing-information"
+   },
+   {
+    "id": "doi",
+    "topic": {
+     "en": "DOIs and URLs",
+     "es": "DOI y URL"
+    },
+    "rule": {
+     "en": "Write DOIs as https://doi.org/… Include a DOI whenever a work has one. Don't write “Retrieved from” before a DOI or URL, and don't put a period after it.",
+     "es": "Escribe los DOI como https://doi.org/… Incluye el DOI siempre que la obra lo tenga. No escribas “Retrieved from” antes de un DOI o URL, y no pongas punto después."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/references/dois-urls"
+   },
+   {
+    "id": "journal",
+    "topic": {
+     "en": "Journal articles",
+     "es": "Artículos de revista"
+    },
+    "rule": {
+     "en": "Grady, J. S., Her, M., Moreno, G., Perez, C., & Yelinek, J. (2019). Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States. *Psychology of Popular Media Culture, 8*(3), 207–217. https://doi.org/10.1037/ppm0000185 — journal title and volume in italics.",
+     "es": "Grady, J. S., Her, M., Moreno, G., Perez, C., & Yelinek, J. (2019). Emotions in storybooks: A comparison of storybooks that represent ethnic and racial groups in the United States. *Psychology of Popular Media Culture, 8*(3), 207–217. https://doi.org/10.1037/ppm0000185 — el título de la revista y el volumen van en cursiva."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/references/examples/journal-article-references"
+   },
+   {
+    "id": "book",
+    "topic": {
+     "en": "Books",
+     "es": "Libros"
+    },
+    "rule": {
+     "en": "Sapolsky, R. M. (2017). *Behave: The biology of humans at our best and worst*. Penguin Books. — book title in italics; edition in parentheses, not italic; no publisher location.",
+     "es": "Sapolsky, R. M. (2017). *Behave: The biology of humans at our best and worst*. Penguin Books. — el título del libro en cursiva; la edición entre paréntesis, sin cursiva; sin ciudad de la editorial."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/references/examples/book-references"
+   },
+   {
+    "id": "chapter",
+    "topic": {
+     "en": "Edited book chapters",
+     "es": "Capítulos de libros editados"
+    },
+    "rule": {
+     "en": "Chapter author, date, chapter title. In editors (Ed. or Eds.), *Book title* (pp. x–y). Publisher. DOI. Example: Aron, L., Botella, M., & Lubart, T. (2019). Culinary arts: Talent and their development. In R. F. Subotnik, P. Olszewski-Kubilius, & F. C. Worrell (Eds.), *The psychology of high performance: Developing human potential into domain-specific talent* (pp. 345–359). American Psychological Association. https://doi.org/10.1037/0000120-016",
+     "es": "Autor del capítulo, fecha, título del capítulo. In editores (Ed. o Eds.), *Título del libro* (pp. x–y). Editorial. DOI. Ejemplo: Aron, L., Botella, M., & Lubart, T. (2019). Culinary arts: Talent and their development. In R. F. Subotnik, P. Olszewski-Kubilius, & F. C. Worrell (Eds.), *The psychology of high performance: Developing human potential into domain-specific talent* (pp. 345–359). American Psychological Association. https://doi.org/10.1037/0000120-016"
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/references/examples/edited-book-chapter-references"
+   },
+   {
+    "id": "web",
+    "topic": {
+     "en": "Webpages",
+     "es": "Páginas web"
+    },
+    "rule": {
+     "en": "Bologna, C. (2019, October 31). *Why some people with anxiety love watching horror movies*. HuffPost. [URL] — page title in italics; omit the site name when it's the same as the author; add a retrieval date only for pages designed to change. Use the webpage category only when no better category fits (a government report on a website is a report).",
+     "es": "Bologna, C. (2019, October 31). *Why some people with anxiety love watching horror movies*. HuffPost. [URL] — el título de la página en cursiva; omite el nombre del sitio cuando es igual al autor; agrega fecha de consulta solo para páginas hechas para cambiar. Usa la categoría de páginas web solo si no encaja otra mejor (un informe del gobierno en un sitio web es un informe)."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/references/examples/webpage-website-references"
+   },
+   {
+    "id": "report",
+    "topic": {
+     "en": "Government reports",
+     "es": "Informes del gobierno"
+    },
+    "rule": {
+     "en": "The specific agency is the author; parent agencies not in the author name go in the source as publisher: National Cancer Institute. (2019). *Taking time: Support for people with cancer* (NIH Publication No. 18-2059). U.S. Department of Health and Human Services, National Institutes of Health. [URL]",
+     "es": "La agencia específica es el autor; las agencias superiores que no están en el nombre del autor van en la fuente como editorial: National Cancer Institute. (2019). *Taking time: Support for people with cancer* (NIH Publication No. 18-2059). U.S. Department of Health and Human Services, National Institutes of Health. [URL]"
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/references/examples/report-government-agency-references"
+   },
+   {
+    "id": "video",
+    "topic": {
+     "en": "Videos",
+     "es": "Videos"
+    },
+    "rule": {
+     "en": "The uploading account is the author: Harvard University. (2019, August 28). *Soft robotic gripper for jellyfish* [Video]. YouTube. https://www.youtube.com/watch?v=guRoWTYfxMs",
+     "es": "La cuenta que subió el video es el autor: Harvard University. (2019, August 28). *Soft robotic gripper for jellyfish* [Video]. YouTube. https://www.youtube.com/watch?v=guRoWTYfxMs"
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/references/examples/youtube-references"
+   },
+   {
+    "id": "genai",
+    "topic": {
+     "en": "Generative AI (only when your instructor authorizes AI use)",
+     "es": "IA generativa (solo cuando tu instructor autoriza el uso de IA)"
+    },
+    "rule": {
+     "en": "Two kinds of AI reference. The tool in general (the company is the author; the date is the year the tool was last updated): OpenAI. (2025). *ChatGPT* [Large language model]. https://chatgpt.com — A specific, retrievable conversation (the date is the day of the chat; use its share link): OpenAI. (2026, February 10). *Top 10 writing topics for high school graduates* [Generative AI chat]. ChatGPT. https://chatgpt.com/share/698b9233-1b58-8008-858d-cede516f4240 — Citing AI never makes AI use allowed: follow the assignment's AI permission first. AI is not a credible source for facts; cite the original sources you found and read, and complete your AI-use disclosure. (APA page last updated April 2026.)",
+     "es": "Dos tipos de referencia de IA. La herramienta en general (la empresa es el autor; la fecha es el año de la actualización más reciente): OpenAI. (2025). *ChatGPT* [Large language model]. https://chatgpt.com — Una conversación específica que se puede recuperar (la fecha es el día del chat; usa su enlace para compartir): OpenAI. (2026, February 10). *Top 10 writing topics for high school graduates* [Generative AI chat]. ChatGPT. https://chatgpt.com/share/698b9233-1b58-8008-858d-cede516f4240 — Citar la IA nunca hace que su uso esté permitido: primero sigue el permiso de IA de la tarea. La IA no es una fuente confiable para datos; cita las fuentes originales que encontraste y leíste, y completa tu declaración de uso de IA. (Página de APA actualizada en abril de 2026.)"
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/references/examples/ai-references"
+   },
+   {
+    "id": "list",
+    "topic": {
+     "en": "Reference list format",
+     "es": "Formato de la lista de referencias"
+    },
+    "rule": {
+     "en": "New page after the text; “References” bold and centered; double-space the whole list; 0.5-in. hanging indent; alphabetize by the first word of each reference (usually the first author's surname).",
+     "es": "Página nueva después del texto; “References” en negrita y centrado; todo a doble espacio; sangría francesa de 0.5 pulg.; orden alfabético por la primera palabra de cada referencia (normalmente el apellido del primer autor)."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/paper-format/reference-list"
+   },
+   {
+    "id": "plag",
+    "topic": {
+     "en": "Plagiarism",
+     "es": "Plagio"
+    },
+    "rule": {
+     "en": "APA defines plagiarism as presenting the words, ideas or images of another as your own; it applies whether intentional or not. Credit words with quotations and citations, and credit ideas and theories to their originators.",
+     "es": "APA define el plagio como presentar como propias las palabras, ideas o imágenes de otra persona; aplica sea intencional o no. Da crédito a las palabras con comillas y citas, y a las ideas y teorías a quienes las originaron."
+    },
+    "src": "https://apastyle.apa.org/style-grammar-guidelines/citations/plagiarism"
+   }
+  ],
+  "challenges": [
+   {
+    "id": "a1",
+    "type": "fix",
+    "q": {
+     "en": "What's wrong? “(Martin, Lee, & Cho, 2020)” for a work by three authors.",
+     "es": "¿Qué está mal? “(Martin, Lee, & Cho, 2020)” para una obra de tres autores."
+    },
+    "options": [
+     {
+      "t": {
+       "en": "Three or more authors: use (Martin et al., 2020) every time.",
+       "es": "Tres o más autores: usa (Martin et al., 2020) siempre."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Nothing; list all authors the first time.",
+       "es": "Nada; se nombra a todos la primera vez."
+      }
+     },
+     {
+      "t": {
+       "en": "Use “and” instead of “&.”",
+       "es": "Usa “and” en lugar de “&”."
+      }
+     }
+    ],
+    "rule": "etal"
+   },
+   {
+    "id": "a2",
+    "type": "fix",
+    "q": {
+     "en": "What's wrong? “Salas & D'Agostino (2020) found…”",
+     "es": "¿Qué está mal? “Salas & D'Agostino (2020) found…”"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "Narrative citations spell out “and”: Salas and D'Agostino (2020).",
+       "es": "Las citas narrativas escriben “and”: Salas and D'Agostino (2020)."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "The year belongs at the end of the sentence.",
+       "es": "El año va al final de la oración."
+      }
+     },
+     {
+      "t": {
+       "en": "Use et al.",
+       "es": "Usa et al."
+      }
+     }
+    ],
+    "rule": "two"
+   },
+   {
+    "id": "a3",
+    "type": "fix",
+    "q": {
+     "en": "A student quotes a sentence from page 25 of Smith (2020) and writes “(Smith, 2020).” What's missing?",
+     "es": "Un estudiante cita textualmente una oración de la página 25 de Smith (2020) y escribe “(Smith, 2020)”. ¿Qué falta?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "The page: (Smith, 2020, p. 25).",
+       "es": "La página: (Smith, 2020, p. 25)."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Nothing; pages are optional for quotations.",
+       "es": "Nada; las páginas son opcionales en las citas textuales."
+      }
+     },
+     {
+      "t": {
+       "en": "The URL.",
+       "es": "El URL."
+      }
+     }
+    ],
+    "rule": "pages"
+   },
+   {
+    "id": "a4",
+    "type": "fix",
+    "q": {
+     "en": "A webpage by the Sleep Health Foundation has no date. Which citation is correct?",
+     "es": "Una página web de la Sleep Health Foundation no tiene fecha. ¿Qué cita es correcta?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "(Sleep Health Foundation, n.d.)",
+       "es": "(Sleep Health Foundation, n.d.)"
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "(Sleep Health Foundation, 2026) using today's year",
+       "es": "(Sleep Health Foundation, 2026) usando el año actual"
+      }
+     },
+     {
+      "t": {
+       "en": "(Anonymous, n.d.)",
+       "es": "(Anonymous, n.d.)"
+      }
+     }
+    ],
+    "rule": "missing"
+   },
+   {
+    "id": "a5",
+    "type": "fix",
+    "q": {
+     "en": "Which reference ending is correct?",
+     "es": "¿Qué final de referencia es correcto?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "…207–217. https://doi.org/10.1037/ppm0000185",
+       "es": "…207–217. https://doi.org/10.1037/ppm0000185"
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "…207–217. Retrieved from https://doi.org/10.1037/ppm0000185.",
+       "es": "…207–217. Retrieved from https://doi.org/10.1037/ppm0000185."
+      }
+     },
+     {
+      "t": {
+       "en": "…207–217. doi:10.1037/ppm0000185.",
+       "es": "…207–217. doi:10.1037/ppm0000185."
+      }
+     }
+    ],
+    "rule": "doi"
+   },
+   {
+    "id": "a6",
+    "type": "fix",
+    "q": {
+     "en": "Which book reference follows APA 7?",
+     "es": "¿Qué referencia de libro sigue APA 7?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "Sapolsky, R. M. (2017). *Behave: The biology of humans at our best and worst*. Penguin Books.",
+       "es": "Sapolsky, R. M. (2017). *Behave: The biology of humans at our best and worst*. Penguin Books."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Sapolsky, R. M. (2017). *Behave: The biology of humans at our best and worst*. New York, NY: Penguin Books.",
+       "es": "Sapolsky, R. M. (2017). *Behave: The biology of humans at our best and worst*. New York, NY: Penguin Books."
+      }
+     },
+     {
+      "t": {
+       "en": "Robert Sapolsky. Behave. 2017. Penguin.",
+       "es": "Robert Sapolsky. Behave. 2017. Penguin."
+      }
+     }
+    ],
+    "rule": "book"
+   },
+   {
+    "id": "a7",
+    "type": "match",
+    "q": {
+     "en": "Which kind of reference is this? “National Cancer Institute. (2019). *Taking time: Support for people with cancer* (NIH Publication No. 18-2059). U.S. Department of Health and Human Services, National Institutes of Health. https://www.cancer.gov/publications/patient-education/takingtime.pdf”",
+     "es": "¿Qué tipo de referencia es? “National Cancer Institute. (2019). *Taking time: Support for people with cancer* (NIH Publication No. 18-2059). U.S. Department of Health and Human Services, National Institutes of Health. https://www.cancer.gov/publications/patient-education/takingtime.pdf”"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "A government report",
+       "es": "Un informe del gobierno"
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "A journal article",
+       "es": "Un artículo de revista"
+      }
+     },
+     {
+      "t": {
+       "en": "A webpage",
+       "es": "Una página web"
+      }
+     }
+    ],
+    "rule": "report"
+   },
+   {
+    "id": "a8",
+    "type": "match",
+    "q": {
+     "en": "Which kind of reference is this? “Harvard University. (2019, August 28). *Soft robotic gripper for jellyfish* [Video]. YouTube. https://www.youtube.com/watch?v=guRoWTYfxMs”",
+     "es": "¿Qué tipo de referencia es? “Harvard University. (2019, August 28). *Soft robotic gripper for jellyfish* [Video]. YouTube. https://www.youtube.com/watch?v=guRoWTYfxMs”"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "An audiovisual work (video)",
+       "es": "Una obra audiovisual (video)"
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "A book",
+       "es": "Un libro"
+      }
+     },
+     {
+      "t": {
+       "en": "A government report",
+       "es": "Un informe del gobierno"
+      }
+     }
+    ],
+    "rule": "video"
+   },
+   {
+    "id": "a9",
+    "type": "match",
+    "q": {
+     "en": "In “Aron, L., Botella, M., & Lubart, T. (2019). Culinary arts: Talent and their development. In R. F. Subotnik… (Eds.), *The psychology of high performance…* (pp. 345–359)…”, what is italicized and why?",
+     "es": "En “Aron, L., Botella, M., & Lubart, T. (2019). Culinary arts: Talent and their development. In R. F. Subotnik… (Eds.), *The psychology of high performance…* (pp. 345–359)…”, ¿qué va en cursiva y por qué?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "The book title; the chapter title is not italicized.",
+       "es": "El título del libro; el título del capítulo no va en cursiva."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "The chapter title, because that's what you read.",
+       "es": "El título del capítulo, porque es lo que leíste."
+      }
+     },
+     {
+      "t": {
+       "en": "The editors' names.",
+       "es": "Los nombres de los editores."
+      }
+     }
+    ],
+    "rule": "chapter"
+   },
+   {
+    "id": "a10",
+    "type": "order",
+    "q": {
+     "en": "Which shows the correct reference-list order?",
+     "es": "¿Cuál muestra el orden correcto de la lista de referencias?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "Bologna (2019) → Grady et al. (2019) → National Cancer Institute (2019) → Sapolsky (2017)",
+       "es": "Bologna (2019) → Grady et al. (2019) → National Cancer Institute (2019) → Sapolsky (2017)"
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Sapolsky (2017) → Bologna (2019) → Grady et al. (2019) → National Cancer Institute (2019), oldest first",
+       "es": "Sapolsky (2017) → Bologna (2019) → Grady et al. (2019) → National Cancer Institute (2019), de la más antigua a la más reciente"
+      }
+     },
+     {
+      "t": {
+       "en": "In the order they appear in the speech",
+       "es": "En el orden en que aparecen en el discurso"
+      }
+     }
+    ],
+    "rule": "list"
+   },
+   {
+    "id": "a11",
+    "type": "fix",
+    "q": {
+     "en": "First mention of the National Institute of Mental Health in a paper that will cite it several times?",
+     "es": "¿Primera mención del National Institute of Mental Health en un trabajo que lo citará varias veces?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "(National Institute of Mental Health [NIMH], 2020), then (NIMH, 2020)",
+       "es": "(National Institute of Mental Health [NIMH], 2020), luego (NIMH, 2020)"
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "(NIMH, 2020) every time, including the first",
+       "es": "(NIMH, 2020) siempre, incluida la primera vez"
+      }
+     },
+     {
+      "t": {
+       "en": "(N.I.M.H., 2020)",
+       "es": "(N.I.M.H., 2020)"
+      }
+     }
+    ],
+    "rule": "group"
+   },
+   {
+    "id": "a12",
+    "type": "fix",
+    "q": {
+     "en": "With instructor authorization, a student used ChatGPT to brainstorm. What belongs in the paper?",
+     "es": "Con autorización del instructor, un estudiante usó ChatGPT para generar ideas. ¿Qué debe ir en el trabajo?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "A disclosure of how AI was used, an APA reference for the tool if AI output is quoted or described (OpenAI. (2025). *ChatGPT* [Large language model]. https://chatgpt.com), and the original sources for any facts.",
+       "es": "Una declaración de cómo se usó la IA, una referencia APA de la herramienta si se cita o describe lo que produjo (OpenAI. (2025). *ChatGPT* [Large language model]. https://chatgpt.com) y las fuentes originales de cualquier dato."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Cite ChatGPT as the source of the statistics it gave.",
+       "es": "Citar a ChatGPT como fuente de las estadísticas que dio."
+      }
+     },
+     {
+      "t": {
+       "en": "Nothing, because brainstorming doesn't count.",
+       "es": "Nada, porque generar ideas no cuenta."
+      }
+     }
+    ],
+    "rule": "genai"
+   },
+   {
+    "id": "a13",
+    "type": "match",
+    "q": {
+     "en": "You quote what an AI tool said in one specific conversation you can share with a link. Which reference fits?",
+     "es": "Citas lo que dijo una herramienta de IA en una conversación específica que puedes compartir con un enlace. ¿Qué referencia corresponde?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "OpenAI. (2026, February 10). *Top 10 writing topics for high school graduates* [Generative AI chat]. ChatGPT. https://chatgpt.com/share/698b9233-1b58-8008-858d-cede516f4240",
+       "es": "OpenAI. (2026, February 10). *Top 10 writing topics for high school graduates* [Generative AI chat]. ChatGPT. https://chatgpt.com/share/698b9233-1b58-8008-858d-cede516f4240"
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "OpenAI. (2025). *ChatGPT* [Large language model]. https://chatgpt.com — this cites the tool in general, not the conversation",
+       "es": "OpenAI. (2025). *ChatGPT* [Large language model]. https://chatgpt.com — esto cita la herramienta en general, no la conversación"
+      }
+     },
+     {
+      "t": {
+       "en": "ChatGPT. (2026). My conversation. Retrieved from my computer.",
+       "es": "ChatGPT. (2026). Mi conversación. Retrieved from mi computadora."
+      }
+     }
+    ],
+    "rule": "genai"
+   },
+   {
+    "id": "a14",
+    "type": "fix",
+    "q": {
+     "en": "The assignment says “AI assistance not permitted.” A student used AI to draft a paragraph but cited it in APA style. Is that acceptable?",
+     "es": "La tarea dice “No se permite ayuda de IA”. Un estudiante usó IA para escribir un párrafo, pero la citó en estilo APA. ¿Es aceptable?"
+    },
+    "options": [
+     {
+      "t": {
+       "en": "No. Citing AI does not authorize AI use the assignment prohibits.",
+       "es": "No. Citar la IA no autoriza un uso de IA que la tarea prohíbe."
+      },
+      "ok": true
+     },
+     {
+      "t": {
+       "en": "Yes, any use is fine once it's cited.",
+       "es": "Sí, cualquier uso está bien si se cita."
+      }
+     },
+     {
+      "t": {
+       "en": "Yes, if the reference has a date.",
+       "es": "Sí, si la referencia tiene fecha."
+      }
+     }
+    ],
+    "rule": "genai"
+   }
+  ]
+ },
+ "vocab": [
+  {
+   "en": "source",
+   "es": "fuente"
+  },
+  {
+   "en": "credible",
+   "es": "confiable / creíble"
+  },
+  {
+   "en": "primary source",
+   "es": "fuente primaria"
+  },
+  {
+   "en": "secondary source",
+   "es": "fuente secundaria"
+  },
+  {
+   "en": "evidence",
+   "es": "evidencia"
+  },
+  {
+   "en": "claim",
+   "es": "afirmación"
+  },
+  {
+   "en": "bias",
+   "es": "sesgo"
+  },
+  {
+   "en": "lateral reading",
+   "es": "lectura lateral"
+  },
+  {
+   "en": "paraphrase",
+   "es": "paráfrasis"
+  },
+  {
+   "en": "summary",
+   "es": "resumen"
+  },
+  {
+   "en": "quotation",
+   "es": "cita textual"
+  },
+  {
+   "en": "citation",
+   "es": "cita / referencia"
+  },
+  {
+   "en": "plagiarism",
+   "es": "plagio"
+  },
+  {
+   "en": "attribution",
+   "es": "atribución"
+  },
+  {
+   "en": "common knowledge",
+   "es": "conocimiento común"
+  },
+  {
+   "en": "synthesis",
+   "es": "síntesis"
+  }
+ ],
+ "frames": {
+  "en": [
+   "This source is credible because ___.",
+   "One limitation of this source is ___.",
+   "This evidence supports my claim that ___ because ___.",
+   "According to ___, a ___, in a ___ published in ___, …",
+   "In my own words, the author means that ___."
+  ],
+  "es": [
+   "Esta fuente es confiable porque ___.",
+   "Una limitación de esta fuente es ___.",
+   "Esta evidencia apoya mi afirmación de que ___ porque ___.",
+   "Según ___, ___, en un ___ publicado en ___, …",
+   "Con mis propias palabras, el autor quiere decir que ___."
+  ]
+ }
+}

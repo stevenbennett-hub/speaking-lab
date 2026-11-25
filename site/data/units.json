@@ -1,0 +1,490 @@
+{
+  "$comment": "The six course units. Source: UNITS in site/index.html (Nov 23, 2026 build). Weeks are course weeks, not calendar weeks.",
+  "units": [
+    {
+      "id": 1,
+      "weeks": [
+        1,
+        2
+      ],
+      "short": "Talk to Me",
+      "title": "Talk to Me: The Communication Process",
+      "blurb": "Get comfortable in front of the room, learn how communication works, and set the ground rules for honest, original work.",
+      "reads": [
+        1,
+        3
+      ],
+      "rubric": "intro",
+      "dueWeek": 2,
+      "plan": [
+        [
+          1,
+          "The communication process",
+          "The sender–receiver model and its key vocabulary, why nerves are normal, and low-stakes speaking practice."
+        ],
+        [
+          2,
+          "Ethics and the self-introduction speech",
+          "Plagiarism, citing aloud, and the course AI policy. Speeches at the end of the week."
+        ]
+      ],
+      "assign": {
+        "hs": {
+          "name": "Self-Introduction Speech",
+          "meta": [
+            "1–2 minutes",
+            "No sources",
+            "50 points"
+          ],
+          "req": [
+            "Bring one object that represents you and show it during the speech.",
+            "Share three things: where you are from, something you love doing, and a goal.",
+            "Open with a hook and close with a memorable last line.",
+            "One note card with key words only."
+          ]
+        },
+        "col": {
+          "name": "Personal Artifact Speech",
+          "meta": [
+            "2–3 minutes",
+            "No sources",
+            "50 points"
+          ],
+          "req": [
+            "Build the speech around one artifact that reveals something important about you.",
+            "Use a clear structure: introduction with thesis, three main points, conclusion.",
+            "Turn in a key-word speaking outline before you present.",
+            "Speak extemporaneously: rehearsed, not memorized or read."
+          ]
+        }
+      }
+    },
+    {
+      "id": 2,
+      "weeks": [
+        3,
+        4,
+        5
+      ],
+      "short": "Audience, Research & Structure",
+      "title": "Audience, Research & Structure",
+      "blurb": "Learn the toolkit every later speech uses: know your audience, find credible sources in Gale, and organize ideas into an outline.",
+      "reads": [
+        2,
+        4,
+        5,
+        6,
+        7
+      ],
+      "rubric": "research",
+      "dueWeek": 5,
+      "dueLabel": "Lab",
+      "plan": [
+        [
+          3,
+          "Audience analysis and listening",
+          "Who is in the room and what they already know. Brainstorm a person for your Heritage Month speech."
+        ],
+        [
+          4,
+          "Research with Gale",
+          "Credible versus weak sources, peer-reviewed filters, oral citations, and APA 7."
+        ],
+        [
+          5,
+          "Organizing and outlining",
+          "Thesis statements, main points, organizational patterns, and using evidence."
+        ]
+      ],
+      "assign": {
+        "hs": {
+          "name": "Research & Outline Lab",
+          "meta": [
+            "Written",
+            "3 sources",
+            "50 points"
+          ],
+          "req": [
+            "Choose your Heritage Month person (Unit 3).",
+            "Find 3 credible sources; at least 1 must come from Gale.",
+            "Write each source in APA format.",
+            "Fill in the outline template: introduction, three main points, conclusion."
+          ]
+        },
+        "col": {
+          "name": "Annotated Bibliography & Preparation Outline",
+          "meta": [
+            "Written",
+            "5 sources",
+            "50 points"
+          ],
+          "req": [
+            "Find 5 credible sources about your Heritage Month person; at least 2 peer-reviewed from Gale.",
+            "Write a 3–4 sentence annotation for each: what it says and how you will use it.",
+            "Format everything in APA 7.",
+            "Write a full-sentence preparation outline with a thesis, main points, and transitions."
+          ]
+        }
+      }
+    },
+    {
+      "id": 3,
+      "weeks": [
+        6,
+        7,
+        8
+      ],
+      "short": "Informative: Heritage Month",
+      "title": "Informative Speech: Heritage Month",
+      "blurb": "Choose one person who is important to Hispanic heritage or Black history and teach the class about their life and impact. First semester speeches happen during Hispanic Heritage Month; second semester speeches happen during Black History Month.",
+      "semesters": {
+        "fall": {
+          "label": "1st semester · Hispanic Heritage Month",
+          "when": "Speeches happen during Hispanic Heritage Month (September 15–October 15).",
+          "name": "Hispanic Heritage Month Speech",
+          "person": "a person important to Hispanic heritage",
+          "deck": "hisp"
+        },
+        "spring": {
+          "label": "2nd semester · Black History Month",
+          "when": "Speeches happen during Black History Month (February).",
+          "name": "Black History Month Speech",
+          "person": "a person important to Black history",
+          "deck": "black"
+        }
+      },
+      "reads": [
+        8,
+        9,
+        12
+      ],
+      "rubric": "informative",
+      "dueWeek": 8,
+      "plan": [
+        [
+          6,
+          "Informative speaking and strong openings",
+          "Introductions, conclusions, and transitions. Sign up for your person (no repeats in a class)."
+        ],
+        [
+          7,
+          "Presentation aids and rehearsal",
+          "Build slides with key words and strong visuals. Peer rehearsal with a timer."
+        ],
+        [
+          8,
+          "Speeches",
+          "1st semester: during Hispanic Heritage Month. 2nd semester: during Black History Month."
+        ]
+      ],
+      "assign": {
+        "hs": {
+          "name": "Heritage Month Speech",
+          "meta": [
+            "3–5 minutes",
+            "3 sources",
+            "100 points"
+          ],
+          "req": [
+            "Choose {person}.",
+            "Three main points in order: early life and roots, achievements, challenges they overcame.",
+            "3 credible sources (at least 1 from Gale), cited out loud and on a References slide in APA.",
+            "Slides with at least 3 visuals that teach something.",
+            "Finish the body with a Legacy slide: why this still matters today.",
+            "Complete the Academic Integrity disclosure."
+          ]
+        },
+        "col": {
+          "name": "Heritage Month Speech",
+          "meta": [
+            "5–7 minutes",
+            "5 sources",
+            "100 points"
+          ],
+          "req": [
+            "Choose {person}.",
+            "Organize chronologically: early life, achievements, challenges overcome, then legacy.",
+            "Connect their legacy to today, in Kansas City or nationally.",
+            "5 credible sources (2 peer-reviewed from Gale), cited aloud with credentials and listed in APA 7.",
+            "Turn in your preparation outline and a key-word speaking outline.",
+            "Complete the Academic Integrity disclosure."
+          ]
+        }
+      }
+    },
+    {
+      "id": 4,
+      "weeks": [
+        9,
+        10
+      ],
+      "short": "How-To / Demonstration",
+      "title": "How-To / Demonstration Speech",
+      "blurb": "Teach the class to do something, step by step, with real props. Clear language and smooth delivery matter most here.",
+      "reads": [
+        9,
+        10,
+        11
+      ],
+      "rubric": "demo",
+      "dueWeek": 10,
+      "plan": [
+        [
+          9,
+          "Process speeches, language, and delivery",
+          "Chronological order, clear and concrete words, extemporaneous delivery. Gather props."
+        ],
+        [
+          10,
+          "Rehearse and present",
+          "Full run-through with props and a timer, then speeches."
+        ]
+      ],
+      "assign": {
+        "hs": {
+          "name": "How-To Speech",
+          "meta": [
+            "3–5 minutes",
+            "1 source",
+            "100 points"
+          ],
+          "req": [
+            "Demonstrate a process live with real props (no dangerous items, flames, or food that needs cooking in class).",
+            "4–6 clear steps in order, so the audience could repeat it.",
+            "Tell us why the skill is useful in your introduction.",
+            "1 credible source cited out loud."
+          ]
+        },
+        "col": {
+          "name": "Demonstration Speech",
+          "meta": [
+            "4–6 minutes",
+            "2 sources",
+            "100 points"
+          ],
+          "req": [
+            "Demonstrate a process live with real props, and explain why each step matters.",
+            "Organize with a clear pattern (chronological or spatial) and signposts.",
+            "2 credible sources cited aloud with credentials.",
+            "Turn in a preparation outline. Practice until props are handled smoothly."
+          ]
+        }
+      }
+    },
+    {
+      "id": 5,
+      "weeks": [
+        11,
+        12
+      ],
+      "short": "Narrative Speaking",
+      "title": "Narrative Speech: Tell Your Story",
+      "blurb": "Tell a true story from your life that pulls the audience in and connects them to you.",
+      "reads": [
+        7,
+        8,
+        10
+      ],
+      "rubric": "narrative",
+      "dueWeek": 12,
+      "plan": [
+        [
+          11,
+          "Stories that connect",
+          "Why stories work, the story arc, and choosing a story you are comfortable sharing. Plan it in the Story Builder."
+        ],
+        [
+          12,
+          "Narrative speeches",
+          "Tell your story, cheer for your classmates, and reflect on what you learned."
+        ]
+      ],
+      "assign": {
+        "hs": {
+          "name": "Narrative Speech: My True Story",
+          "meta": [
+            "3–5 minutes",
+            "No sources",
+            "100 points"
+          ],
+          "req": [
+            "Tell a true story from your own life. Pick a prompt from the Story Builder or use your own idea.",
+            "You choose what to share. A funny or everyday story counts just as much as a hard one.",
+            "Follow the story arc: hook, setting, build-up, turning point, what happened after, and the lesson.",
+            "Use vivid details: what you saw, heard, and felt. Show us; don’t just tell us.",
+            "End with what you learned and a closing line we will remember.",
+            "Speak from a note card of key words, not a script. No formal outline is needed: the Story Builder gives you the structure."
+          ]
+        },
+        "col": {
+          "name": "Narrative Speech: A Personal Story with Purpose",
+          "meta": [
+            "3–5 minutes",
+            "No sources",
+            "100 points"
+          ],
+          "req": [
+            "Tell a true personal story that builds to one clear theme or insight.",
+            "You choose what to share. A funny or everyday story counts just as much as a hard one.",
+            "Shape it with a full arc and a clear turning point; cut details that don’t serve the theme.",
+            "Use vivid, sensory language and at least two devices (dialogue, repetition, callback, metaphor).",
+            "Connect your story to the audience: why should it matter to them?",
+            "Speak extemporaneously from a key-word card. Plan with the Story Builder; no full outline is required."
+          ]
+        }
+      }
+    },
+    {
+      "id": 6,
+      "weeks": [
+        13,
+        14,
+        15,
+        16
+      ],
+      "short": "Persuasive",
+      "title": "Persuasive Speech",
+      "blurb": "High school students argue one side of a ProCon question. College students give a community action speech that asks a real decision-maker to fix a local problem.",
+      "reads": [
+        13,
+        14
+      ],
+      "rubric": "persuasive",
+      "dueWeek": 16,
+      "plan": [
+        [
+          13,
+          "Ethos, pathos, logos",
+          "High school: choose a ProCon question. College: learn Monroe’s Motivated Sequence and choose a community problem."
+        ],
+        [
+          14,
+          "Reasoning, fallacies, and research",
+          "Spot weak arguments. Research in Gale; college students add a local source or interview."
+        ],
+        [
+          15,
+          "Build and rehearse",
+          "Fill in the slide template, write your counterargument or objection, rehearse with a timer."
+        ],
+        [
+          16,
+          "Speeches and celebration",
+          "Present, give peer feedback, and celebrate how much your speaking has grown."
+        ]
+      ],
+      "assign": {
+        "hs": {
+          "name": "ProCon Persuasive Speech",
+          "meta": [
+            "3–5 minutes",
+            "3 sources",
+            "100 points"
+          ],
+          "req": [
+            "Answer a question from Britannica ProCon and take a clear side.",
+            "Three arguments, each with a claim, cited evidence, explanation, and why it matters.",
+            "Use logos, ethos, and pathos; answer the strongest counterargument.",
+            "3 credible sources in APA; ProCon ideas in your own words.",
+            "Use the persuasive slide template and complete the Academic Integrity slide."
+          ]
+        },
+        "col": {
+          "name": "Community Action Speech",
+          "meta": [
+            "5–7 minutes",
+            "5–7 sources",
+            "100 points"
+          ],
+          "req": [
+            "Choose a real problem in Kansas City, KCK, or our school and a decision-maker who can fix it.",
+            "Follow Monroe’s Motivated Sequence: attention, need, satisfaction, visualization, action.",
+            "Answer the strongest objection to your plan with evidence.",
+            "5–7 sources: at least 2 peer-reviewed from Gale and 1 local. ProCon is background only.",
+            "End with a specific ask: who, what, and by when."
+          ]
+        }
+      }
+    }
+  ],
+  "unitLabs": {
+    "1": [
+      "audlab",
+      "listenlab",
+      "mlab"
+    ],
+    "2": [
+      "rlab",
+      "obuild"
+    ],
+    "3": [
+      "obuild",
+      "rlab",
+      "audlab"
+    ],
+    "4": [
+      "nvlab",
+      "implab",
+      "nvclab",
+      "obuild",
+      "audlab"
+    ],
+    "5": [
+      "storylab",
+      "obuild",
+      "audlab"
+    ],
+    "6": [
+      "plab",
+      "glab",
+      "rlab",
+      "audlab"
+    ]
+  },
+  "labNames": {
+    "audlab": [
+      "The Respectful Audience Lab",
+      "Laboratorio de audiencia respetuosa"
+    ],
+    "listenlab": [
+      "The Art of Listening",
+      "El arte de escuchar"
+    ],
+    "storylab": [
+      "Story Builder",
+      "Constructor de historias"
+    ],
+    "implab": [
+      "Impromptu Speaking Challenge",
+      "Reto de discurso improvisado"
+    ],
+    "glab": [
+      "Group Communication Lab",
+      "Laboratorio de comunicación en grupo"
+    ],
+    "nvclab": [
+      "Nonverbal Communication Lab",
+      "Laboratorio de comunicación no verbal"
+    ],
+    "rlab": [
+      "Research & Source Lab",
+      "Laboratorio de investigación y fuentes"
+    ],
+    "obuild": [
+      "Speech Outline Builder",
+      "Constructor de esquemas"
+    ],
+    "mlab": [
+      "Communication Model Lab",
+      "Laboratorio del modelo de comunicación"
+    ],
+    "plab": [
+      "Persuasion & Rhetoric Lab",
+      "Laboratorio de persuasión y retórica"
+    ],
+    "nvlab": [
+      "Body Language Lab",
+      "Laboratorio de lenguaje corporal"
+    ]
+  }
+}

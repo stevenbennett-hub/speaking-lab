@@ -1,0 +1,16 @@
+{
+  "$comment": "Class-wide teacher settings for the Instructor Playbook (all units): the classroom expectations a substitute enforces. Teacher-facing; no student information. Draft until Mr. Bennett approves it.",
+  "status": "draft",
+  "expectations": [
+    "Personal phones are checked in when students enter the room.",
+    "No earbuds or headphones during speeches.",
+    "Close laptops during student presentations.",
+    "Stay seated during speeches unless an accommodation or an urgent need requires otherwise.",
+    "Wait until the speaker finishes before asking unrelated questions.",
+    "No side conversations or distracting expressions.",
+    "Treat every speaker with respect.",
+    "Students who are speaking dispose of gum beforehand."
+  ],
+  "accommodations": "Follow every student's individual accommodations exactly as provided by the school (for example, in the substitute folder or the student's plan). Approved accommodations are always allowed, including during speeches: presenting seated, extra time, a smaller audience, a scheduled time, or the typed journal option. Do not ask students to explain an accommodation.",
+  "contact": "For urgent questions, contact the main office."
+}

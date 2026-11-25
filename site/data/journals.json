@@ -1,0 +1,1892 @@
+{
+  "$comment": "Daily Learning Journals. One journal opens each 90-minute block: about 10 minutes of handwritten response, then students stand and share with someone new. A class's journal number is its own meeting count, so `n` is the planned number for a full 40-meeting semester; every 10 journals form a 100-point set (set = ceil(number / 10)). `meeting` is the class meeting within the unit. A flex journal is used only when a class has an extra meeting in that unit; `before` places it ahead of that journal (the unit reflection) instead of at the end. `title` is an optional display title; `experience` links a featured learning experience (see studios.json). `alt` is the no-disclosure option; null means the prompt already needs no personal disclosure. English wording approved by the teacher Nov 24, 2026; Spanish is a draft for review.",
+  "version": 1,
+  "minutes": 10,
+  "journals": [
+    {
+      "id": "j01",
+      "n": 1,
+      "unit": 1,
+      "meeting": 1,
+      "focus": {
+        "en": "Welcome, course tour, the communication model",
+        "es": "Bienvenida, recorrido del curso, el modelo de comunicación"
+      },
+      "prompt": {
+        "en": "Think of a speaker you find easy to listen to: a teacher, coach, creator or character. Name two specific things they do that keep you listening. Then pick one you want to try in your own speeches, and explain why.",
+        "es": "Piensa en una persona a quien te resulta fácil escuchar: un maestro, un entrenador, un creador de contenido o un personaje. Nombra dos cosas específicas que hace y que te mantienen escuchando. Luego elige una que quieras probar en tus propios discursos y explica por qué."
+      },
+      "share": {
+        "en": "Tell your partner one behavior you chose. Find out whether theirs was different.",
+        "es": "Dile a tu compañero una de las conductas que elegiste. Averigua si la suya fue diferente."
+      },
+      "alt": {
+        "en": "Describe an imaginary \"perfect\" speaker.",
+        "es": "Describe a un orador \"perfecto\" imaginario."
+      },
+      "frames": {
+        "en": [
+          "___ is easy to listen to because they ___.",
+          "I want to try ___ because ___."
+        ],
+        "es": [
+          "Es fácil escuchar a ___ porque ___.",
+          "Quiero probar ___ porque ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "audience",
+          "delivery"
+        ],
+        "es": [
+          "audiencia",
+          "presentación oral"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j02",
+      "n": 2,
+      "unit": 1,
+      "meeting": 2,
+      "focus": {
+        "en": "Transactional model; back-to-back drawing",
+        "es": "Modelo transaccional; dibujo espalda con espalda"
+      },
+      "prompt": {
+        "en": "A friend texts you only \"ok.\" Write two different meanings it could have. Label the sender, receiver, message and channel, and name the noise that could cause a misunderstanding. Then predict: does feedback make communication more accurate? Why?",
+        "es": "Un amigo te escribe solo \"ok\". Escribe dos significados diferentes que podría tener. Identifica al emisor, al receptor, el mensaje y el canal, y nombra el ruido que podría causar un malentendido. Luego predice: ¿la retroalimentación hace que la comunicación sea más precisa? ¿Por qué?"
+      },
+      "share": {
+        "en": "Read your two meanings aloud. Can your partner tell which one the sender meant from your tone alone?",
+        "es": "Lee en voz alta tus dos significados. ¿Puede tu compañero adivinar cuál quiso decir el emisor solo por tu tono?"
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "The noise in this message is ___ because ___.",
+          "Feedback helps because ___."
+        ],
+        "es": [
+          "El ruido en este mensaje es ___ porque ___.",
+          "La retroalimentación ayuda porque ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "sender",
+          "receiver",
+          "message",
+          "channel",
+          "noise",
+          "feedback"
+        ],
+        "es": [
+          "emisor",
+          "receptor",
+          "mensaje",
+          "canal",
+          "ruido",
+          "retroalimentación"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j03",
+      "n": 3,
+      "unit": 1,
+      "meeting": 3,
+      "focus": {
+        "en": "Nerves are normal; delivery basics; speech assigned",
+        "es": "Los nervios son normales; bases de la presentación; se asigna el discurso"
+      },
+      "prompt": {
+        "en": "Name one physical sign of speaking nerves and one strategy from the reading or video that could help. Then rank eye contact, voice and posture from easiest to hardest for a new speaker, and explain your hardest choice.",
+        "es": "Nombra una señal física de los nervios al hablar en público y una estrategia de la lectura o del video que podría ayudar. Luego ordena el contacto visual, la voz y la postura de más fácil a más difícil para un orador principiante, y explica tu elección más difícil."
+      },
+      "share": {
+        "en": "Trade strategies. Leave with one strategy you did not write down.",
+        "es": "Intercambien estrategias. Quédate con una estrategia que no habías escrito."
+      },
+      "alt": {
+        "en": "Answer for a typical first-time speaker, not yourself.",
+        "es": "Responde pensando en un orador principiante típico, no en ti."
+      },
+      "frames": {
+        "en": [
+          "One sign of nerves is ___. One strategy is ___.",
+          "The hardest is ___ because ___."
+        ],
+        "es": [
+          "Una señal de nervios es ___. Una estrategia es ___.",
+          "Lo más difícil es ___ porque ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "speech anxiety",
+          "eye contact",
+          "vocal variety",
+          "posture"
+        ],
+        "es": [
+          "ansiedad al hablar",
+          "contacto visual",
+          "variedad vocal",
+          "postura"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j04",
+      "n": 4,
+      "unit": 1,
+      "meeting": 4,
+      "focus": {
+        "en": "Ethics, plagiarism, AI policy; work day",
+        "es": "Ética, plagio, política de IA; día de trabajo"
+      },
+      "prompt": {
+        "en": "A student has AI write their whole self-introduction speech. Who is that unfair to: the audience, classmates, or the student? Explain using our class AI policy. Then write the key words for your note card (college: your outline's main points).",
+        "es": "Un estudiante usa IA para escribir todo su discurso de presentación personal. ¿Con quién es injusto: con la audiencia, con los compañeros o con el propio estudiante? Explica usando la política de IA de la clase. Luego escribe las palabras clave para tu tarjeta de notas (universidad: los puntos principales de tu esquema)."
+      },
+      "share": {
+        "en": "Explain your fairness answer. Your partner agrees or disagrees and gives one reason.",
+        "es": "Explica tu respuesta sobre la justicia. Tu compañero está de acuerdo o no y da una razón."
+      },
+      "alt": {
+        "en": "Write key words for a sample speech about a favorite food or place.",
+        "es": "Escribe palabras clave para un discurso de ejemplo sobre una comida o un lugar favorito."
+      },
+      "frames": {
+        "en": [
+          "This is unfair to ___ because ___.",
+          "The word ___ reminds me to say ___."
+        ],
+        "es": [
+          "Esto es injusto para ___ porque ___.",
+          "La palabra ___ me recuerda decir ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "plagiarism",
+          "academic integrity",
+          "oral citation",
+          "key word"
+        ],
+        "es": [
+          "plagio",
+          "integridad académica",
+          "cita oral",
+          "palabra clave"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j05",
+      "n": 5,
+      "unit": 1,
+      "meeting": 5,
+      "focus": {
+        "en": "Speeches and reflection",
+        "es": "Discursos y reflexión"
+      },
+      "prompt": {
+        "en": "Describe one hook you heard that grabbed your attention, without naming the speaker. Why did it work? Then, using the rubric, name one strength in your own speech and one goal for the next one.",
+        "es": "Describe un gancho que escuchaste y que captó tu atención, sin nombrar al orador. ¿Por qué funcionó? Luego, usando la rúbrica, nombra una fortaleza de tu propio discurso y una meta para el próximo."
+      },
+      "share": {
+        "en": "Tell your partner your goal. Your partner suggests one way to practice it.",
+        "es": "Dile a tu compañero tu meta. Tu compañero sugiere una manera de practicarla."
+      },
+      "alt": {
+        "en": "Name a strength and goal for a speech you watched this week.",
+        "es": "Nombra una fortaleza y una meta para un discurso que viste esta semana."
+      },
+      "frames": {
+        "en": [
+          "The hook worked because ___.",
+          "My goal is ___. I can practice by ___."
+        ],
+        "es": [
+          "El gancho funcionó porque ___.",
+          "Mi meta es ___. Puedo practicar ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "hook",
+          "rubric",
+          "strength",
+          "goal"
+        ],
+        "es": [
+          "gancho",
+          "rúbrica",
+          "fortaleza",
+          "meta"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j-u1-flex",
+      "n": null,
+      "flex": true,
+      "unit": 1,
+      "meeting": 6,
+      "before": "j05",
+      "title": {
+        "en": "When Communication Breaks Down",
+        "es": "Cuando la comunicación se rompe"
+      },
+      "focus": {
+        "en": "Flex class: when communication breaks down",
+        "es": "Clase flexible: cuando la comunicación se rompe"
+      },
+      "prompt": {
+        "en": "Imagine two students are working on a group assignment. One student believes they are doing most of the work, while the other feels misunderstood. Their conversation turns into an argument. What are two communication mistakes that might make this situation worse? What could each student do differently to improve the conversation?",
+        "es": "Imagina a dos estudiantes que trabajan en una tarea de grupo. Uno cree que está haciendo la mayor parte del trabajo, mientras que el otro se siente incomprendido. Su conversación se convierte en una discusión. ¿Cuáles son dos errores de comunicación que podrían empeorar la situación? ¿Qué podría hacer diferente cada estudiante para mejorar la conversación?"
+      },
+      "share": {
+        "en": "Read one of your improvements aloud as if you were one of the students. Your partner answers as the other student, then you switch.",
+        "es": "Lee en voz alta una de tus mejoras como si fueras uno de los estudiantes. Tu compañero responde como el otro estudiante y luego cambian de papel."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "One mistake was ___ because it made the other student feel ___.",
+          "Instead, ___ could say, \"I feel ___ when ___ because ___. Could we ___?\""
+        ],
+        "es": [
+          "Un error fue ___ porque hizo que el otro estudiante se sintiera ___.",
+          "En cambio, ___ podría decir: \"Me siento ___ cuando ___ porque ___. ¿Podríamos ___?\""
+        ]
+      },
+      "vocab": {
+        "en": [
+          "assumption",
+          "perception",
+          "active listening",
+          "I-statement",
+          "feedback"
+        ],
+        "es": [
+          "suposición",
+          "percepción",
+          "escucha activa",
+          "mensaje en primera persona",
+          "retroalimentación"
+        ]
+      },
+      "experience": "beyond-the-podium-ep1",
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j06",
+      "n": 6,
+      "unit": 2,
+      "meeting": 1,
+      "focus": {
+        "en": "Audience analysis; listening and feedback norms",
+        "es": "Análisis de la audiencia; normas para escuchar y dar retroalimentación"
+      },
+      "prompt": {
+        "en": "You give the same 2-minute talk about your favorite game to third graders and then to our principal. Name two things you would change for each audience, and why.",
+        "es": "Das la misma charla de 2 minutos sobre tu juego favorito a estudiantes de tercer grado y luego a nuestro director. Nombra dos cosas que cambiarías para cada audiencia y por qué."
+      },
+      "share": {
+        "en": "Your partner names a third audience. Say one change you would make for them.",
+        "es": "Tu compañero nombra una tercera audiencia. Di un cambio que harías para ella."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "For ___, I would change ___ because they ___."
+        ],
+        "es": [
+          "Para ___, cambiaría ___ porque ellos ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "audience analysis",
+          "demographics",
+          "psychographics"
+        ],
+        "es": [
+          "análisis de la audiencia",
+          "datos demográficos",
+          "datos psicográficos"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j07",
+      "n": 7,
+      "unit": 2,
+      "meeting": 2,
+      "focus": {
+        "en": "Choosing a topic; Heritage Month sign-up; credible vs weak sources",
+        "es": "Elegir un tema; inscripción para el Mes de la Herencia; fuentes confiables y débiles"
+      },
+      "prompt": {
+        "en": "Name two people you are considering for your Heritage Month speech. For each, write what you already know and one question you want to research. Where would you not look for answers, and why?",
+        "es": "Nombra a dos personas que estás considerando para tu discurso del Mes de la Herencia. Para cada una, escribe lo que ya sabes y una pregunta que quieras investigar. ¿Dónde no buscarías respuestas y por qué?"
+      },
+      "share": {
+        "en": "Tell your top choice and your question. Your partner asks one follow-up question.",
+        "es": "Di tu primera opción y tu pregunta. Tu compañero te hace una pregunta de seguimiento."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "I want to learn ___ about ___.",
+          "I would not trust ___ because ___."
+        ],
+        "es": [
+          "Quiero aprender ___ sobre ___.",
+          "No confiaría en ___ porque ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "topic",
+          "credible source",
+          "weak source"
+        ],
+        "es": [
+          "tema",
+          "fuente confiable",
+          "fuente débil"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j08",
+      "n": 8,
+      "unit": 2,
+      "meeting": 3,
+      "focus": {
+        "en": "Gale orientation and deep dive",
+        "es": "Introducción a Gale y búsqueda a fondo"
+      },
+      "prompt": {
+        "en": "A website about your person has no author and no date. A Gale reference entry has both. Which would you trust more for your speech? Write two questions you should ask about any source. (College: what does the Peer-Reviewed filter add?)",
+        "es": "Un sitio web sobre tu persona no tiene autor ni fecha. Una entrada de referencia de Gale tiene ambos. ¿En cuál confiarías más para tu discurso? Escribe dos preguntas que deberías hacerte sobre cualquier fuente. (Universidad: ¿qué aporta el filtro Peer-Reviewed?)"
+      },
+      "share": {
+        "en": "Compare your questions. Leave with one question you did not have.",
+        "es": "Comparen sus preguntas. Quédate con una pregunta que no tenías."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "I would trust ___ more because ___."
+        ],
+        "es": [
+          "Confiaría más en ___ porque ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "credibility",
+          "author",
+          "publication date",
+          "peer-reviewed"
+        ],
+        "es": [
+          "credibilidad",
+          "autor",
+          "fecha de publicación",
+          "revisado por pares"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j09",
+      "n": 9,
+      "unit": 2,
+      "meeting": 4,
+      "focus": {
+        "en": "APA references; oral citations",
+        "es": "Referencias APA; citas orales"
+      },
+      "prompt": {
+        "en": "Practice source: historian Dr. Elena Ruiz, Journal of Community History, 2021 (fictional). Write how you would cite her out loud in a speech. Then explain why saying a source's credentials matters to an audience.",
+        "es": "Fuente de práctica: la historiadora Dra. Elena Ruiz, Journal of Community History, 2021 (ficticia). Escribe cómo la citarías en voz alta en un discurso. Luego explica por qué es importante para la audiencia mencionar las credenciales de una fuente."
+      },
+      "share": {
+        "en": "Say your oral citation aloud. Your partner checks it names who, their credential, where and when.",
+        "es": "Di tu cita oral en voz alta. Tu compañero revisa que incluya quién, su credencial, dónde y cuándo."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "According to ___, a ___, in ___ (___), …"
+        ],
+        "es": [
+          "Según ___, ___, en ___ (___), …"
+        ]
+      },
+      "vocab": {
+        "en": [
+          "oral citation",
+          "credentials",
+          "APA 7",
+          "reference"
+        ],
+        "es": [
+          "cita oral",
+          "credenciales",
+          "APA 7",
+          "referencia"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j10",
+      "n": 10,
+      "unit": 2,
+      "meeting": 5,
+      "focus": {
+        "en": "Research work days; source check",
+        "es": "Días de investigación; revisión de fuentes"
+      },
+      "prompt": {
+        "en": "What is the most surprising fact you have found about your person so far? Name its source, and explain how you could confirm it in a second source.",
+        "es": "¿Cuál es el dato más sorprendente que has encontrado hasta ahora sobre tu persona? Nombra su fuente y explica cómo podrías confirmarlo en una segunda fuente."
+      },
+      "share": {
+        "en": "Teach your partner the fact in 30 seconds, with an oral citation.",
+        "es": "Enséñale el dato a tu compañero en 30 segundos, con una cita oral."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "I was surprised that ___. I can confirm it by ___."
+        ],
+        "es": [
+          "Me sorprendió que ___. Puedo confirmarlo ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "verify",
+          "lateral reading",
+          "evidence"
+        ],
+        "es": [
+          "verificar",
+          "lectura lateral",
+          "evidencia"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j11",
+      "n": 11,
+      "unit": 2,
+      "meeting": 6,
+      "focus": {
+        "en": "Thesis statements, main points, patterns",
+        "es": "Tesis, puntos principales, patrones de organización"
+      },
+      "prompt": {
+        "en": "Write a thesis for your Heritage Month speech that previews three main points. Which pattern fits better, chronological or topical, and why?",
+        "es": "Escribe una tesis para tu discurso del Mes de la Herencia que anticipe tres puntos principales. ¿Qué patrón funciona mejor, cronológico o temático, y por qué?"
+      },
+      "share": {
+        "en": "Read your thesis once. Your partner repeats your three points without looking; if they can't, sharpen it.",
+        "es": "Lee tu tesis una vez. Tu compañero repite tus tres puntos sin mirar; si no puede, hazla más clara."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "My thesis is ___. I chose ___ order because ___."
+        ],
+        "es": [
+          "Mi tesis es ___. Elegí el orden ___ porque ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "thesis",
+          "main points",
+          "chronological",
+          "topical"
+        ],
+        "es": [
+          "tesis",
+          "puntos principales",
+          "cronológico",
+          "temático"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j12",
+      "n": 12,
+      "unit": 2,
+      "meeting": 7,
+      "focus": {
+        "en": "Speaking vs preparation outlines; using evidence",
+        "es": "Esquema para hablar y esquema de preparación; uso de evidencia"
+      },
+      "prompt": {
+        "en": "Choose one main point. List a fact, an example or a piece of testimony that supports it. Which type of evidence is strongest for this audience, and why?",
+        "es": "Elige un punto principal. Escribe un dato, un ejemplo o un testimonio que lo apoye. ¿Qué tipo de evidencia es más fuerte para esta audiencia y por qué?"
+      },
+      "share": {
+        "en": "Read your evidence. Your partner names which type it is.",
+        "es": "Lee tu evidencia. Tu compañero dice de qué tipo es."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "My strongest evidence is ___ because ___."
+        ],
+        "es": [
+          "Mi evidencia más fuerte es ___ porque ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "facts",
+          "examples",
+          "testimony",
+          "preparation outline",
+          "speaking outline"
+        ],
+        "es": [
+          "datos",
+          "ejemplos",
+          "testimonio",
+          "esquema de preparación",
+          "esquema para hablar"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j-u2-flex",
+      "n": null,
+      "flex": true,
+      "unit": 2,
+      "meeting": 8,
+      "focus": {
+        "en": "Lab due day",
+        "es": "Día de entrega del laboratorio"
+      },
+      "prompt": {
+        "en": "Check your Research & Outline Lab (college: Annotated Bibliography and Preparation Outline) against the requirements. Which part is strongest, and which needs one more fix before you turn it in?",
+        "es": "Revisa tu Laboratorio de investigación y esquema (universidad: Bibliografía anotada y Esquema de preparación) con los requisitos. ¿Qué parte es la más fuerte y cuál necesita un arreglo más antes de entregarlo?"
+      },
+      "share": {
+        "en": "Trade one tip that would help your partner's lab.",
+        "es": "Intercambien un consejo que ayudaría al laboratorio de tu compañero."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "My strongest part is ___. I still need to ___."
+        ],
+        "es": [
+          "Mi parte más fuerte es ___. Todavía necesito ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "requirement",
+          "revision"
+        ],
+        "es": [
+          "requisito",
+          "revisión"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j13",
+      "n": 13,
+      "unit": 3,
+      "meeting": 1,
+      "focus": {
+        "en": "Informative speaking launch; example speech",
+        "es": "Inicio del discurso informativo; discurso de ejemplo"
+      },
+      "prompt": {
+        "en": "How is an informative speech different from a persuasive one? From today's example, name one thing the speaker did to teach the audience rather than convince them.",
+        "es": "¿En qué se diferencia un discurso informativo de uno persuasivo? Del ejemplo de hoy, nombra algo que hizo el orador para enseñar a la audiencia en lugar de convencerla."
+      },
+      "share": {
+        "en": "Compare your answers. Agree on one rule for staying informative.",
+        "es": "Comparen sus respuestas. Acuerden una regla para mantenerse informativos."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "An informative speaker ___, while a persuasive speaker ___."
+        ],
+        "es": [
+          "Un orador informativo ___, mientras que un orador persuasivo ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "informative",
+          "persuasive",
+          "purpose"
+        ],
+        "es": [
+          "informativo",
+          "persuasivo",
+          "propósito"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j14",
+      "n": 14,
+      "unit": 3,
+      "meeting": 2,
+      "focus": {
+        "en": "Introductions, conclusions, transitions; draft the hook",
+        "es": "Introducciones, conclusiones, transiciones; borrador del gancho"
+      },
+      "prompt": {
+        "en": "Write two hooks for your Heritage Month speech: one question and one surprising fact or short story. Which is stronger, and why?",
+        "es": "Escribe dos ganchos para tu discurso del Mes de la Herencia: una pregunta y un dato sorprendente o una historia corta. ¿Cuál es más fuerte y por qué?"
+      },
+      "share": {
+        "en": "Read both hooks. Your partner picks one and explains the choice.",
+        "es": "Lee los dos ganchos. Tu compañero elige uno y explica por qué."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "My stronger hook is ___ because ___."
+        ],
+        "es": [
+          "Mi gancho más fuerte es ___ porque ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "hook",
+          "transition",
+          "signpost",
+          "conclusion"
+        ],
+        "es": [
+          "gancho",
+          "transición",
+          "señalizador",
+          "conclusión"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j15",
+      "n": 15,
+      "unit": 3,
+      "meeting": 3,
+      "focus": {
+        "en": "Slides: Early Life & Roots, Achievements, Challenges, Legacy",
+        "es": "Diapositivas: infancia y raíces, logros, desafíos, legado"
+      },
+      "prompt": {
+        "en": "Which challenge your person overcame will your audience remember most? Explain how it connects to their legacy.",
+        "es": "¿Qué desafío superado por tu persona recordará más tu audiencia? Explica cómo se relaciona con su legado."
+      },
+      "share": {
+        "en": "Tell your partner the challenge in two sentences. They tell you what they would remember.",
+        "es": "Cuéntale a tu compañero el desafío en dos oraciones. Él te dice qué recordaría."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "___ overcame ___, which shaped their legacy by ___."
+        ],
+        "es": [
+          "___ superó ___, lo cual formó su legado al ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "legacy",
+          "achievement",
+          "main point"
+        ],
+        "es": [
+          "legado",
+          "logro",
+          "punto principal"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j16",
+      "n": 16,
+      "unit": 3,
+      "meeting": 4,
+      "focus": {
+        "en": "Storytelling in informative speaking",
+        "es": "Narración en el discurso informativo"
+      },
+      "prompt": {
+        "en": "Choose one main point. Plan a three-sentence story or moment from your person's life that brings it to life: what happened, why it mattered, what it shows.",
+        "es": "Elige un punto principal. Planea una historia o un momento de la vida de tu persona, en tres oraciones, que le dé vida: qué pasó, por qué importó y qué muestra."
+      },
+      "share": {
+        "en": "Tell the story in 30 seconds.",
+        "es": "Cuenta la historia en 30 segundos."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "One moment that shows ___ is when ___."
+        ],
+        "es": [
+          "Un momento que muestra ___ es cuando ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "anecdote",
+          "narrative",
+          "vivid detail"
+        ],
+        "es": [
+          "anécdota",
+          "narrativa",
+          "detalle vívido"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j17",
+      "n": 17,
+      "unit": 3,
+      "meeting": 5,
+      "focus": {
+        "en": "Presentation aids; References slide",
+        "es": "Apoyos visuales; diapositiva de referencias"
+      },
+      "prompt": {
+        "en": "Describe the visual you will use for one main point. How does it help listeners understand, and how will you credit it on the slide and out loud?",
+        "es": "Describe el apoyo visual que usarás para un punto principal. ¿Cómo ayuda a que la audiencia entienda y cómo darás crédito a su fuente en la diapositiva y en voz alta?"
+      },
+      "share": {
+        "en": "Your partner asks one question your visual should answer.",
+        "es": "Tu compañero hace una pregunta que tu apoyo visual debería responder."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "This visual helps because ___. I will credit it by ___."
+        ],
+        "es": [
+          "Este apoyo visual ayuda porque ___. Le daré crédito ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "presentation aid",
+          "citation",
+          "References slide"
+        ],
+        "es": [
+          "apoyo visual",
+          "cita",
+          "diapositiva de referencias"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j18",
+      "n": 18,
+      "unit": 3,
+      "meeting": 6,
+      "focus": {
+        "en": "Peer rehearsals and revision",
+        "es": "Ensayos con compañeros y revisión"
+      },
+      "prompt": {
+        "en": "Write the most useful feedback you received in rehearsal and the change you will make. If you gave feedback, what made yours useful?",
+        "es": "Escribe la retroalimentación más útil que recibiste en el ensayo y el cambio que harás. Si diste retroalimentación, ¿qué hizo que fuera útil?"
+      },
+      "share": {
+        "en": "Thank a rehearsal partner for one specific piece of feedback, or give one to someone new.",
+        "es": "Agradece a un compañero de ensayo por una retroalimentación específica, o da una a alguien nuevo."
+      },
+      "alt": {
+        "en": "Write about feedback you gave, not received.",
+        "es": "Escribe sobre la retroalimentación que diste, no la que recibiste."
+      },
+      "frames": {
+        "en": [
+          "The most useful feedback was ___. I will change ___."
+        ],
+        "es": [
+          "La retroalimentación más útil fue ___. Voy a cambiar ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "feedback",
+          "revision",
+          "timing"
+        ],
+        "es": [
+          "retroalimentación",
+          "revisión",
+          "control del tiempo"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j19",
+      "n": 19,
+      "unit": 3,
+      "meeting": 7,
+      "focus": {
+        "en": "Speeches; reflection and celebration",
+        "es": "Discursos; reflexión y celebración"
+      },
+      "prompt": {
+        "en": "Name one person a classmate taught you about and one fact you will remember. What made that speech easy to learn from?",
+        "es": "Nombra a una persona sobre la que te enseñó un compañero y un dato que recordarás. ¿Qué hizo que fuera fácil aprender de ese discurso?"
+      },
+      "share": {
+        "en": "Share your fact. Your partner shares theirs; find one connection between the two people.",
+        "es": "Comparte tu dato. Tu compañero comparte el suyo; encuentren una conexión entre las dos personas."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "I learned that ___ because the speaker ___."
+        ],
+        "es": [
+          "Aprendí que ___ porque el orador ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "impact",
+          "organization",
+          "delivery"
+        ],
+        "es": [
+          "impacto",
+          "organización",
+          "presentación oral"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j-u3-flex",
+      "n": null,
+      "flex": true,
+      "unit": 3,
+      "meeting": 8,
+      "focus": {
+        "en": "Final rehearsal",
+        "es": "Ensayo final"
+      },
+      "prompt": {
+        "en": "Which part of your speech is most likely to run long or go wrong? Write what you will cut or do if it does.",
+        "es": "¿Qué parte de tu discurso tiene más probabilidad de alargarse o salir mal? Escribe qué recortarás o qué harás si pasa."
+      },
+      "share": {
+        "en": "Trade backup plans.",
+        "es": "Intercambien planes de respaldo."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "If ___ happens, I will ___."
+        ],
+        "es": [
+          "Si pasa ___, voy a ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "time limit",
+          "contingency"
+        ],
+        "es": [
+          "límite de tiempo",
+          "plan de contingencia"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      },
+      "before": "j19"
+    },
+    {
+      "id": "j20",
+      "n": 20,
+      "unit": 4,
+      "meeting": 1,
+      "focus": {
+        "en": "Methods of delivery; extemporaneous speaking; example",
+        "es": "Métodos de presentación; discurso extemporáneo; ejemplo"
+      },
+      "prompt": {
+        "en": "Compare reading a speech word for word with speaking extemporaneously. Which is easier for the speaker, and which is better for the audience? Explain.",
+        "es": "Compara leer un discurso palabra por palabra con hablar de forma extemporánea. ¿Cuál es más fácil para el orador y cuál es mejor para la audiencia? Explica."
+      },
+      "share": {
+        "en": "Your partner argues the other side for 30 seconds. Respond.",
+        "es": "Tu compañero defiende la otra postura durante 30 segundos. Responde."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "Extemporaneous delivery is better for the audience because ___."
+        ],
+        "es": [
+          "La presentación extemporánea es mejor para la audiencia porque ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "extemporaneous",
+          "manuscript",
+          "memorized",
+          "impromptu"
+        ],
+        "es": [
+          "extemporáneo",
+          "manuscrito",
+          "memorizado",
+          "improvisado"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j21",
+      "n": 21,
+      "unit": 4,
+      "meeting": 2,
+      "focus": {
+        "en": "Clear, concrete language; signposts",
+        "es": "Lenguaje claro y concreto; señalizadores"
+      },
+      "prompt": {
+        "en": "Rewrite this direction so anyone could follow it: \"Put some of the stuff in and mix it for a while.\" Use exact amounts, actions and at least one signpost word.",
+        "es": "Reescribe esta instrucción para que cualquiera pueda seguirla: \"Pon un poco de las cosas y mézclalo un rato\". Usa cantidades exactas, acciones y al menos una palabra señalizadora."
+      },
+      "share": {
+        "en": "Read your version. Your partner acts it out; fix anything they got wrong.",
+        "es": "Lee tu versión. Tu compañero la representa con gestos; corrige lo que haya hecho mal."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "First, ___. Next, ___. Finally, ___."
+        ],
+        "es": [
+          "Primero, ___. Después, ___. Por último, ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "concrete language",
+          "signpost",
+          "sequence"
+        ],
+        "es": [
+          "lenguaje concreto",
+          "señalizador",
+          "secuencia"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j22",
+      "n": 22,
+      "unit": 4,
+      "meeting": 3,
+      "focus": {
+        "en": "Choose a process; prop rules; plan steps",
+        "es": "Elegir un proceso; reglas de utilería; planear los pasos"
+      },
+      "prompt": {
+        "en": "List the steps of the process you will demonstrate. Which step is most likely to confuse your audience, and how will you show it clearly?",
+        "es": "Escribe los pasos del proceso que vas a demostrar. ¿Qué paso es más probable que confunda a tu audiencia y cómo lo mostrarás con claridad?"
+      },
+      "share": {
+        "en": "Walk your partner through the hardest step. They ask one question.",
+        "es": "Explícale a tu compañero el paso más difícil. Él te hace una pregunta."
+      },
+      "alt": {
+        "en": "Choose any everyday process.",
+        "es": "Elige cualquier proceso cotidiano."
+      },
+      "frames": {
+        "en": [
+          "The hardest step is ___, so I will ___."
+        ],
+        "es": [
+          "El paso más difícil es ___, así que voy a ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "process",
+          "prop",
+          "demonstration"
+        ],
+        "es": [
+          "proceso",
+          "utilería",
+          "demostración"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j23",
+      "n": 23,
+      "unit": 4,
+      "meeting": 4,
+      "focus": {
+        "en": "Build slides; practice with props",
+        "es": "Crear diapositivas; practicar con la utilería"
+      },
+      "prompt": {
+        "en": "What could go wrong with your props during the speech? Write a plan B for each problem.",
+        "es": "¿Qué podría salir mal con tu utilería durante el discurso? Escribe un plan B para cada problema."
+      },
+      "share": {
+        "en": "Trade plan Bs. Borrow one idea.",
+        "es": "Intercambien sus planes B. Toma prestada una idea."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "If ___ breaks or fails, I will ___."
+        ],
+        "es": [
+          "Si ___ se rompe o falla, voy a ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "contingency",
+          "rehearsal"
+        ],
+        "es": [
+          "plan de contingencia",
+          "ensayo"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j24",
+      "n": 24,
+      "unit": 4,
+      "meeting": 5,
+      "focus": {
+        "en": "Speeches; reflection",
+        "es": "Discursos; reflexión"
+      },
+      "prompt": {
+        "en": "Describe the demonstration that was easiest to follow, without naming the speaker. What made the steps clear? Name one habit you will carry into your narrative speech.",
+        "es": "Describe la demostración más fácil de seguir, sin nombrar al orador. ¿Qué hizo que los pasos fueran claros? Nombra un hábito que llevarás a tu discurso narrativo."
+      },
+      "share": {
+        "en": "Share the habit. Your partner adds one of theirs.",
+        "es": "Comparte el hábito. Tu compañero agrega uno suyo."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "The steps were clear because ___. I will keep ___."
+        ],
+        "es": [
+          "Los pasos fueron claros porque ___. Voy a mantener ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "clarity",
+          "pacing",
+          "eye contact"
+        ],
+        "es": [
+          "claridad",
+          "ritmo",
+          "contacto visual"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j25",
+      "n": 25,
+      "unit": 5,
+      "meeting": 1,
+      "focus": {
+        "en": "Why stories work; narratives and anecdotes (7.2, 8.2)",
+        "es": "Por qué funcionan las historias; narrativas y anécdotas (7.2, 8.2)"
+      },
+      "prompt": {
+        "en": "Why do stories stick in memory better than a list of facts? Use one idea from \"The Magical Science of Storytelling.\"",
+        "es": "¿Por qué las historias se quedan en la memoria mejor que una lista de datos? Usa una idea de \"The Magical Science of Storytelling\"."
+      },
+      "share": {
+        "en": "Each give one reason. Agree on the strongest.",
+        "es": "Cada uno da una razón. Acuerden cuál es la más fuerte."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "Stories stick because ___."
+        ],
+        "es": [
+          "Las historias se recuerdan porque ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "narrative",
+          "anecdote",
+          "memory"
+        ],
+        "es": [
+          "narrativa",
+          "anécdota",
+          "memoria"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j26",
+      "n": 26,
+      "unit": 5,
+      "meeting": 2,
+      "focus": {
+        "en": "Choose your story; map the story arc",
+        "es": "Elegir tu historia; trazar el arco narrativo"
+      },
+      "prompt": {
+        "en": "List three moments you would be comfortable sharing that taught you something. Which one has the clearest turning point?",
+        "es": "Escribe tres momentos que te sentirías cómodo compartiendo y que te enseñaron algo. ¿Cuál tiene el punto de giro más claro?"
+      },
+      "share": {
+        "en": "Share only the lesson your story teaches, not the details.",
+        "es": "Comparte solo la lección que enseña tu historia, no los detalles."
+      },
+      "alt": {
+        "en": "Invent a character and three moments from their life.",
+        "es": "Inventa un personaje y tres momentos de su vida."
+      },
+      "frames": {
+        "en": [
+          "The turning point is when ___. The lesson is ___."
+        ],
+        "es": [
+          "El punto de giro es cuando ___. La lección es ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "story arc",
+          "turning point",
+          "lesson"
+        ],
+        "es": [
+          "arco narrativo",
+          "punto de giro",
+          "lección"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j27",
+      "n": 27,
+      "unit": 5,
+      "meeting": 3,
+      "focus": {
+        "en": "Vivid details; show, don't tell; tell a partner",
+        "es": "Detalles vívidos; mostrar, no contar; contarle a un compañero"
+      },
+      "prompt": {
+        "en": "Rewrite \"I was nervous\" so the audience can see and hear it. Use at least two senses.",
+        "es": "Reescribe \"Estaba nervioso\" para que la audiencia pueda verlo y oírlo. Usa al menos dos sentidos."
+      },
+      "share": {
+        "en": "Read your rewrite. Your partner names the senses you used.",
+        "es": "Lee tu nueva versión. Tu compañero nombra los sentidos que usaste."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "Instead of telling, I showed ___ by ___."
+        ],
+        "es": [
+          "En lugar de contarlo, mostré ___ al ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "show don't tell",
+          "sensory detail",
+          "vivid language"
+        ],
+        "es": [
+          "mostrar, no contar",
+          "detalle sensorial",
+          "lenguaje vívido"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j28",
+      "n": 28,
+      "unit": 5,
+      "meeting": 4,
+      "focus": {
+        "en": "Narrative speeches",
+        "es": "Discursos narrativos"
+      },
+      "prompt": {
+        "en": "What does a listener do to make a speaker feel safe telling a true story? Name two actions, and one thing a listener should never do.",
+        "es": "¿Qué hace un oyente para que un orador se sienta seguro al contar una historia real? Nombra dos acciones y una cosa que un oyente nunca debe hacer."
+      },
+      "share": {
+        "en": "Choose one action you will both do today.",
+        "es": "Elijan una acción que los dos harán hoy."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "A supportive listener ___, and never ___."
+        ],
+        "es": [
+          "Un oyente solidario ___ y nunca ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "respectful audience",
+          "empathy",
+          "confidentiality"
+        ],
+        "es": [
+          "audiencia respetuosa",
+          "empatía",
+          "confidencialidad"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j29",
+      "n": 29,
+      "unit": 5,
+      "meeting": 5,
+      "focus": {
+        "en": "Finish speeches; reflection and peer feedback",
+        "es": "Terminar los discursos; reflexión y retroalimentación entre compañeros"
+      },
+      "prompt": {
+        "en": "Which storytelling technique from this week stood out to you, and why did it work? Describe the technique, not the person's private details.",
+        "es": "¿Qué técnica narrativa de esta semana te llamó la atención y por qué funcionó? Describe la técnica, no los detalles privados de la persona."
+      },
+      "share": {
+        "en": "Share the technique. Your partner names where they could use it.",
+        "es": "Comparte la técnica. Tu compañero dice dónde podría usarla."
+      },
+      "alt": {
+        "en": "Use a story from a film, book or show.",
+        "es": "Usa una historia de una película, un libro o una serie."
+      },
+      "frames": {
+        "en": [
+          "The technique ___ worked because ___."
+        ],
+        "es": [
+          "La técnica ___ funcionó porque ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "technique",
+          "pacing",
+          "pause"
+        ],
+        "es": [
+          "técnica",
+          "ritmo",
+          "pausa"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j30",
+      "n": 30,
+      "unit": 6,
+      "meeting": 1,
+      "focus": {
+        "en": "Ethos, pathos, logos; analyze a commercial",
+        "es": "Ethos, pathos, logos; análisis de un comercial"
+      },
+      "prompt": {
+        "en": "Think of an ad you have seen recently. Which appeal did it rely on most, and was its use fair to the viewer?",
+        "es": "Piensa en un anuncio que hayas visto recientemente. ¿En qué apelación se apoyó más y fue justo su uso con el espectador?"
+      },
+      "share": {
+        "en": "Describe the ad. Your partner guesses the appeal before you say it.",
+        "es": "Describe el anuncio. Tu compañero adivina la apelación antes de que la digas."
+      },
+      "alt": {
+        "en": "Use an Ad Detective case.",
+        "es": "Usa un caso de Ad Detective."
+      },
+      "frames": {
+        "en": [
+          "The ad used ___ when it ___. That was fair / unfair because ___."
+        ],
+        "es": [
+          "El anuncio usó ___ cuando ___. Fue justo / injusto porque ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "ethos",
+          "pathos",
+          "logos"
+        ],
+        "es": [
+          "ethos",
+          "pathos",
+          "logos"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j31",
+      "n": 31,
+      "unit": 6,
+      "meeting": 2,
+      "focus": {
+        "en": "Choose a ProCon question (college: Monroe's sequence, local problem)",
+        "es": "Elegir una pregunta de ProCon (universidad: secuencia de Monroe, problema local)"
+      },
+      "prompt": {
+        "en": "Write two debatable questions you might argue (college: a local problem and the person with power to fix it). For each, write the strongest reason someone would disagree with you.",
+        "es": "Escribe dos preguntas debatibles que podrías defender (universidad: un problema local y la persona con poder para resolverlo). Para cada una, escribe la razón más fuerte por la que alguien no estaría de acuerdo contigo."
+      },
+      "share": {
+        "en": "Your partner picks the question they would most like to hear argued.",
+        "es": "Tu compañero elige la pregunta que más le gustaría escuchar defendida."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "Someone might disagree because ___."
+        ],
+        "es": [
+          "Alguien podría no estar de acuerdo porque ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "claim",
+          "debatable",
+          "decision-maker"
+        ],
+        "es": [
+          "afirmación",
+          "debatible",
+          "persona que toma decisiones"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j32",
+      "n": 32,
+      "unit": 6,
+      "meeting": 3,
+      "focus": {
+        "en": "Thesis and three arguments (college: problem and decision-maker)",
+        "es": "Tesis y tres argumentos (universidad: problema y persona que decide)"
+      },
+      "prompt": {
+        "en": "Write your claim in one sentence and list three reasons. Which reason needs the most evidence, and what kind?",
+        "es": "Escribe tu afirmación en una oración y enumera tres razones. ¿Qué razón necesita más evidencia y de qué tipo?"
+      },
+      "share": {
+        "en": "Read your claim. Your partner says which reason convinced them most.",
+        "es": "Lee tu afirmación. Tu compañero dice qué razón lo convenció más."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "I believe ___ because ___, ___ and ___."
+        ],
+        "es": [
+          "Creo que ___ porque ___, ___ y ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "thesis",
+          "reason",
+          "evidence"
+        ],
+        "es": [
+          "tesis",
+          "razón",
+          "evidencia"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j33",
+      "n": 33,
+      "unit": 6,
+      "meeting": 4,
+      "focus": {
+        "en": "Research in Gale",
+        "es": "Investigación en Gale"
+      },
+      "prompt": {
+        "en": "Would statistics, expert testimony or examples best convince someone who disagrees with you? Why?",
+        "es": "¿Qué convencería mejor a alguien que no está de acuerdo contigo: estadísticas, el testimonio de un experto o ejemplos? ¿Por qué?"
+      },
+      "share": {
+        "en": "Explain your choice. Your partner plays the skeptic and asks for proof.",
+        "es": "Explica tu elección. Tu compañero hace de escéptico y te pide pruebas."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "A skeptic would trust ___ because ___."
+        ],
+        "es": [
+          "Un escéptico confiaría en ___ porque ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "statistic",
+          "expert testimony",
+          "skeptic"
+        ],
+        "es": [
+          "estadística",
+          "testimonio de un experto",
+          "escéptico"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j34",
+      "n": 34,
+      "unit": 6,
+      "meeting": 5,
+      "focus": {
+        "en": "Logical reasoning and fallacies",
+        "es": "Razonamiento lógico y falacias"
+      },
+      "prompt": {
+        "en": "Name the fallacy: \"Everyone at school has these shoes, so you need them too.\" Explain why the reasoning is weak, then rewrite it as a fair argument.",
+        "es": "Nombra la falacia: \"Todos en la escuela tienen estos zapatos, así que tú también los necesitas\". Explica por qué el razonamiento es débil y luego reescríbelo como un argumento justo."
+      },
+      "share": {
+        "en": "Read your rewrite. Your partner checks it has a real reason.",
+        "es": "Lee tu nueva versión. Tu compañero revisa que tenga una razón real."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "This is ___ because ___. A fair version is ___."
+        ],
+        "es": [
+          "Esto es ___ porque ___. Una versión justa es ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "fallacy",
+          "bandwagon",
+          "reasoning"
+        ],
+        "es": [
+          "falacia",
+          "efecto de arrastre",
+          "razonamiento"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j35",
+      "n": 35,
+      "unit": 6,
+      "meeting": 6,
+      "focus": {
+        "en": "Fallacy hunt; build slides for your arguments",
+        "es": "Búsqueda de falacias; crear diapositivas para tus argumentos"
+      },
+      "prompt": {
+        "en": "Which of your three arguments is strongest right now? Name its evidence, and check it for a fallacy you could slip into.",
+        "es": "¿Cuál de tus tres argumentos es el más fuerte por ahora? Nombra su evidencia y revisa si podrías caer en alguna falacia."
+      },
+      "share": {
+        "en": "Make your strongest argument in 30 seconds. Your partner names any weak spot.",
+        "es": "Presenta tu argumento más fuerte en 30 segundos. Tu compañero señala cualquier punto débil."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "My strongest argument is ___, supported by ___."
+        ],
+        "es": [
+          "Mi argumento más fuerte es ___, apoyado por ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "argument",
+          "support",
+          "logical fallacy"
+        ],
+        "es": [
+          "argumento",
+          "apoyo",
+          "falacia lógica"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j36",
+      "n": 36,
+      "unit": 6,
+      "meeting": 7,
+      "focus": {
+        "en": "Counterargument and rebuttal",
+        "es": "Contraargumento y refutación"
+      },
+      "prompt": {
+        "en": "Write the strongest argument against your position. Then write a respectful rebuttal.",
+        "es": "Escribe el argumento más fuerte en contra de tu postura. Luego escribe una refutación respetuosa."
+      },
+      "share": {
+        "en": "Your partner reads the counterargument; you answer it out loud.",
+        "es": "Tu compañero lee el contraargumento; tú lo respondes en voz alta."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "Some people argue ___. However, ___."
+        ],
+        "es": [
+          "Algunas personas sostienen que ___. Sin embargo, ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "counterargument",
+          "rebuttal",
+          "refutation"
+        ],
+        "es": [
+          "contraargumento",
+          "réplica",
+          "refutación"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j37",
+      "n": 37,
+      "unit": 6,
+      "meeting": 8,
+      "focus": {
+        "en": "Visuals, References slide, conclusion (college: the specific ask)",
+        "es": "Apoyos visuales, diapositiva de referencias, conclusión (universidad: la petición específica)"
+      },
+      "prompt": {
+        "en": "Write two clinchers: one calls for action, one leaves a strong image. Which fits your audience? (College: write your ask: who, what, by when.)",
+        "es": "Escribe dos cierres: uno que haga un llamado a la acción y otro que deje una imagen fuerte. ¿Cuál se ajusta a tu audiencia? (Universidad: escribe tu petición: quién, qué y para cuándo.)"
+      },
+      "share": {
+        "en": "Deliver your better clincher. Your partner rates it 1–5 and says why.",
+        "es": "Presenta tu mejor cierre. Tu compañero lo califica del 1 al 5 y dice por qué."
+      },
+      "alt": null,
+      "frames": {
+        "en": [
+          "My clincher is ___ because my audience ___."
+        ],
+        "es": [
+          "Mi cierre es ___ porque mi audiencia ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "clincher",
+          "call to action",
+          "visualization"
+        ],
+        "es": [
+          "cierre",
+          "llamado a la acción",
+          "visualización"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j38",
+      "n": 38,
+      "unit": 6,
+      "meeting": 9,
+      "focus": {
+        "en": "Peer rehearsal; revise; Academic Integrity check",
+        "es": "Ensayo con compañeros; revisión; control de integridad académica"
+      },
+      "prompt": {
+        "en": "What feedback changed your speech the most? How have you followed the class policy on sources and AI while preparing this speech?",
+        "es": "¿Qué retroalimentación cambió más tu discurso? ¿Cómo has seguido la política de la clase sobre fuentes e IA al preparar este discurso?"
+      },
+      "share": {
+        "en": "Share your biggest revision. Your partner shares theirs.",
+        "es": "Comparte tu revisión más grande. Tu compañero comparte la suya."
+      },
+      "alt": {
+        "en": "Answer about the feedback you gave.",
+        "es": "Responde sobre la retroalimentación que diste."
+      },
+      "frames": {
+        "en": [
+          "The biggest change was ___ because ___."
+        ],
+        "es": [
+          "El cambio más grande fue ___ porque ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "revision",
+          "academic integrity",
+          "attribution"
+        ],
+        "es": [
+          "revisión",
+          "integridad académica",
+          "atribución"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    },
+    {
+      "id": "j39",
+      "n": 39,
+      "unit": 6,
+      "meeting": 10,
+      "focus": {
+        "en": "Speeches; semester reflection",
+        "es": "Discursos; reflexión del semestre"
+      },
+      "prompt": {
+        "en": "Reread Journal 1. How has your idea of a good speaker changed? Name one skill you have grown and one you will keep working on.",
+        "es": "Vuelve a leer el Diario 1. ¿Cómo ha cambiado tu idea de un buen orador? Nombra una habilidad que has desarrollado y una en la que seguirás trabajando."
+      },
+      "share": {
+        "en": "Share your growth. Your partner names one moment they saw it this semester.",
+        "es": "Comparte tu crecimiento. Tu compañero nombra un momento en que lo vio este semestre."
+      },
+      "alt": {
+        "en": "Reflect on how a typical student grows across the course.",
+        "es": "Reflexiona sobre cómo crece un estudiante típico a lo largo del curso."
+      },
+      "frames": {
+        "en": [
+          "At first I thought ___. Now I know ___."
+        ],
+        "es": [
+          "Al principio pensaba que ___. Ahora sé que ___."
+        ]
+      },
+      "vocab": {
+        "en": [
+          "growth",
+          "reflection",
+          "goal"
+        ],
+        "es": [
+          "crecimiento",
+          "reflexión",
+          "meta"
+        ]
+      },
+      "status": {
+        "en": "approved",
+        "es": "draft"
+      }
+    }
+  ]
+}

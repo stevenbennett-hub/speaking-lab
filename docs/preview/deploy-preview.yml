@@ -1,0 +1,50 @@
+# Workflow for the SEPARATE repository stevenbennett-hub/speaking-lab-preview
+# (copy to .github/workflows/deploy-preview.yml there; it does nothing in this repository).
+#
+# It builds https://stevenbennett-hub.github.io/speaking-lab-preview/ from the dev branch of
+# stevenbennett-hub/speaking-lab, runs the same tests, and adds ONE file, site/data/preview.json,
+# which turns on Development Preview behavior (js/build.js): banner, all six high school units open,
+# any date viewable, progress saved separately. The production site never reads that file.
+# No tokens or secrets are needed while speaking-lab is a public repository.
+name: Build the development preview from speaking-lab@dev
+
+on:
+  workflow_dispatch:          # Actions tab > Run workflow, after uploading a new dev build
+  schedule:
+    - cron: "17 */3 * * *"    # also every 3 hours, so the preview follows dev without anyone pressing a button
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: preview-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: stevenbennett-hub/speaking-lab
+          ref: dev
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test tests/*.test.mjs
+      - name: Mark this build as the development preview
+        run: echo '{ "channel": "preview" }' > site/data/preview.json
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

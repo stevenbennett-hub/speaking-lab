@@ -1,0 +1,85 @@
+{
+  "$comment": "Assignment-specific AI permission levels (Mr. Bennett's classroom AI policy). A lesson in lessons.json may set ai: { level, note: {en, es} }; a day without a setting uses default. When a class day has two lessons with different settings, the more restrictive one applies. The AI Coaching Studio, the Daily Learning Dashboard and presentation mode all show the current level. A prompt being available never means it is allowed: rank decides which coaching prompts fit the current assignment. Expanded assistance needs a note that says exactly what is allowed. Optional eld: true on a lesson's ai setting (only when Mr. Bennett explicitly allows it) also unlocks the prompts marked eld (vocabulary explanations, sentence-frame practice) for English language development; it never unlocks anything when the level is none.",
+  "version": 1,
+  "default": "grammar",
+  "levels": [
+    {
+      "id": "none",
+      "rank": 0,
+      "icon": "no",
+      "name": {
+        "en": "AI assistance not permitted",
+        "es": "No se permite ayuda de IA"
+      },
+      "short": {
+        "en": "No AI on this assignment",
+        "es": "Sin IA en esta tarea"
+      },
+      "explain": {
+        "en": "Do this assignment without AI tools, including grammar and spelling tools that rewrite your sentences. Your own thinking and your own words are what this assignment checks.",
+        "es": "Haz esta tarea sin herramientas de IA, incluidas las de gramática y ortografía que reescriben tus oraciones. Esta tarea revisa tu propio pensamiento y tus propias palabras."
+      }
+    },
+    {
+      "id": "grammar",
+      "rank": 1,
+      "icon": "spell",
+      "name": {
+        "en": "Grammar and spelling feedback only",
+        "es": "Solo comentarios de gramática y ortografía"
+      },
+      "short": {
+        "en": "Grammar and spelling only",
+        "es": "Solo gramática y ortografía"
+      },
+      "explain": {
+        "en": "You may ask an approved AI tool to point out grammar and spelling errors in writing you already wrote. You decide which corrections to make. No ideas, wording, research or organization from AI. This is the class default.",
+        "es": "Puedes pedirle a una herramienta de IA aprobada que señale errores de gramática y ortografía en algo que ya escribiste. Tú decides qué correcciones hacer. Nada de ideas, redacción, investigación ni organización de la IA. Esta es la regla general de la clase."
+      }
+    },
+    {
+      "id": "coach",
+      "rank": 2,
+      "icon": "coach",
+      "name": {
+        "en": "Guided coaching permitted",
+        "es": "Se permite coaching guiado"
+      },
+      "short": {
+        "en": "Guided coaching allowed",
+        "es": "Coaching guiado permitido"
+      },
+      "explain": {
+        "en": "You may use the coaching prompts in the AI Coaching Studio: AI may ask you questions, explain ideas and give feedback on work you wrote. It may not write, rewrite or research for you. Fill in the AI-use disclosure when you turn in the work.",
+        "es": "Puedes usar los prompts de coaching del Estudio de coaching con IA: la IA puede hacerte preguntas, explicar ideas y comentar el trabajo que tú escribiste. No puede escribir, reescribir ni investigar por ti. Completa la declaración de uso de IA cuando entregues el trabajo."
+      }
+    },
+    {
+      "id": "expanded",
+      "rank": 3,
+      "icon": "plus",
+      "name": {
+        "en": "Expanded instructor-authorized assistance",
+        "es": "Ayuda ampliada autorizada por el maestro"
+      },
+      "short": {
+        "en": "Expanded use (see note)",
+        "es": "Uso ampliado (ver nota)"
+      },
+      "explain": {
+        "en": "Mr. Bennett has allowed more for this assignment. The note says exactly what. Everything else still follows guided coaching, and you still disclose your AI use.",
+        "es": "El Sr. Bennett permitió más para esta tarea. La nota dice exactamente qué. Todo lo demás sigue las reglas del coaching guiado y sigues declarando tu uso de IA."
+      }
+    }
+  ],
+  "eld": {
+    "name": {
+      "en": "English language development support allowed",
+      "es": "Se permite apoyo para el desarrollo del inglés"
+    },
+    "explain": {
+      "en": "For this assignment, multilingual learners may also use the English language development prompts (explaining a word, practicing sentence frames). The ideas and the speech stay yours.",
+      "es": "En esta tarea, los estudiantes multilingües también pueden usar los prompts de desarrollo del inglés (explicar una palabra, practicar marcos de oración). Las ideas y el discurso siguen siendo tuyos."
+    }
+  }
+}

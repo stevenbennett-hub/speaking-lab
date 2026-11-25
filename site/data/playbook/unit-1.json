@@ -1,0 +1,1901 @@
+{
+  "$comment": "Instructor Playbook, Unit 1 (teacher-facing, English). Extends lessons.json by lesson key: objectives, success criteria and journals are NOT copied here; the Lesson Manager shows them from lessons.json and journals.json. Loaded only by the Lesson Manager (never by the student pages). Schema: docs/playbook/LESSON_SCHEMA.md. Every item is a draft until Mr. Bennett approves it. Video segments and timestamps are blank until he previews them (verified: false); nothing here quotes a video.",
+  "schema": 1,
+  "unit": 1,
+  "status": "draft",
+  "updated": "2026-11-24",
+  "framework": [
+    {
+      "id": "learn",
+      "name": "Learn",
+      "what": "New ideas, explained and modeled by the teacher or the text."
+    },
+    {
+      "id": "observe",
+      "name": "Observe",
+      "what": "Watch or read a real speaker or situation with a focused task."
+    },
+    {
+      "id": "investigate",
+      "name": "Investigate",
+      "what": "Analyze a case: labs, studios, discussion."
+    },
+    {
+      "id": "practice",
+      "name": "Practice",
+      "what": "Low-stakes rehearsal with a partner or small group."
+    },
+    {
+      "id": "perform",
+      "name": "Perform",
+      "what": "The speech in front of the class, scored with the rubric."
+    },
+    {
+      "id": "reflect",
+      "name": "Reflect",
+      "what": "Journals, self-assessment and goal setting."
+    }
+  ],
+  "block": {
+    "minutes": 90,
+    "journal": 15,
+    "transitions": 3,
+    "note": "Every block opens with the Daily Learning Journal: 10 minutes handwritten, then about 5 minutes of stand and share with someone new. Planned days are taught as segments inside the block. The Lesson Manager adds up each block's core activities, shortens them to their listed short times when a block is crowded, gives speech time whatever is left, and adds stretch activities when there is room."
+  },
+  "overview": {
+    "title": "Talk to Me: The Communication Process",
+    "essential": "How does communication work, and what does it take to be heard as yourself?",
+    "questions": [
+      "What happens between a speaker and an audience that makes a message land or fail?",
+      "Why do nerves happen, and what can a speaker (and an audience) do about them?",
+      "What makes a speech honestly mine?"
+    ],
+    "understandings": [
+      "Communication is transactional: speaker and audience send and receive at the same time, inside a context.",
+      "Noise and feedback decide how accurately a message is understood.",
+      "Nerves are normal; preparation and practice are the most reliable strategies.",
+      "Credit for ideas and words is spoken out loud; AI can coach, not author.",
+      "An audience has responsibilities too: a respectful room makes every speaker better."
+    ],
+    "summative": "Self-Introduction Speech (high school, 1–2 min, 50 points) or Personal Artifact Speech (college, 2–3 min, 50 points), scored with the intro rubric in Canvas. Academic Integrity must be met for the score to count.",
+    "arc": [
+      {
+        "phase": "learn",
+        "where": "w01d2, w01d4, w02d1",
+        "what": "Transactional model (Ch. 1 §1.3), speech anxiety (§1.2), ethics and the AI policy (Ch. 3)."
+      },
+      {
+        "phase": "observe",
+        "where": "w01d2, w01d4, w02d2",
+        "what": "A model video for the diagram, a TEDx talk on fear, two model self-introductions, the Gettysburg Address."
+      },
+      {
+        "phase": "investigate",
+        "where": "w01d2, w01d3, w02d1, flex",
+        "what": "Communication Model Lab, back-to-back drawing, AI Coaching Studio, Beyond the Podium (flex)."
+      },
+      {
+        "phase": "practice",
+        "where": "w01d1, w01d5, w02d2",
+        "what": "Partner introductions, delivery drills, timed rehearsal with peer feedback."
+      },
+      {
+        "phase": "perform",
+        "where": "w02d3, w02d4, w02d5",
+        "what": "Self-introduction speeches."
+      },
+      {
+        "phase": "reflect",
+        "where": "every block, w02d5",
+        "what": "Daily journals; rubric self-assessment; one strength and one goal."
+      }
+    ],
+    "vocab": [
+      "communication",
+      "sender",
+      "receiver",
+      "message",
+      "channel",
+      "encode",
+      "decode",
+      "noise (contextual, physical, psychological)",
+      "feedback",
+      "context",
+      "transactional model",
+      "linear model",
+      "speech anxiety",
+      "eye contact",
+      "vocal variety",
+      "posture",
+      "plagiarism",
+      "academic integrity",
+      "oral citation",
+      "key word",
+      "hook",
+      "rubric"
+    ],
+    "readings": [
+      "Exploring Public Speaking 4.2, Chapter 1 (§1.2 speaking anxiety, §1.3 the transactional model). Link: Unit 1 page → Readings.",
+      "Exploring Public Speaking 4.2, Chapter 3 (ethics in public speaking)."
+    ],
+    "materials": [
+      "Projector with the Speaking Lab open (Unit 1 → Today).",
+      "District laptops (charged; check the cart the day before).",
+      "Journals (composition notebooks) and pencils.",
+      "Back-to-back drawing pictures: 6–8 simple line drawings of shapes, printed (see w01d3).",
+      "Blank paper; timer visible to the class.",
+      "Index cards (3×5) for note cards; a few spare objects for students who forget theirs (a pen, a key, a school ID holder).",
+      "Printed intro rubric (one per student) and a class set of feedback slips (w02d3–d4).",
+      "Time cards (green 1:00, yellow 1:45, red 2:00; college: 2:00 / 2:45 / 3:00) or a classroom timer (personal phones are not used)."
+    ],
+    "prep": [
+      "Preview every video you plan to show and write the start and end times on the viewing guide (they are blank on purpose).",
+      "Check that YouTube plays on the district network in your room. If it is blocked, use the alternative listed in each guide.",
+      "Open the Communication Model Lab and The Respectful Audience Lab once yourself so you can demo them.",
+      "Make a copy of the Communication Process lesson slides and the Self-Introduction (HS) / Personal Artifact (college) slides (Unit 1 page → Slides).",
+      "Decide the speech order method (volunteers first, then a random draw) and post the schedule before w02d3.",
+      "Know your Unit 1 meeting dates for each group (Lesson Manager → Playbook → Meeting map)."
+    ],
+    "scheduling": [
+      "Fall: both groups start with a short 'getting started' meeting (w01d1 only), and the next block repeats w01d1. Use the repeat as review and finish the site tour for absent students.",
+      "Fall has a flex meeting (journal 'When Communication Breaks Down'): it is the day for Beyond the Podium.",
+      "Spring odd has four meetings, so speeches fall in two blocks: start speeches as soon as the integrity lesson and rehearsal are done.",
+      "Closures and extended lessons (overrides) change the meetings automatically; the meeting plans always follow the live schedule."
+    ],
+    "speechDays": "Plan about 3 minutes per high school speaker (1–2 minute speech, applause, the next speaker walking up, listeners finishing a feedback slip) and about 4 minutes per college speaker. That is roughly 18–20 high school speakers per hour. Count your roster and spread speakers over the speech meetings in the meeting map.",
+    "speech": {
+      "minutes": 2,
+      "colMinutes": 3,
+      "feedback": 0.5,
+      "transition": 0.5,
+      "note": "Default per-speaker planning time: the longest allowed speech (high school 2 minutes, college 3) plus 30 seconds of written feedback and 30 seconds to change speakers. Adjust in Playbook → Planning settings."
+    },
+    "btp": "Beyond the Podium, Episode 1 (55-second film, seven-stage lab) supports the model's noise and feedback and the audience's role. Use it on the fall flex meeting, or as an optional observation after back-to-back drawing. It never replaces the drawing activity, the integrity lesson or speech time.",
+    "spare": [
+      "Communication Model Lab: the next level (Unit 1 → Labs and studios).",
+      "Beyond the Podium Episode 1: Read the Room, Watch the Film, Communication Detective (about 25 minutes).",
+      "The Respectful Audience Lab or The Art of Listening.",
+      "Extra rehearsal rounds with a timer (week 2).",
+      "Voices of Change: the Gettysburg Address viewing guide."
+    ],
+    "college": "College Public Speaking stays off unless authorized. When it is on, college students give the Personal Artifact Speech (2–3 min, key-word speaking outline, extemporaneous) on the same days and use the college rubric.",
+    "access": "Universal Design for Learning: every new idea is shown three ways (words, the diagram, a situation); every task has a spoken, written or seated option; feedback is private by default. Students never have to explain why they need an option.",
+    "ml": "The learning-English pathway and the Guided language-support setting show English and Spanish side by side with vocabulary open. Pre-teach the seven model words with the diagram, allow home-language partner talk before English sharing, and give sentence frames for every spoken task. Accents are never scored.",
+    "confirm": [
+      {
+        "id": "slides",
+        "q": "Does the high school Self-Introduction Speech require slides?",
+        "why": "The pacing for w02d2 says 'finish slides and your note card', and a Self-Introduction slide deck exists, but the assignment lists only an object and a note card."
+      },
+      {
+        "id": "wording",
+        "q": "Accept, edit or decline the suggested Unit 1 English and Spanish wording changes?",
+        "why": "Listed in the curriculum review (Unit 1 review notes). Nothing has been changed."
+      },
+      {
+        "id": "balance",
+        "q": "Is the balance of speech preparation and performance time sufficient?",
+        "why": "The meeting map shows rehearsal and speech minutes for each group, and whether all students fit, using your class size."
+      },
+      {
+        "id": "subfill",
+        "q": "Concise substitute plans now fill the whole 90-minute block. Is the added time used the way you want?",
+        "why": "After the day's substitute-suitable steps, students do independent practice in the unit's existing labs, then reading, vocabulary or speech rehearsal (practice only, never scored), before a 5-minute exit self-check and 3 minutes of final procedures. Change a day's substitute steps in Playbook → Edit."
+      }
+    ],
+    "speechAssigned": "w01d4",
+    "subStarter": {
+      "labs": [
+        "listenlab",
+        "audlab"
+      ],
+      "note": "Introductory listening and audience-awareness practice for substitute days before any lab has been taught in class."
+    },
+    "exitFromJournal": [
+      {
+        "lesson": "w01d4",
+        "journal": "j03",
+        "when": "Only when this group's schedule skips Journal 3 (the shortened spring odd schedule). Journal numbers are unchanged.",
+        "status": "draft"
+      }
+    ]
+  },
+  "videos": [
+    {
+      "id": "v-model-iisd",
+      "title": "The Communication Process Model Captioned",
+      "speaker": "Not named in the title",
+      "channel": "IISD CommApps",
+      "url": "https://www.youtube.com/watch?v=Btj94IHVc6I",
+      "upload": "educational channel",
+      "onSite": "Unit 1 videos (teacher pick)",
+      "lessons": [
+        "w01d2"
+      ],
+      "purpose": "A first look at the sender–receiver model before students label the diagram.",
+      "segment": {
+        "start": null,
+        "end": null,
+        "verified": false,
+        "note": "Preview and fill in. Show only the part that names the model's parts."
+      },
+      "before": "Look at the blank diagram. Which two parts do you think matter most when a message goes wrong?",
+      "during": "Write each model word you hear on the diagram where it belongs. Leave a question mark if you are not sure.",
+      "pauses": [
+        "After the video names the sender and receiver: who is the sender in our class right now?",
+        "After it explains feedback: what feedback have you given me so far today?"
+      ],
+      "after": "Compare diagrams with a partner. Fix one label using the key concepts in the Unit guide.",
+      "practice": "Explain one part of the model to a partner without notes (success criterion).",
+      "check": "Collect or photograph the diagrams; look for feedback drawn as a two-way arrow.",
+      "language": "Word bank of the seven parts with a picture next to each; the frame 'The ___ is the person who ___.'",
+      "college": "Contrast the transactional model with the linear model (Shannon and Weaver): what does the linear model leave out?",
+      "captions": "The title says the video is captioned. Turn captions on before showing it.",
+      "alternative": "If YouTube is blocked: the key concepts and diagram (Unit 1 → Unit guide), then the Communication Model Lab."
+    },
+    {
+      "id": "v-model-greggu",
+      "title": "The Communication Process",
+      "speaker": "Not named in the title",
+      "channel": "GreggU",
+      "url": "https://www.youtube.com/watch?v=7F2C5Z49zCo",
+      "upload": "educational channel",
+      "onSite": "Unit 1 videos",
+      "lessons": [
+        "w01d2"
+      ],
+      "purpose": "Alternate explanation of the model for students who need a second pass, or for small-group reteaching.",
+      "segment": {
+        "start": null,
+        "end": null,
+        "verified": false,
+        "note": "Preview and fill in."
+      },
+      "before": "Which part of the model are you still unsure about?",
+      "during": "Listen only for the part you chose. Write its meaning in your own words.",
+      "pauses": [
+        "Stop after your part is explained: say it back to a partner."
+      ],
+      "after": "Add one example from your own life to that part of your diagram.",
+      "practice": "Teach your part to someone who chose a different one.",
+      "check": "Exit: one part, one definition, one example.",
+      "language": "Frame: 'In my life, an example of ___ is ___.'",
+      "college": "Find where the explanation places context. Is it inside or around the model? Why does that matter?",
+      "captions": "Check whether captions are available when you preview it.",
+      "alternative": "Small-group reteach with the diagram and the Communication Model Lab hints."
+    },
+    {
+      "id": "v-model-begrepen",
+      "title": "How Communication Works | The Communication Model – explained with examples",
+      "speaker": "Not named in the title",
+      "channel": "Begrepen be",
+      "url": "https://www.youtube.com/watch?v=RgmwgG2B9G8",
+      "upload": "educational channel",
+      "onSite": "Unit 1 videos",
+      "lessons": [
+        "w01d2",
+        "w01d3"
+      ],
+      "purpose": "Examples of the model in everyday situations; useful before back-to-back drawing.",
+      "segment": {
+        "start": null,
+        "end": null,
+        "verified": false,
+        "note": "Preview and fill in. Choose one example situation."
+      },
+      "before": "Where do misunderstandings happen most for you: texting, talking, or class?",
+      "during": "For the example you see, name the channel and one kind of noise.",
+      "pauses": [
+        "After the example: was the noise contextual, physical or psychological?"
+      ],
+      "after": "Predict: in back-to-back drawing, which part of the model will be missing?",
+      "practice": "Write one sentence: 'Without feedback, ___.'",
+      "check": "Hands-up vote on the noise type; listen to two explanations.",
+      "language": "Noise types with a symbol each (ear, body, brain).",
+      "college": "Is a text message transactional? Defend your answer with the model.",
+      "captions": "Check when you preview.",
+      "alternative": "Use the Communication Model Lab's 'Video call with Grandma' scenario as the example."
+    },
+    {
+      "id": "v-intro-broward",
+      "title": "Example: Self-Introduction Speech",
+      "speaker": "A student (not named in the title)",
+      "channel": "browardCollege1",
+      "url": "https://www.youtube.com/watch?v=Hc3CzrBuF8g",
+      "upload": "college's own channel",
+      "onSite": "Unit 1 videos (student example)",
+      "lessons": [
+        "w01d4",
+        "w02d2"
+      ],
+      "purpose": "A model to calibrate the rubric: students score it together before writing their own.",
+      "segment": {
+        "start": null,
+        "end": null,
+        "verified": false,
+        "note": "Preview. Show the whole speech if it is short."
+      },
+      "before": "Read the Organization row of the rubric. What will a 15-point speech have?",
+      "during": "Mark the hook, the three parts and the ending on your rubric as you hear them.",
+      "pauses": [
+        "None the first time. Watch it straight through, the way an audience would."
+      ],
+      "after": "Score Organization and Audience Connection alone, then compare with a partner. Agree on one score and one piece of evidence.",
+      "practice": "Write your own hook in the same style, but about you.",
+      "check": "Compare class scores. A wide spread means the row needs more explanation before speeches.",
+      "language": "Frame: 'The speaker earned ___ because ___.' Rubric words pre-taught: hook, connection, memorable.",
+      "college": "This is a high school–style intro. What would it need to become a Personal Artifact Speech (thesis, three main points, extemporaneous)?",
+      "captions": "Check when you preview.",
+      "alternative": "Model it yourself: give your own 90-second self-introduction and let students score you (the strongest model in the room)."
+    },
+    {
+      "id": "v-intro-college",
+      "title": "My Self Introduction Speech: Public Speaking (College Course)",
+      "speaker": "The channel's owner (not named in the title)",
+      "channel": "The D.I.Y Reader",
+      "url": "https://www.youtube.com/watch?v=HGV81MfeMpI",
+      "upload": "personal upload",
+      "onSite": "Unit 1 videos (college example)",
+      "lessons": [
+        "w01d4",
+        "w02d2"
+      ],
+      "purpose": "A college-level model for the Personal Artifact Speech, or an advanced comparison for high school students.",
+      "segment": {
+        "start": null,
+        "end": null,
+        "verified": false,
+        "note": "Preview the whole video first; it is a personal upload, so check that it is appropriate for your class."
+      },
+      "before": "What do you expect a college intro to do that a high school one might not?",
+      "during": "Listen for a thesis (one sentence that says what the speech is about).",
+      "pauses": [
+        "After the introduction: what is the thesis?"
+      ],
+      "after": "Compare with the high school model: which one connects better with the audience? Use the rubric's words.",
+      "practice": "Draft a one-sentence thesis for your own speech.",
+      "check": "Thesis sentence on an index card.",
+      "language": "Frame: 'This speech is about ___. You will learn ___.'",
+      "college": "Score it with the college rubric (Organization, Artifact & Meaning, Extemporaneous Delivery).",
+      "captions": "Check when you preview.",
+      "alternative": "Use the Personal Artifact slides' requirements and your own model."
+    },
+    {
+      "id": "v-fear-nacino",
+      "title": "The Secret to Overcoming the Fear of Public Speaking",
+      "speaker": "Sha Nacino",
+      "channel": "TEDx Talks",
+      "url": "https://www.youtube.com/watch?v=h0VesrxpscE",
+      "upload": "official TEDx channel",
+      "onSite": "Unit 1 videos",
+      "lessons": [
+        "w01d4"
+      ],
+      "purpose": "A youth TEDx speaker on fear of speaking, to show that nerves are normal before the speech is assigned.",
+      "segment": {
+        "start": null,
+        "end": null,
+        "verified": false,
+        "note": "Preview the whole talk and choose a segment of about 5 minutes that names a strategy."
+      },
+      "before": "On a scale of 1–5, how nervous does speaking in front of the class make you? (Private; don't share.)",
+      "during": "Write down any strategy the speaker uses or recommends, in your own words.",
+      "pauses": [
+        "At the end of your segment: which strategy could you use this week?"
+      ],
+      "after": "Sort the class's strategies into before the speech, during the speech, and after the speech.",
+      "practice": "Choose two strategies and write them on your plan (success criterion).",
+      "check": "Two strategies written; quick scan as you circulate.",
+      "language": "Frame: 'When I feel ___, I can ___.' (the day's language objective).",
+      "college": "Connect the talk to the textbook's explanation in §1.2. Where do they agree?",
+      "captions": "TEDx uploads usually offer captions; confirm when you preview.",
+      "alternative": "The other TEDx talk, or read §1.2 aloud in pairs and list its strategies."
+    },
+    {
+      "id": "v-fear-dhamani",
+      "title": "How I Overcame My Fear of Public Speaking",
+      "speaker": "Danish Dhamani",
+      "channel": "TEDx Talks",
+      "url": "https://www.youtube.com/watch?v=80UVjkcxGmA",
+      "upload": "official TEDx channel",
+      "onSite": "Unit 1 videos",
+      "lessons": [
+        "w01d4"
+      ],
+      "purpose": "Alternate talk on fear of speaking (choose one of the two talks per class).",
+      "segment": {
+        "start": null,
+        "end": null,
+        "verified": false,
+        "note": "Preview and fill in."
+      },
+      "before": "What is one thing people do when they are nervous in front of a group?",
+      "during": "Notice what the speaker says changed for him. Write it in your own words.",
+      "pauses": [
+        "At the end of your segment: what did he do differently?"
+      ],
+      "after": "Turn his change into advice for a classmate giving their first speech next week.",
+      "practice": "Write the advice on a sticky note for the class board.",
+      "check": "Read the board: are the strategies specific ('practice in front of two people'), not general ('be confident')?",
+      "language": "Frame: 'Before my speech, I will ___.'",
+      "college": "Analyze his structure: how does he use his own story as evidence?",
+      "captions": "Confirm when you preview.",
+      "alternative": "The other TEDx talk, or §1.2."
+    },
+    {
+      "id": "voc-gettysburg",
+      "title": "The Gettysburg Address (as read by Max McLean)",
+      "speaker": "Abraham Lincoln (read by Max McLean)",
+      "channel": "Scott Bacher",
+      "url": "https://www.youtube.com/watch?v=avVwQXIUpYM",
+      "upload": "personal upload of a recording; the site's own note: 'No recording of Lincoln exists (1863). This is a modern reading.'",
+      "onSite": "Voices of Change, Unit 1, week 2 (full public-domain text from Abraham Lincoln Online, Bliss copy)",
+      "lessons": [
+        "w02d2",
+        "w02d5"
+      ],
+      "purpose": "A two-minute speech, like the self-introduction, with a clear structure and a memorable ending.",
+      "segment": {
+        "start": null,
+        "end": null,
+        "verified": false,
+        "note": "Use the full text on the site; the reading is optional."
+      },
+      "before": "Lincoln's speech is about as long as yours will be. How much can two minutes do?",
+      "during": "Read along in Voices of Change. Mark where the past, present and future parts begin (the site's own 'look for').",
+      "pauses": [
+        "After the first paragraph: what is the hook?"
+      ],
+      "after": "Use the site's discussion question in Voices of Change. Then: which of Lincoln's three moves (structure, repetition, memorable last line) could your speech borrow?",
+      "practice": "Rewrite your last line so it is short and memorable.",
+      "check": "Last lines read aloud in small groups; each group picks one to share.",
+      "language": "Pre-teach 'dedicate', 'nation', 'remember'. The Spanish view of Voices of Change helps with the summary.",
+      "college": "Analyze the triple at the end ('of the people, by the people, for the people', from the site's full text): why do triples stick?",
+      "captions": "Students read the full text on the site while listening.",
+      "alternative": "Read it aloud yourself from Voices of Change, or have volunteers read one paragraph each."
+    }
+  ],
+  "lessons": {
+    "w01d1": {
+      "title": "Welcome, the Speaking Lab and the journal routine",
+      "status": "draft",
+      "essential": "What makes someone easy to listen to?",
+      "vocab": [
+        "audience",
+        "delivery"
+      ],
+      "materials": [
+        "Projector with the Speaking Lab",
+        "District laptops",
+        "Journals",
+        "Index cards for name tents"
+      ],
+      "prep": [
+        "Open the site on the projector to My Course and to Today's Lesson.",
+        "Write the journal routine on the board: 10 minutes writing, then stand and share with someone new.",
+        "Decide partner pairs for the introductions (mix students who don't know each other)."
+      ],
+      "phases": [
+        {
+          "phase": "learn",
+          "title": "Before the journal: find Today's Lesson",
+          "min": 5,
+          "core": true,
+          "teacher": [
+            "First class day only: this happens BEFORE the journal, so students know where to find it.",
+            "Project the site. Click Today's Lesson in the header: show the journal number, the prompt and the sentence frames.",
+            "Say: 'Every class starts this way. Ten minutes, by hand, in your journal. Then you stand up and share with someone new. Ten journals make one 100-point set.' Model the stand and share once with a volunteer.",
+            "Students who are new to the site will choose their pathway and class periods during the tour; for now they only need to see the prompt on the board."
+          ],
+          "students": "Watch where the journal is, then write the first journal.",
+          "before": true
+        },
+        {
+          "phase": "learn",
+          "title": "Course purpose and the Speaking Lab tour",
+          "min": 12,
+          "short": 8,
+          "core": true,
+          "teacher": [
+            "State the course promise: everyone will speak, often, in low-stakes ways first.",
+            "Canvas is where grades live; the Speaking Lab is where the daily lesson, practice and resources live. Progress saves in the browser, not an account.",
+            "Project the entrance: students choose 'I am a speech student' or 'I am learning English' (same course, more support). College Public Speaking stays unavailable unless authorized.",
+            "Show Language support (Guided, Supported, Independent): a preference, not a level. Show class periods (odd/even), then click Today's Lesson in the header: it is where every class starts. Then show My Course (all six units), My Achievements, and My work → Download my backup file."
+          ],
+          "students": "Follow along on a laptop and find today's lesson on their own (success criterion).",
+          "check": "Walk the room: can each student show you Today?"
+        },
+        {
+          "phase": "practice",
+          "title": "Name-game partner introductions",
+          "min": 15,
+          "short": 10,
+          "core": true,
+          "teacher": [
+            "Pairs interview each other for 2 minutes each: name, one place, one thing they enjoy.",
+            "Each student introduces their partner to a group of four (language objective).",
+            "Model it first: introduce a student volunteer using the frame."
+          ],
+          "students": "Interview, then introduce a classmate in complete sentences.",
+          "check": "Listen for complete sentences and a clear voice; note who speaks very softly (for delivery practice later)."
+        },
+        {
+          "phase": "observe",
+          "title": "Speakers we like to hear",
+          "min": 10,
+          "core": false,
+          "teacher": [
+            "Build on Journal 1: list on the board the behaviors students named (eye contact, stories, humor, pace).",
+            "Circle the ones the course will teach; this list returns on w01d5."
+          ],
+          "students": "Add one behavior to the class list."
+        },
+        {
+          "phase": "reflect",
+          "title": "Exit: one thing on Today",
+          "min": 3,
+          "core": true,
+          "teacher": [
+            "Ask for one thing they will find on Today every class (objectives, journal, activities)."
+          ],
+          "students": "Answer on a sticky note or out loud."
+        }
+      ],
+      "discuss": [
+        "Who is someone easy to listen to, and what do they do?",
+        "What is the difference between hearing and listening?"
+      ],
+      "misconceptions": [
+        {
+          "m": "The website is where my grade is.",
+          "fix": "Canvas is the official grade book; the Speaking Lab is practice and lessons."
+        },
+        {
+          "m": "Choosing the learning-English pathway means easier goals.",
+          "fix": "Same goals and objectives; only the supports change."
+        },
+        {
+          "m": "Speech class means a big speech on day one.",
+          "fix": "The first speaking is a partner introduction; the speech comes in week 2 after practice."
+        }
+      ],
+      "ml": [
+        "Frames on the board: 'My name is ___. One thing about me is ___.' / 'This is ___. ___ enjoys ___.'",
+        "Let partners plan in Spanish or another home language, then introduce in English.",
+        "Show the Guided support setting during the tour."
+      ],
+      "access": [
+        "Introductions can be given seated, to a smaller group, or read from the index card.",
+        "Offer neutral prompts (a favorite food, a place) so nobody has to share personal information.",
+        "Captions on the welcome video; written tour steps for students without a working laptop."
+      ],
+      "extend": [
+        "Introduce your partner with a hook instead of their name first.",
+        "College: introduce your partner in exactly 30 seconds."
+      ],
+      "formative": {
+        "evidence": "Tour check (found Today) and partner introductions.",
+        "lookFor": [
+          "Finds Today without help",
+          "Speaks in complete sentences",
+          "Audible to the group"
+        ],
+        "respond": "Students who could not find Today: pair them with a site helper next class. Very quiet speakers: practice voice on w01d5."
+      },
+      "ai": "No AI activity is planned today. The class default of grammar and spelling feedback only applies to written work. The AI policy is taught on w02d1.",
+      "canvas": [
+        "Show students how to reach Canvas through ClassLink (link in My work).",
+        "Post the syllabus in Canvas if the course uses a syllabus acknowledgment."
+      ],
+      "exit": "Name one thing you will find on Today every class.",
+      "reflect": [
+        "Which students did not speak at all today?",
+        "Did the tour take longer than planned? Which step?"
+      ],
+      "sub": {
+        "ok": false,
+        "plan": [
+          "Not recommended for a substitute (first day). If needed: students set up the Speaking Lab with the printed tour steps and complete partner introductions in groups of four."
+        ]
+      }
+    },
+    "w01d2": {
+      "title": "The transactional model of communication",
+      "status": "draft",
+      "essential": "If both people send and receive at the same time, who is responsible for understanding?",
+      "vocab": [
+        "sender",
+        "receiver",
+        "message",
+        "channel",
+        "encode",
+        "decode",
+        "noise",
+        "feedback",
+        "context",
+        "transactional model",
+        "linear model"
+      ],
+      "materials": [
+        "Blank model diagram (Unit 1 → Unit guide → key concepts and diagram, or the Communication Process lesson slides)",
+        "Laptops for the Communication Model Lab",
+        "Ch. 1 §1.3 (Readings)"
+      ],
+      "prep": [
+        "Preview “The Communication Process Model Captioned” and enter its verified segment (Edit viewing guide).",
+        "Open the Communication Model Lab, first level ('Maya's recipe speech').",
+        "Print blank diagrams for students who prefer paper."
+      ],
+      "phases": [
+        {
+          "phase": "learn",
+          "title": "Mini-lesson: from linear to transactional",
+          "min": 8,
+          "short": 6,
+          "core": true,
+          "teacher": [
+            "Draw a one-way arrow (linear model): speaker → audience. Ask what is missing.",
+            "Redraw it as two arrows inside a circle (context): that is the transactional model, the one our textbook uses (Ch. 1 §1.3).",
+            "Name the seven parts with an example from this classroom: sender (me), receivers (you), message (today's plan), channel (my voice, the slide), noise (the hallway), feedback (your faces), context (third period, Tuesday).",
+            "Point to Journal 2's 'ok' text: the same message can mean two things; noise and context decide which."
+          ],
+          "students": "Copy the seven labels onto the diagram as they are explained.",
+          "read": 1
+        },
+        {
+          "phase": "observe",
+          "title": "Model video",
+          "min": 7,
+          "short": 5,
+          "core": true,
+          "video": "v-model-iisd",
+          "teacher": [
+            "Use the viewing guide: before question, during task, one pause."
+          ],
+          "students": "Add or fix labels while watching."
+        },
+        {
+          "phase": "investigate",
+          "title": "Communication Model Lab, level 1",
+          "min": 10,
+          "short": 7,
+          "core": true,
+          "teacher": [
+            "Students drag the parts of 'Maya's recipe speech' onto the model. The lab gives hints and explains each part.",
+            "Circulate: ask 'Why is that noise and not feedback?'"
+          ],
+          "students": "Complete level 1; early finishers go on to level 2 ('Coach's halftime talk').",
+          "lab": "mlab"
+        },
+        {
+          "phase": "practice",
+          "title": "Explain one part without notes",
+          "min": 4,
+          "core": true,
+          "teacher": [
+            "Partners each choose a part and explain it without looking at their diagram (success criterion)."
+          ],
+          "students": "Explain one part to a partner."
+        },
+        {
+          "phase": "learn",
+          "title": "Read §1.3 in pairs",
+          "min": 10,
+          "core": false,
+          "teacher": [
+            "Partner reading: one reads a paragraph aloud, the other summarizes it in one sentence, then switch."
+          ],
+          "students": "Underline the definition of the transactional model.",
+          "read": 1
+        },
+        {
+          "phase": "investigate",
+          "title": "Lab levels 2–4",
+          "min": 10,
+          "core": false,
+          "teacher": [
+            "Levels: 'Coach's halftime talk', 'A video call with Grandma', 'Public comment at city council'. Ask which context changes the message most."
+          ],
+          "students": "Complete as many levels as time allows.",
+          "lab": "mlab"
+        }
+      ],
+      "discuss": [
+        "Is a text message transactional? What replaces feedback?",
+        "In a speech, what feedback does the audience give without saying a word?"
+      ],
+      "misconceptions": [
+        {
+          "m": "Communication is one-way: the speaker talks, the audience listens.",
+          "fix": "Feedback (faces, posture, questions) changes the speaker while they speak; that is why the model is transactional."
+        },
+        {
+          "m": "Noise means sound.",
+          "fix": "Noise is anything that interferes: in the room (contextual), in the body (physical), or in the mind (psychological)."
+        },
+        {
+          "m": "The channel is the person.",
+          "fix": "The channel is how the message travels: voice, slides, a video, a text."
+        }
+      ],
+      "ml": [
+        "Seven-word bank with icons; the Guided setting shows the Spanish terms (emisor, receptor, mensaje, canal, ruido, retroalimentación, contexto).",
+        "Frame: 'The ___ is ___. In our class, an example is ___.'",
+        "Let students label in either language first, then in English."
+      ],
+      "access": [
+        "Paper diagram or digital; labels can be dictated to a partner.",
+        "The lab works by keyboard; pair students who prefer not to drag.",
+        "Captioned video; chunk the reading with partner summaries."
+      ],
+      "extend": [
+        "Draw a second model for a group chat: how many senders and receivers?",
+        "College: contrast the linear model (Shannon and Weaver, 1949) with the transactional model in three sentences."
+      ],
+      "formative": {
+        "evidence": "Labeled diagrams and the lab's level-1 result.",
+        "lookFor": [
+          "All seven parts placed correctly",
+          "Feedback shown as two-way",
+          "Can explain one part without notes"
+        ],
+        "respond": "If many confuse channel and message, reteach with the lab's hints before back-to-back drawing."
+      },
+      "ai": "No AI activity is planned today. The class default of grammar and spelling feedback only applies to written work.",
+      "canvas": [
+        "Optional: students upload a photo of their diagram to a Canvas assignment if you collect it."
+      ],
+      "exit": "Draw the model from memory in 60 seconds. Circle the part you are least sure about.",
+      "reflect": [
+        "Which part of the model did the most students circle on the exit?",
+        "Did the lab or the video help more?"
+      ],
+      "sub": {
+        "ok": true,
+        "plan": [
+          "Students watch the model video (link on Unit 1 → Today) with captions and label the diagram.",
+          "Then they complete levels 1–2 of the Communication Model Lab (Unit 1 → Labs and studios).",
+          "Exit: draw the model from memory and circle the part they are least sure about. Collect the papers."
+        ]
+      }
+    },
+    "w01d3": {
+      "title": "Model in action: back-to-back drawing",
+      "status": "draft",
+      "essential": "How much does feedback change what we understand?",
+      "vocab": [
+        "feedback",
+        "noise",
+        "clarify",
+        "position words (above, below, left of, next to)"
+      ],
+      "materials": [
+        "6–8 simple line drawings (e.g., a circle above a square, a triangle to the left of a line), printed and folded so the drawer can't see them",
+        "Blank paper and pencils",
+        "Timer"
+      ],
+      "prep": [
+        "Make or print the drawings: two per pair (one for each round). Keep them simple: 4–5 shapes each.",
+        "Post the position-word bank.",
+        "Arrange chairs back to back, or let pairs sit facing away from each other."
+      ],
+      "phases": [
+        {
+          "phase": "practice",
+          "title": "Round 1: no feedback",
+          "min": 7,
+          "short": 5,
+          "core": true,
+          "teacher": [
+            "Rules: the describer may not look at the drawing in progress; the drawer may not talk or ask questions. 3 minutes.",
+            "Stop, compare drawings, laugh."
+          ],
+          "students": "Describe or draw with no questions allowed."
+        },
+        {
+          "phase": "practice",
+          "title": "Round 2: questions allowed",
+          "min": 7,
+          "short": 5,
+          "core": true,
+          "teacher": [
+            "Switch roles and use a new drawing. The drawer may now ask questions. 3 minutes.",
+            "Compare again: which round was more accurate, and why?"
+          ],
+          "students": "Ask or answer at least one clarifying question (success criterion)."
+        },
+        {
+          "phase": "investigate",
+          "title": "Debrief with the model",
+          "min": 8,
+          "short": 5,
+          "core": true,
+          "teacher": [
+            "Map the activity onto the model: describer = sender, drawer = receiver, words = channel, questions = feedback.",
+            "Ask each pair to name one source of noise (success criterion): contextual (the room's noise), physical (couldn't hear), psychological (worried about drawing badly).",
+            "Connect to Journal 2: the 'ok' text had no feedback either."
+          ],
+          "students": "Name one source of noise and say what feedback fixed."
+        },
+        {
+          "phase": "observe",
+          "title": "Beyond the Podium: watch the film",
+          "min": 12,
+          "core": false,
+          "teacher": [
+            "Optional observation (not on the flex day): open Beyond the Podium Episode 1, 'Read the Room' and 'Watch the Film' stages. The film is 55 seconds; captions and a descriptive transcript are built in.",
+            "Ask: where is the feedback in this conversation, and where does noise get in?"
+          ],
+          "students": "Watch, then name one moment where feedback could have changed the outcome.",
+          "route": "#/btp/1"
+        },
+        {
+          "phase": "observe",
+          "title": "Everyday-examples video",
+          "min": 6,
+          "core": false,
+          "video": "v-model-begrepen",
+          "teacher": [
+            "Use the viewing guide if you want a second set of examples after the activity."
+          ],
+          "students": "Name the channel and the noise in one example."
+        }
+      ],
+      "discuss": [
+        "Why did round 2 take longer but work better?",
+        "When is feedback hard to give (in a speech, online)?"
+      ],
+      "misconceptions": [
+        {
+          "m": "A clear speaker doesn't need feedback.",
+          "fix": "Even clear directions fail when the receiver decodes them differently; questions catch that."
+        },
+        {
+          "m": "Asking a question means you weren't listening.",
+          "fix": "Clarifying questions are feedback, and good listeners ask them."
+        }
+      ],
+      "ml": [
+        "Position-word bank with arrows (above, below, left of, right of, next to, between, inside).",
+        "Describers may point to the word bank; drawers can repeat back ('Above the square?').",
+        "Debrief frames: 'The noise was ___ because ___.' 'Feedback helped because ___.'"
+      ],
+      "access": [
+        "Tactile alternative: describe an arrangement of blocks or objects instead of a drawing.",
+        "Students may choose describer or drawer.",
+        "For a student who is deaf or hard of hearing: written-question version (the drawer writes questions)."
+      ],
+      "extend": [
+        "Round 3: describe a drawing using only one channel (gestures, no words).",
+        "College: write a paragraph applying the model to a miscommunication you have seen."
+      ],
+      "formative": {
+        "evidence": "Pairs' comparison and the named noise source.",
+        "lookFor": [
+          "Names a specific noise and its type",
+          "Connects questions to feedback"
+        ],
+        "respond": "If pairs only name sound as noise, return to the three noise types with the lab's examples."
+      },
+      "ai": "No AI activity is planned today. The class default of grammar and spelling feedback only applies to written work.",
+      "canvas": [],
+      "exit": "One sentence: 'Without feedback, ___.'",
+      "reflect": [
+        "Were the drawings too easy or too hard? Adjust the set for the next group.",
+        "Did students name all three noise types?"
+      ],
+      "sub": {
+        "ok": true,
+        "plan": [
+          "Leave the printed drawings in two envelopes (round 1, round 2) and the rules on the board.",
+          "Students do both rounds, compare, and write one sentence: 'Without feedback, ___.' Collect the sentences."
+        ]
+      }
+    },
+    "w01d4": {
+      "title": "Nerves are normal; the speech is assigned",
+      "status": "draft",
+      "essential": "If nervousness is normal, what makes some speakers seem calm?",
+      "vocab": [
+        "speech anxiety",
+        "preparation",
+        "rehearsal",
+        "hook",
+        "rubric",
+        "object (college: artifact)"
+      ],
+      "materials": [
+        "Ch. 1 §1.2",
+        "Self-Introduction slides (HS) / Personal Artifact slides (college)",
+        "Printed intro rubric",
+        "Planning sheet or index cards"
+      ],
+      "prep": [
+        "Choose one TEDx talk (Sha Nacino or Danish Dhamani) and enter its verified segment in the viewing guide.",
+        "Preview the model self-introduction video (Example: Self-Introduction Speech).",
+        "Bring an object of your own to model the assignment."
+      ],
+      "phases": [
+        {
+          "phase": "learn",
+          "title": "Why nerves happen",
+          "min": 6,
+          "short": 4,
+          "core": true,
+          "teacher": [
+            "Ask students to rate their nerves privately (1–5); nobody shares the number.",
+            "Read the key ideas of §1.2 together: speaking anxiety is common and normal; list the strategies the section names on the board.",
+            "Say: 'The goal is not zero nerves; it is speaking anyway.'"
+          ],
+          "students": "Rate privately; list the textbook's strategies.",
+          "read": 1
+        },
+        {
+          "phase": "observe",
+          "title": "TEDx talk on fear",
+          "min": 8,
+          "short": 5,
+          "core": true,
+          "video": "v-fear-nacino",
+          "teacher": [
+            "Show your chosen segment with the viewing guide. Use the Danish Dhamani talk as the alternate."
+          ],
+          "students": "Write any strategy the speaker uses, in their own words."
+        },
+        {
+          "phase": "practice",
+          "title": "Choose two strategies",
+          "min": 3,
+          "core": true,
+          "teacher": [
+            "Students write two strategies they will use before their speech (success criterion)."
+          ],
+          "students": "Write 'When I feel ___, I can ___' twice."
+        },
+        {
+          "phase": "learn",
+          "title": "Introduce the Self-Introduction Speech",
+          "min": 8,
+          "short": 6,
+          "core": true,
+          "teacher": [
+            "Project the assignment (Unit 1 → Unit guide): 1–2 minutes, no sources, 50 points, one object shown during the speech, three parts (where you are from, something you love doing, a goal), a hook and a memorable last line, one key-word note card.",
+            "Model with your own object in about 60 seconds.",
+            "College: Personal Artifact Speech, 2–3 minutes, thesis and three main points, key-word speaking outline, extemporaneous.",
+            "Walk through the rubric rows: Organization 15, Object Connection 10, Audience Connection 10, Voice 10, Time 5; Academic Integrity must be met."
+          ],
+          "students": "Choose an object and say why it represents them (success criterion).",
+          "route": "#/unit/1/guide"
+        },
+        {
+          "phase": "observe",
+          "title": "Score a model together",
+          "min": 10,
+          "core": false,
+          "video": "v-intro-broward",
+          "teacher": [
+            "Use the viewing guide: score Organization and Audience Connection alone, then compare."
+          ],
+          "students": "Score two rows with evidence."
+        }
+      ],
+      "discuss": [
+        "Is it possible to look calm and feel nervous? What does the audience actually see?",
+        "What can the audience do to make a speaker less nervous?"
+      ],
+      "misconceptions": [
+        {
+          "m": "Good speakers don't get nervous.",
+          "fix": "Most speakers feel nerves; experienced speakers prepare and practice so nerves don't control the speech."
+        },
+        {
+          "m": "Memorizing word for word is the safest way.",
+          "fix": "Key words plus rehearsal is safer: if you lose one word you don't lose the whole speech."
+        },
+        {
+          "m": "The object has to be expensive or special.",
+          "fix": "Any everyday object works if you can explain what it shows about you."
+        }
+      ],
+      "ml": [
+        "Frame (language objective): 'When I feel ___, I can ___.'",
+        "Assignment planner frame: 'I am from ___. I love ___. One goal is ___.'",
+        "Allow students to bring a photo of an object if they can't bring the object."
+      ],
+      "access": [
+        "Nerves ratings stay private; nobody is asked to share feelings.",
+        "Students with approved accommodations can plan to present seated, at the front of a smaller group, or at a scheduled time: arrange it privately, without asking for reasons.",
+        "Rubric printed and on the site; read the rows aloud."
+      ],
+      "extend": [
+        "Write two hooks for your speech and test them on a partner.",
+        "College: connect the talk to §1.2. Where do they agree?"
+      ],
+      "formative": {
+        "evidence": "Two written strategies; chosen object and reason.",
+        "lookFor": [
+          "Strategies are specific",
+          "Can say what the object shows about them"
+        ],
+        "respond": "Students without an object by the end: conference on w01d5 with a short list of options."
+      },
+      "ai": "No AI activity is planned today, including for speech planning. The class default of grammar and spelling feedback only applies to written work. The AI policy is taught on w02d1.",
+      "canvas": [
+        "Post the speech assignment and rubric in Canvas (the official record) with the due dates on your meeting map."
+      ],
+      "exit": "My object is ___ because it shows ___.",
+      "reflect": [
+        "How many students chose an object today?",
+        "Did anyone seem very anxious? Plan a private check-in."
+      ],
+      "sub": {
+        "ok": true,
+        "plan": [
+          "Students read §1.2 in pairs and list the strategies it names.",
+          "They watch the chosen TEDx segment (link and times on the viewing guide) and write two strategies.",
+          "Leave the assignment introduction for your return."
+        ]
+      }
+    },
+    "w01d5": {
+      "title": "Vocabulary check and delivery basics",
+      "status": "draft",
+      "essential": "What do the audience's eyes and ears notice first?",
+      "vocab": [
+        "eye contact",
+        "vocal variety",
+        "posture",
+        "volume",
+        "pace"
+      ],
+      "materials": [
+        "Unit 1 reading check (on the unit page)",
+        "Timer",
+        "Students' hooks or openings"
+      ],
+      "prep": [
+        "Plan your 'two versions' demo: the same 20-second opening delivered poorly, then well.",
+        "Have the class list from Journal 1 / w01d1 available."
+      ],
+      "phases": [
+        {
+          "phase": "learn",
+          "title": "Vocabulary check",
+          "min": 8,
+          "short": 6,
+          "core": true,
+          "teacher": [
+            "Students take the Unit 1 reading check on the site (retakes allowed; best score counts).",
+            "Review the two most-missed items together."
+          ],
+          "students": "Complete the reading check.",
+          "route": "#/unit/1/guide"
+        },
+        {
+          "phase": "observe",
+          "title": "Two versions of the same opening",
+          "min": 5,
+          "core": true,
+          "teacher": [
+            "Deliver the same opening twice: first looking at the floor, quiet and slumped; then with eye contact, a clear voice and steady posture.",
+            "Ask: 'What changed? The words didn't.'"
+          ],
+          "students": "Name the three differences they saw and heard."
+        },
+        {
+          "phase": "learn",
+          "title": "Three basics",
+          "min": 5,
+          "core": true,
+          "teacher": [
+            "Eye contact: look at people, not the card; move your gaze around the room.",
+            "Voice: loud enough for the back row, steady pace, pauses instead of 'um'.",
+            "Posture: feet planted, hands still or purposeful.",
+            "Tie each to the rubric rows Audience Connection and Voice."
+          ],
+          "students": "Mark each basic on the rubric."
+        },
+        {
+          "phase": "practice",
+          "title": "Partner practice: the opening",
+          "min": 10,
+          "short": 6,
+          "core": true,
+          "teacher": [
+            "Partners deliver their hook and first sentence twice. The listener gives one piece of feedback on eye contact (success criterion)."
+          ],
+          "students": "Practice the opening with eye contact; use five vocabulary words in conversation."
+        },
+        {
+          "phase": "practice",
+          "title": "Back of the room",
+          "min": 8,
+          "core": false,
+          "teacher": [
+            "Speakers stand at the front; partners stand at the back wall. Can they be heard?"
+          ],
+          "students": "Adjust volume until the back row hears every word."
+        }
+      ],
+      "discuss": [
+        "Which of the three basics is hardest for a new speaker? (Journal 3 asked this.)",
+        "Does good delivery matter if the content is strong?"
+      ],
+      "misconceptions": [
+        {
+          "m": "Eye contact means staring at one person.",
+          "fix": "Move your eyes around the room; look at the back, sides and front."
+        },
+        {
+          "m": "Speaking fast makes it sound confident.",
+          "fix": "A steady pace with pauses sounds more confident and is easier to follow."
+        }
+      ],
+      "ml": [
+        "Vocabulary word wall with gestures for each basic.",
+        "Frames for feedback: 'Your eye contact was ___. Next time, try ___.'",
+        "Accents are never scored: Voice is about being heard and understood."
+      ],
+      "access": [
+        "Eye contact can be 'looking toward the audience' (e.g., the forehead or the back wall) for students who find direct eye contact uncomfortable.",
+        "Practice can be seated.",
+        "The reading check allows retakes and reads well with a screen reader."
+      ],
+      "extend": [
+        "Add vocal variety: deliver the hook three ways (excited, serious, curious) and choose the best.",
+        "College: practice extemporaneously from a key-word outline only."
+      ],
+      "formative": {
+        "evidence": "Reading check scores; partner feedback on eye contact.",
+        "lookFor": [
+          "Reading check 80%+ (retakes allowed)",
+          "Uses at least five vocabulary words",
+          "Opening delivered with eye contact"
+        ],
+        "respond": "Below 80% on the check: assign the unit's key concepts and a retake before w02d1."
+      },
+      "ai": "No AI activity is planned today. The class default of grammar and spelling feedback only applies to written work.",
+      "canvas": [
+        "If the reading check is recorded in Canvas, students paste their score or a screenshot there."
+      ],
+      "exit": "One basic I will practice this weekend is ___.",
+      "reflect": [
+        "Which delivery basic needs whole-class reteaching on speech day?",
+        "Check the reading check results for items to reteach."
+      ],
+      "sub": {
+        "ok": true,
+        "plan": [
+          "Students take the Unit 1 reading check on the site (retakes allowed).",
+          "Then partner practice: deliver your opening twice; the partner gives one comment on eye contact and one on voice.",
+          "Collect a list of students' scores or screenshots."
+        ]
+      }
+    },
+    "w02d1": {
+      "title": "Ethics, plagiarism, oral citation and the AI policy",
+      "status": "draft",
+      "essential": "What makes a speech honestly mine?",
+      "vocab": [
+        "plagiarism",
+        "academic integrity",
+        "oral citation",
+        "paraphrase",
+        "AI disclosure"
+      ],
+      "materials": [
+        "Ch. 3",
+        "The rubric's Academic Integrity gate (Rubrics → any speech)",
+        "AI Coaching Studio (Cognitive Ownership; AI-use disclosure)"
+      ],
+      "prep": [
+        "Check the AI permission for the speech in the Lesson Manager (class default: grammar and spelling feedback only).",
+        "Open AI Coaching Studio → Cognitive Ownership once yourself."
+      ],
+      "phases": [
+        {
+          "phase": "learn",
+          "title": "Plagiarism and honest credit",
+          "min": 8,
+          "short": 6,
+          "core": true,
+          "teacher": [
+            "Use Journal 4 as the hook: who is an AI-written speech unfair to?",
+            "Define plagiarism: presenting someone else's words or ideas as your own (Ch. 3).",
+            "Oral citation: say the source out loud. Model the site's example: 'According to Exploring Public Speaking, a textbook by Barbara Tucker and her colleagues, …'",
+            "The self-introduction has no sources, but this rule applies to every speech after it."
+          ],
+          "students": "Give one example of plagiarism and one of honest credit (success criterion).",
+          "read": 3
+        },
+        {
+          "phase": "learn",
+          "title": "The Academic Integrity gate and the AI policy",
+          "min": 7,
+          "short": 5,
+          "core": true,
+          "teacher": [
+            "Show the gate on the rubric: it has no points but it is required. 'Met' means disclosure is complete, any AI use only refined the student's own work, and sources are in their own words with credit. 'Redo' means AI wrote the speech or major parts, AI use was not disclosed, or serious plagiarism; there is no score and the work is redone.",
+            "Show the AI permission for this speech on Today: grammar and spelling feedback only, unless you changed it."
+          ],
+          "students": "State the AI policy in their own words (success criterion).",
+          "route": "#rubrics"
+        },
+        {
+          "phase": "investigate",
+          "title": "AI Coaching Studio: Cognitive Ownership",
+          "min": 10,
+          "short": 6,
+          "core": true,
+          "teacher": [
+            "Students open AI Coaching Studio → Cognitive Ownership, work through its five steps in order (Think first) and answer its scenario check.",
+            "Debrief: what is the difference between AI helping you think and AI thinking for you?"
+          ],
+          "students": "Complete the section's check.",
+          "route": "#/ai/ownership"
+        },
+        {
+          "phase": "investigate",
+          "title": "AI-use disclosure",
+          "min": 8,
+          "core": false,
+          "teacher": [
+            "Show the AI-use disclosure page; explain when students will use it (any speech where AI was allowed)."
+          ],
+          "students": "Read a sample disclosure and say what it tells the teacher.",
+          "route": "#/ai/disclosure"
+        }
+      ],
+      "discuss": [
+        "If you change a few words of a paragraph you found, is it yours?",
+        "Why does the class allow grammar and spelling feedback but not drafting?"
+      ],
+      "misconceptions": [
+        {
+          "m": "If I cite something, I can copy as much as I want.",
+          "fix": "Quoting needs quotation marks (or 'quote… end quote' out loud) and should be short; most of the speech must be your words."
+        },
+        {
+          "m": "Using AI is cheating, period.",
+          "fix": "AI use is allowed at the level set for each assignment; the default is grammar and spelling feedback only, and it must be disclosed."
+        },
+        {
+          "m": "Plagiarism only counts for written papers.",
+          "fix": "Speeches are presentations of your work; the same rules apply and the credit is spoken."
+        }
+      ],
+      "ml": [
+        "Frame (language objective): 'The rule is ___. For example, ___.'",
+        "Paraphrase practice with a short sentence first in a shared language, then in English.",
+        "Key words with Spanish equivalents in the Guided setting (plagio, integridad académica, cita oral)."
+      ],
+      "access": [
+        "The studio works by keyboard and screen reader; the scenario check can be done as a whole-class vote.",
+        "Provide the AI policy in writing (it is on Today)."
+      ],
+      "extend": [
+        "Write a one-sentence oral citation for a fact you know, with the source.",
+        "College: compare the class policy with a college syllabus AI policy you find (with permission)."
+      ],
+      "formative": {
+        "evidence": "Examples of plagiarism vs. credit; the studio check.",
+        "lookFor": [
+          "Distinguishes copying from paraphrasing",
+          "States the AI permission accurately"
+        ],
+        "respond": "Students who confuse AI help levels: re-show the four permission levels (AI Coaching Studio front page)."
+      },
+      "ai": "Teach the policy. Recommended setting for the Self-Introduction Speech: keep the class default (grammar and spelling feedback only). The speech has no sources and should be entirely in the student's own words.",
+      "canvas": [
+        "If you use an AI-use disclosure, attach it to the speech assignment in Canvas."
+      ],
+      "exit": "One example of honest credit I could use in a future speech is ___.",
+      "reflect": [
+        "Did any student's question suggest they already used AI for their speech? Follow up privately.",
+        "Is the AI permission on Today what you intend?"
+      ],
+      "sub": {
+        "ok": true,
+        "plan": [
+          "Students read the Academic Integrity gate on the rubric and the AI permission shown on Today.",
+          "They complete AI Coaching Studio → Cognitive Ownership.",
+          "Exit: one example of plagiarism and one of honest credit, collected."
+        ]
+      }
+    },
+    "w02d2": {
+      "title": "Note cards and rehearsal",
+      "status": "draft",
+      "essential": "How do key words help you sound like yourself?",
+      "vocab": [
+        "key word",
+        "note card",
+        "rehearsal",
+        "speaking outline (college)"
+      ],
+      "materials": [
+        "Index cards",
+        "A classroom timer or the wall clock (personal phones are not used)",
+        "Rubric self-assessment (Rubrics → Self-Introduction → Self-assess)",
+        "Model self-introduction video (Example: Self-Introduction Speech)"
+      ],
+      "prep": [
+        "Make a sample note card with key words only, and a bad one written in full sentences.",
+        "Post the speech order and the speech meetings for each group."
+      ],
+      "phases": [
+        {
+          "phase": "learn",
+          "title": "Key words, not sentences",
+          "min": 5,
+          "short": 3,
+          "core": true,
+          "teacher": [
+            "Show the two cards. Ask which one would make the speaker read.",
+            "Rule: key words and short phrases only, one card (college: key-word speaking outline due today)."
+          ],
+          "students": "Turn their plan into key words."
+        },
+        {
+          "phase": "practice",
+          "title": "Timed partner rehearsal",
+          "min": 15,
+          "short": 10,
+          "core": true,
+          "teacher": [
+            "Partners rehearse twice with a timer. Listener uses the rubric's Organization and Time rows.",
+            "Conference with students who have no object, no card, or no goal yet."
+          ],
+          "students": "Rehearse once with a partner and time it (success criterion)."
+        },
+        {
+          "phase": "reflect",
+          "title": "Self-assess before speaking",
+          "min": 5,
+          "short": 3,
+          "core": true,
+          "teacher": [
+            "Students use the rubric's self-assessment tool (it saves in their browser) to pick one row to improve before speech day."
+          ],
+          "students": "Choose one row to improve.",
+          "route": "#rubrics"
+        },
+        {
+          "phase": "observe",
+          "title": "Gettysburg: two minutes that mattered",
+          "min": 12,
+          "core": false,
+          "video": "voc-gettysburg",
+          "teacher": [
+            "Use the viewing guide with the full text in Voices of Change: structure, repetition and a memorable last line."
+          ],
+          "students": "Rewrite their last line to be short and memorable.",
+          "route": "#speeches"
+        },
+        {
+          "phase": "learn",
+          "title": "Audience expectations preview",
+          "min": 6,
+          "core": false,
+          "teacher": [
+            "Preview The Respectful Audience Lab's six expectations, so students know them before speech day."
+          ],
+          "students": "Name the expectation that matters most to them as a speaker.",
+          "lab": "audlab"
+        }
+      ],
+      "discuss": [
+        "What happened to your eye contact when you looked at your card?",
+        "Which part of your speech is easiest to remember? Why?"
+      ],
+      "misconceptions": [
+        {
+          "m": "Writing the whole speech on the card is safer.",
+          "fix": "A full script pulls your eyes down; the rubric's Audience Connection rewards using the card only as a reminder."
+        },
+        {
+          "m": "Rehearsing once is enough.",
+          "fix": "Say it out loud at least three times before speech day; timing changes when you speak it."
+        }
+      ],
+      "ml": [
+        "Card template with three boxes (where from / love / goal) plus hook and last line.",
+        "Students may rehearse once in their home language to plan, then in English.",
+        "Timing tip: speaking in a second language often takes longer; trim key words if over time."
+      ],
+      "access": [
+        "A larger card or a typed key-word card (large font) is fine.",
+        "Rehearsal can be to the teacher only.",
+        "Students with approved accommodations confirm their presentation arrangement today, privately."
+      ],
+      "extend": [
+        "Rehearse without the card once; mark the one word you needed.",
+        "College: rehearse extemporaneously and check the outline matches the speech (Speaking Outline row)."
+      ],
+      "formative": {
+        "evidence": "Cards and timed rehearsal results.",
+        "lookFor": [
+          "Card has key words only",
+          "Rehearsal within 1:00–2:00 (college 2:00–3:00)",
+          "Object chosen"
+        ],
+        "respond": "Over time: cut one detail per part. Under time: add one example to the 'love' part."
+      },
+      "ai": "Class default: grammar and spelling feedback only on the note card; students do not ask AI to write or rewrite the speech.",
+      "canvas": [
+        "College: key-word speaking outline submitted in Canvas today."
+      ],
+      "exit": "My time was ___. One thing I will change is ___.",
+      "reflect": [
+        "Who still has no object or card? Contact them before speech day.",
+        "Is the speech order realistic for the meetings left?"
+      ],
+      "sub": {
+        "ok": true,
+        "plan": [
+          "Students finish their key-word note card (college: outline) and rehearse twice with a partner, timing each other.",
+          "They complete the rubric self-assessment and write their time and one change on a slip. Collect the slips."
+        ]
+      }
+    },
+    "w02d3": {
+      "title": "Speeches, day 1: speakers and a respectful audience",
+      "status": "draft",
+      "essential": "What does a speaker need from the audience?",
+      "vocab": [
+        "audience",
+        "compliment",
+        "hook"
+      ],
+      "materials": [
+        "Speech order posted",
+        "Classroom timer and time cards",
+        "Feedback slips: 'One thing you did well was ___.'",
+        "Canvas rubric open for scoring",
+        "Two spare objects"
+      ],
+      "prep": [
+        "Count speakers for each speech meeting (about 3 minutes per HS speaker, 4 per college).",
+        "Set up the speaking spot and the timer where the speaker can see it.",
+        "Have the rubric ready in Canvas (or on paper) to score live."
+      ],
+      "phases": [
+        {
+          "phase": "learn",
+          "title": "Audience expectations",
+          "min": 5,
+          "core": true,
+          "teacher": [
+            "Review The Respectful Audience Lab's six expectations: stay seated, close your computer, no earbuds or headphones, no talking or distracting behavior, be patient and supportive, be ready when you're the speaker.",
+            "Today's listener job: one specific compliment for a speaker (success criterion)."
+          ],
+          "students": "Close laptops; feedback slips out.",
+          "lab": "audlab"
+        },
+        {
+          "phase": "perform",
+          "title": "Speeches",
+          "min": 20,
+          "core": true,
+          "teacher": [
+            "Call speakers in order; start the timer when they begin; time cards at 1:00 / 1:45 / 2:00 (college 2:00 / 2:45 / 3:00).",
+            "Score with the rubric as they speak; check the Academic Integrity gate.",
+            "After each speech: applause, 30 seconds for listeners to write a compliment, next speaker."
+          ],
+          "students": "Speak or listen; write specific compliments.",
+          "fill": true
+        },
+        {
+          "phase": "reflect",
+          "title": "Quick debrief",
+          "min": 3,
+          "core": true,
+          "teacher": [
+            "Ask for one hook that worked (no names)."
+          ],
+          "students": "Share a hook they remember."
+        }
+      ],
+      "discuss": [
+        "What did a speaker do that made the room pay attention?"
+      ],
+      "misconceptions": [
+        {
+          "m": "Compliments should be general ('good job').",
+          "fix": "Specific feedback names what worked: 'Your hook with the question made me want to listen.'"
+        }
+      ],
+      "ml": [
+        "Feedback slip frame is printed on the slip.",
+        "Speakers may hold a key-word card in English with home-language notes in the margin."
+      ],
+      "access": [
+        "Approved arrangements: present seated, to a smaller group, or at a scheduled time.",
+        "A student may present first or last if that helps; arrange privately.",
+        "Feedback slips can be dictated or typed."
+      ],
+      "extend": [
+        "Listeners also note the speaker's three parts.",
+        "College: listeners note the thesis."
+      ],
+      "formative": {
+        "evidence": "Rubric scores; feedback slips.",
+        "lookFor": [
+          "Within time",
+          "Hook, three parts, ending",
+          "Specific compliments"
+        ],
+        "respond": "If many go over time, remind tomorrow's speakers to rehearse with a timer tonight."
+      },
+      "ai": "Speech day: no AI activity is planned. The class default of grammar and spelling feedback only applies to written work such as the note card.",
+      "canvas": [
+        "Enter scores in the Canvas rubric (the official record)."
+      ],
+      "exit": "Hand in feedback slips; the teacher distributes them to speakers.",
+      "reflect": [
+        "How many speakers per hour did you actually get through?",
+        "Anyone absent? Plan their make-up time."
+      ],
+      "sub": {
+        "ok": false,
+        "plan": [
+          "Speeches should not be scored by a substitute. If you are out: students rehearse in pairs, complete the rubric self-assessment and The Respectful Audience Lab."
+        ]
+      }
+    },
+    "w02d4": {
+      "title": "Speeches, day 2: active listening",
+      "status": "draft",
+      "essential": "How do listeners show they understood?",
+      "vocab": [
+        "hook",
+        "three parts",
+        "feedback frame"
+      ],
+      "materials": [
+        "Same as speech day 1",
+        "Listening sheet: hook / part 1 / part 2 / part 3 / ending"
+      ],
+      "prep": [
+        "Update the speech order; make sure absent speakers from day 1 have a time."
+      ],
+      "phases": [
+        {
+          "phase": "learn",
+          "title": "Listener's job today",
+          "min": 3,
+          "core": true,
+          "teacher": [
+            "Listeners identify the hook and the three parts of at least one speech (success criterion) and give spoken feedback with the frame 'One thing you did well was ___.'"
+          ],
+          "students": "Listening sheet out; laptops closed."
+        },
+        {
+          "phase": "perform",
+          "title": "Speeches",
+          "min": 20,
+          "core": true,
+          "teacher": [
+            "Same routine as day 1. After every third speaker, ask one listener for spoken feedback with the frame."
+          ],
+          "students": "Speak or listen; complete the listening sheet.",
+          "fill": true
+        },
+        {
+          "phase": "investigate",
+          "title": "The Art of Listening",
+          "min": 10,
+          "core": false,
+          "teacher": [
+            "If speeches finish early: The Art of Listening lab on laptops."
+          ],
+          "students": "Practice listening skills in the lab.",
+          "lab": "listenlab"
+        }
+      ],
+      "discuss": [
+        "Which speech was easiest to follow? What did the speaker do to make the parts clear?"
+      ],
+      "misconceptions": [
+        {
+          "m": "Listening means being quiet.",
+          "fix": "Active listening means tracking the message: hook, parts, ending, and giving useful feedback."
+        }
+      ],
+      "ml": [
+        "Listening sheet with icons for each part; frame for spoken feedback."
+      ],
+      "access": [
+        "Listening sheet can be completed by checkmarks; spoken feedback is optional for students who prefer to write it."
+      ],
+      "extend": [
+        "Identify the transitions between the three parts.",
+        "College: evaluate one speech's thesis against its main points."
+      ],
+      "formative": {
+        "evidence": "Listening sheets; spoken feedback.",
+        "lookFor": [
+          "Identifies hook and three parts accurately",
+          "Uses the frame"
+        ],
+        "respond": "If listeners miss the parts, the speakers' transitions need teaching in Unit 2."
+      },
+      "ai": "Speech day: no AI activity is planned. The class default of grammar and spelling feedback only applies to written work such as the note card.",
+      "canvas": [
+        "Enter scores in the Canvas rubric."
+      ],
+      "exit": "Hand in listening sheets.",
+      "reflect": [
+        "Who still needs to speak?",
+        "Which rubric row had the lowest scores overall?"
+      ],
+      "sub": {
+        "ok": false,
+        "plan": [
+          "Not for a substitute (speeches). Alternative: The Art of Listening lab and The Respectful Audience Lab."
+        ]
+      }
+    },
+    "w02d5": {
+      "title": "Final speeches and reflection",
+      "status": "draft",
+      "essential": "What will I do differently in my next speech?",
+      "vocab": [
+        "strength",
+        "goal",
+        "evidence",
+        "rubric"
+      ],
+      "materials": [
+        "Rubric self-assessment on the site",
+        "Students' rubric scores (Canvas)",
+        "Journal 5"
+      ],
+      "prep": [
+        "Release rubric scores in Canvas before the reflection, if possible.",
+        "List any make-up speakers."
+      ],
+      "phases": [
+        {
+          "phase": "perform",
+          "title": "Final speakers and make-ups",
+          "min": 10,
+          "core": true,
+          "teacher": [
+            "Finish remaining speeches with the same routine."
+          ],
+          "students": "Speak or listen.",
+          "fill": true
+        },
+        {
+          "phase": "reflect",
+          "title": "Rubric self-assessment",
+          "min": 10,
+          "core": true,
+          "teacher": [
+            "Students compare their self-assessment with your scores: name one strength with rubric evidence (success criterion)."
+          ],
+          "students": "Complete the self-assessment on the site.",
+          "route": "#rubrics"
+        },
+        {
+          "phase": "reflect",
+          "title": "One specific goal",
+          "min": 5,
+          "core": true,
+          "teacher": [
+            "Model a vague goal ('be better') and a specific one ('look up at the end of every sentence'). Students write theirs."
+          ],
+          "students": "Write a goal that says exactly what they will practice (success criterion)."
+        },
+        {
+          "phase": "investigate",
+          "title": "Two minutes that mattered (if not used on w02d2)",
+          "min": 12,
+          "core": false,
+          "video": "voc-gettysburg",
+          "teacher": [
+            "Use the Gettysburg viewing guide as a celebration of short speeches."
+          ],
+          "students": "Compare Lincoln's structure with their own.",
+          "route": "#speeches"
+        }
+      ],
+      "discuss": [
+        "What surprised you about speaking in front of the class?",
+        "Which strategy for nerves actually helped?"
+      ],
+      "misconceptions": [
+        {
+          "m": "The score is the end of the speech.",
+          "fix": "The goal carries into Unit 2: we will look at it again before the next speech."
+        }
+      ],
+      "ml": [
+        "Frame (language objective): 'One strength was ___. One goal is ___.'",
+        "Rubric rows in the Guided setting show English and Spanish."
+      ],
+      "access": [
+        "Reflection can be spoken to the teacher, typed, or handwritten.",
+        "Scores are private; nobody shares scores."
+      ],
+      "extend": [
+        "Write a practice plan for the goal: what, when, with whom.",
+        "College: compare your outline with what you actually said."
+      ],
+      "formative": {
+        "evidence": "Self-assessments and goals.",
+        "lookFor": [
+          "Strength backed by a rubric row",
+          "Specific, practicable goal"
+        ],
+        "respond": "Collect goals; return them before the Unit 2 speech."
+      },
+      "ai": "No AI activity is planned today. The class default of grammar and spelling feedback only applies to written work.",
+      "canvas": [
+        "Students paste their strength and goal into a Canvas reflection if you collect it there."
+      ],
+      "exit": "My next-speech goal is ___. I will practice it by ___.",
+      "reflect": [
+        "Unit debrief: which day ran long, which activity to cut or extend next semester?",
+        "Which students need a check-in before Unit 2?"
+      ],
+      "sub": {
+        "ok": true,
+        "plan": [
+          "If all speeches are finished: students complete the rubric self-assessment and write one strength and one specific goal. Collect them.",
+          "Do not run make-up speeches with a substitute."
+        ]
+      }
+    }
+  },
+  "flex": {
+    "journal": "j-u1-flex",
+    "title": "When communication breaks down (Beyond the Podium)",
+    "when": "Only when the schedule gives Unit 1 an extra meeting; the site places the flex journal automatically. In 2026–27 that is fall only, and the flex meeting falls on a block that already has the integrity lesson or speeches. So the flex journal is always written, and the Beyond the Podium stages are used only if the block has spare time (or as optional practice after speeches).",
+    "phases": [
+      {
+        "phase": "observe",
+        "title": "Read the Room and Watch the Film",
+        "min": 12,
+        "core": false,
+        "teacher": [
+          "Open Beyond the Podium Episode 1 (Unit 1 → Labs and studios). The film is 55 seconds, with captions and a descriptive transcript; a lower-bandwidth version is in the player.",
+          "Watch twice: once for what happens, once for what each person might be assuming."
+        ],
+        "students": "Complete Read the Room and Watch the Film.",
+        "route": "#/btp/1"
+      },
+      {
+        "phase": "investigate",
+        "title": "Communication Detective",
+        "min": 12,
+        "core": false,
+        "teacher": [
+          "Students match barriers to evidence in the dialogue. Point out that 'no evidence in the words' can be the right answer (technoference).",
+          "Connect to the model: noise, missing feedback, context."
+        ],
+        "students": "Complete the Detective stage.",
+        "route": "#/btp/1"
+      },
+      {
+        "phase": "practice",
+        "title": "Change the Conversation (if time)",
+        "min": 15,
+        "core": false,
+        "teacher": [
+          "Students practice repairing the conversation; it connects to the flex journal's I-statement frame."
+        ],
+        "students": "Work through the practice scenes.",
+        "route": "#/btp/1/change"
+      }
+    ],
+    "note": "Bridge Builder is earned only by completing the Detective, Change the Conversation and Apply stages; watching never counts."
+  },
+  "sub": {
+    "general": [
+      "Students know the routine: they click Today's Lesson to find the Daily Learning Journal. 10 minutes handwritten, then stand and share with someone new.",
+      "Laptops are used only for the listed activity; close them when someone is speaking.",
+      "Do not score speeches or change seating charts.",
+      "No student information is in this plan; attendance is in the district system."
+    ]
+  },
+  "resources": [
+    {
+      "id": "r-observe",
+      "title": "Speaking observation checklist (teacher)",
+      "use": "w01d1, w01d5, w02d2: circulate during partner work; mark only what you see. Not a grade.",
+      "lines": [
+        "Student initials (or seat number): ____",
+        "Finds today's lesson on the site without help: yes / not yet",
+        "Speaks in complete sentences: yes / not yet",
+        "Audible to the group or the back row: yes / not yet",
+        "Looks toward listeners (eye contact or toward the room): yes / not yet",
+        "Uses at least one model word correctly: yes / not yet",
+        "Next step I suggested: ____"
+      ]
+    },
+    {
+      "id": "r-model-exit",
+      "title": "Exit ticket: the model from memory (w01d2)",
+      "use": "60 seconds, no notes. Sort into 'got it' / 'one part missing' / 'reteach'.",
+      "lines": [
+        "Draw the transactional model from memory and label as many parts as you can.",
+        "Circle the part you are least sure about.",
+        "One example of noise from today: ____"
+      ]
+    },
+    {
+      "id": "r-noise",
+      "title": "Back-to-back drawing debrief card (w01d3)",
+      "use": "One per pair after round 2.",
+      "lines": [
+        "Round 1 (no feedback) accuracy: 1 2 3 4 5",
+        "Round 2 (questions allowed) accuracy: 1 2 3 4 5",
+        "One source of noise we noticed: ____  Type: contextual / physical / psychological",
+        "One question that fixed a mistake: ____",
+        "Without feedback, ____."
+      ]
+    },
+    {
+      "id": "r-plan",
+      "title": "Self-Introduction planning card (w01d4–w02d2)",
+      "use": "Students plan on paper or an index card; key words only.",
+      "lines": [
+        "Hook (one sentence or question): ____",
+        "My object (college: artifact): ____  It shows ____",
+        "Part 1, where I'm from: key words ____",
+        "Part 2, something I love doing: key words ____",
+        "Part 3, a goal: key words ____",
+        "Memorable last line: ____",
+        "Two nerves strategies I will use: ____ / ____"
+      ]
+    },
+    {
+      "id": "r-rehearse",
+      "title": "Partner rehearsal check (w02d2)",
+      "use": "The listener completes it; return it to the speaker.",
+      "lines": [
+        "Time: ____ (target 1:00–2:00; college 2:00–3:00)",
+        "Hook heard? yes / not yet",
+        "Three parts heard? 1 / 2 / 3",
+        "Object shown and explained? yes / not yet",
+        "Card used only as a reminder? yes / reads it",
+        "One thing you did well was ____.",
+        "Next time, try ____."
+      ]
+    },
+    {
+      "id": "r-slip",
+      "title": "Speech-day feedback slip (w02d3)",
+      "use": "Listeners write one per speaker, or one for an assigned speaker; the teacher hands them to speakers after class.",
+      "lines": [
+        "Speaker: ____",
+        "One thing you did well was ____.",
+        "The moment I remember most: ____"
+      ]
+    },
+    {
+      "id": "r-listen",
+      "title": "Active listening sheet (w02d4)",
+      "use": "Listeners track at least one speech.",
+      "lines": [
+        "Speaker: ____",
+        "Hook: ____",
+        "Part 1: ____  Part 2: ____  Part 3: ____",
+        "Memorable ending: ____",
+        "Spoken feedback I gave: 'One thing you did well was ____.'"
+      ]
+    },
+    {
+      "id": "r-reflect",
+      "title": "Reflection: strength and goal (w02d5)",
+      "use": "After the rubric self-assessment; collect and return before the Unit 2 speech.",
+      "lines": [
+        "Rubric row I did best on: ____  Evidence: ____",
+        "One strength was ____.",
+        "One goal is ____. I will practice it by ____ (when, with whom)."
+      ]
+    }
+  ]
+}

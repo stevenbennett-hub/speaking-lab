@@ -1,0 +1,9 @@
+{
+  "$comment": "Site settings that change by academic year. calendar = the academic-year calendar file (district no-school days, semester dates, block schedule). Reusable teaching materials (pacing, lessons, journals, achievements) do not depend on the year. For a new year: add data/calendar-YYYY-YY.json, check it in the Lesson Manager, then change this path. Student progress is never touched. site = the public addresses printed on teacher exports (substitute plans, Quick Teach); exports never print a localhost address.",
+  "version": 1,
+  "calendar": "data/calendar-2026-27.json",
+  "site": {
+    "production": "https://stevenbennett-hub.github.io/speaking-lab/",
+    "preview": "https://stevenbennett-hub.github.io/speaking-lab-preview/"
+  }
+}
