@@ -1,0 +1,14 @@
+flowchart LR
+  GH["GitHub Pages<br/>(hosts the website files;<br/>may log standard access data<br/>such as IP addresses)"] -->|"website files only<br/>(HTML, scripts, data, fonts, badge art)"| BR["Student's browser<br/>(district MacBook)"]
+  BR --> LS[("Browser storage on this computer<br/>progress, badges, preferences<br/>— never names or reflections")]
+  BR --> MEM["Page memory only<br/>optional name + reflections<br/>(cleared on close, navigation, refresh)"]
+  MEM --> DOC["Certificate / portfolio<br/>drawn locally on the page"]
+  LS --> DOC
+  DOC --> ACT{{"Student-controlled actions"}}
+  ACT --> DL["Download (PDF / PNG)"]
+  ACT --> PR["Print (low-ink)"]
+  ACT --> EM["Email draft in the student's<br/>own email app (no address,<br/>no name; student attaches & sends)"]
+  ACT --> CV["Manual upload to Drive / Canvas"]
+  MEM -. "never sent back" .-x GH
+  LS -. "never sent back" .-x GH
+  classDef no stroke-dasharray: 4 3

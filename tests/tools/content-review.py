@@ -149,6 +149,9 @@ if data.get("playbook"):
         doc.add_heading(f"Unit {pbk['unit']}: {pbk['title']} (status {pbk['status']}, updated {pbk['updated']})", 2)
         table([[(k,), t, ""] for k, t in pbk["days"]], header=["Planned day", "Playbook lesson", ""], widths=[1.2, 5.0, 0.6])
         table([[(v[0],), v[1], v[2]] for v in pbk["videos"]], header=["Video", "Channel", "Segment"], widths=[3.4, 1.8, 1.6])
+        if pbk.get("confirm"):
+            doc.add_heading(f"Unit {pbk['unit']}: needs your confirmation (nothing changed)", 3)
+            table([[(c[0],), c[1], "☐ yes   ☐ no   ☐ change: ____"] for c in pbk["confirm"]], header=["Question", "Why it is asked", "Your decision"], widths=[2.4, 2.8, 1.6])
     for t in data.get("playbookReview", []):
         doc.add_heading(f"Unit 1 review notes: {t['title']}", 2)
         doc.add_paragraph("Suggestions only; nothing was changed and no status was changed.")

@@ -140,6 +140,7 @@
   function afterCheck(part) {
     const newly = record(C, rec, SL2.today(), [part], isCol());
     save();
+    if (newly.length && window.SLSound) SLSound.cue("complete"); // optional sound (off unless the student turns it on)
     if (newly.length && SL2.achState) { try { SL2.achState(); } catch (e) {} }
   }
 

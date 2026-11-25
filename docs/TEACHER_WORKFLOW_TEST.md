@@ -47,7 +47,7 @@ The first time you saved real AI or research settings through the Lesson Manager
 - **The preview workflow** (`speaking-lab-preview` → `preview.yml`) is yours and was not changed.
 
 ## Checklist to repeat on a district laptop
-1. My course → Teacher → enter the teacher view code → Lesson Manager.
+1. Preferences → Teacher tools (or My Course → Teacher) → enter the teacher view code (a classroom convenience, not secure sign-in) → Lesson Manager. In teacher view, **Teacher tools** also appears in the header next to Preferences.
 2. Calendar → open an upcoming date → **Edit reusable lesson**.
 3. Change the learning and language objectives. Set research requirements and AI permission. Save draft.
 4. Open the day's journal (Journals tab), change the prompt, and save the draft.

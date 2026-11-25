@@ -171,6 +171,7 @@
   function afterChange(ep, e) {
     const newly = record(ep, e, SL2.today());
     save();
+    if (newly.length && window.SLSound) SLSound.cue("complete"); // optional sound (off unless the student turns it on)
     if (newly.length && SL2.achState) { try { SL2.achState(); } catch (err) {} }
   }
 

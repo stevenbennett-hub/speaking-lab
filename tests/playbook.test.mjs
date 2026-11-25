@@ -38,7 +38,8 @@ test("video guides: real links, nothing invented, segments blank until previewed
   const page = read("../site/index.html");
   for (const v of pb.videos) {
     assert.ok(page.includes(v.url), `${v.id} is a video already on the Speaking Lab`);
-    assert.equal(v.segment.verified, false); assert.equal(v.segment.start, null); assert.equal(v.segment.end, null);
+    // Blank until the teacher previews the video; times only when the teacher marked them verified (Lesson Manager editor).
+    if (v.segment.verified) assert.ok(v.segment.start || v.segment.end, `${v.id}: verified needs a time`); else { assert.equal(v.segment.start, null); assert.equal(v.segment.end, null); }
     assert.ok(v.alternative && v.captions && v.language);
     assert.doesNotMatch(JSON.stringify(v), /autoplay|\bat \d+:\d{2}\b/i);
   }
@@ -74,11 +75,11 @@ test("meeting composition fits the real 2026–27 Unit 1 blocks for both groups 
 
 test("teacher-only: students never load the playbook; it lives in the Lesson Manager, sub plan and print", () => {
   const s = read("../site/js/playbook.js"), t = read("../site/js/teacher.js");
-  assert.equal((s.match(/fetch\(/g) || []).length, 1, "one fetch, inside load()");
+  assert.equal((s.match(/fetch\(/g) || []).length, 2, "two fetches (the unit file and classroom.json), both inside load()");
   assert.ok(s.indexOf("fetch(") > s.indexOf("B.load = function"));
   for (const f of ["student.js", "btp.js", "aistudio.js", "research.js", "boot.js"]) assert.doesNotMatch(read(`../site/js/${f}`), /data\/playbook/, f);
   assert.match(t, /\["playbook", L\("Playbook", "Guía docente"\)\]/);
-  assert.match(t, /tab === "playbook" \? \(window\.SLPlaybook \? SLPlaybook\.tab\(a1, a2, pbCtx\(\)\) : ""\)/);
+  assert.match(t, /tab === "playbook" \? \(window\.SLPlaybook \? SLPlaybook\.tab\(a1, a2, pbCtx\(\), r\.args\[3\], r\.args\[4\]\) : ""\)/);
   assert.match(t, /SLPlaybook\.print\(a1, a2, pbCtx\(\)\)/); assert.match(t, /SLPlaybook\.sub\(mod\)/);
   assert.match(t, /#\/teacher\/playbook\/\$\{mod\.unit\}\/\$\{day\}/, "each date links to its teacher plan");
   assert.doesNotMatch(s, /sendBeacon|XMLHttpRequest|setItem\("speakup-(?!teacher-)/);

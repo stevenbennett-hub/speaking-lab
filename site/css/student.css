@@ -417,3 +417,31 @@ a.themesw.navteacher { text-decoration: none; }
 /* Narrow screens: the header row scrolls sideways, so the extra sections show inline instead of in a menu. */
 @media (max-width: 720px) { .navmore-btn { display: none; } .navmore, .navmore-list, .navmore-list[hidden] { display: contents; } }
 header .navteacher { margin-left: auto; } header .navteacher + .myworkbtn { margin-left: 0; }
+/* Quick Teach, concise substitute plan, playbook editor (Slice 11 refinements) */
+.pb-ok { border-left: 4px solid var(--zone, #1F7364); padding: 6px 12px; }
+.pbq h3, .pbs h3 { margin: 12px 0 4px; }
+.pbq-obj { margin: 4px 0 8px; }
+.pb-time td:first-child { white-space: nowrap; }
+.pb-ph-name { display: inline-block; min-width: 6.5em; color: var(--muted); font-size: 13px; }
+.pb-settings { border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; margin: 12px 0; }
+.pb-form-row, .pbe-row { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: flex-end; }
+.pb-form-row label, .pbe-f { display: flex; flex-direction: column; gap: 4px; font-weight: 600; font-size: 14px; flex: 1 1 12em; }
+.pb-form-row input, .pbe-f input:not([type="checkbox"]), .pbe-f textarea, .pbe-f select { font: inherit; font-weight: 400; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text); width: 100%; box-sizing: border-box; }
+.pbe-f span { font-weight: 600; }
+.pbe-ph { border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; margin: 10px 0; }
+.pb-confirm li { margin: 6px 0; }
+.pbs-steps li { margin: 6px 0; }
+@media print {
+  .pb-print-quick, .pb-print-sub { font-size: 10pt; line-height: 1.25; }
+  .pb-print-quick { font-size: 9.5pt; line-height: 1.2; } .pb-print-quick li { margin: 0; } .pb-print-quick .pb-ph-name { font-size: 8pt; min-width: 5.5em; }
+  .pb-print-quick .pb-warn, .pb-print-quick .pb-ok { padding: 2px 8px; margin: 2px 0; }
+  .pb-print-quick .pb-draft, .pb-print-quick > p:not(.sl2-btns) { display: none; }
+  .pb-print-quick .sl2-h1, .pb-print-sub .sl2-h1 { font-size: 16pt; margin: 0 0 4px; }
+  .pb-print-quick .sl2-h2, .pb-print-sub .sl2-h2 { font-size: 12pt; margin: 4px 0; }
+  .pb-print-quick h3, .pb-print-sub h3 { font-size: 10.5pt; margin: 6px 0 2px; text-transform: none; }
+  .pb-print-quick ul, .pb-print-sub ul { margin: 2px 0; padding-left: 16px; }
+  .pb-print-quick p, .pb-print-sub p { margin: 3px 0; }
+  .pb-print-quick .sl2-table td, .pb-print-quick .sl2-table th { padding: 2px 6px; }
+  .pb-print-quick .pb-2col { gap: 0 16px; }
+}
+.pb-msg:empty { display: none; }

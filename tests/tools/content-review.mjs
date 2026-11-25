@@ -81,7 +81,7 @@ const stu = readFileSync(new URL("../../site/js/student.js", import.meta.url), "
 const facts = stu.slice(stu.indexOf("const JOURNAL_FACTS = ["), stu.indexOf("];", stu.indexOf("const JOURNAL_FACTS = [")));
 out.journalFacts = [...facts.matchAll(/\["([^"]+)", "([^"]+)"\]/g)].map((x, i) => [`Fact ${i + 1}`, x[1], x[2]]);
 // Instructor Playbook (teacher-facing): status of each unit's playbook, plus the Unit 1 review notes (suggestions, not applied).
-out.playbook = [1, 2, 3, 4, 5, 6].map(u => { try { const pb = J(`playbook/unit-${u}.json`); return { unit: u, status: pb.status, updated: pb.updated, title: pb.overview.title, days: Object.entries(pb.lessons).map(([k, l]) => [k, l.title]), videos: pb.videos.map(v => [v.title, v.channel, v.segment.verified ? "verified" : "segment not verified"]) }; } catch (e) { return null; } }).filter(Boolean);
+out.playbook = [1, 2, 3, 4, 5, 6].map(u => { try { const pb = J(`playbook/unit-${u}.json`); return { unit: u, status: pb.status, updated: pb.updated, title: pb.overview.title, days: Object.entries(pb.lessons).map(([k, l]) => [k, l.title]), videos: pb.videos.map(v => [v.title, v.channel, v.segment.verified ? "verified" : "segment not verified"]), confirm: (pb.overview.confirm || []).map(c => [c.q, c.why]) }; } catch (e) { return null; } }).filter(Boolean);
 try {
   const md = readFileSync(new URL("../../docs/playbook/UNIT1_CONTENT_REVIEW.md", import.meta.url), "utf8");
   const tables = md.split(/\n## /).slice(1).map(sec => ({ title: sec.split("\n")[0], rows: sec.split("\n").filter(l => /^\| /.test(l) && !/^\| (Where|---)/.test(l)).map(l => l.split("|").slice(1, -1).map(c => c.trim().replace(/\*\*/g, ""))) })).filter(t => t.rows.length);

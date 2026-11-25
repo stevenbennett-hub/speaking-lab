@@ -19,7 +19,10 @@ Status as of Nov 24, 2026.
 | 10 | Integration and pilot readiness: 720p film copy, visual descriptions, Spanish captions (draft), Ad Detective mastery (separate `dev` branch) and Master Ad Detective, rubric mapping for teacher-verified badges, typed-journal notice, student experience review, teacher workflow test, pilot guide, questionnaire, readiness checklist | Approved (release candidate; production pending) |
 | 11 | Navigation for a daily platform (Today's Lesson, My Course, Learning Labs, Resources, My Achievements; teacher tools apart) and the Instructor Playbook prototype for Unit 1: resource audit, ten planned-day plans, meeting plans for the real blocks, video guides, substitute and printable plans, formative resources, reusable schema | Built, awaiting review |
 
-## Next: review the Unit 1 Instructor Playbook, then the classroom pilot
+## Next: review the refined Unit 1 prototype (Quick Teach, substitute plans, editing), then the classroom pilot
+The Slice 11 navigation is approved for preview testing. Answer the Playbook's "Needs your confirmation" list.
+
+## (earlier) Review the Unit 1 Instructor Playbook
 Review the Unit 1 playbook (Lesson Manager → Playbook). Preview the videos and fill in the segments. Units 2–6 playbooks are written only after Unit 1 is approved, using `docs/playbook/LESSON_SCHEMA.md`.
 
 ## Classroom pilot (no new student features)
@@ -50,3 +53,23 @@ Follow `docs/pilot/PILOT_GUIDE.md` with one class, then fix what the pilot shows
   - Criteria types are documented in its `$comment`.
   - External sites are read only through a validated, versioned summary (Ad Detective: `addetective-mastery-v1`).
 - `js/progress.js` and `js/achievements.js` read existing keys only. New sources add a `collect` field and a criterion type.
+
+## After Slice 12 (needs approval)
+- Listen to the sound library in place and mark it reviewed (`docs/SOUND_DESIGN.md`).
+- Decide on the lab mastery proposals (`docs/proposals/lab-mastery-proposals.md`).
+- Continue harmonizing legacy lab styling with the design system, one lab at a time.
+- Approve the refined Unit 1 workflow and the unified application, then write the Unit 2–6 playbooks.
+- Real teacher verification for communication badges (Canvas Outcomes exploration), so that gold celebrations can happen.
+
+
+## Portable achievements (built on `dev`, needs review)
+- Review the certificate and portfolio wording, the competency grouping and the Spanish (draft).
+- Ask district technology / student-privacy leadership to review `docs/privacy/STUDENT_PRIVACY_AND_DATA_HANDLING.md`.
+- Test printing on a school printer and Email to Myself on a district MacBook during the pilot.
+- Approved (Nov 24) for development preview testing. Next milestone: hands-on preview testing and instructor approval of the unified application.
+
+## Future accessibility work (needs approval)
+- **Accessible certificate and portfolio exports.** Today's PDFs are page images, which screen readers cannot read. Options:
+  - a text-based PDF with embedded fonts, real text and a reading order (tagged where feasible);
+  - an accessible HTML export of the same content.
+  - Either must keep the privacy rules: no metadata with names, generic filenames, generated locally.

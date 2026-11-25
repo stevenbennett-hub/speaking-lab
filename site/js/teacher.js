@@ -19,10 +19,11 @@
 
   /* ---------- drafts (this browser only) ---------- */
   function loadDrafts() { try { const d = JSON.parse(get(DKEY) || "null"); if (d && d.drafts) return d.drafts; } catch (e) {} return null; }
-  let W = (() => { const d = loadDrafts() || {}; const o = {}; M.EDITABLE.forEach(k => { o[k] = d[k] ? d[k] : clone(PUB[k]); }); return o; })();
+  let W = (() => { const d = loadDrafts() || {}; const o = {}; M.EDITABLE.forEach(k => { o[k] = d[k] ? d[k] : clone(PUB[k]); }); o.playbook = d.playbook || {}; return o; })();
   const fullData = () => ({ ...PUB, ...W });
   function saveDrafts() { put(DKEY, JSON.stringify({ kind: "speakup-teacher-drafts", saved: X.today(), drafts: W })); }
-  const changedFiles = () => M.changed(PUB, W);
+  // Instructor Playbook drafts (js/playbook.js) are exported here too, as site/data/playbook/unit-N.json.
+  const changedFiles = () => M.changed(PUB, W).concat(window.SLPlaybook && SLPlaybook.changed ? SLPlaybook.changed(W.playbook) : []);
 
   /* ---------- semester and group context (the manager's own, not the student's) ---------- */
   let sem = (S.semesterOf(D.calendar, X.today()) || "fall"), grp = (classGroup === "odd" || classGroup === "even") ? classGroup : "odd";
@@ -81,14 +82,15 @@
     let body = "";
     try {
       body = tab === "week" ? tabWeek(Number(a1) || currentWeek()) : tab === "day" ? tabLesson(a1) : tab === "date" ? tabDate(a1) : tab === "schedule" ? tabSchedule()
-        : tab === "journals" ? tabJournals(a1) : tab === "review" ? tabReview(a1) : tab === "publish" ? tabPublish() : tab === "year" ? tabYear() : tab === "playbook" ? (window.SLPlaybook ? SLPlaybook.tab(a1, a2, pbCtx()) : "") : tab === "print" ? null : tabCalendar();
+        : tab === "journals" ? tabJournals(a1) : tab === "review" ? tabReview(a1) : tab === "publish" ? tabPublish() : tab === "year" ? tabYear() : tab === "playbook" ? (window.SLPlaybook ? SLPlaybook.tab(a1, a2, pbCtx(), r.args[3], r.args[4]) : "") : tab === "print" ? null : tabCalendar();
     } catch (e) { console.error(e); body = `<p class="tm-err">${h(String(e.message || e))}</p>`; }
-    if (tab === "print") return (a1 === "plan" || a1 === "playbook") && window.SLPlaybook ? SLPlaybook.print(a1, a2, pbCtx()) : printWeek(Number(a2) || currentWeek());
+    if (tab === "print") return ["plan", "quick", "sub", "playbook"].includes(a1) && window.SLPlaybook ? SLPlaybook.print(a1, a2, pbCtx()) : printWeek(Number(a2) || currentWeek());
     const out = shell(tab === "day" ? "week" : tab === "date" ? "calendar" : tab, body); flash = ""; return out;
   }
   /** What the Instructor Playbook (js/playbook.js) needs from the Lesson Manager: the chosen semester and group. */
   function pbCtx() {
     return { grp, sem, groupLabel: groupLabel(grp, false), semLabel: sem === "fall" ? "Fall 2026" : "Spring 2027",
+      drafts: W.playbook, save: saveDrafts,
       meetings: () => withStart(() => S.meetings({ ...X.opts(grp), start: startOf(sem), overrides: W.overrides, journals: W.journals.journals })),
       model: d => withStart(() => X.lessonModel(d, grp)) };
   }
@@ -113,7 +115,7 @@
       <p>${L("Unit", "Unidad")} ${mod.unit} · ${mod.week === 0 ? L("Getting started", "Primeros días") : `${L("Week", "Semana")} ${mod.week}`} · ${L("Lesson:", "Lección:")} <b>${h(mod.title)}</b>${mod.extendOf ? ` · ${L("Extended from", "Extendida desde")} ${h(X.fmtShort(mod.extendOf))}` : ""}</p>
       <p>${j ? `${L("Journal", "Diario")} #${m.number} (${L("set", "grupo")} ${m.set}): ${h(pick(j.title || j.focus))}` : L("No journal for this class.", "Sin diario para esta clase.")}</p>
       <p class="sl2-btns"><a class="btn primary" href="#/present/${grp}/${day}">${L("Present", "Presentar")}</a> <a class="btn" href="#/sub/${grp}/${day}">${L("Substitute plan", "Plan para suplente")}</a> <a class="btn" href="?date=${day}#/unit/${mod.unit}/day/${day}">${L("Preview as a student", "Ver como estudiante")}</a>
-        ${mod.keys.map(k => `<a class="btn" href="#/teacher/day/${k}">${L("Edit reusable lesson", "Editar lección reutilizable")} ${k}</a>`).join(" ")} <a class="btn" href="#/teacher/playbook/${mod.unit}/${day}">${L("Teacher plan (Playbook)", "Plan docente (guía)")}</a></p>
+        ${mod.keys.map(k => `<a class="btn" href="#/teacher/day/${k}">${L("Edit reusable lesson", "Editar lección reutilizable")} ${k}</a>`).join(" ")} <a class="btn" href="#/teacher/playbook/${mod.unit}/${day}">${L("Quick Teach plan", "Plan rápido")}</a></p>
       <p class="sl2-small">${day < X.today() ? L("This class is in the archive. Its date, journal and journal number are fixed. Editing the reusable lesson changes the wording shown for every class that uses it, including this one.", "Esta clase está en el archivo. Su fecha, diario y número de diario son fijos. Editar la lección reutilizable cambia el texto de todas las clases que la usan, incluida esta.") : L("To change only this class, use Schedule and releases.", "Para cambiar solo esta clase, usa Horario y aperturas.")}</p>
       <h3 class="sl2-h3">${L("Objectives", "Objetivos")}</h3><ul>${mod.objectives.map(o => `<li>${h(pick(o.learn))}<br><span class="sl2-small">${h(pick(o.lang))}</span></li>`).join("")}</ul>
       <h3 class="sl2-h3">${L("Agenda", "Agenda")}</h3><ol>${mod.agenda.map(a => `<li>${h(a.t)}</li>`).join("")}</ol>
@@ -313,7 +315,7 @@
       <h2 class="sl2-h2">${L("2. Preview", "2. Vista previa")}</h2>
       <label class="sl2-support"><input type="checkbox" data-tm-preview ${prev ? "checked" : ""}> ${L("Show my drafts in the student view on this browser only", "Mostrar mis borradores en la vista de estudiante solo en este navegador")}</label>
       <h2 class="sl2-h2">${L("3. Export changed files", "3. Exportar archivos cambiados")}</h2>
-      ${ch.length ? `<ul>${ch.map(c => `<li><code>${h(c.path)}</code> <button type="button" class="btn" data-tm-dl="${c.key}"${v.errors.length ? " disabled" : ""}>${L("Download", "Descargar")}</button></li>`).join("")}</ul>` : `<p>${L("No changes from the published site.", "No hay cambios respecto al sitio publicado.")}</p>`}
+      ${ch.length ? `<ul>${ch.map(c => `<li><code>${h(c.path)}</code> <button type="button" class="btn" data-tm-dl="${c.key}"${v.errors.length || (c.errors && c.errors.length) ? " disabled" : ""}>${L("Download", "Descargar")}</button>${c.errors && c.errors.length ? `<ul class="tm-issues">${c.errors.map(e => `<li>${h(e.where)}: ${h(e.msg)}</li>`).join("")}</ul>` : ""}</li>`).join("")}</ul>` : `<p>${L("No changes from the published site.", "No hay cambios respecto al sitio publicado.")}</p>`}
       <ol class="tm-steps">
         <li>${L("Download the changed files above.", "Descarga los archivos cambiados.")}</li>
         <li>${L("On GitHub, open the speaking-lab repository, switch to the dev branch, open site/data, choose Add file → Upload files, and drop in the downloaded files (same names, replacing the old ones).", "En GitHub, abre el repositorio speaking-lab, cambia a la rama dev, abre site/data, elige Add file → Upload files y suelta los archivos descargados (mismos nombres, reemplazando los anteriores).")}</li>
@@ -375,7 +377,7 @@
 
   /* ---------- substitute plan and weekly plan (printable) ---------- */
   function planBlock(mod, g) {
-    const j = mod.journal, m = mod.meeting, base = location.href.split("#")[0].split("?")[0];
+    const j = mod.journal, m = mod.meeting, base = X.siteBase(); // never a localhost address on a printed plan
     return `<section class="sp-block"><h2>${h(X.fmtLong(mod.day))} · ${h(groupLabel(g, false))} (${h(GROUPS[g].d[0])}, ${L("90-minute block", "bloque de 90 minutos")})</h2>
       <p><b>${L("Unit", "Unidad")} ${mod.unit}, ${mod.week === 0 ? L("getting started", "primeros días") : `${L("week", "semana")} ${mod.week}`}:</b> ${h(mod.title)}${mod.extendOf ? ` (${L("continues", "continúa")} ${h(X.fmtShort(mod.extendOf))})` : ""}</p>
       <h3>${L("Objectives", "Objetivos")}</h3><ul>${mod.objectives.map(o => `<li>${h(pick(o.learn))}<br><i>${L("Language:", "Lenguaje:")}</i> ${h(pick(o.lang))}</li>`).join("")}</ul>
@@ -423,9 +425,11 @@
     else if (t.matches("[data-pr-grp]")) location.hash = `#/present/${t.value}`;
     else if (t.id === "tm-import" && t.files && t.files[0]) {
       const f = t.files[0], rd = new FileReader();
-      rd.onload = () => { const r = M.importFile(f.name, String(rd.result), W);
+      rd.onload = () => { const pbf = window.SLPlaybook && SLPlaybook.importText && SLPlaybook.importText(String(rd.result));
+        if (pbf) { if (pbf.ok) { W.playbook[pbf.unit] = pbf.data; saveDrafts(); say(L(`Imported the Unit ${pbf.unit} playbook as a draft.`, `Se importó la guía de la Unidad ${pbf.unit} como borrador.`)); } else say(pbf.msg); rerender(); return; }
+        const r = M.importFile(f.name, String(rd.result), W);
         if (!r.ok) { say(r.msg || L("Not imported: the file has problems.", "No se importó: el archivo tiene problemas.")); rerender(); return; }
-        if (r.key === "backup") M.EDITABLE.forEach(k => { if (r.drafts[k]) W[k] = r.drafts[k]; }); else W[r.key] = r.data;
+        if (r.key === "backup") { M.EDITABLE.forEach(k => { if (r.drafts[k]) W[k] = r.drafts[k]; }); if (r.drafts.playbook) W.playbook = r.drafts.playbook; } else W[r.key] = r.data;
         saveDrafts(); say(L(`Imported ${r.key === "backup" ? "your backup" : f.name} as drafts.`, `Se importó ${r.key === "backup" ? "tu copia" : f.name} como borrador.`)); rerender(); };
       rd.readAsText(f);
     }

@@ -1,5 +1,15 @@
 # Unit 1 content review notes (from building the playbook)
 
+## Needs your confirmation (also shown in Lesson Manager → Playbook)
+1. Does the high school Self-Introduction Speech require slides? The pacing line for w02d2 mentions slides, but the assignment does not.
+2. Accept, edit or decline the suggested English and Spanish wording changes below.
+3. ~~In the shortened spring schedule (odd group), reuse the speech-anxiety prompt (Journal 3) as the w01d4 exit reflection?~~ **Recommended and built as a draft rule** (`overview.exitFromJournal`). The Journal 3 prompt becomes the exit only where a group's schedule skips Journal 3 (spring odd). Journal numbering and `lessons.json` are unchanged.
+4. Is the balance of rehearsal and speech time enough? The meeting map shows the minutes for each group, and whether your class size fits.
+5. **AI teaching notes (Slice 12): resolved.** The notes were revised as recommended (see `AI_PERMISSION_REPORT.md`). Original question: On eight planned days the playbook note says "No AI use" or "Not applicable", but the lesson's permission is the class default (grammar and spelling feedback). Should those lessons be set to "Not permitted", or should the notes change? See `AI_PERMISSION_REPORT.md`. Students see the lesson's permission, which is unchanged.
+6. **Substitute practice time (Slice 12).** Concise substitute plans now fill all 90 minutes. After the day's substitute-suitable steps, students do independent practice in the unit's existing labs, then reading, vocabulary or speech rehearsal (never scored). Is that the use of time you want?
+
+Nothing in this list has been changed.
+
 Reviewed Nov 24, 2026. These are **suggestions only**.
 - Nothing in `lessons.json`, `journals.json` or `pacing.json` was changed.
 - No approval status was changed.
@@ -32,3 +42,11 @@ Everything else in the Unit 1 Spanish (objectives, success criteria, journal pro
 - The playbook is teacher-facing English and marked **draft**.
 - Teacher talking points that refer to the textbook say "list the strategies the section names" rather than quoting it. Check them against your copy of Ch. 1 §1.2 and Ch. 3.
 - Video guides: fill in each segment after previewing. They are deliberately blank.
+
+## Slice 12 refinement: substitute extension prerequisites
+Extension work on each concise substitute plan now comes only from what the class has been taught by that meeting:
+- labs linked in this or earlier planned days, plus the unit's starter labs (The Art of Listening, The Respectful Audience Lab);
+- readings assigned so far, or Chapter 1 before any;
+- speech rehearsal only from w01d4 (`overview.speechAssigned`), when the Self-Introduction Speech is assigned.
+
+The first-day plan no longer mentions note cards or rehearsal. The slides question (item 1) is still open and unchanged.

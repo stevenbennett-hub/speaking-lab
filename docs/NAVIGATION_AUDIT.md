@@ -1,3 +1,35 @@
+# Navigation audit (Slice 12: the unified application)
+
+Done Nov 24, 2026, on `dev`. The Slice 11 audit follows below, unchanged, as history.
+
+## What was still competing
+| Finding | Effect on students | Slice 12 change |
+| --- | --- | --- |
+| **Learning Labs** linked to `#labs`, the classic one-page guide | Clicking it left the application and dropped students halfway down the long landing page. | `#/labs` is its own view. A lab opens at `#/labs/<lab>`: the page's own lab, moved into the application, with breadcrumbs back to Learning Labs, Today's Lesson and My Achievements. |
+| **Resources** was a drop-down of classic section links | The same problem, nine times over. | `#/resources` is a library of ten areas with search. Each area shows the existing section inside the application (`#/resources/videos`, …). |
+| **Brand** linked to `#top` | It returned students to the classic landing page. | The brand goes to My Course (`#/`). The classic guide is still linked as "Full course guide" at the bottom of My Course and Resources. |
+| **Today's Lesson** redirected to `#/unit/N` | The header marked the wrong place, and Back went somewhere unexpected. | `#/today` is its own view, using the same schedule logic as the unit's Today tab. |
+| **Level switch (High School / College)** in the permanent header | Students had already chosen a pathway, so the switch was redundant. | Removed from the header and moved to **Preferences → Course pathway**. College still goes through the existing instructor gate and stays off by default. |
+| **My work, Dark mode** in the header | Utility clutter beside the student navigation. | Moved to Preferences (Progress backup; Appearance). Language stays in the header. |
+| Lab buttons on Today's Lesson | They needed the unit view. | They open the lab in Learning Labs. |
+
+The original controls are still in the page, hidden (`#hdrHold`). The college gate, theme and backup handlers therefore work unchanged.
+
+## Header now
+Speak Up / Speaking Lab · **Today's Lesson** · **My Course** · **Learning Labs** · **Resources** · **My Achievements** · English/Español · (Mute sounds, only while sound is on) · (Teacher tools, teacher view only) · **Preferences**
+
+Every header link opens an application view. None returns to the classic landing page (tested).
+
+## Compatibility (browser-tested, `slice12-test-results.txt`)
+- **Old links still open the classic page:** `#labs`, `#videos`, `#rubrics`, `#unit-3`, `#lab-model` and the rest, including Canvas links and bookmarks.
+- **Every `#/…` route still works:** `#/unit/N/labs`, `#/btp/1`, `#/ai`, `#/research`, the teacher routes.
+- **Browser Back and Forward** move between the views.
+- **In-page links inside a hosted lab or section** stay in the view. A link to a whole section (`#labs`, `#videos`) still opens the classic page.
+- **Unchanged:** storage keys and saved progress. New keys: `speakup-prefs-v1` for sound and motion preferences.
+- **Spanish:** every label is translated (Lección de hoy · Mi curso · Laboratorios · Recursos · Mis logros · Preferencias).
+
+---
+
 # Navigation audit and refinement (Slice 11)
 
 Done Nov 24, 2026, on `dev`, before changing anything. Mr. Bennett's goal: Speaking Lab is now a daily instructional platform, so the header should lead with today's lesson.

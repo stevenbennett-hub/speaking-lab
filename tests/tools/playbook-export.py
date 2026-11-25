@@ -6,7 +6,9 @@ Usage (from the repository root, with the site served locally, e.g. `python3 -m 
 Writes, for Unit N:
   Unit N Instructor Playbook (draft).docx      overview, meeting maps, every planned-day plan, video guides,
                                                formative resources, substitute steps, materials and prep
-  Unit N Daily Teacher Plans (all groups).pdf  the printable plan for every real class meeting (#/teacher/print/plan)
+  Unit N Quick Teach Plans (all groups).pdf   the one-page Quick Teach plan for every real class meeting (#/teacher/print/quick)
+  Unit N Concise Substitute Plans (all groups).pdf  the 1–2 page substitute plan for every meeting (#/teacher/print/sub)
+  Unit N Daily Teacher Plans (all groups).pdf  the full printable plan for every real class meeting (#/teacher/print/plan)
   Unit N Substitute Plans (all groups).pdf     the site's substitute plan for every meeting (#/sub)
   Unit N Video Viewing Guides.docx, Unit N Formative Assessment Resources.docx, Unit N Materials and Prep Checklist.docx
 Needs Python packages: playwright (with Chromium), python-docx, pypdf. Uses the teacher view code from tests only to open
@@ -29,7 +31,9 @@ SEM = {"fall": "Fall 2026", "spring": "Spring 2027"}; GRP = {"odd": "Periods 1, 
 def ready(pg): pg.wait_for_selector("html[data-speakup-ready]", timeout=20000); pg.wait_for_timeout(700)
 
 bundle = {"runs": []}
-plans, subs = PdfWriter(), PdfWriter()
+plans, subs, quicks, csubs = PdfWriter(), PdfWriter(), PdfWriter(), PdfWriter()
+PAGES = {"quick": [], "csub": []}
+M = {"top": "0.4in", "bottom": "0.4in", "left": "0.5in", "right": "0.5in"}
 with sync_playwright() as p:
     b = p.chromium.launch()
     for sem, grp, clock in COMBOS:
@@ -50,12 +54,21 @@ with sync_playwright() as p:
         for r in rows:
             pg.goto(BASE + f"#/teacher/print/plan/{r['date']}"); ready(pg)
             plans.append(PdfReader(io.BytesIO(pg.pdf(format="Letter", margin={"top": "0.5in", "bottom": "0.5in", "left": "0.5in", "right": "0.5in"}, print_background=False))))
+            for kind, w in (("quick", quicks), ("sub", csubs)):
+                pg.goto(BASE + f"#/teacher/print/{kind}/{r['date']}"); ready(pg)
+                rd = PdfReader(io.BytesIO(pg.pdf(format="Letter", margin=M))); w.append(rd); PAGES["quick" if kind == "quick" else "csub"].append((sem, grp, r["date"], len(rd.pages)))
             pg.goto(BASE + f"#/sub/{grp}/{r['date']}"); ready(pg)
             subs.append(PdfReader(io.BytesIO(pg.pdf(format="Letter", margin={"top": "0.5in", "bottom": "0.5in", "left": "0.5in", "right": "0.5in"}))))
             pg.goto(BASE + f"#/teacher/playbook/{UNIT}"); ready(pg)
         ctx.close()
     b.close()
 plans.write(OUT / f"Unit {UNIT} Daily Teacher Plans (all groups).pdf"); subs.write(OUT / f"Unit {UNIT} Substitute Plans (all groups).pdf")
+quicks.write(OUT / f"Unit {UNIT} Quick Teach Plans (all groups).pdf"); csubs.write(OUT / f"Unit {UNIT} Concise Substitute Plans (all groups).pdf")
+bundle["pages"] = PAGES
+# Classroom-ready exports never print a local address.
+for f in OUT.glob("*.pdf"):
+    txt = "".join(pg_.extract_text() or "" for pg_ in PdfReader(str(f)).pages)
+    if "localhost" in txt or "127.0.0.1" in txt: raise SystemExit(f"{f.name} contains a localhost address")
 (OUT / f"unit-{UNIT}-bundle.json").write_text(json.dumps(bundle, indent=1), encoding="utf-8")
 
 # ---------- Word documents ----------

@@ -1,5 +1,105 @@
 # Changelog
 
+## Unreleased (branch `dev`) — Portable achievements review refinements
+- The celebration's "Save achievement" is renamed **Back up my progress**.
+- **Knowledge-badge competencies:** `activities.json` `badgeSkills` tags Communication Explorer with Communication process, and Evidence Investigator with Audience awareness, Research literacy and Speech organization. Persistent Learner has none (no single competency).
+- **Clarified wording**, in the app and in the privacy report:
+  - names and reflections are visible on documents the student exports, but never sent and never in metadata;
+  - practice responses and typed journals may contain voluntarily typed personal information and are included in the student's own backup (a new note in the backup dialog).
+- **Roadmap:** accessible text-based PDF or HTML export.
+- **Tests:** 199 kept, plus targeted tests in `tests/portable-refine.test.mjs`.
+
+## Unreleased (branch `dev`) — Portable achievements, certificates, portfolio and student privacy
+- **Certificates** for every earned badge (`#/certificate/<badge>`).
+  - Two US Letter styles: printer friendly (default for Print, low ink) and full color.
+  - Exports: PDF (written locally, no metadata), PNG, badge PNG, Print.
+  - Optional name kept in page memory only. Real criteria, competencies, dates and points; honest footer; no signature.
+- **My Communication Achievement Portfolio** (`#/portfolio`): grouped by competency, several achievements per page, optional reflection (memory only), both styles.
+- **Email to Myself:** a generic `mailto:` draft with no recipient and no name, copy buttons for webmail, and manual-attachment steps. Nothing is sent by Speaking Lab.
+- **Celebration actions:** Continue learning, View certificate, Download badge, Save achievement (opens the backup). **My Achievements:** a certificate button on earned cards, portfolio and backup buttons, and a weekly reminder you can dismiss (`speakup-backup-v1`, dates only).
+- **Demonstration certificates** (teacher view) are labelled DEMONSTRATION · SAMPLE with a fictional name. Preview builds stamp DEVELOPMENT PREVIEW.
+- **Privacy:** `docs/privacy/STUDENT_PRIVACY_AND_DATA_HANDLING.md` (with data-flow diagram) and a browser audit (`tests/tools/privacy-audit.py`, 60/60).
+- **Tests:** 199 (189 kept, plus 10 in `tests/certificates.test.mjs`). Two older assertions were updated transparently: the celebration now links to the certificate, and the load order adds `js/certificates.js`. Browser: 26 certificate checks and 60 audit checks, plus the earlier 60 + 10 + 13.
+
+## Unreleased (branch `dev`) — Slice 12 refinements (after review)
+- **Dark mode is the default for first-time visitors.** Saved choices are kept. Students who used the site before (a saved pathway) keep the light look they had.
+- **Sound library:** the 11 sounds Mr. Bennett chose are in `site/media/sfx/`, prepared by `sfx-prepare.py` (now with a peak limiter). The library is not yet marked reviewed.
+- **Lab feedback sounds:** correct-answer and try-again are wired through the audio manager for every lab that uses the shared result markup. They play only after the student's own action, never on re-renders, and the labs' code is unchanged.
+- **Unit unlock sound:** plays once, when a student deliberately opens a newly available unit (`speakup-unlock-v1`). Never on page load or at release time.
+- **AI teaching notes revised** to "No AI activity is planned… the class default… applies to written work". The check is narrowed to real prohibitions; no flags remain. No permission changed.
+- **Substitute extensions match what has been taught:**
+  - taught labs plus starter listening and audience labs;
+  - readings so far;
+  - rehearsal only after the speech is assigned (`overview.speechAssigned`).
+  - All 21 concise plans still print on one page.
+- **Spring exit:** the Journal 3 prompt becomes the w01d4 block's exit where Journal 3 is skipped (spring odd). Draft rule; numbering unchanged.
+- **Legacy labs:** first visual harmonization inside the application (surfaces, borders, radius). Lab code is unchanged.
+- **Mastery proposals** for the Communication Model, Outline Builder, Impromptu and Story Builder labs: `docs/proposals/lab-mastery-proposals.md`. Not implemented.
+- **Documentation:** backups are in Preferences (pilot guide, release checklist, the in-app backup dialog). Teacher access goes through Preferences → Teacher tools. The teacher code is described as a convenience, not secure sign-in.
+- **Tests:** 189 (182 kept, plus 7 in `tests/slice12-refine.test.mjs`). Browser: 60 + 10 checks pass.
+
+## Unreleased (branch `dev`) — Slice 12: the unified Speaking Lab experience
+
+- **One application shell.**
+  - Header: Speak Up / Speaking Lab · Today's Lesson · My Course · Learning Labs · Resources · My Achievements · language · Preferences.
+  - The High School/College switch, My work and Dark mode moved into **Preferences** (`#/preferences`). The original controls stay hidden in the page, so the college gate, theme and backup handlers are unchanged.
+  - The brand goes to My Course.
+- **Design system** (`css/app.css`, `docs/DESIGN_SYSTEM.md`). Tokens for color (palette, plus light and dark semantics), type, space, radius, shadow, motion and focus. Light mode was designed in its own right.
+- **Today's Lesson** (`#/today`) is its own view. Two columns:
+  - goals, journal, agenda and activities;
+  - success criteria, AI permission, readings, model speeches and videos, assignment reminder, unit progress.
+  - It uses the same schedule logic as before. The unit Today tab shares the layout.
+- **My Course.** Unit cards with an identity mark, weeks, speech assignment, lab and achievement counts, and current/locked/available/completed states.
+- **Learning Labs** (`#/labs`): the 11 labs, 5 studios and Voices of Change analysis. Filters for today, current unit, unit, skill, type and availability. Beyond the Podium is featured. Progress comes from each activity's own record.
+  - A lab opens inside the application (`#/labs/<lab>`, the page's own lab moved in) with return links.
+  - Catalog metadata: `data/activities.json` (draft).
+- **Resources** (`#/resources`): a searchable library of ten areas that shows the existing sections inside the application. AI policy from `ai-permissions.json`.
+- **My Achievements:** portfolio sections for knowledge demonstrated, applied skills, independent mastery, teacher-verified accomplishments and coming later. Criteria and points are unchanged.
+- **Celebrations** (`js/celebrate.js`):
+  - Tiers: knowledge, applied, verified and milestone. Badge reveal, ring, glow and restrained particles; about 1.2 s. Dismissible at once and focus-managed.
+  - Static with reduced motion or with animations off.
+  - Only for badges earned while the page is open. The first evaluation on each page load (refresh, restore, import) records badges silently.
+  - Teacher demonstration at `#/demo/celebrate` changes nothing.
+- **Audio manager** (`js/sound.js`):
+  - Off by default, with separate interface and feedback/achievement switches and a volume setting.
+  - Needs an interaction after load. One sound at a time. Never over video or presentations.
+  - Missing files fail silently. Quiet Classroom and a header Mute button turn everything off.
+  - The sound manifest is `media/sfx/manifest.json`. Eleven takes were generated in ElevenLabs but are not yet in the repo. Add them with `tests/tools/sfx-prepare.py` (`docs/SOUND_DESIGN.md`).
+- **Restore** asks for confirmation before replacing saved work.
+- **Teacher:**
+  - Quick Teach has a two-column layout plus a journal card and a direct-links card. All 21 Unit 1 meetings print on one page.
+  - Concise substitute plans fill the whole 90 minutes (`subTimeline`). All 21 now print on one page, with no blank pages.
+  - **One authoritative AI permission** in every view. Contradicting playbook notes are flagged (8 Unit 1 days) and not changed (`docs/playbook/AI_PERMISSION_REPORT.md`).
+- **Tests:** 182 (was 166). New: `tests/slice12.test.mjs` (14). `navigation.test.mjs` and the boot-order assertion were updated transparently for the new shell. Browser checks: 60/60 (`slice12-test-results.txt`).
+
+## Unreleased (branch `dev`) — Slice 11 refinements: a practical daily teacher workflow
+
+- **Quick Teach** is now the default daily plan.
+  - It shows objectives, success criteria, AI permission and Canvas reminders, then materials and prep.
+  - A timed sequence links directly to each viewing guide, video, lab, reading or studio. A formative check and the exit reflection follow.
+  - It prints on one page; all 21 Unit 1 meetings fit on one page.
+  - The full plan is still one click away (`…/DATE/full`). Both are built from the same data.
+- **Concise substitute plan** (1–2 pages, `#/teacher/print/sub/DATE`):
+  - the site address and Today's Lesson;
+  - the classroom expectations (`data/playbook/classroom.json`) and the accommodations rule;
+  - a timed plan and notes.
+  - The comprehensive plan (`#/sub/…`) also lists the expectations.
+- **No localhost on printed plans.** Printed plans and exports use the configured public address (`config.json` → `site`; `SL2.siteBase()`). The export tool refuses any PDF containing a localhost address. This also fixes the URLs in the Slice 11 substitute PDFs.
+- **Editing in the Lesson Manager** (Playbook → Edit):
+  - **Lesson guidance:** activity timing, talking points, materials, discussion, differentiation, formative checks, exit tickets, substitute steps and review status.
+  - **Viewing guides:** segment times are saved only after the teacher confirms previewing the video.
+  - Edits are saved as Lesson Manager drafts. They are exported from Publish as `unit-N.json` (blocked while invalid), backed up and importable.
+  - No second lesson editor: objectives, journals and assignments stay where they were.
+- **Timing:**
+  - On the first class day, students see where to find the journal before writing it. Every other class stays journal-first.
+  - New **planning settings**: class size per semester and group, speech minutes, feedback, transition.
+  - Speech capacity is estimated across the unit's speech blocks, with a warning when the class doesn't fit. Pacing is never changed.
+- **Teacher confirmation list** (shown in the Playbook and in `docs/playbook/UNIT1_CONTENT_REVIEW.md`): slides for the Self-Introduction, the wording suggestions, the spring Journal 3 exit idea, and the preparation/performance balance. None applied.
+- **Docs:** `docs/playbook/DAILY_WORKFLOW.md`, and the updated `LESSON_SCHEMA.md`.
+- **Tests:** 158 preserved, plus 8 in `tests/playbook-teach.test.mjs`: 166 total.
+  - Two playbook assertions now allow teacher-verified video times, so your own verified edits won't fail the tests.
+  - A teacher-edited, exported `unit-1.json` passes all 166 tests.
+
 ## Unreleased (branch `dev`) — Slice 11: Instructor Playbook (Unit 1 prototype) and navigation
 
 ### Navigation (audit and rationale: `docs/NAVIGATION_AUDIT.md`)

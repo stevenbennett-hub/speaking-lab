@@ -29,6 +29,10 @@ Four separate questions for each area:
 | Teacher-verified badges (Confident Speaker, Master Storyteller, Master Communicator) | ✅ stay pending by design | ✅ framework decisions approved (Nov 24); Canvas rubric match to confirm | ✅ (shown as "not available yet") | ⬜ pending Canvas Outcomes setup |
 | Teacher Lesson Manager publishing workflow | ✅ (workflow test passed) | n/a | ✅ | ⬜ repeat on a district laptop |
 | Instructor Playbook, Unit 1 (teacher-facing) | ✅ (Lesson Manager → Playbook; tests) | ⬜ draft; video segments not yet previewed | ✅ | ⬜ |
+| Unified application (Slice 12): header, five views, Preferences | ✅ (tests; 60 browser checks) | ⬜ awaiting review | ✅ | ⬜ |
+| Sound library | ✅ manager + 11 files (tests; browser) | ⬜ listen and set `reviewed` | ✅ (off by default) | ⬜ |
+| Certificates, portfolio, Email to Myself (portable achievements) | ✅ (tests; browser; privacy audit 60/60) | ⬜ wording, Spanish draft, district privacy review | ✅ | ⬜ |
+| Achievement celebrations | ✅ (tests; browser) | ⬜ awaiting review | ✅ | ⬜ |
 | College Public Speaking pathway | ✅ off by default | ⬜ Unit 5 college objectives, Spanish notice | n/a (not piloted) | ⬜ stays off unless authorized |
 | Development preview (separate storage) | ✅ | n/a | ✅ | n/a (never deployed to production) |
 | Accessibility (target WCAG 2.2 AA; not a formal claim) | ◐ automated and keyboard checks done | ⬜ screen-reader pass | ✅ | ⬜ |
@@ -132,4 +136,4 @@ Four separate questions for each area:
 - [x] The live site before 2.0 is tagged `v1-live-2026-11-23`.
 - [ ] Tag the release (`v2-YYYY-MM-DD`).
 - [ ] Rollback steps known: on `main`, `git revert` the release commit (or restore the last good tag's files) and push.
-- [ ] Students reminded that progress is per browser; "My work → Download my backup file" shown in class once. Ad Detective has its own backup in its Notebook.
+- [ ] Students reminded that progress is per browser; "Preferences → Back up or restore my progress → Download my backup file" shown in class once. Ad Detective has its own backup in its Notebook.

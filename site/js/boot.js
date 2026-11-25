@@ -18,10 +18,11 @@
     access: "data/access.json",
     studios: "data/studios.json",
     achievements: "data/achievements.json",
-    aiperm: "data/ai-permissions.json"
+    aiperm: "data/ai-permissions.json",
+    activities: "data/activities.json"
   };
   // Loaded in order after the page's own scripts (they use the page's functions).
-  var AFTER = ["js/progress.js", "js/achievements.js", "js/manage.js", "js/student.js", "js/teacher.js", "js/btp.js", "js/aistudio.js", "js/research.js", "js/playbook.js"];
+  var AFTER = ["js/progress.js", "js/achievements.js", "js/sound.js", "js/celebrate.js", "js/manage.js", "js/student.js", "js/teacher.js", "js/btp.js", "js/aistudio.js", "js/research.js", "js/playbook.js", "js/app.js", "js/certificates.js"];
 
   var params = new URLSearchParams(location.search);
   var preview = null;
@@ -64,6 +65,7 @@
   // The academic-year calendar file is named in data/config.json (reusable lessons stay year-independent).
   fetch("data/config.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }).then(function (cfg) {
   if (cfg && /^data\/calendar-[0-9-]+\.json$/.test(cfg.calendar || "")) FILES.calendar = cfg.calendar;
+  window.SL_CONFIG = cfg || {}; // public site addresses for teacher exports (never localhost)
   Promise.all(keys.map(function (k) {
     return fetch(FILES[k], { cache: "no-cache" }).then(function (r) {
       if (!r.ok) throw new Error(FILES[k] + " " + r.status);

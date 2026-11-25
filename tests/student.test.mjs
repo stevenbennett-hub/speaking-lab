@@ -58,9 +58,11 @@ test("teacher preview needs the teacher code; ?date= alone does nothing", () => 
 });
 
 test("new scripts parse and load after the page scripts", () => {
-  for (const f of ["../site/js/student.js", "../site/js/progress.js", "../site/js/achievements.js", "../site/js/manage.js", "../site/js/teacher.js", "../site/js/boot.js", "../site/js/schedule.js", "../site/js/playbook.js"]) assert.doesNotThrow(() => new vm.Script(read(f)), f);
-  assert.match(read("../site/js/boot.js"), /var AFTER = \["js\/progress\.js", "js\/achievements\.js", "js\/manage\.js", "js\/student\.js", "js\/teacher\.js", "js\/btp\.js", "js\/aistudio\.js", "js\/research\.js", "js\/playbook\.js"\];/, "Instructor Playbook (teacher-facing) loads last");
-  assert.ok(read("../site/index.html").includes('<link rel="stylesheet" href="css/student.css">'));
+  for (const f of ["../site/js/student.js", "../site/js/progress.js", "../site/js/achievements.js", "../site/js/manage.js", "../site/js/teacher.js", "../site/js/boot.js", "../site/js/schedule.js", "../site/js/playbook.js", "../site/js/sound.js", "../site/js/celebrate.js", "../site/js/app.js", "../site/js/certificates.js"]) assert.doesNotThrow(() => new vm.Script(read(f)), f);
+  // Slice 12 (updated assertion): the audio manager and celebration load before student.js (which calls them); the
+  // application views (js/app.js) load last. The Instructor Playbook still loads after every student script.
+  assert.match(read("../site/js/boot.js"), /var AFTER = \["js\/progress\.js", "js\/achievements\.js", "js\/sound\.js", "js\/celebrate\.js", "js\/manage\.js", "js\/student\.js", "js\/teacher\.js", "js\/btp\.js", "js\/aistudio\.js", "js\/research\.js", "js\/playbook\.js", "js\/app\.js", "js\/certificates\.js"\];/); // portable achievements load last
+  assert.ok(read("../site/index.html").includes('<link rel="stylesheet" href="css/student.css">\n<link rel="stylesheet" href="css/app.css">'));
 });
 
 test("student view keeps old links on the classic page and never shows locked content", () => {

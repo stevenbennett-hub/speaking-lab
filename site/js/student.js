@@ -95,11 +95,17 @@
   const mainEl = document.querySelector("main");
   mainEl.parentNode.insertBefore(root, mainEl);
   const homes = {};
-  ["units", "labs"].forEach(id => { const el = $id(id); if (el) { const mark = document.createComment(`sl2:${id}`); el.parentNode.insertBefore(mark, el); homes[id] = { el, mark }; } });
+  const homeOf = id => { if (!homes[id]) { const el = $id(id); if (!el) return null; const mark = document.createComment(`sl2:${id}`); el.parentNode.insertBefore(mark, el); homes[id] = { el, mark }; } return homes[id]; };
+  ["units", "labs"].forEach(homeOf);
+  /** Slice 12: show an existing classic section (labs, videos, speeches, rubrics, …) inside an application view.
+      The same element moves in and back out (a marker comment keeps its place), so nothing is copied and every
+      lab keeps its own code and storage. */
+  function host(id, slot) { const hm = homeOf(id); if (!hm || !slot) return null; slot.appendChild(hm.el); return hm.el; }
   const putHome = () => Object.values(homes).forEach(({ el, mark }) => { if (el.parentNode !== mark.parentNode || el.previousSibling !== mark) mark.parentNode.insertBefore(el, mark.nextSibling); });
   const skip = document.querySelector("a.skip");
 
-  let route = null, lastV2 = "#/", pendingLab = null;
+  let route = null, lastV2 = "#/", pendingLab = null, soundNav = false, booted = false;
+  const openUnitIds = () => D.units.units.filter(u => released(u.id)).map(u => u.id); // released for everyone (not teacher-only previews)
   const EXTRA = {}; // routes added by other scripts (js/teacher.js): name → { view(route) → html, after(route) }
   const isV2Hash = hs => hs === "" || hs === "#" || hs.startsWith("#/");
   function parse(hs) {
@@ -119,6 +125,7 @@
     }
     return { name: "home" };
   }
+  const LAB_ID = { "lab-research": "rlab", "outline-builder": "obuild", "lab-persuasion": "plab", "lab-model": "mlab", "lab-body-language": "nvlab", "lab-nonverbal": "nvclab", "lab-group": "glab", "lab-impromptu": "implab", "lab-story": "storylab", "lab-audience": "audlab", "lab-listening": "listenlab" };
   const LAB_HASH = { "lab-research": 1, "outline-builder": 1, "lab-persuasion": 1, "lab-model": 1, "lab-body-language": 1, "lab-nonverbal": 1, "lab-group": 1, "lab-impromptu": 1, "lab-story": 1, "lab-audience": 1, "lab-listening": 1, "listening-refresher": 1, "audience-refresher": 1 };
 
   function go() {
@@ -130,11 +137,19 @@
         if (LAB_HASH[hs.slice(1)] && route.tab !== "labs") { route.tab = "labs"; draw(); }
         return;
       }
+      // Slice 12: an in-page link inside a hosted section (Learning Labs, Resources) stays in the application view;
+      // a lab link from any other application view opens that lab in Learning Labs instead of the classic page.
+      if (route && !root.hidden && tgt && root.contains(tgt) && !homes[tgt.id]) return; // a whole section (#labs, #videos…) still opens the classic page
+      if (route && !root.hidden && LAB_HASH[hs.slice(1)] && LAB_ID[hs.slice(1)]) { location.replace(`#/labs/${LAB_ID[hs.slice(1)]}`); return; }
       classic(); return;
     }
     lastV2 = hs || "#/";
     route = parse(hs);
     if (route.name === "today") { const to = todayTarget(); if (to) { location.replace(to); return; } }
+    if (soundNav) { soundNav = false; if (window.SLSound) SLSound.cue("ui"); }
+    // Slice 12 refinement: the unlock sound, once, when a student deliberately opens a newly available unit (never on load).
+    if (window.SLSound && (route.name === "unit" || route.name === "today") && unitOpen(route.id)) SLSound.unitOpened(route.id, openUnitIds(), booted);
+    booted = true;
     draw(true);
   }
   /** "Today's Lesson": the student's current scheduled lesson. First-time students choose a pathway first (then come
@@ -145,7 +160,9 @@
   function todayTarget() {
     if (!path()) { afterStart = "#/today"; route = { name: "start" }; return null; }
     const cur = currentUnitId();
-    return cur && unitOpen(cur) ? `#/unit/${cur}` : "#/";
+    // Slice 12: Today's Lesson is its own application view (#/today) for the current unit; My Course when none is open.
+    if (cur && unitOpen(cur)) { route = { name: "today", id: cur }; return null; }
+    return "#/";
   }
   function classic() {
     const wasUnit = route && route.name === "unit";
@@ -164,7 +181,7 @@
     mainEl.hidden = true; root.hidden = false; document.body.classList.add("sl2-on");
     if (skip) skip.setAttribute("href", "#sl2-main");
     markNav(true);
-    root.innerHTML = EXTRA[route.name] ? EXTRA[route.name].view(route) : route.name === "start" ? viewStart() : route.name === "unit" ? viewUnit() : route.name === "achievements" ? viewAchievements() : viewHome();
+    root.innerHTML = EXTRA[route.name] ? EXTRA[route.name].view(route) : route.name === "start" ? viewStart() : route.name === "today" ? viewTodayPage() : route.name === "unit" ? viewUnit() : route.name === "achievements" ? viewAchievements() : viewHome();
     if (EXTRA[route.name] && EXTRA[route.name].after) EXTRA[route.name].after(route);
     if (route.name === "unit") mountUnitParts();
     if (focus) { const hd = root.querySelector("h1"); if (hd) { hd.tabIndex = -1; hd.focus({ preventScroll: true }); } window.scrollTo(0, 0); }
@@ -172,19 +189,21 @@
   /** In the student view, "My course" is the current header link. */
   function markNav(on) {
     // Today's Lesson while in a unit's Today tab, My Achievements on that page, Lesson Manager for teacher pages, else My Course.
-    const r = route || {}, cur = !on ? null : r.name === "unit" && r.tab === "today" && !r.day ? "#/today" : r.name === "achievements" ? "#/achievements" : EXTRA[r.name] && ["teacher", "present", "sub"].includes(r.name) ? "#/teacher" : "#/";
-    document.querySelectorAll("header nav.links a, header a.navteacher").forEach(a => { if (on && a.getAttribute("href") === cur) a.setAttribute("aria-current", "page"); else if (on || a.getAttribute("aria-current") === "page") a.removeAttribute("aria-current"); });
+    const r = route || {}, NAVR = { today: "#/today", achievements: "#/achievements", labs: "#/labs", resources: "#/resources", preferences: "#/preferences", btp: "#/labs", ai: "#/labs", research: "#/labs" };
+    const cur = !on ? null : r.name === "unit" && r.tab === "today" && !r.day ? "#/today" : r.name === "unit" && r.tab === "labs" ? "#/labs" : NAVR[r.name] || (EXTRA[r.name] && ["teacher", "present", "sub", "demo"].includes(r.name) ? "#/teacher" : "#/");
+    document.querySelectorAll("header nav.links a, header a.navteacher, header a.prefbtn").forEach(a => { if (on && a.getAttribute("href") === cur) a.setAttribute("aria-current", "page"); else if (on || a.getAttribute("aria-current") === "page") a.removeAttribute("aria-current"); });
   }
-  const NAV = { "#/today": ["Today’s Lesson", "Lección de hoy"], "#/": ["My Course", "Mi curso"], "#/achievements": ["My Achievements", "Mis logros"] };
+  const NAV = { "#/today": ["Today’s Lesson", "Lección de hoy"], "#/": ["My Course", "Mi curso"], "#/labs": ["Learning Labs", "Laboratorios"], "#/resources": ["Resources", "Recursos"], "#/achievements": ["My Achievements", "Mis logros"] };
   const navLabel = () => {
     const nav = document.querySelector("header nav.links"); if (!nav) return;
     // Teacher view adds the Lesson Manager (with the Instructor Playbook) to the header; students never see it.
-    // It sits with the utility buttons (My work, Dark mode), apart from the student navigation.
-    let tm = document.querySelector('header a.navteacher'); const util = document.querySelector("header .myworkbtn");
+    // It sits beside Preferences, apart from the student navigation.
+    let tm = document.querySelector('header a.navteacher'); const util = document.querySelector("header .prefbtn");
     if (teacherOn() && !tm && util) { tm = document.createElement("a"); tm.href = "#/teacher"; tm.className = "themesw navteacher"; tm.setAttribute("data-notr", ""); util.parentNode.insertBefore(tm, util); }
     else if (!teacherOn() && tm) tm.remove();
     if (tm) tm.textContent = L("Teacher tools", "Herramientas del maestro");
     Object.entries(NAV).forEach(([hr, t]) => { const a = nav.querySelector(`:scope > a[href="${hr}"]`); if (a) { a.setAttribute("data-notr", ""); a.textContent = L(t[0], t[1]); } });
+    const pb = document.querySelector("header .prefbtn span"); if (pb) pb.textContent = L("Preferences", "Preferencias");
   };
   const refresh = () => { navLabel(); if (route && !root.hidden) { const y = window.scrollY; draw(false); window.scrollTo(0, y); } };
 
@@ -219,16 +238,27 @@
       <p class="sl2-foot"><a href="#top">${L("Watch Mr. Bennett's welcome video and see the full course guide", "Ver el video de bienvenida del Sr. Bennett y la guía completa del curso")}</a></p>
     </div>`;
   }
-  function choosePath(p, btn) {
+  function choosePath(p, btn, stay) {
     if (p === "col") { chooseLevel("col", btn); return; } // the existing gate decides; stays closed while college is off
     put(K.path, p); setLevel("hs");
     if (p === "eld") { put(K.support, "1"); if (!get(K.level)) put(K.level, "guided"); }
+    if (stay) return; // Preferences: change the pathway without leaving the page
     const next = afterStart || "#/"; afterStart = null;
     if (next === "#/") { location.hash = next; if (route) { route = parse("#/"); draw(true); } }
     else if (location.hash === next) go(); else location.hash = next; // back to Today's Lesson
   }
 
   /* ---------- dashboard: six unit tiles ---------- */
+  /* Unit identity marks: simple original line icons (decorative; the unit number and title are always written). */
+  const UNIT_ART = {
+    1: '<path d="M8 22c0-7 5-12 12-12s12 5 12 12" /><path d="M14 22c0-3.5 2.6-6 6-6s6 2.5 6 6" /><circle cx="20" cy="24" r="2.5" fill="currentColor"/>',
+    2: '<circle cx="17" cy="17" r="8"/><path d="M23 23l8 8"/><path d="M13 17h8M17 13v8"/>',
+    3: '<path d="M20 7a9 9 0 00-5 16.4V27h10v-3.6A9 9 0 0020 7z"/><path d="M16 31h8"/>',
+    4: '<path d="M9 11h6v6H9zM17 14h14M9 21h6v6H9zM17 24h14"/>',
+    5: '<path d="M8 10c4-2 8-2 12 1 4-3 8-3 12-1v20c-4-2-8-2-12 1-4-3-8-3-12-1z"/><path d="M20 11v20"/>',
+    6: '<path d="M8 17v6h5l11 6V11l-11 6z"/><path d="M28 15a5 5 0 010 10"/>',
+  };
+  const unitArt = id => `<svg class="app-unitart" viewBox="0 0 40 40" width="44" height="44" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${UNIT_ART[id] || ""}</g></svg>`;
   function viewHome() {
     const cur = currentUnitId(), infos = D.units.units.map(unitInfo), g = group(), t = today();
     const p = path(), pname = p === "eld" ? L("Speech student, learning English", "Estudiante de oratoria que aprende inglés") : p === "col" ? "College Public Speaking" : L("High School Speech", "Oratoria de preparatoria");
@@ -240,20 +270,22 @@
         : jf.state === "next" ? L(`No class today for your periods. Next class: ${fmtLong(jf.date)}.`, `Hoy no hay clase para tus periodos. Próxima clase: ${fmtLong(jf.date)}.`)
         : L("The course is complete. You can review every unit.", "El curso terminó. Puedes repasar todas las unidades.");
     }
-    return `<div class="wrap sl2" data-notr id="sl2-main">
+    const lv = supportLevel();
+    return `<div class="wrap sl2 app-view" data-notr id="sl2-main">
+      <p class="app-eyebrow">${L("Your learning journey", "Tu recorrido de aprendizaje")}</p>
       <div class="sl2-top">
-        <div><h1 class="sl2-h1">${L("My course", "Mi curso")}</h1>
-          <p class="sl2-meta">${h(pname)} · <a href="#/start">${L("Change pathway", "Cambiar")}</a></p></div>
-        ${supportToggle()}
+        <div><h1 class="sl2-h1">${L("My Course", "Mi curso")}</h1>
+          <p class="sl2-lead">${L("Six units, five speeches and one voice: yours.", "Seis unidades, cinco discursos y una voz: la tuya.")}</p>
+          <p class="sl2-meta">${h(pname)} · ${L("Language support", "Apoyo de idioma")}: <b>${es() ? SUPPORT_TXT[lv][0][1] : SUPPORT_TXT[lv][0][0]}</b> · <a href="#/preferences">${L("Change in Preferences", "Cambiar en Preferencias")}</a></p></div>
       </div>
       ${groupBar()}
       ${todayLine ? `<p class="sl2-today">${h(todayLine)}</p>` : ""}
-      ${curInfo && curInfo.open ? `<p><a class="btn primary sl2-go" href="#/unit/${cur}">${L(`Go to today's lesson · Unit ${cur}`, `Ir a la lección de hoy · Unidad ${cur}`)}</a></p>` : ""}
+      ${curInfo && curInfo.open ? `<p><a class="btn primary sl2-go" href="#/today">${L(`Go to today's lesson · Unit ${cur}`, `Ir a la lección de hoy · Unidad ${cur}`)}</a></p>` : ""}
       ${achLink()}
       <h2 class="sl2-h2">${L("Units", "Unidades")}</h2>
-      <ol class="sl2-tiles">${infos.map(i => tile(i, i.u.id === cur)).join("")}</ol>
-      <p class="sl2-small">${L("Progress is saved only in this browser on this computer, and it is not your official grade. Use My work to back it up.", "El progreso se guarda solo en este navegador y en esta computadora, y no es tu calificación oficial. Usa Mi trabajo para hacer una copia.")}</p>
-      <p class="sl2-foot"><a href="#top">${L("Full course guide (all sections on one page)", "Guía completa del curso (todo en una página)")}</a> · <button type="button" class="linkbtn" data-mywork="1">${L("My work", "Mi trabajo")}</button> · <button type="button" class="linkbtn" data-sl2-teacher="1">${L("Teacher", "Maestro")}</button>${teacherOn() ? ` · <a href="#/teacher">${L("Lesson Manager", "Administrador de lecciones")}</a> · <a href="#/present">${L("Present today's lesson", "Presentar la lección de hoy")}</a>` : ""}</p>
+      <ol class="sl2-tiles app-grid">${infos.map(i => tile(i, i.u.id === cur)).join("")}</ol>
+      <p class="sl2-small">${L("Progress is saved only in this browser on this computer, and it is not your official grade. Opening a page never counts as mastery. Use Preferences to back up your work.", "El progreso se guarda solo en este navegador y en esta computadora, y no es tu calificación oficial. Abrir una página nunca cuenta como dominio. Usa Preferencias para hacer una copia de tu trabajo.")}</p>
+      <p class="sl2-foot"><a href="#top">${L("Full course guide (all sections on one page)", "Guía completa del curso (todo en una página)")}</a> · <a href="#/preferences">${L("Preferences", "Preferencias")}</a> · <button type="button" class="linkbtn" data-sl2-teacher="1">${L("Teacher", "Maestro")}</button>${teacherOn() ? ` · <a href="#/teacher">${L("Lesson Manager", "Administrador de lecciones")}</a> · <a href="#/present">${L("Present today's lesson", "Presentar la lección de hoy")}</a>` : ""}</p>
     </div>`;
   }
   function tile(i, isCur) {
@@ -262,10 +294,14 @@
       : pr.quizBest == null && pr.testBest == null ? L("Not started on this computer", "Sin empezar en esta computadora")
       : [pr.quizBest != null ? L(`Reading check ${pr.quizBest}%`, `Comprobación de lectura ${pr.quizBest}%`) : "", pr.testBest != null ? L(`Practice test ${pr.testBest}%`, `Examen de práctica ${pr.testBest}%`) : ""].filter(Boolean).join(" · ");
     const action = !i.open ? "" : `<a class="btn${isCur ? " primary" : ""} sl2-tile-go" href="#/unit/${u.id}" aria-label="${h((isCur ? L("Continue", "Continuar") : i.state === "completed" ? L("Review", "Repasar") : i.state === "inprogress" ? L("Continue", "Continuar") : L("Start", "Empezar")) + " " + L("Unit", "Unidad") + " " + u.id + ": " + title)}">${isCur || i.state === "inprogress" ? L("Continue", "Continuar") : i.state === "completed" ? L("Review", "Repasar") : L("Start", "Empezar")}</a>`;
-    return `<li class="sl2-tile is-${i.state}${isCur ? " is-current" : ""}" style="--acc: var(--u${u.id})">
-      <p class="sl2-tile-n">${L("Unit", "Unidad")} ${u.id}${isCur ? ` <span class="sl2-cur">${L("Current unit", "Unidad actual")}</span>` : ""}</p>
+    const asg = u.assign && (u.assign[level === "col" ? "col" : "hs"] || u.assign.hs);
+    const labsN = (UNIT_LABS[u.id] || []).length, badges = AC().badges.filter(b => (b.units || []).includes(u.id) && b.status === "active").length;
+    return `<li class="sl2-tile app-unit is-${i.state}${isCur ? " is-current" : ""}" style="--acc: var(--u${u.id})">
+      <div class="app-unithead">${unitArt(u.id)}<p class="sl2-tile-n">${L("Unit", "Unidad")} ${u.id} · ${L("Weeks", "Semanas")} ${u.weeks[0]}–${u.weeks[u.weeks.length - 1]}${isCur ? ` <span class="sl2-cur">${L("Current unit", "Unidad actual")}</span>` : ""}</p></div>
       <h3 class="sl2-tile-t">${h(title)}</h3>
       <p class="sl2-tile-b">${h(blurb)}</p>
+      ${asg ? `<p class="sl2-small app-asg"><b>${L("Speech", "Discurso")}:</b> ${h(trText(asg.name))}</p>` : ""}
+      <p class="sl2-small">${L(`${labsN} practice labs`, `${labsN} laboratorios de práctica`)}${badges ? ` · ${L(`${badges} achievements`, `${badges} logros`)}` : ""}</p>
       <p class="sl2-state">${ICON[st.icon]} <span>${es() ? st.es : st.en}</span>${pr.mastered ? ` <span class="sl2-ach">${ICON.star} ${L("Reading check mastered", "Comprobación de lectura dominada")}</span>` : ""}</p>
       <p class="sl2-tile-p">${h(prog)}</p>
       ${action}
@@ -353,6 +389,17 @@
     return `<div class="sl2-card sl2-status"><h2 class="sl2-h2">${L("Today", "Hoy")} · ${h(fmtLong(t))}</h2><p>${h(msg)}</p>
       <p>${jf.state === "today" && jf.unit !== u.id ? `<a class="btn primary" href="#/unit/${jf.unit}">${L(`Go to Unit ${jf.unit}`, `Ir a la Unidad ${jf.unit}`)}</a> ` : ""}${last ? `<a class="btn" href="#/unit/${u.id}/day/${last.date}">${L("Open the most recent lesson", "Abrir la lección más reciente")} (${h(fmtShort(last.date))})</a> ` : ""}<a class="btn" href="#/unit/${u.id}/lessons">${L("All lessons", "Todas las lecciones")}</a></p></div>
 `;
+  }
+  /** Slice 12: Today's Lesson as its own view: the current unit's Today content (calendar, odd/even group, release
+      dates, overrides, ?date= preview, journal numbering all come from viewToday/lessonModel, unchanged). */
+  function viewTodayPage() {
+    const u = unitById(route.id), i = unitInfo(u);
+    return `<div class="wrap sl2 sl2-unit app-view app-today" style="--acc: var(--u${u.id})" id="sl2-main"><div data-notr>
+      <p class="app-eyebrow">${L("Unit", "Unidad")} ${u.id} · ${L("Today", "Hoy")} · ${h(fmtLong(today()))}</p>
+      <h1 class="sl2-h1">${L("Today’s Lesson", "Lección de hoy")}</h1>
+      <p class="sl2-meta">${h(trText(u.title))} · <a href="#/unit/${u.id}/lessons">${L("Lessons and journals", "Lecciones y diarios")}</a> · <a href="#/unit/${u.id}/guide">${L("Unit guide", "Guía de la unidad")}</a></p>
+      ${i.preview ? teacherNote(i.at) : ""}
+      <div class="sl2-panel">${viewToday(u)}</div></div></div>`;
   }
   function dayParts(u, day, g) {
     const v = weeks(), w = S.courseWeekOf(day, v);
@@ -475,8 +522,8 @@
         <h3>${L("Learning objective", "Objetivo de aprendizaje")}</h3>${two(o.learn)}
         <h3>${L("Language objective", "Objetivo de lenguaje")}</h3>${two(o.lang)}</div>`).join("");
     const exp = j && j.experience && D.studios.experiences.find(x => x.id === j.experience);
-    const journal = j ? `<section class="sl2-card sl2-journal" aria-labelledby="sl2-jh">
-        <p class="sl2-kicker">${ICON.pen} ${L("Daily Learning Journal", "Diario de aprendizaje")} #${m.number} · ${L("Set", "Grupo")} ${m.set} ${L("(Journals", "(Diarios")} ${(m.set - 1) * 10 + 1}–${m.set * 10}, 100 ${L("points)", "puntos)")}</p>
+    const journal = j ? `<section class="sl2-card sl2-journal app-step" aria-labelledby="sl2-jh">
+        <p class="sl2-kicker">02 · ${ICON.pen} ${L("Daily Learning Journal", "Diario de aprendizaje")} #${m.number} · ${L("Set", "Grupo")} ${m.set} ${L("(Journals", "(Diarios")} ${(m.set - 1) * 10 + 1}–${m.set * 10}, 100 ${L("points)", "puntos)")}</p>
         <h2 class="sl2-h2" id="sl2-jh">${h(pick(j.title || j.focus))}</h2>
         ${two(j.prompt, "sl2-prompt")}
         <p class="sl2-how"><b>${h(pick(j.expect || DEFAULT_EXPECT))}</b>${j.alt ? ` <span>${L("Prefer not to share something personal?", "¿Prefieres no compartir algo personal?")} ${h(pick(j.alt))}</span>` : ""}</p>
@@ -497,21 +544,38 @@
     const labIds = M.activities.length ? M.activities.concat((UNIT_LABS[u.id] || []).filter(x => !M.activities.includes(x))) : (UNIT_LABS[u.id] || []);
     const labs = labIds.filter(id => LAB_NAMES[id]).map((id, n) => `<button type="button" class="btn${n < M.activities.length ? " primary" : ""}" data-sl2-lab="${id}">${h(es() ? LAB_NAMES[id][1] : LAB_NAMES[id][0])}</button>`).join(" ");
     const studios = D.studios.experiences.filter(x => (x.units.includes(u.id) || M.featured.includes(x.id)) && (x.audience === "all" || col) && x.status === "available");
+    // Slice 12: readings, model speeches and videos come from the existing course data (chapters, VIDEOS, SPEECHES).
+    const reads = (u.reads || []).filter(c => typeof CH !== "undefined" && CH[c]).map(c => `<li><a href="${h(BOOK + CH[c][0])}" target="_blank" rel="noopener">${L("Ch.", "Cap.")} ${c}: ${h(trText(CH[c][1]))}<span class="sr"> ${L("(opens in a new tab)", "(se abre en una pestaña nueva)")}</span> ↗</a></li>`).join("");
+    const vids = (typeof VIDEOS !== "undefined" && VIDEOS[u.id] || []).slice(0, 3).map(v => `<li><a href="${h(v.url)}" target="_blank" rel="noopener">${h(v.title)}<span class="sr"> ${L("(YouTube, opens in a new tab)", "(YouTube, se abre en una pestaña nueva)")}</span> ↗</a>${v.note ? ` <span class="sl2-small">${h(v.note)}</span>` : ""}</li>`).join("");
+    const models = (typeof SPEECHES !== "undefined" ? SPEECHES : []).filter(x => x.unit === u.id).map(x => `<li><a href="#/resources/speeches">${h(x.title)}</a> <span class="sl2-small">${h(x.speaker)}</span></li>`).join("");
+    const asg = u.assign && (u.assign[col ? "col" : "hs"] || u.assign.hs), pr = P.unit(u.id);
+    const progress = `<p>${ICON[STATE[unitInfo(u).state].icon]} ${es() ? STATE[unitInfo(u).state].es : STATE[unitInfo(u).state].en}${pr.quizBest != null ? ` · ${L("Reading check", "Comprobación de lectura")} ${pr.quizBest}%` : ""}${pr.testBest != null ? ` · ${L("Practice test", "Examen de práctica")} ${pr.testBest}%` : ""}</p>
+      <p class="sl2-small">${L("Self-check progress saved in this browser; not a grade. Canvas is the official record.", "Progreso de autoevaluación guardado en este navegador; no es una calificación. Canvas es el registro oficial.")}</p><p><a href="#/achievements">${L("My Achievements", "Mis logros")} →</a></p>`;
     return `<div class="sl2-day">
       <p class="sl2-kicker">${isPast ? `${L("Past lesson", "Lección anterior")} · ` : ""}${h(fmtLong(day))} · ${M.week === 0 ? L("Getting started", "Primeros días") : `${L("Week", "Semana")} ${M.week}`} · ${h(groupLabel(g, es()))}</p>
       <h2 class="sl2-h2 sl2-lesson">${isPast ? L("Lesson", "Lección") : L("Today's lesson", "Lección de hoy")}: ${h(M.title)}${M.topic && M.topic !== M.title ? ` <span class="sl2-week">${L("This week:", "Esta semana:")} ${h(M.topic)}</span>` : ""}</h2>
       ${M.extendOf ? `<p class="sl2-teachnote">${L(`Extended lesson: we continue the lesson from ${fmtLong(M.extendOf)}.`, `Lección extendida: continuamos la lección del ${fmtLong(M.extendOf)}.`)}</p>` : ""}
       ${M.draft ? `<p class="sl2-small">${L("Lesson objectives are drafts awaiting teacher review.", "Los objetivos de la lección son borradores en revisión del maestro.")}</p>` : ""}
-      <section class="sl2-card" aria-label="${L("Objectives", "Objetivos")}">${objs || `<p>${L("No objectives are set for this day.", "No hay objetivos para este día.")}</p>`}</section>
+      <div class="sl2-daygrid">
+      <div class="sl2-daymain">
+      <section class="sl2-card app-step" aria-label="${L("Objectives", "Objetivos")}"><p class="app-eyebrow">01 · ${L("Learning goals", "Metas de aprendizaje")}</p>${objs || `<p>${L("No objectives are set for this day.", "No hay objetivos para este día.")}</p>`}</section>
       ${journal}
-      <div class="sl2-cols">
-        <section class="sl2-card"><h2 class="sl2-h3">${L("Today's agenda", "Agenda de hoy")}</h2><ol class="sl2-agenda">${agenda}</ol></section>
-        <section class="sl2-card"><h2 class="sl2-h3">${L("Success criteria", "Criterios de éxito")}</h2><ul class="sl2-success">${M.success.map(s => `<li>${ICON.check} ${h(s)}</li>`).join("")}</ul>
-          <p class="sl2-small">${L("Check yourself. This list is not saved or graded.", "Revísate. Esta lista no se guarda ni se califica.")}</p></section>
+      <section class="sl2-card app-step"><p class="app-eyebrow">03 · ${L("Today’s learning", "El aprendizaje de hoy")}</p><h2 class="sl2-h3">${L("Today's agenda", "Agenda de hoy")}</h2><ol class="sl2-agenda">${agenda}</ol></section>
+      <section class="sl2-card app-step"><p class="app-eyebrow">04 · ${L("Practice", "Práctica")}</p><h2 class="sl2-h3">${M.activities.length ? L("Today's activities", "Actividades de hoy") : L("Activities for this unit", "Actividades de esta unidad")}</h2><p class="sl2-btns">${labs}</p>
+        ${studios.length ? `<ul class="sl2-studios">${studios.map(x => studioCard(x, u.id)).join("")}</ul>` : ""}<p class="sl2-small"><a href="#/labs">${L("All Learning Labs", "Todos los laboratorios")} →</a></p></section>
       </div>
+      <aside class="sl2-dayside" aria-label="${L("Today at a glance", "Hoy de un vistazo")}">
+      <section class="sl2-card"><h2 class="sl2-h3">${L("Success criteria", "Criterios de éxito")}</h2><ul class="sl2-success">${M.success.map(s => `<li>${ICON.check} ${h(s)}</li>`).join("")}</ul>
+          <p class="sl2-small">${L("Check yourself. This list is not saved or graded.", "Revísate. Esta lista no se guarda ni se califica.")}</p></section>
       ${aiCard(M.ai)}
-      <section class="sl2-card"><h2 class="sl2-h3">${M.activities.length ? L("Today's activities", "Actividades de hoy") : L("Activities for this unit", "Actividades de esta unidad")}</h2><p class="sl2-btns">${labs}</p>
-        ${studios.length ? `<ul class="sl2-studios">${studios.map(x => studioCard(x, u.id)).join("")}</ul>` : ""}</section>
+      ${reads || vids || models ? `<section class="sl2-card"><h2 class="sl2-h3">${L("Read and watch", "Leer y ver")}</h2>
+        ${reads ? `<p class="sl2-small"><b>${L("Textbook", "Libro de texto")}</b></p><ul class="sl2-links">${reads}</ul>` : ""}
+        ${models ? `<p class="sl2-small"><b>${L("Model speeches", "Discursos modelo")}</b></p><ul class="sl2-links">${models}</ul>` : ""}
+        ${vids ? `<p class="sl2-small"><b>${L("Example videos", "Videos de ejemplo")}</b></p><ul class="sl2-links">${vids}</ul><p class="sl2-small"><a href="#/resources/videos">${L("All example videos", "Todos los videos")} →</a></p>` : ""}</section>` : ""}
+      ${asg ? `<section class="sl2-card"><h2 class="sl2-h3">${L("Assignment reminder", "Recordatorio de la tarea")}</h2><p><b>${h(trText(asg.name))}</b></p><p class="sl2-small">${asg.meta.map(x => h(trText(x))).join(" · ")}</p><p class="sl2-small"><a href="#/unit/${u.id}/guide">${L("Requirements and rubric", "Requisitos y rúbrica")} →</a></p></section>` : ""}
+      <section class="sl2-card"><h2 class="sl2-h3">${L("My progress in this unit", "Mi progreso en esta unidad")}</h2>${progress}</section>
+      </aside>
+      </div>
       ${isPast ? `<p><a class="btn" href="#/unit/${u.id}/lessons">← ${L("All lessons", "Todas las lecciones")}</a></p>` : ""}
     </div>`;
   }
@@ -557,16 +621,25 @@
     const src = A.collect({ get, labs });
     const t = A.track(AC(), src, (() => { try { return JSON.parse(get(A.KEY) || "null"); } catch (e) { return null; } })(), today());
     if (JSON.stringify(t.store) !== get(A.KEY)) put(A.KEY, JSON.stringify(t.store));
-    if (t.newly.length) celebrate(t.newly);
+    // Slice 12 celebration integrity: the first evaluation after a page load (refresh, backup restore, progress import,
+    // first visit) records badges silently. Only a badge earned while the page is open is celebrated, once.
+    if (t.newly.length && achPrimed) celebrate(t.newly);
+    achPrimed = true;
     const res = A.evaluate(AC(), src, t.store);
     return { src, store: t.store, res, pts: A.points(AC(), src, res) };
   }
+  let achPrimed = false;
+  // Check for newly earned badges shortly after the student works in a lab or studio (no polling, no timers otherwise).
+  let achT = null;
+  const achSoon = () => { clearTimeout(achT); achT = setTimeout(() => { try { if (achPrimed && !(window.SLCelebrate && SLCelebrate.open())) achState(); } catch (e) {} }, 700); };
+  document.addEventListener("click", achSoon); document.addEventListener("change", achSoon);
   function achLink() {
     const st = achState(), earned = st.res.filter(r => r.state === "earned").length, avail = st.res.filter(r => r.status === "active").length;
     return `<p><a class="btn sl2-achbtn" href="#/achievements">${ICON.star} ${L("My achievements", "Mis logros")} <span>· ${L(`${earned} of ${avail} badges`, `${earned} de ${avail} insignias`)}</span></a></p>`;
   }
   /** Brief, polite announcement of a newly earned badge; no animation when reduced motion is preferred. */
   function celebrate(ids) {
+    if (window.SLCelebrate) { SLCelebrate.show(ids.map(id => AC().badges.find(b => b.id === id)).filter(Boolean), { points: D.achievements.points.badge }); return; }
     const names = ids.map(id => pick(AC().badges.find(b => b.id === id).title)).join(", ");
     let el = $id("sl2Toast");
     if (!el) { el = document.createElement("p"); el.id = "sl2Toast"; el.setAttribute("role", "status"); el.setAttribute("data-notr", ""); document.body.appendChild(el); }
@@ -589,21 +662,25 @@
       <div><h3>${h(pick(b.title))}</h3>
       <p class="sl2-bstate">${r.state === "earned" ? ICON.star : r.state === "coming" ? ICON.lock : r.state === "progress" ? ICON.half : ICON.open} ${es() ? stt[1] : stt[0]}${when}</p>
       <p>${h(pick(b.about))}</p>
-      <ul class="sl2-crit" aria-label="${L("How to earn it", "Cómo obtenerla")}">${r.parts.map(partLine).join("")}</ul></div></li>`;
+      <ul class="sl2-crit" aria-label="${L("How to earn it", "Cómo obtenerla")}">${r.parts.map(partLine).join("")}</ul>
+      ${r.state === "earned" && r.status === "active" ? `<p class="sl2-btns sl2-noprint"><a class="btn" href="#/certificate/${h(b.id)}">${L("Certificate", "Certificado")}<span class="sr"> ${h(pick(b.title))}</span></a></p>` : ""}</div></li>`;
   }
   function viewAchievements() {
     const st = achState(), units = D.units.units.map(unitInfo);
-    const lv = k => st.res.filter(r => r.badge.level === k && r.status !== "coming");
+    // Slice 12 portfolio groups (data/activities.json portfolio.independent, draft): presentation only, criteria unchanged.
+    const indep = ((D.activities || {}).portfolio || {}).independent || [];
+    const lv = k => st.res.filter(r => r.badge.level === k && r.status !== "coming" && !(k === "applied" && indep.includes(r.badge.id)));
+    const HEAD = { knowledge: ["Knowledge demonstrated", "Conocimiento demostrado"], applied: ["Applied communication skills", "Habilidades de comunicación aplicadas"], communication: ["Teacher-verified speaking accomplishments", "Logros orales verificados por el maestro"] };
     const done = units.filter(i => i.pr.completed).length;
     const sec = k => { const list = lv(k); if (!list.length) return ""; const L0 = AC().levels[k];
-      return `<section class="sl2-achsec" aria-labelledby="sl2-lv-${k}"><h2 class="sl2-h2" id="sl2-lv-${k}">${h(pick(L0))}</h2><p class="sl2-small">${h(pick(L0.about))}</p><ul class="sl2-badges">${list.map(badgeCard).join("")}</ul></section>`; };
+      return `<section class="sl2-achsec app-achsec is-${k}" aria-labelledby="sl2-lv-${k}"><p class="app-eyebrow">${h(pick(L0))}</p><h2 class="sl2-h2" id="sl2-lv-${k}">${L(HEAD[k][0], HEAD[k][1])}</h2><p class="sl2-small">${h(pick(L0.about))}</p><ul class="sl2-badges">${list.map(badgeCard).join("")}</ul></section>`; };
     const coming = st.res.filter(r => r.status === "coming");
     const unitRows = units.map(i => { const pr = i.pr, stt = STATE[i.state];
       return `<tr><th scope="row">${L("Unit", "Unidad")} ${i.u.id}: ${h(trText(i.u.short))}</th><td>${pr.quizBest == null ? "—" : `${pr.quizBest}%${pr.mastered ? ` ${ICON.star}<span class="sr"> ${L("mastered", "dominado")}</span>` : ""}`}</td><td>${pr.testBest == null ? "—" : `${pr.testBest}%`}</td><td>${ICON[stt.icon]} ${es() ? stt.es : stt.en}</td></tr>`; }).join("");
-    return `<div class="wrap sl2" id="sl2-main" data-notr>
-      <p class="sl2-back"><a href="#/">← ${L("My course", "Mi curso")}</a></p>
-      <h1 class="sl2-h1">${L("My achievements", "Mis logros")}</h1>
-      <p class="sl2-lead">${L("See what you have learned and practiced. Retry any check as often as you like; your best score counts.", "Mira lo que has aprendido y practicado. Repite cualquier revisión cuantas veces quieras; cuenta tu mejor puntuación.")}</p>
+    return `<div class="wrap sl2 app-view app-ach" id="sl2-main" data-notr>
+      <p class="app-eyebrow">${L("My learning portfolio", "Mi portafolio de aprendizaje")}</p>
+      <h1 class="sl2-h1">${L("My Achievements", "Mis logros")}</h1>
+      <p class="sl2-lead">${L("See what you have learned and practiced. Retry any check as often as you like; your best score counts. Canvas remains the official gradebook.", "Mira lo que has aprendido y practicado. Repite cualquier revisión cuantas veces quieras; cuenta tu mejor puntuación. Canvas sigue siendo el registro oficial de calificaciones.")}</p>
       <p class="sl2-print-only">${L(`Learning summary · printed ${fmtLong(today())}`, `Resumen de aprendizaje · impreso el ${fmtLong(today())}`)}</p>
       <dl class="sl2-stats">
         <div><dt>${L("Badges earned", "Insignias obtenidas")}</dt><dd>${st.res.filter(r => r.state === "earned").length} ${L("of", "de")} ${st.res.filter(r => r.status === "active").length}</dd></div>
@@ -611,11 +688,15 @@
         <div><dt>${L("Learning points", "Puntos de aprendizaje")}</dt><dd>${st.pts.total}</dd></div>
       </dl>
       <p class="sl2-small">${L("Learning points count each mastered lab activity, Beyond the Podium skill, reading check and practice test once, plus each badge. There are no leaderboards; this page is only for you.", "Los puntos de aprendizaje cuentan una vez cada actividad de laboratorio, habilidad de Beyond the Podium, comprobación de lectura y examen de práctica dominados, más cada insignia. No hay clasificaciones; esta página es solo para ti.")}</p>
-      <p class="sl2-btns sl2-noprint"><button type="button" class="btn" data-sl2-print>${L("Print my learning summary", "Imprimir mi resumen de aprendizaje")}</button> <button type="button" class="btn" data-mywork="1">${L("Back up or move my progress", "Copiar o mover mi progreso")}</button></p>
+      <p class="sl2-btns sl2-noprint"><a class="btn primary" href="#/portfolio">${L("My Communication Achievement Portfolio", "Mi portafolio de logros de comunicación")}</a> <button type="button" class="btn" data-mywork="1">${L("Back up my progress", "Copiar mi progreso")}</button> <button type="button" class="btn" data-sl2-print>${L("Print my learning summary", "Imprimir mi resumen de aprendizaje")}</button></p>
+      ${window.SLCert ? SLCert.reminder() : ""}
+      <p class="sl2-small sl2-noprint">${L("Certificates and the portfolio are records you can keep, print or share; they cannot restore progress. The progress backup file restores your progress on another computer. Ad Detective keeps its own records in its Notebook.", "Los certificados y el portafolio son registros que puedes guardar, imprimir o compartir; no restauran tu progreso. El archivo de copia restaura tu progreso en otra computadora. Ad Detective guarda sus propios registros en su Cuaderno.")}</p>
       <h2 class="sl2-h2">${L("Unit completion", "Unidades completadas")}</h2>
       <p class="sl2-small">${L("A unit is completed when its reading check is 80% or higher and its practice test is done.", "Una unidad está completada cuando su comprobación de lectura es de 80% o más y su examen de práctica está hecho.")}</p>
       <div class="sl2-tablewrap"><table class="sl2-table"><thead><tr><th scope="col">${L("Unit", "Unidad")}</th><th scope="col">${L("Reading check (best)", "Comprobación de lectura (mejor)")}</th><th scope="col">${L("Practice test (best)", "Examen de práctica (mejor)")}</th><th scope="col">${L("Status", "Estado")}</th></tr></thead><tbody>${unitRows}</tbody></table></div>
-      ${sec("knowledge")}${sec("applied")}${sec("communication")}
+      ${sec("knowledge")}${sec("applied")}
+      ${(() => { const list = st.res.filter(r => indep.includes(r.badge.id) && r.status === "active"); return list.length ? `<section class="sl2-achsec app-achsec is-independent" aria-labelledby="sl2-lv-ind"><p class="app-eyebrow">${L("Applied learning", "Aprendizaje aplicado")}</p><h2 class="sl2-h2" id="sl2-lv-ind">${L("Independent mastery", "Dominio independiente")}</h2><p class="sl2-small">${L("Badges that bring several skills together across a whole experience, done on your own.", "Insignias que reúnen varias habilidades en toda una experiencia, hechas por tu cuenta.")}</p><ul class="sl2-badges">${list.map(badgeCard).join("")}</ul></section>` : ""; })()}
+      ${sec("communication")}
       ${coming.length ? `<section class="sl2-achsec sl2-noprint" aria-labelledby="sl2-lv-coming"><h2 class="sl2-h2" id="sl2-lv-coming">${L("Coming later", "Llegarán después")}</h2><p class="sl2-small">${L("These belong to experiences that are not built yet. They cannot be earned now.", "Pertenecen a experiencias que todavía no existen. No se pueden obtener ahora.")}</p><ul class="sl2-badges">${coming.map(badgeCard).join("")}</ul></section>` : ""}
       <p class="sl2-small">${L("Badges are informal learning achievements, not grades, credits or credentials. Progress is saved only in this browser on this computer; clearing the browser or using another computer starts fresh unless you restore a backup. Online activities never verify speaking performances or handwritten journals.", "Las insignias son logros de aprendizaje informales, no calificaciones, créditos ni credenciales. El progreso se guarda solo en este navegador y en esta computadora; si borras el navegador o usas otra computadora, empiezas de nuevo a menos que restaures una copia. Las actividades en línea nunca verifican presentaciones orales ni diarios escritos a mano.")}</p>
     </div>`;
@@ -643,6 +724,8 @@
     const p = t.closest("[data-sl2-path]"); if (p) { choosePath(p.dataset.sl2Path, p); return; }
     const gb = t.closest("[data-sl2-grp]"); if (gb) { const g = gb.dataset.sl2Grp; classGroup = g; put(K.group, g || null); render(); return; }
     const lb = t.closest("[data-sl2-lab]"); if (lb && route && route.name === "unit") { const id = lb.dataset.sl2Lab; if (route.tab !== "labs") { pendingLab = id; location.hash = `#/unit/${route.id}/labs`; } else openLab(id); return; }
+    if (lb && route && !root.hidden) { location.hash = `#/labs/${lb.dataset.sl2Lab}`; return; } // Today's Lesson → the lab in Learning Labs
+    if (t.closest("header nav.links a, header a.prefbtn")) soundNav = true; // optional interface sound (off unless chosen)
     if (t.closest("[data-sl2-teacher]")) { teacherDialog(); return; }
     if (t.closest("[data-sl2-print]")) { window.print(); return; }
     const d = $id("sl2Teacher");
@@ -685,6 +768,16 @@
   const brand = document.querySelector("header .brand"); if (brand) brand.setAttribute("href", "#/");
 
   const addRoute = (name, def) => { EXTRA[name] = def; if (/^#\/?/.test(location.hash) && location.hash.replace(/^#\/?/, "").split("/")[0] === name) go(); };
-  window.SL2 = { addRoute, refresh, route: () => route, currentUnitId, unitInfo, lessonModel, opts, weeks, fmtLong, fmtShort, fmtAt, lessonKey, unitOpen, released, releasedAt, lockedNotice, achState, supportsOn, supportLevel, teacherOn, aiOf, aiNow, aiLevel, aiCard, ICON, h, L, pick, other, today, now, group, DEFAULT_EXPECT };
+  /** The public address to print on teacher exports (substitute plans, Quick Teach). Never localhost: when the page runs
+      on this computer, the configured production (or preview) address from data/config.json is used instead. */
+  function siteBase() {
+    const c = (window.SL_CONFIG && window.SL_CONFIG.site) || {}, prev = !!(window.SLBuild && window.SLBuild.preview);
+    const here = location.href.split("#")[0].split("?")[0].replace(/index\.html$/, "");
+    if (/^https:\/\/[^/]+\.github\.io\//.test(here)) return here;
+    return (prev ? c.preview : c.production) || "https://stevenbennett-hub.github.io/speaking-lab/";
+  }
+  try { achState(); } catch (e) {} // records anything already earned, silently (no celebration on load)
+  try { if (window.SLSound) SLSound.unitOpened(null, openUnitIds(), false); } catch (e) {} // first visit: units already open are recorded silently
+  window.SL2 = { addRoute, host, choosePath, supportToggle, groupBar, viewDay, unitById, STATE, AC, SUPPORT_LEVELS, path, colEnabled: () => COL_ENABLED, colUnlocked: () => colUnlocked(), siteBase, refresh, route: () => route, currentUnitId, unitInfo, lessonModel, opts, weeks, fmtLong, fmtShort, fmtAt, lessonKey, unitOpen, released, releasedAt, lockedNotice, achState, supportsOn, supportLevel, teacherOn, aiOf, aiNow, aiLevel, aiCard, ICON, h, L, pick, other, today, now, group, DEFAULT_EXPECT };
   go();
 })();

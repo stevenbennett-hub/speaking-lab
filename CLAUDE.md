@@ -1,10 +1,10 @@
 # Speaking Lab — notes for Claude
 
-Owner: Steven Bennett, Speech & Debate, Wyandotte High School (KCKPS). Full brief: `Speaking_Lab_2.0_Claude_Master_Prompt.md` (kept by the owner). Read `CHANGELOG.md` for what each slice did and `DEVELOPMENT_ROADMAP.md` for what is next. Slices 1–10 approved (slice 10 = release candidate; production approval pending); Slice 11 (navigation + Instructor Playbook Unit 1 prototype) awaiting review; none deployed yet. **Feature development is paused until the classroom pilot** (`docs/pilot/`); only fixes, review and readiness work until then. Release checklist: `docs/RELEASE_CHECKLIST.md`.
+Owner: Steven Bennett, Speech & Debate, Wyandotte High School (KCKPS). Full brief: `Speaking_Lab_2.0_Claude_Master_Prompt.md` (kept by the owner). Read `CHANGELOG.md` for what each slice did and `DEVELOPMENT_ROADMAP.md` for what is next. Slices 1–10 approved (slice 10 = release candidate; production approval pending); Slice 11 approved for preview testing; Slice 12 (unified application) awaiting review; none deployed yet. **Feature development is paused until the classroom pilot** (`docs/pilot/`); only fixes, review and readiness work until then. Release checklist: `docs/RELEASE_CHECKLIST.md`.
 
 ## How the site runs
 - GitHub Pages deploys **`site/` from `main` only**, after `node --test tests/*.test.mjs` passes. Other branches and pull requests run tests only.
-- `site/index.html` is the classic one-page course (~2 MB, plain JS, EN/ES). Its scripts are `type="text/x-speakup"`; `site/js/boot.js` loads `site/data/*.json` into `window.SL_DATA`, runs those scripts in order, then loads `js/progress.js`, `js/achievements.js`, `js/manage.js`, `js/student.js`, `js/teacher.js`, `js/btp.js`, `js/aistudio.js`, `js/research.js`, `js/playbook.js`. `js/schedule.js` and `js/build.js` load first.
+- `site/index.html` is the classic one-page course (~2 MB, plain JS, EN/ES). Its scripts are `type="text/x-speakup"`; `site/js/boot.js` loads `site/data/*.json` into `window.SL_DATA`, runs those scripts in order, then loads `js/progress.js`, `js/achievements.js`, `js/sound.js`, `js/celebrate.js`, `js/manage.js`, `js/student.js`, `js/teacher.js`, `js/btp.js`, `js/aistudio.js`, `js/research.js`, `js/playbook.js`, `js/app.js`. `js/schedule.js` and `js/build.js` load first.
 - `js/student.js` is the student experience. Routes: `#/` dashboard (or `#/start` entrance on first visit), `#/unit/N` (Today), `/lessons`, `/day/YYYY-MM-DD`, `/guide`, `/labs`. Any other hash shows the classic page, so all old links work. Inside a unit it moves the page's `#units` and `#labs` sections in and back out (marker comments) instead of copying them.
 - `src/` (React) is NOT deployed; content source only (24 Learn modules, 9 labs, AI Coach JSON).
 
@@ -17,7 +17,7 @@ Owner: Steven Bennett, Speech & Debate, Wyandotte High School (KCKPS). Full brie
 | `overrides.json` | classroom overrides (each needs `added`; types closure, noJournal, journal, extend) and teacher-approved unit `releases` |
 | `objectives.json` | unit-level targets and frames (classic page) |
 | `lessons.json` | per planned day `wWWdD`: objectives, success criteria; optional title, agenda, exit, activities, featured, canvas; `status` {en, es} |
-| `config.json` | which academic-year calendar file to load |
+| `config.json` | which academic-year calendar file to load; `site` = public production/preview addresses for printed plans |
 | `journals.json` | Daily Learning Journals; flex journals with `before`; `experience` links |
 | `studios.json` | featured experiences/studios by unit; `coming` items never link |
 | `access.json` | college switch (off) + code hash; teacher view code hash |
@@ -104,8 +104,30 @@ Never paste data back into `index.html`; tests fail if inline copies return.
 - Keyed by lesson key; `validate()` refuses copied objectives/success/prompts and any planned day without an entry. Planned days ≠ meetings: meeting plans come from the live schedule via `compose()` (journal 15 min, 72-minute budget, `short` times, `fill` = speeches, stretch, repeated days → review).
 - Videos: only ones already on the site; never invent contents, quotations or timestamps; segments stay blank and `verified: false` until the owner previews them (validator enforces). No autoplay; alternatives for blocked videos; district laptops, no personal phones.
 - Teacher views only (Lesson Manager → Playbook, print routes, sub plan section); students never load the data. Notes: `speakup-teacher-notes-v1` (local, not in student backups). No student information anywhere.
-- Guidance is edited in the JSON (no second lesson editor). Documents: `python3 tests/tools/playbook-export.py URL N OUT` (server running). Everything stays draft until approved.
+- Quick Teach (`#/teacher/playbook/N/DATE`) is the default daily plan; `/full`, `print/quick|plan|sub|playbook` and the editor (`/edit/wWWdD`, `/edit/video/ID`) all use the same data. Phase links: `video`, `lab`, `read`, `route`; `before` = first class day only, ahead of the journal.
+- Editing = Lesson Manager drafts (`W.playbook`, exported from Publish as `site/data/playbook/unit-N.json`, blocked while invalid); `SLManage.EDITABLE` stays lessons/journals/overrides. Objectives/journals/assignments are never edited in the playbook editor. Video times only with the "I previewed" confirmation (`applyVideoEdit`). Tests must accept teacher-verified times and edited timings.
+- Printed plans use `SL2.siteBase()` (config.json `site`), never localhost; `playbook-export.py` refuses PDFs with localhost. Classroom expectations: `data/playbook/classroom.json`.
+- Planning settings (`speakup-teacher-planning-v1`): class size per semester-group, minutes per speaker; capacity only warns, never changes pacing. Open questions live in `overview.confirm`; never apply them silently.
+- Documents: `python3 tests/tools/playbook-export.py URL N OUT` (server running). Everything stays draft until approved.
 - Approved decisions (Nov 24): proficient = Meets/Exceeds; Self-Introduction excluded from teacher-verified badges; Time and Clarity in English not separate requirements; Master Communicator Option A; integrity required; explore Canvas Outcomes; badges pending. Ad Detective approved for preview testing only.
+
+## Slice 12: unified application (`css/app.css`, `js/app.js`, `js/sound.js`, `js/celebrate.js`)
+- Header = brand + five destinations (`#/today`, `#/`, `#/labs`, `#/resources`, `#/achievements`) + language + Preferences. No pathway switch in the visible header. The old controls live hidden in `#hdrHold` so classic handlers keep working. Never link a header item to a classic `#section`.
+- Classic sections appear in application views only through `SL2.host(id, slot)`: they move in, then back. Never copy them. Whole-section legacy hashes (`#labs`, `#videos`) still open the classic page.
+- Learning Labs catalog: `data/activities.json` (skills and types; draft). Never list an activity that doesn't exist. Studios link only when available and their unit is open.
+- Audio: only `js/sound.js` plays sound. Off by default. Prefs in `speakup-prefs-v1`. Files only when the manifest marks them `present` (tests check against the folder). Never autoplay, overlap, play over media or presentations, or call ElevenLabs from the site.
+- Celebrations: only `student.js` `celebrate(newly)` after `achPrimed`. The first evaluation per page load is silent. `celebrate.js` never writes. Demo at `#/demo/celebrate` (teacher view).
+- AI permission: lessons.json `ai` or the class default is authoritative everywhere. The playbook `ai` field is a teaching note; flag conflicts (`aiConflicts`), never change them.
+- Substitute plans: `subTimeline()` always covers 90 minutes; never grading speeches. Extension work only from what was taught (`subExtensions`: taught labs + `overview.subStarter`, readings so far, rehearsal from `overview.speechAssigned`).
+- Theme: dark for first-time visitors; a saved `speakup-theme` is always kept; earlier users (saved pathway, no theme) are pinned to light.
+- Lab feedback sounds: only via `SLSound.labFeedback` (counts `.pl-fb.ok/.no` before and after a student action); never edit labs to play sounds. Unit unlock: `SLSound.unitOpened` (once per unit, `speakup-unlock-v1`, never on load).
+- Sound files: `site/media/sfx/` via `tests/tools/sfx-prepare.py`; `reviewed` stays false until the owner approves.
+
+## Portable achievements (`js/certificates.js`, `docs/CERTIFICATES.md`, `docs/privacy/`)
+- The name and reflections live only in `NAME`/`REFL` (page memory). Never storage, URLs, mailto, filenames, metadata, backups or network; cleared on leaving or refresh. The only stored item is `speakup-backup-v1` (dates). Run `tests/tools/privacy-audit.py` after any change here; any leak is release-blocking.
+- Certificates only for engine-earned active badges. Exports never change progress or points. No signature. The instructor's name is not a verification. Demo = teacher view + fictional name + DEMONSTRATION label; preview builds stamp DEVELOPMENT PREVIEW.
+- Competencies: activity skills, plus `activities.json` `badgeSkills` for reading-check badges (only where the unit supports it). The celebration button is "Back up my progress" (not "Save achievement").
+- Documents are drawn on canvas with local fonts and art; the PDF writer is in the file (no libraries or services). Print defaults to the low-ink style.
 
 ## Content review
 Regenerate the teacher review document after content changes: `node tests/tools/content-review.mjs [path/to/ad-detective/src/app.js] > /tmp/r.json && python3 tests/tools/content-review.py /tmp/r.json review.docx`. Never change a status on the owner's behalf.

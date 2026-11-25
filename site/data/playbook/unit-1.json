@@ -143,6 +143,13 @@
       "Closures and extended lessons (overrides) change the meetings automatically; the meeting plans always follow the live schedule."
     ],
     "speechDays": "Plan about 3 minutes per high school speaker (1–2 minute speech, applause, the next speaker walking up, listeners finishing a feedback slip) and about 4 minutes per college speaker. That is roughly 18–20 high school speakers per hour. Count your roster and spread speakers over the speech meetings in the meeting map.",
+    "speech": {
+      "minutes": 2,
+      "colMinutes": 3,
+      "feedback": 0.5,
+      "transition": 0.5,
+      "note": "Default per-speaker planning time: the longest allowed speech (high school 2 minutes, college 3) plus 30 seconds of written feedback and 30 seconds to change speakers. Adjust in Playbook → Planning settings."
+    },
     "btp": "Beyond the Podium, Episode 1 (55-second film, seven-stage lab) supports the model's noise and feedback and the audience's role. Use it on the fall flex meeting, or as an optional observation after back-to-back drawing. It never replaces the drawing activity, the integrity lesson or speech time.",
     "spare": [
       "Communication Model Lab: the next level (Unit 1 → Labs and studios).",
@@ -153,7 +160,45 @@
     ],
     "college": "College Public Speaking stays off unless authorized. When it is on, college students give the Personal Artifact Speech (2–3 min, key-word speaking outline, extemporaneous) on the same days and use the college rubric.",
     "access": "Universal Design for Learning: every new idea is shown three ways (words, the diagram, a situation); every task has a spoken, written or seated option; feedback is private by default. Students never have to explain why they need an option.",
-    "ml": "The learning-English pathway and the Guided language-support setting show English and Spanish side by side with vocabulary open. Pre-teach the seven model words with the diagram, allow home-language partner talk before English sharing, and give sentence frames for every spoken task. Accents are never scored."
+    "ml": "The learning-English pathway and the Guided language-support setting show English and Spanish side by side with vocabulary open. Pre-teach the seven model words with the diagram, allow home-language partner talk before English sharing, and give sentence frames for every spoken task. Accents are never scored.",
+    "confirm": [
+      {
+        "id": "slides",
+        "q": "Does the high school Self-Introduction Speech require slides?",
+        "why": "The pacing for w02d2 says 'finish slides and your note card', and a Self-Introduction slide deck exists, but the assignment lists only an object and a note card."
+      },
+      {
+        "id": "wording",
+        "q": "Accept, edit or decline the suggested Unit 1 English and Spanish wording changes?",
+        "why": "Listed in the curriculum review (Unit 1 review notes). Nothing has been changed."
+      },
+      {
+        "id": "balance",
+        "q": "Is the balance of speech preparation and performance time sufficient?",
+        "why": "The meeting map shows rehearsal and speech minutes for each group, and whether all students fit, using your class size."
+      },
+      {
+        "id": "subfill",
+        "q": "Concise substitute plans now fill the whole 90-minute block. Is the added time used the way you want?",
+        "why": "After the day's substitute-suitable steps, students do independent practice in the unit's existing labs, then reading, vocabulary or speech rehearsal (practice only, never scored), before a 5-minute exit self-check and 3 minutes of final procedures. Change a day's substitute steps in Playbook → Edit."
+      }
+    ],
+    "speechAssigned": "w01d4",
+    "subStarter": {
+      "labs": [
+        "listenlab",
+        "audlab"
+      ],
+      "note": "Introductory listening and audience-awareness practice for substitute days before any lab has been taught in class."
+    },
+    "exitFromJournal": [
+      {
+        "lesson": "w01d4",
+        "journal": "j03",
+        "when": "Only when this group's schedule skips Journal 3 (the shortened spring odd schedule). Journal numbers are unchanged.",
+        "status": "draft"
+      }
+    ]
   },
   "videos": [
     {
@@ -413,6 +458,7 @@
   "lessons": {
     "w01d1": {
       "title": "Welcome, the Speaking Lab and the journal routine",
+      "status": "draft",
       "essential": "What makes someone easy to listen to?",
       "vocab": [
         "audience",
@@ -432,15 +478,17 @@
       "phases": [
         {
           "phase": "learn",
-          "title": "Launch the journal routine",
+          "title": "Before the journal: find Today's Lesson",
           "min": 5,
           "core": true,
           "teacher": [
-            "Before the first journal: show where today's journal is (Unit 1 → Today).",
-            "Say: 'Every class starts this way. Ten minutes, by hand, in your journal. Then you stand up and share with someone new. Ten journals make one 100-point set.'",
-            "Model the stand and share once with a student volunteer."
+            "First class day only: this happens BEFORE the journal, so students know where to find it.",
+            "Project the site. Click Today's Lesson in the header: show the journal number, the prompt and the sentence frames.",
+            "Say: 'Every class starts this way. Ten minutes, by hand, in your journal. Then you stand up and share with someone new. Ten journals make one 100-point set.' Model the stand and share once with a volunteer.",
+            "Students who are new to the site will choose their pathway and class periods during the tour; for now they only need to see the prompt on the board."
           ],
-          "students": "Write the first journal, then stand and share."
+          "students": "Watch where the journal is, then write the first journal.",
+          "before": true
         },
         {
           "phase": "learn",
@@ -534,7 +582,7 @@
         ],
         "respond": "Students who could not find Today: pair them with a site helper next class. Very quiet speakers: practice voice on w01d5."
       },
-      "ai": "No AI use today. Keep the class default (grammar and spelling feedback only); the AI policy is taught on w02d1.",
+      "ai": "No AI activity is planned today. The class default of grammar and spelling feedback only applies to written work. The AI policy is taught on w02d1.",
       "canvas": [
         "Show students how to reach Canvas through ClassLink (link in My work).",
         "Post the syllabus in Canvas if the course uses a syllabus acknowledgment."
@@ -553,6 +601,7 @@
     },
     "w01d2": {
       "title": "The transactional model of communication",
+      "status": "draft",
       "essential": "If both people send and receive at the same time, who is responsible for understanding?",
       "vocab": [
         "sender",
@@ -573,7 +622,7 @@
         "Ch. 1 §1.3 (Readings)"
       ],
       "prep": [
-        "Preview v-model-iisd and fill in its segment.",
+        "Preview “The Communication Process Model Captioned” and enter its verified segment (Edit viewing guide).",
         "Open the Communication Model Lab, first level ('Maya's recipe speech').",
         "Print blank diagrams for students who prefer paper."
       ],
@@ -590,7 +639,8 @@
             "Name the seven parts with an example from this classroom: sender (me), receivers (you), message (today's plan), channel (my voice, the slide), noise (the hallway), feedback (your faces), context (third period, Tuesday).",
             "Point to Journal 2's 'ok' text: the same message can mean two things; noise and context decide which."
           ],
-          "students": "Copy the seven labels onto the diagram as they are explained."
+          "students": "Copy the seven labels onto the diagram as they are explained.",
+          "read": 1
         },
         {
           "phase": "observe",
@@ -614,7 +664,8 @@
             "Students drag the parts of 'Maya's recipe speech' onto the model. The lab gives hints and explains each part.",
             "Circulate: ask 'Why is that noise and not feedback?'"
           ],
-          "students": "Complete level 1; early finishers go on to level 2 ('Coach's halftime talk')."
+          "students": "Complete level 1; early finishers go on to level 2 ('Coach's halftime talk').",
+          "lab": "mlab"
         },
         {
           "phase": "practice",
@@ -634,7 +685,8 @@
           "teacher": [
             "Partner reading: one reads a paragraph aloud, the other summarizes it in one sentence, then switch."
           ],
-          "students": "Underline the definition of the transactional model."
+          "students": "Underline the definition of the transactional model.",
+          "read": 1
         },
         {
           "phase": "investigate",
@@ -644,7 +696,8 @@
           "teacher": [
             "Levels: 'Coach's halftime talk', 'A video call with Grandma', 'Public comment at city council'. Ask which context changes the message most."
           ],
-          "students": "Complete as many levels as time allows."
+          "students": "Complete as many levels as time allows.",
+          "lab": "mlab"
         }
       ],
       "discuss": [
@@ -688,7 +741,7 @@
         ],
         "respond": "If many confuse channel and message, reteach with the lab's hints before back-to-back drawing."
       },
-      "ai": "No AI use. Class default stays in place.",
+      "ai": "No AI activity is planned today. The class default of grammar and spelling feedback only applies to written work.",
       "canvas": [
         "Optional: students upload a photo of their diagram to a Canvas assignment if you collect it."
       ],
@@ -708,6 +761,7 @@
     },
     "w01d3": {
       "title": "Model in action: back-to-back drawing",
+      "status": "draft",
       "essential": "How much does feedback change what we understand?",
       "vocab": [
         "feedback",
@@ -772,7 +826,8 @@
             "Optional observation (not on the flex day): open Beyond the Podium Episode 1, 'Read the Room' and 'Watch the Film' stages. The film is 55 seconds; captions and a descriptive transcript are built in.",
             "Ask: where is the feedback in this conversation, and where does noise get in?"
           ],
-          "students": "Watch, then name one moment where feedback could have changed the outcome."
+          "students": "Watch, then name one moment where feedback could have changed the outcome.",
+          "route": "#/btp/1"
         },
         {
           "phase": "observe",
@@ -822,7 +877,7 @@
         ],
         "respond": "If pairs only name sound as noise, return to the three noise types with the lab's examples."
       },
-      "ai": "No AI use.",
+      "ai": "No AI activity is planned today. The class default of grammar and spelling feedback only applies to written work.",
       "canvas": [],
       "exit": "One sentence: 'Without feedback, ___.'",
       "reflect": [
@@ -839,6 +894,7 @@
     },
     "w01d4": {
       "title": "Nerves are normal; the speech is assigned",
+      "status": "draft",
       "essential": "If nervousness is normal, what makes some speakers seem calm?",
       "vocab": [
         "speech anxiety",
@@ -855,8 +911,8 @@
         "Planning sheet or index cards"
       ],
       "prep": [
-        "Choose one TEDx talk (v-fear-nacino or v-fear-dhamani) and fill in its segment.",
-        "Preview the model self-introduction (v-intro-broward).",
+        "Choose one TEDx talk (Sha Nacino or Danish Dhamani) and enter its verified segment in the viewing guide.",
+        "Preview the model self-introduction video (Example: Self-Introduction Speech).",
         "Bring an object of your own to model the assignment."
       ],
       "phases": [
@@ -871,7 +927,8 @@
             "Read the key ideas of §1.2 together: speaking anxiety is common and normal; list the strategies the section names on the board.",
             "Say: 'The goal is not zero nerves; it is speaking anyway.'"
           ],
-          "students": "Rate privately; list the textbook's strategies."
+          "students": "Rate privately; list the textbook's strategies.",
+          "read": 1
         },
         {
           "phase": "observe",
@@ -881,7 +938,7 @@
           "core": true,
           "video": "v-fear-nacino",
           "teacher": [
-            "Show your chosen segment with the viewing guide. Use v-fear-dhamani as the alternate."
+            "Show your chosen segment with the viewing guide. Use the Danish Dhamani talk as the alternate."
           ],
           "students": "Write any strategy the speaker uses, in their own words."
         },
@@ -907,7 +964,8 @@
             "College: Personal Artifact Speech, 2–3 minutes, thesis and three main points, key-word speaking outline, extemporaneous.",
             "Walk through the rubric rows: Organization 15, Object Connection 10, Audience Connection 10, Voice 10, Time 5; Academic Integrity must be met."
           ],
-          "students": "Choose an object and say why it represents them (success criterion)."
+          "students": "Choose an object and say why it represents them (success criterion).",
+          "route": "#/unit/1/guide"
         },
         {
           "phase": "observe",
@@ -961,7 +1019,7 @@
         ],
         "respond": "Students without an object by the end: conference on w01d5 with a short list of options."
       },
-      "ai": "No AI use for planning. Class default (grammar and spelling feedback only); see w02d1 for the AI policy.",
+      "ai": "No AI activity is planned today, including for speech planning. The class default of grammar and spelling feedback only applies to written work. The AI policy is taught on w02d1.",
       "canvas": [
         "Post the speech assignment and rubric in Canvas (the official record) with the due dates on your meeting map."
       ],
@@ -981,6 +1039,7 @@
     },
     "w01d5": {
       "title": "Vocabulary check and delivery basics",
+      "status": "draft",
       "essential": "What do the audience's eyes and ears notice first?",
       "vocab": [
         "eye contact",
@@ -1009,7 +1068,8 @@
             "Students take the Unit 1 reading check on the site (retakes allowed; best score counts).",
             "Review the two most-missed items together."
           ],
-          "students": "Complete the reading check."
+          "students": "Complete the reading check.",
+          "route": "#/unit/1/guide"
         },
         {
           "phase": "observe",
@@ -1094,7 +1154,7 @@
         ],
         "respond": "Below 80% on the check: assign the unit's key concepts and a retake before w02d1."
       },
-      "ai": "No AI use.",
+      "ai": "No AI activity is planned today. The class default of grammar and spelling feedback only applies to written work.",
       "canvas": [
         "If the reading check is recorded in Canvas, students paste their score or a screenshot there."
       ],
@@ -1114,6 +1174,7 @@
     },
     "w02d1": {
       "title": "Ethics, plagiarism, oral citation and the AI policy",
+      "status": "draft",
       "essential": "What makes a speech honestly mine?",
       "vocab": [
         "plagiarism",
@@ -1144,7 +1205,8 @@
             "Oral citation: say the source out loud. Model the site's example: 'According to Exploring Public Speaking, a textbook by Barbara Tucker and her colleagues, …'",
             "The self-introduction has no sources, but this rule applies to every speech after it."
           ],
-          "students": "Give one example of plagiarism and one of honest credit (success criterion)."
+          "students": "Give one example of plagiarism and one of honest credit (success criterion).",
+          "read": 3
         },
         {
           "phase": "learn",
@@ -1156,7 +1218,8 @@
             "Show the gate on the rubric: it has no points but it is required. 'Met' means disclosure is complete, any AI use only refined the student's own work, and sources are in their own words with credit. 'Redo' means AI wrote the speech or major parts, AI use was not disclosed, or serious plagiarism; there is no score and the work is redone.",
             "Show the AI permission for this speech on Today: grammar and spelling feedback only, unless you changed it."
           ],
-          "students": "State the AI policy in their own words (success criterion)."
+          "students": "State the AI policy in their own words (success criterion).",
+          "route": "#rubrics"
         },
         {
           "phase": "investigate",
@@ -1168,7 +1231,8 @@
             "Students open AI Coaching Studio → Cognitive Ownership, work through its five steps in order (Think first) and answer its scenario check.",
             "Debrief: what is the difference between AI helping you think and AI thinking for you?"
           ],
-          "students": "Complete the section's check."
+          "students": "Complete the section's check.",
+          "route": "#/ai/ownership"
         },
         {
           "phase": "investigate",
@@ -1178,7 +1242,8 @@
           "teacher": [
             "Show the AI-use disclosure page; explain when students will use it (any speech where AI was allowed)."
           ],
-          "students": "Read a sample disclosure and say what it tells the teacher."
+          "students": "Read a sample disclosure and say what it tells the teacher.",
+          "route": "#/ai/disclosure"
         }
       ],
       "discuss": [
@@ -1240,6 +1305,7 @@
     },
     "w02d2": {
       "title": "Note cards and rehearsal",
+      "status": "draft",
       "essential": "How do key words help you sound like yourself?",
       "vocab": [
         "key word",
@@ -1251,7 +1317,7 @@
         "Index cards",
         "A classroom timer or the wall clock (personal phones are not used)",
         "Rubric self-assessment (Rubrics → Self-Introduction → Self-assess)",
-        "Model self-introduction (v-intro-broward)"
+        "Model self-introduction video (Example: Self-Introduction Speech)"
       ],
       "prep": [
         "Make a sample note card with key words only, and a bad one written in full sentences.",
@@ -1291,7 +1357,8 @@
           "teacher": [
             "Students use the rubric's self-assessment tool (it saves in their browser) to pick one row to improve before speech day."
           ],
-          "students": "Choose one row to improve."
+          "students": "Choose one row to improve.",
+          "route": "#rubrics"
         },
         {
           "phase": "observe",
@@ -1302,7 +1369,8 @@
           "teacher": [
             "Use the viewing guide with the full text in Voices of Change: structure, repetition and a memorable last line."
           ],
-          "students": "Rewrite their last line to be short and memorable."
+          "students": "Rewrite their last line to be short and memorable.",
+          "route": "#speeches"
         },
         {
           "phase": "learn",
@@ -1312,7 +1380,8 @@
           "teacher": [
             "Preview The Respectful Audience Lab's six expectations, so students know them before speech day."
           ],
-          "students": "Name the expectation that matters most to them as a speaker."
+          "students": "Name the expectation that matters most to them as a speaker.",
+          "lab": "audlab"
         }
       ],
       "discuss": [
@@ -1371,6 +1440,7 @@
     },
     "w02d3": {
       "title": "Speeches, day 1: speakers and a respectful audience",
+      "status": "draft",
       "essential": "What does a speaker need from the audience?",
       "vocab": [
         "audience",
@@ -1399,7 +1469,8 @@
             "Review The Respectful Audience Lab's six expectations: stay seated, close your computer, no earbuds or headphones, no talking or distracting behavior, be patient and supportive, be ready when you're the speaker.",
             "Today's listener job: one specific compliment for a speaker (success criterion)."
           ],
-          "students": "Close laptops; feedback slips out."
+          "students": "Close laptops; feedback slips out.",
+          "lab": "audlab"
         },
         {
           "phase": "perform",
@@ -1456,7 +1527,7 @@
         ],
         "respond": "If many go over time, remind tomorrow's speakers to rehearse with a timer tonight."
       },
-      "ai": "Not applicable (speech day).",
+      "ai": "Speech day: no AI activity is planned. The class default of grammar and spelling feedback only applies to written work such as the note card.",
       "canvas": [
         "Enter scores in the Canvas rubric (the official record)."
       ],
@@ -1474,6 +1545,7 @@
     },
     "w02d4": {
       "title": "Speeches, day 2: active listening",
+      "status": "draft",
       "essential": "How do listeners show they understood?",
       "vocab": [
         "hook",
@@ -1517,7 +1589,8 @@
           "teacher": [
             "If speeches finish early: The Art of Listening lab on laptops."
           ],
-          "students": "Practice listening skills in the lab."
+          "students": "Practice listening skills in the lab.",
+          "lab": "listenlab"
         }
       ],
       "discuss": [
@@ -1547,7 +1620,7 @@
         ],
         "respond": "If listeners miss the parts, the speakers' transitions need teaching in Unit 2."
       },
-      "ai": "Not applicable (speech day).",
+      "ai": "Speech day: no AI activity is planned. The class default of grammar and spelling feedback only applies to written work such as the note card.",
       "canvas": [
         "Enter scores in the Canvas rubric."
       ],
@@ -1565,6 +1638,7 @@
     },
     "w02d5": {
       "title": "Final speeches and reflection",
+      "status": "draft",
       "essential": "What will I do differently in my next speech?",
       "vocab": [
         "strength",
@@ -1601,7 +1675,8 @@
           "teacher": [
             "Students compare their self-assessment with your scores: name one strength with rubric evidence (success criterion)."
           ],
-          "students": "Complete the self-assessment on the site."
+          "students": "Complete the self-assessment on the site.",
+          "route": "#rubrics"
         },
         {
           "phase": "reflect",
@@ -1622,7 +1697,8 @@
           "teacher": [
             "Use the Gettysburg viewing guide as a celebration of short speeches."
           ],
-          "students": "Compare Lincoln's structure with their own."
+          "students": "Compare Lincoln's structure with their own.",
+          "route": "#speeches"
         }
       ],
       "discuss": [
@@ -1655,7 +1731,7 @@
         ],
         "respond": "Collect goals; return them before the Unit 2 speech."
       },
-      "ai": "Not applicable.",
+      "ai": "No AI activity is planned today. The class default of grammar and spelling feedback only applies to written work.",
       "canvas": [
         "Students paste their strength and goal into a Canvas reflection if you collect it there."
       ],
@@ -1687,7 +1763,8 @@
           "Open Beyond the Podium Episode 1 (Unit 1 → Labs and studios). The film is 55 seconds, with captions and a descriptive transcript; a lower-bandwidth version is in the player.",
           "Watch twice: once for what happens, once for what each person might be assuming."
         ],
-        "students": "Complete Read the Room and Watch the Film."
+        "students": "Complete Read the Room and Watch the Film.",
+        "route": "#/btp/1"
       },
       {
         "phase": "investigate",
@@ -1698,7 +1775,8 @@
           "Students match barriers to evidence in the dialogue. Point out that 'no evidence in the words' can be the right answer (technoference).",
           "Connect to the model: noise, missing feedback, context."
         ],
-        "students": "Complete the Detective stage."
+        "students": "Complete the Detective stage.",
+        "route": "#/btp/1"
       },
       {
         "phase": "practice",
@@ -1708,14 +1786,15 @@
         "teacher": [
           "Students practice repairing the conversation; it connects to the flex journal's I-statement frame."
         ],
-        "students": "Work through the practice scenes."
+        "students": "Work through the practice scenes.",
+        "route": "#/btp/1/change"
       }
     ],
     "note": "Bridge Builder is earned only by completing the Detective, Change the Conversation and Apply stages; watching never counts."
   },
   "sub": {
     "general": [
-      "Students know the routine: the Daily Learning Journal is on Unit 1 → Today. 10 minutes handwritten, then stand and share with someone new.",
+      "Students know the routine: they click Today's Lesson to find the Daily Learning Journal. 10 minutes handwritten, then stand and share with someone new.",
       "Laptops are used only for the listed activity; close them when someone is speaking.",
       "Do not score speeches or change seating charts.",
       "No student information is in this plan; attendance is in the district system."

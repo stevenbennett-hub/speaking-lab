@@ -1,0 +1,52 @@
+{
+  "$comment": "Slice 12 Learning Labs catalog. Presentation metadata only: names, descriptions, units, routes, progress and badges come from the existing data (units.json labNames/unitLabs, studios.json, the lab pickers on the page, achievements.json). Never list an activity that does not exist; studios with status other than available never link. 'portfolio' groups existing badges on My Achievements and picks the celebration style; it never changes criteria or points. status draft = awaiting Mr. Bennett's review.",
+  "status": "draft",
+  "skills": {
+    "process": ["Communication process", "Proceso de comunicación"],
+    "confidence": ["Communication confidence", "Confianza al comunicar"],
+    "audience": ["Audience awareness", "Conciencia del público"],
+    "listening": ["Active listening", "Escucha activa"],
+    "critical": ["Critical thinking", "Pensamiento crítico"],
+    "research": ["Research literacy", "Alfabetización en investigación"],
+    "organization": ["Speech organization", "Organización del discurso"],
+    "persuasion": ["Persuasive reasoning", "Razonamiento persuasivo"],
+    "ai": ["Ethical AI use", "Uso ético de la IA"],
+    "integrity": ["Academic integrity", "Integridad académica"],
+    "delivery": ["Effective delivery", "Expresión eficaz"]
+  },
+  "types": {
+    "lab": ["Practice lab", "Laboratorio de práctica"],
+    "studio": ["Interactive studio", "Estudio interactivo"],
+    "cinematic": ["Cinematic experience", "Experiencia cinematográfica"],
+    "external": ["External application", "Aplicación externa"],
+    "analysis": ["Speech analysis", "Análisis de discursos"]
+  },
+  "activities": [
+    { "id": "mlab", "kind": "lab", "type": "lab", "skills": ["process"] },
+    { "id": "audlab", "kind": "lab", "type": "lab", "skills": ["audience", "listening"] },
+    { "id": "listenlab", "kind": "lab", "type": "lab", "skills": ["listening"] },
+    { "id": "rlab", "kind": "lab", "type": "lab", "skills": ["research", "integrity", "ai"] },
+    { "id": "obuild", "kind": "lab", "type": "lab", "skills": ["organization"] },
+    { "id": "plab", "kind": "lab", "type": "lab", "skills": ["persuasion", "critical"] },
+    { "id": "nvlab", "kind": "lab", "type": "lab", "skills": ["delivery"] },
+    { "id": "nvclab", "kind": "lab", "type": "lab", "skills": ["delivery", "process"] },
+    { "id": "implab", "kind": "lab", "type": "lab", "skills": ["confidence", "delivery"] },
+    { "id": "storylab", "kind": "lab", "type": "lab", "skills": ["organization", "confidence"] },
+    { "id": "glab", "kind": "lab", "type": "lab", "skills": ["critical", "process"] },
+    { "id": "beyond-the-podium-ep1", "kind": "studio", "type": "cinematic", "skills": ["process", "listening", "critical"] },
+    { "id": "ai-coach", "kind": "studio", "type": "studio", "skills": ["ai", "integrity"] },
+    { "id": "research-studio", "kind": "studio", "type": "studio", "skills": ["research", "integrity"] },
+    { "id": "apa-academy", "kind": "studio", "type": "studio", "skills": ["research", "integrity"] },
+    { "id": "ad-detective", "kind": "studio", "type": "external", "skills": ["persuasion", "critical"] },
+    { "id": "speeches", "kind": "section", "type": "analysis", "skills": ["critical", "persuasion"], "title": ["Voices of Change: speech analysis", "Voces del cambio: análisis de discursos"], "blurb": ["Study speeches that changed history and analyze how the speakers did it.", "Estudia discursos que cambiaron la historia y analiza cómo lo lograron los oradores."], "route": "#/resources/speeches" }
+  ],
+  "portfolio": {
+    "independent": ["bridge-builder", "independent-thinker", "citation-specialist", "master-ad-detective"],
+    "milestone": ["master-ad-detective", "master-storyteller", "master-communicator"]
+  },
+  "badgeSkills": {
+    "$comment": "Communication competencies for badges earned by reading checks or practice tests (no activity to take skills from). Only where the unit and the badge description support it: Unit 1 is the communication process; Unit 2 is audience analysis, research and organization. persistent-learner (improving any score) has no single competency, so it has none. Draft: awaiting Mr. Bennett's review.",
+    "communication-explorer": ["process"],
+    "evidence-investigator": ["audience", "research", "organization"]
+  }
+}
