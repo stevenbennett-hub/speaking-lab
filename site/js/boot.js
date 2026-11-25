@@ -19,10 +19,11 @@
     studios: "data/studios.json",
     achievements: "data/achievements.json",
     aiperm: "data/ai-permissions.json",
-    activities: "data/activities.json"
+    activities: "data/activities.json",
+    checklist: "data/checklist.json"
   };
   // Loaded in order after the page's own scripts (they use the page's functions).
-  var AFTER = ["js/progress.js", "js/achievements.js", "js/sound.js", "js/celebrate.js", "js/manage.js", "js/student.js", "js/teacher.js", "js/btp.js", "js/aistudio.js", "js/research.js", "js/playbook.js", "js/app.js", "js/certificates.js"];
+  var AFTER = ["js/progress.js", "js/achievements.js", "js/sound.js", "js/celebrate.js", "js/manage.js", "js/student.js", "js/teacher.js", "js/btp.js", "js/aistudio.js", "js/research.js", "js/playbook.js", "js/app.js", "js/certificates.js", "js/checklist.js"];
 
   var params = new URLSearchParams(location.search);
   var preview = null;

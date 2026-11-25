@@ -346,6 +346,7 @@ ${(() => { const cl = fresh.filter(k => aiConflicts({ lessons: { [k]: pb.lessons
           <section class="pbq-card"><h3>Prepare</h3>${list(prep)}<h3>Materials</h3>${list(mats)}</section>
           <section class="pbq-card"><h3>Journal and stand and share</h3>${j ? `<p><b>#${mod.meeting.number}:</b> ${h(X.pick(j.prompt))}</p><p><i>Share:</i> ${h(X.pick(j.share))}</p>` : "<p>No journal for this class.</p>"}</section>
           <section class="pbq-card pbq-linkcard"><h3>Direct links</h3>${linkList}</section>
+          ${!printing && window.SLChecklist && SLChecklist.quickTeach && mod ? SLChecklist.quickTeach(mod.day, mod.group) : ""}
           <section class="pbq-card"><h3>Formative check</h3>${list(looks)}<h3>Exit reflection</h3><p>${q.exitHtml}</p></section>
           <section class="pbq-card"><p><b>AI permission:</b> ${ai ? h(X.pick(ai.name)) : "class default"}${mod && mod.ai.set ? " (lesson setting)" : " (class default)"}${mod && mod.ai.note ? ` (${h(X.pick(mod.ai.note))})` : ""}</p>${canvas.length ? `<p><b>Canvas:</b> ${h(canvas.map(x => x.replace(/[.;]\s*$/, "")).join("; "))}</p>` : ""}</section>
         </div>

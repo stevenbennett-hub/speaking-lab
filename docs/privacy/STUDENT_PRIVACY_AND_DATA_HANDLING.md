@@ -31,6 +31,7 @@ Speaking Lab stores learning progress in the browser's `localStorage` on that co
 | `speakup-quiz-v1`, `speakup-test-v1`, lab keys (`speakup-aud-v1`, `speakup-listen-v1`, `speakup-plab-v1`…), `speakup-btp-v1`, `speakup-ai-v1`, `speakup-research-v1` | Practice answers, scores and dated mastery records from activities | Practice work only. Some activities let students type answers, so students are told not to include private information. |
 | `speakup-achieve-v1` | Which badges are earned, and the date each was first recorded | No |
 | `speakup-journal-v1` | Typed journal entries, only for students Mr. Bennett has allowed to type journals | Student writing, kept only in this browser. It may contain personal information the student chose to write. |
+| `speakup-checklist-v1` | Which learning-checklist tasks the student checked off, or reported submitting in Canvas, with dates (task ids and dates only) | No |
 | `speakup-backup-v1`, `speakup-unlock-v1` | The date of the last backup or reminder; which units the student has opened | No |
 | `speakup-teacher-*` | Teacher drafts and notes (teacher's own browser) | Teacher data; never in student backups |
 

@@ -129,6 +129,12 @@ Never paste data back into `index.html`; tests fail if inline copies return.
 - Competencies: activity skills, plus `activities.json` `badgeSkills` for reading-check badges (only where the unit supports it). The celebration button is "Back up my progress" (not "Save achievement").
 - Documents are drawn on canvas with local fonts and art; the PDF writer is in the file (no libraries or services). Print defaults to the low-ink style.
 
+## Learning checklist (`js/checklist.js`, `data/checklist.json`, `docs/checklist/`)
+- Tasks come only from existing data and the schedule engine (no second scheduler); the page's `weekPlan` folds short weeks.
+- **Graded** means approved by Mr. Bennett: the unit speech (units.json), journal sets (10 = 100 points) or `status: "approved"` in checklist.json. Proposed items are teacher-view only. Never invent points, weights, dates or assessments, and never approve on his behalf.
+- Completion: auto only from existing reliable records; otherwise student checkbox or student-reported Canvas submission. Never claim submitted, graded or verified. No points for checkmarks. Storage `speakup-checklist-v1` (in backups); teacher draft `speakup-teacher-checklist-v1` (never in backups).
+- Unit 1 tasks only until Unit 1 is approved.
+
 ## Content review
 Regenerate the teacher review document after content changes: `node tests/tools/content-review.mjs [path/to/ad-detective/src/app.js] > /tmp/r.json && python3 tests/tools/content-review.py /tmp/r.json review.docx`. Never change a status on the owner's behalf.
 

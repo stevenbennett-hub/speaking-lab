@@ -68,6 +68,10 @@ Follow `docs/pilot/PILOT_GUIDE.md` with one class, then fix what the pilot shows
 - Test printing on a school printer and Email to Myself on a district MacBook during the pilot.
 - Approved (Nov 24) for development preview testing. Next milestone: hands-on preview testing and instructor approval of the unified application.
 
+## Learning checklist and grading alignment (built on `dev`, needs review)
+- Review the Unit 1 tasks and the proposed grading opportunities (`docs/checklist/UNIT1_ASSESSMENT_ALIGNMENT.md`). Approve, give points to, or leave each one; decide week 1.
+- After Unit 1 approval, write checklist tasks with each later unit's playbook.
+
 ## Future accessibility work (needs approval)
 - **Accessible certificate and portfolio exports.** Today's PDFs are page images, which screen readers cannot read. Options:
   - a text-based PDF with embedded fonts, real text and a reading order (tagged where feasible);

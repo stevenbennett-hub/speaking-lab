@@ -23,7 +23,7 @@
   const fullData = () => ({ ...PUB, ...W });
   function saveDrafts() { put(DKEY, JSON.stringify({ kind: "speakup-teacher-drafts", saved: X.today(), drafts: W })); }
   // Instructor Playbook drafts (js/playbook.js) are exported here too, as site/data/playbook/unit-N.json.
-  const changedFiles = () => M.changed(PUB, W).concat(window.SLPlaybook && SLPlaybook.changed ? SLPlaybook.changed(W.playbook) : []);
+  const changedFiles = () => M.changed(PUB, W).concat(window.SLPlaybook && SLPlaybook.changed ? SLPlaybook.changed(W.playbook) : []).concat(window.SLChecklist && SLChecklist.changed ? SLChecklist.changed() : []);
 
   /* ---------- semester and group context (the manager's own, not the student's) ---------- */
   let sem = (S.semesterOf(D.calendar, X.today()) || "fall"), grp = (classGroup === "odd" || classGroup === "even") ? classGroup : "odd";
@@ -135,7 +135,8 @@
     return `<div class="tm-weeknav"><label>${L("Course week", "Semana del curso")} <select data-tm-week>${Array.from({ length: 16 }, (_, i) => opt(i + 1, `${L("Week", "Semana")} ${i + 1} · ${dateRange(i + 1)}`, i + 1 === w)).join("")}</select></label>
         <a class="btn" href="#/teacher/print/week/${w}">${L("Printable weekly plan", "Plan semanal para imprimir")}</a></div>
       <p class="sl2-small">${L(`Unit ${(S.unitOfWeek(D.units.units, w) || {}).id} · ${dateRange(w)}. Lessons follow the pacing guide's five planned days and are reused every semester; the dates show when each group has them this semester (90-minute blocks hold 2–3 planned days).`, `Unidad ${(S.unitOfWeek(D.units.units, w) || {}).id} · ${dateRange(w)}. Las lecciones siguen los cinco días del calendario y se reutilizan cada semestre; las fechas muestran cuándo las tiene cada grupo este semestre.`)}</p>
-      <div class="sl2-tablewrap"><table class="sl2-table"><thead><tr><th scope="col">${L("Day", "Día")}</th><th scope="col">${L("Lesson and pacing", "Lección y calendario")}</th><th scope="col">${L("Learning objective", "Objetivo de aprendizaje")}</th><th scope="col">${L("Odd", "Impar")}</th><th scope="col">${L("Even", "Par")}</th><th scope="col">${L("Review", "Revisión")}</th><th scope="col"><span class="sr">${L("Actions", "Acciones")}</span></th></tr></thead><tbody>${rows}</tbody></table></div>`;
+      <div class="sl2-tablewrap"><table class="sl2-table"><thead><tr><th scope="col">${L("Day", "Día")}</th><th scope="col">${L("Lesson and pacing", "Lección y calendario")}</th><th scope="col">${L("Learning objective", "Objetivo de aprendizaje")}</th><th scope="col">${L("Odd", "Impar")}</th><th scope="col">${L("Even", "Par")}</th><th scope="col">${L("Review", "Revisión")}</th><th scope="col"><span class="sr">${L("Actions", "Acciones")}</span></th></tr></thead><tbody>${rows}</tbody></table></div>
+      ${window.SLChecklist && SLChecklist.teacherWeek ? SLChecklist.teacherWeek(w, { sem, start: startOf(sem), overrides: W.overrides, journals: W.journals.journals, withStart }) : ""}`;
   }
 
   /* ---------- daily lesson editor ---------- */

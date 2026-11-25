@@ -399,6 +399,7 @@
       <h1 class="sl2-h1">${L("Today’s Lesson", "Lección de hoy")}</h1>
       <p class="sl2-meta">${h(trText(u.title))} · <a href="#/unit/${u.id}/lessons">${L("Lessons and journals", "Lecciones y diarios")}</a> · <a href="#/unit/${u.id}/guide">${L("Unit guide", "Guía de la unidad")}</a></p>
       ${i.preview ? teacherNote(i.at) : ""}
+      ${window.SLChecklist && SLChecklist.panel ? SLChecklist.panel() : ""}
       <div class="sl2-panel">${viewToday(u)}</div></div></div>`;
   }
   function dayParts(u, day, g) {
@@ -778,6 +779,6 @@
   }
   try { achState(); } catch (e) {} // records anything already earned, silently (no celebration on load)
   try { if (window.SLSound) SLSound.unitOpened(null, openUnitIds(), false); } catch (e) {} // first visit: units already open are recorded silently
-  window.SL2 = { addRoute, host, choosePath, supportToggle, groupBar, viewDay, unitById, STATE, AC, SUPPORT_LEVELS, path, colEnabled: () => COL_ENABLED, colUnlocked: () => colUnlocked(), siteBase, refresh, route: () => route, currentUnitId, unitInfo, lessonModel, opts, weeks, fmtLong, fmtShort, fmtAt, lessonKey, unitOpen, released, releasedAt, lockedNotice, achState, supportsOn, supportLevel, teacherOn, aiOf, aiNow, aiLevel, aiCard, ICON, h, L, pick, other, today, now, group, DEFAULT_EXPECT };
+  window.SL2 = { dayParts, addRoute, host, choosePath, supportToggle, groupBar, viewDay, unitById, STATE, AC, SUPPORT_LEVELS, path, colEnabled: () => COL_ENABLED, colUnlocked: () => colUnlocked(), siteBase, refresh, route: () => route, currentUnitId, unitInfo, lessonModel, opts, weeks, fmtLong, fmtShort, fmtAt, lessonKey, unitOpen, released, releasedAt, lockedNotice, achState, supportsOn, supportLevel, teacherOn, aiOf, aiNow, aiLevel, aiCard, ICON, h, L, pick, other, today, now, group, DEFAULT_EXPECT };
   go();
 })();
