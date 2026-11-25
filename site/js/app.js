@@ -135,6 +135,8 @@
     { id: "policy", icon: "✦", k: ["Integrity", "Integridad"], t: ["Academic integrity and AI policy", "Integridad académica y política de IA"], d: ["The four AI permission levels, the class default, and why your own thinking matters.", "Los cuatro niveles de permiso de IA, el nivel de la clase y por qué importa tu propio pensamiento."], links: [["#/ai", ["AI Coaching Studio", "Estudio de coaching con IA"]], ["#/research/integrity", ["Plagiarism Investigator", "Investigador de plagio"]]] },
     { id: "pacing", host: ["pacing"], icon: "◷", k: ["Plan", "Planear"], t: ["Pacing guide", "Guía de ritmo"], d: ["What happens each week of the course.", "Lo que pasa cada semana del curso."] },
     { id: "dates", host: ["dates"], icon: "▦", k: ["Plan", "Planear"], t: ["Due dates", "Fechas de entrega"], d: ["Upcoming speeches and assignments.", "Próximos discursos y tareas."] },
+    { id: "essentials", go: () => "#/course", icon: "☰", k: ["Course", "Curso"], t: ["Welcome and course essentials", "Bienvenida y lo esencial del curso"], d: ["Mr. Bennett’s welcome video, grading and Canvas, expectations, schedule, AI use and progress.", "El video de bienvenida del Sr. Bennett, calificaciones y Canvas, expectativas, calendario, IA y progreso."] },
+    { id: "wyandotte", go: () => "#/wyandotte", icon: "W", k: ["Our school", "Nuestra escuela"], t: ["The History & Voices of Wyandotte", "La historia y las voces de Wyandotte"], d: ["Our School. Our Stories. Our Voices.", "Nuestra escuela. Nuestras historias. Nuestras voces."] },
     { id: "course", host: ["map", "about"], icon: "ℹ", k: ["Course", "Curso"], t: ["Course information", "Información del curso"], d: ["The course map, Mr. Bennett, and about this resource.", "El mapa del curso, el Sr. Bennett y acerca de este recurso."] },
   ];
   let rq = "";
@@ -151,7 +153,7 @@
         <h3><a class="app-cardlink" href="${a.go ? h(a.go()) : `#/resources/${a.id}`}">${h(two(a.t))}</a></h3><p>${h(two(a.d))}</p>
         ${a.links ? `<p class="sl2-small">${a.links.map(([href, t]) => `<a href="${href}">${h(two(t))}</a>`).join(" · ")}</p>` : ""}
         <div class="app-cardfoot"><span aria-hidden="true">${L("Open", "Abrir")} →</span></div></li>`).join("")}</ul>
-      <p class="sl2-foot"><a href="#top">${L("Full course guide (all sections on one page)", "Guía completa del curso (todo en una página)")}</a></p>
+      <p class="sl2-foot"><a href="#/course">${L("Welcome and course essentials", "Bienvenida y lo esencial del curso")}</a> · <a href="#/wyandotte">${L("The History & Voices of Wyandotte", "La historia y las voces de Wyandotte")}</a></p>
     </div>`;
   }
   function viewPolicy() {

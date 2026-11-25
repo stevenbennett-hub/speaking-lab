@@ -13,8 +13,9 @@ const header = page.slice(page.indexOf("<header>"), page.indexOf("</header>"));
 const nav = page.slice(page.indexOf('<nav class="links"'), page.indexOf("</nav>", page.indexOf('<nav class="links"')));
 const top = [...nav.matchAll(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/g)].map(m => [m[1], m[2]]);
 
-test("primary student navigation: five dedicated application destinations", () => {
-  assert.deepEqual(top, [["#/today", "Today’s Lesson"], ["#/", "My Course"], ["#/labs", "Learning Labs"], ["#/resources", "Resources"], ["#/achievements", "My Achievements"]]);
+test("primary student navigation: six dedicated application destinations", () => {
+  // Updated assertion (RC2, approved): Calendar added between My Course and Learning Labs.
+  assert.deepEqual(top, [["#/today", "Today’s Lesson"], ["#/", "My Course"], ["#/calendar", "Calendar"], ["#/labs", "Learning Labs"], ["#/resources", "Resources"], ["#/achievements", "My Achievements"]]);
   assert.doesNotMatch(nav, />Start</, "Start is gone"); assert.doesNotMatch(nav, /href="#units"/, "Units is gone from the header");
   assert.doesNotMatch(nav, /href="#labs"|href="#resources"/, "no header link returns students to the classic landing page");
   assert.match(page, /<h2 id="labsH">Learning Labs<\/h2>/, "the classic section heading still matches");
@@ -33,7 +34,7 @@ test("the header holds the identity, five destinations, language and Preferences
 
 test("bilingual labels for every navigation item", () => {
   const ES = constValue(pageSource(), "ES");
-  for (const t of ["Today’s Lesson", "My Course", "Learning Labs", "My Achievements", "Resources"]) assert.ok(ES[t], `Spanish for "${t}"`);
+  for (const t of ["Today’s Lesson", "My Course", "Calendar", "Learning Labs", "My Achievements", "Resources"]) assert.ok(ES[t], `Spanish for "${t}"`);
   assert.match(student, /"#\/today": \["Today’s Lesson", "Lección de hoy"\]/);
   assert.match(student, /"#\/labs": \["Learning Labs", "Laboratorios"\]/);
   assert.match(student, /"#\/resources": \["Resources", "Recursos"\]/);

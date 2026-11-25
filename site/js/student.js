@@ -128,6 +128,7 @@
   const LAB_ID = { "lab-research": "rlab", "outline-builder": "obuild", "lab-persuasion": "plab", "lab-model": "mlab", "lab-body-language": "nvlab", "lab-nonverbal": "nvclab", "lab-group": "glab", "lab-impromptu": "implab", "lab-story": "storylab", "lab-audience": "audlab", "lab-listening": "listenlab" };
   const LAB_HASH = { "lab-research": 1, "outline-builder": 1, "lab-persuasion": 1, "lab-model": 1, "lab-body-language": 1, "lab-nonverbal": 1, "lab-group": 1, "lab-impromptu": 1, "lab-story": 1, "lab-audience": 1, "lab-listening": 1, "listening-refresher": 1, "audience-refresher": 1 };
 
+  const IN_APP = { top: "#/course", main: "#/course", map: "#/course/overview", about: "#/course/overview", units: "#/", dates: "#/resources/dates", pacing: "#/resources/pacing", rubrics: "#/resources/rubrics", videos: "#/resources/videos", speeches: "#/resources/speeches", resources: "#/resources/textbook", references: "#/resources/research", labs: "#/labs" };
   function go() {
     const hs = location.hash;
     if (!isV2Hash(hs)) {
@@ -141,6 +142,10 @@
       // a lab link from any other application view opens that lab in Learning Labs instead of the classic page.
       if (route && !root.hidden && tgt && root.contains(tgt) && !homes[tgt.id]) return; // a whole section (#labs, #videos…) still opens the classic page
       if (route && !root.hidden && LAB_HASH[hs.slice(1)] && LAB_ID[hs.slice(1)]) { location.replace(`#/labs/${LAB_ID[hs.slice(1)]}`); return; }
+      // RC2: a link to a whole classic section, clicked inside the application, opens its application destination.
+      // A bookmark or an address typed in (no application view on screen yet) still opens the classic page.
+      const inApp = IN_APP[hs.slice(1)] || (/^unit-[1-6]$/.test(hs.slice(1)) ? `#/unit/${hs.slice(6)}` : null);
+      if (route && !root.hidden && inApp) { location.replace(inApp); return; }
       classic(); return;
     }
     lastV2 = hs || "#/";
@@ -184,16 +189,17 @@
     root.innerHTML = EXTRA[route.name] ? EXTRA[route.name].view(route) : route.name === "start" ? viewStart() : route.name === "today" ? viewTodayPage() : route.name === "unit" ? viewUnit() : route.name === "achievements" ? viewAchievements() : viewHome();
     if (EXTRA[route.name] && EXTRA[route.name].after) EXTRA[route.name].after(route);
     if (route.name === "unit") mountUnitParts();
+    if (route.name === "home" && window.SLCourse) SLCourse.afterHome();
     if (focus) { const hd = root.querySelector("h1"); if (hd) { hd.tabIndex = -1; hd.focus({ preventScroll: true }); } window.scrollTo(0, 0); }
   }
   /** In the student view, "My course" is the current header link. */
   function markNav(on) {
     // Today's Lesson while in a unit's Today tab, My Achievements on that page, Lesson Manager for teacher pages, else My Course.
-    const r = route || {}, NAVR = { today: "#/today", achievements: "#/achievements", labs: "#/labs", resources: "#/resources", preferences: "#/preferences", btp: "#/labs", ai: "#/labs", research: "#/labs" };
+    const r = route || {}, NAVR = { today: "#/today", calendar: "#/calendar", achievements: "#/achievements", labs: "#/labs", resources: "#/resources", preferences: "#/preferences", btp: "#/labs", ai: "#/labs", research: "#/labs" };
     const cur = !on ? null : r.name === "unit" && r.tab === "today" && !r.day ? "#/today" : r.name === "unit" && r.tab === "labs" ? "#/labs" : NAVR[r.name] || (EXTRA[r.name] && ["teacher", "present", "sub", "demo"].includes(r.name) ? "#/teacher" : "#/");
     document.querySelectorAll("header nav.links a, header a.navteacher, header a.prefbtn").forEach(a => { if (on && a.getAttribute("href") === cur) a.setAttribute("aria-current", "page"); else if (on || a.getAttribute("aria-current") === "page") a.removeAttribute("aria-current"); });
   }
-  const NAV = { "#/today": ["Today’s Lesson", "Lección de hoy"], "#/": ["My Course", "Mi curso"], "#/labs": ["Learning Labs", "Laboratorios"], "#/resources": ["Resources", "Recursos"], "#/achievements": ["My Achievements", "Mis logros"] };
+  const NAV = { "#/today": ["Today’s Lesson", "Lección de hoy"], "#/": ["My Course", "Mi curso"], "#/calendar": ["Calendar", "Calendario"], "#/labs": ["Learning Labs", "Laboratorios"], "#/resources": ["Resources", "Recursos"], "#/achievements": ["My Achievements", "Mis logros"] };
   const navLabel = () => {
     const nav = document.querySelector("header nav.links"); if (!nav) return;
     // Teacher view adds the Lesson Manager (with the Instructor Playbook) to the header; students never see it.
@@ -235,7 +241,7 @@
           L("The same course and goals, with vocabulary, sentence starters and English–Spanish side by side.", "El mismo curso y las mismas metas, con vocabulario, inicios de oración e inglés y español lado a lado."))}
       </div>
       <p class="sl2-note">${L("Choosing the college pathway does not enroll you in a college course or award college credit.", "Elegir el nivel universitario no te inscribe en un curso universitario ni otorga créditos universitarios.")}</p>
-      <p class="sl2-foot"><a href="#top">${L("Watch Mr. Bennett's welcome video and see the full course guide", "Ver el video de bienvenida del Sr. Bennett y la guía completa del curso")}</a></p>
+      <p class="sl2-foot"><a href="#/course">${L("Watch Mr. Bennett's welcome video and read the course essentials", "Ver el video de bienvenida del Sr. Bennett y leer lo esencial del curso")}</a></p>
     </div>`;
   }
   function choosePath(p, btn, stay) {
@@ -281,11 +287,13 @@
       ${groupBar()}
       ${todayLine ? `<p class="sl2-today">${h(todayLine)}</p>` : ""}
       ${curInfo && curInfo.open ? `<p><a class="btn primary sl2-go" href="#/today">${L(`Go to today's lesson · Unit ${cur}`, `Ir a la lección de hoy · Unidad ${cur}`)}</a></p>` : ""}
+      ${window.SLCourse ? SLCourse.welcome() : ""}
       ${achLink()}
       <h2 class="sl2-h2">${L("Units", "Unidades")}</h2>
       <ol class="sl2-tiles app-grid">${infos.map(i => tile(i, i.u.id === cur)).join("")}</ol>
       <p class="sl2-small">${L("Progress is saved only in this browser on this computer, and it is not your official grade. Opening a page never counts as mastery. Use Preferences to back up your work.", "El progreso se guarda solo en este navegador y en esta computadora, y no es tu calificación oficial. Abrir una página nunca cuenta como dominio. Usa Preferencias para hacer una copia de tu trabajo.")}</p>
-      <p class="sl2-foot"><a href="#top">${L("Full course guide (all sections on one page)", "Guía completa del curso (todo en una página)")}</a> · <a href="#/preferences">${L("Preferences", "Preferencias")}</a> · <button type="button" class="linkbtn" data-sl2-teacher="1">${L("Teacher", "Maestro")}</button>${teacherOn() ? ` · <a href="#/teacher">${L("Lesson Manager", "Administrador de lecciones")}</a> · <a href="#/present">${L("Present today's lesson", "Presentar la lección de hoy")}</a>` : ""}</p>
+      ${window.SLCourse ? SLCourse.feature() : ""}
+      <p class="sl2-foot"><a href="#/course">${L("Welcome and course essentials", "Bienvenida y lo esencial del curso")}</a> · <a href="#/preferences">${L("Preferences", "Preferencias")}</a> · <button type="button" class="linkbtn" data-sl2-teacher="1">${L("Teacher", "Maestro")}</button>${teacherOn() ? ` · <a href="#/teacher">${L("Lesson Manager", "Administrador de lecciones")}</a> · <a href="#/present">${L("Present today's lesson", "Presentar la lección de hoy")}</a>` : ""}</p>
     </div>`;
   }
   function tile(i, isCur) {
@@ -557,6 +565,7 @@
       <h2 class="sl2-h2 sl2-lesson">${isPast ? L("Lesson", "Lección") : L("Today's lesson", "Lección de hoy")}: ${h(M.title)}${M.topic && M.topic !== M.title ? ` <span class="sl2-week">${L("This week:", "Esta semana:")} ${h(M.topic)}</span>` : ""}</h2>
       ${M.extendOf ? `<p class="sl2-teachnote">${L(`Extended lesson: we continue the lesson from ${fmtLong(M.extendOf)}.`, `Lección extendida: continuamos la lección del ${fmtLong(M.extendOf)}.`)}</p>` : ""}
       ${M.draft ? `<p class="sl2-small">${L("Lesson objectives are drafts awaiting teacher review.", "Los objetivos de la lección son borradores en revisión del maestro.")}</p>` : ""}
+      ${window.SLChecklist && SLChecklist.lessonSummary && !(route && route.name === "today") ? SLChecklist.lessonSummary(day) : ""}
       <div class="sl2-daygrid">
       <div class="sl2-daymain">
       <section class="sl2-card app-step" aria-label="${L("Objectives", "Objetivos")}"><p class="app-eyebrow">01 · ${L("Learning goals", "Metas de aprendizaje")}</p>${objs || `<p>${L("No objectives are set for this day.", "No hay objetivos para este día.")}</p>`}</section>
@@ -779,6 +788,6 @@
   }
   try { achState(); } catch (e) {} // records anything already earned, silently (no celebration on load)
   try { if (window.SLSound) SLSound.unitOpened(null, openUnitIds(), false); } catch (e) {} // first visit: units already open are recorded silently
-  window.SL2 = { dayParts, addRoute, host, choosePath, supportToggle, groupBar, viewDay, unitById, STATE, AC, SUPPORT_LEVELS, path, colEnabled: () => COL_ENABLED, colUnlocked: () => colUnlocked(), siteBase, refresh, route: () => route, currentUnitId, unitInfo, lessonModel, opts, weeks, fmtLong, fmtShort, fmtAt, lessonKey, unitOpen, released, releasedAt, lockedNotice, achState, supportsOn, supportLevel, teacherOn, aiOf, aiNow, aiLevel, aiCard, ICON, h, L, pick, other, today, now, group, DEFAULT_EXPECT };
+  window.SL2 = { IN_APP, dayParts, addRoute, host, choosePath, supportToggle, groupBar, viewDay, unitById, STATE, AC, SUPPORT_LEVELS, path, colEnabled: () => COL_ENABLED, colUnlocked: () => colUnlocked(), siteBase, refresh, route: () => route, currentUnitId, unitInfo, lessonModel, opts, weeks, fmtLong, fmtShort, fmtAt, lessonKey, unitOpen, released, releasedAt, lockedNotice, achState, supportsOn, supportLevel, teacherOn, aiOf, aiNow, aiLevel, aiCard, ICON, h, L, pick, other, today, now, group, DEFAULT_EXPECT };
   go();
 })();

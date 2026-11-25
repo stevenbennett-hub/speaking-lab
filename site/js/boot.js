@@ -23,7 +23,7 @@
     checklist: "data/checklist.json"
   };
   // Loaded in order after the page's own scripts (they use the page's functions).
-  var AFTER = ["js/progress.js", "js/achievements.js", "js/sound.js", "js/celebrate.js", "js/manage.js", "js/student.js", "js/teacher.js", "js/btp.js", "js/aistudio.js", "js/research.js", "js/playbook.js", "js/app.js", "js/certificates.js", "js/checklist.js"];
+  var AFTER = ["js/progress.js", "js/achievements.js", "js/sound.js", "js/celebrate.js", "js/manage.js", "js/student.js", "js/teacher.js", "js/btp.js", "js/aistudio.js", "js/research.js", "js/playbook.js", "js/app.js", "js/certificates.js", "js/checklist.js", "js/course.js", "js/calendar.js"];
 
   var params = new URLSearchParams(location.search);
   var preview = null;
@@ -83,6 +83,9 @@
       if (localStorage.getItem("speakup-teacher-preview") === "1") {
         var dr = JSON.parse(localStorage.getItem("speakup-teacher-drafts-v1") || "null");
         if (dr && dr.drafts) ["lessons", "journals", "overrides"].forEach(function (k) { if (dr.drafts[k]) data[k] = dr.drafts[k]; });
+        // Grading approvals and exceptions drafted in the weekly assessment overview (js/checklist.js), for the same preview.
+        var cd = JSON.parse(localStorage.getItem("speakup-teacher-checklist-v1") || "null");
+        if (cd && cd.assessments && cd.days) data.checklist = cd;
         window.SL_DRAFT_PREVIEW = true;
       }
     } catch (e) {}

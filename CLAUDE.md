@@ -112,7 +112,7 @@ Never paste data back into `index.html`; tests fail if inline copies return.
 - Approved decisions (Nov 24): proficient = Meets/Exceeds; Self-Introduction excluded from teacher-verified badges; Time and Clarity in English not separate requirements; Master Communicator Option A; integrity required; explore Canvas Outcomes; badges pending. Ad Detective approved for preview testing only.
 
 ## Slice 12: unified application (`css/app.css`, `js/app.js`, `js/sound.js`, `js/celebrate.js`)
-- Header = brand + five destinations (`#/today`, `#/`, `#/labs`, `#/resources`, `#/achievements`) + language + Preferences. No pathway switch in the visible header. The old controls live hidden in `#hdrHold` so classic handlers keep working. Never link a header item to a classic `#section`.
+- Header = brand + six destinations (`#/today`, `#/`, `#/calendar`, `#/labs`, `#/resources`, `#/achievements`) + language + Preferences. No pathway switch in the visible header. The old controls live hidden in `#hdrHold` so classic handlers keep working. Never link a header item to a classic `#section`.
 - Classic sections appear in application views only through `SL2.host(id, slot)`: they move in, then back. Never copy them. Whole-section legacy hashes (`#labs`, `#videos`) still open the classic page.
 - Learning Labs catalog: `data/activities.json` (skills and types; draft). Never list an activity that doesn't exist. Studios link only when available and their unit is open.
 - Audio: only `js/sound.js` plays sound. Off by default. Prefs in `speakup-prefs-v1`. Files only when the manifest marks them `present` (tests check against the folder). Never autoplay, overlap, play over media or presentations, or call ElevenLabs from the site.
@@ -134,6 +134,15 @@ Never paste data back into `index.html`; tests fail if inline copies return.
 - **Graded** means approved by Mr. Bennett: the unit speech (units.json), journal sets (10 = 100 points) or `status: "approved"` in checklist.json. Proposed items are teacher-view only. Never invent points, weights, dates or assessments, and never approve on his behalf.
 - Completion: auto only from existing reliable records; otherwise student checkbox or student-reported Canvas submission. Never claim submitted, graded or verified. No points for checkmarks. Storage `speakup-checklist-v1` (in backups); teacher draft `speakup-teacher-checklist-v1` (never in backups).
 - Unit 1 tasks only until Unit 1 is approved.
+
+## RC2 welcome and essentials (`js/course.js`, `docs/rc2/`)
+- Welcome, Course Essentials and the Wyandotte page show the classic page's own elements with `SL2.host` (ids: welcomeFig, courseLede, courseWhy, aboutBio, aboutPhilo, wyPhoto, wyMic, wyVoices; plus map, about, dates). Never copy, recreate or autoplay the video. Never invent grading policies, expectations or historical facts. Show only approved student-facing content (`playbook/classroom.json` is a teacher draft).
+- Student views never link to `#top`. `SL2.IN_APP` maps in-app clicks on classic section links; a fresh load (bookmark) still opens the classic page.
+
+## Calendar (`js/calendar.js`)
+- No calendar data of its own: events come from `SLSchedule` (meetings, noSchoolList, overrides), `SL2.dayParts`/weekPlan, `window.dueEvents`, units.json, the checklist core (approved assessments, journal sets). Never add a date list or store events.
+- Speeches = one performance window per unit (never individual dates). Graded = approved only; proposed only in teacher view. Never invent points, deadlines or collection dates.
+- Teacher draft preview (`speakup-teacher-preview`) also applies `speakup-teacher-checklist-v1` (js/boot.js).
 
 ## Content review
 Regenerate the teacher review document after content changes: `node tests/tools/content-review.mjs [path/to/ad-detective/src/app.js] > /tmp/r.json && python3 tests/tools/content-review.py /tmp/r.json review.docx`. Never change a status on the owner's behalf.

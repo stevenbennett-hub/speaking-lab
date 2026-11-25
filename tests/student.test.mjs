@@ -58,10 +58,10 @@ test("teacher preview needs the teacher code; ?date= alone does nothing", () => 
 });
 
 test("new scripts parse and load after the page scripts", () => {
-  for (const f of ["../site/js/student.js", "../site/js/progress.js", "../site/js/achievements.js", "../site/js/manage.js", "../site/js/teacher.js", "../site/js/boot.js", "../site/js/schedule.js", "../site/js/playbook.js", "../site/js/sound.js", "../site/js/celebrate.js", "../site/js/app.js", "../site/js/certificates.js", "../site/js/checklist.js"]) assert.doesNotThrow(() => new vm.Script(read(f)), f);
+  for (const f of ["../site/js/student.js", "../site/js/progress.js", "../site/js/achievements.js", "../site/js/manage.js", "../site/js/teacher.js", "../site/js/boot.js", "../site/js/schedule.js", "../site/js/playbook.js", "../site/js/sound.js", "../site/js/celebrate.js", "../site/js/app.js", "../site/js/certificates.js", "../site/js/checklist.js", "../site/js/course.js", "../site/js/calendar.js"]) assert.doesNotThrow(() => new vm.Script(read(f)), f);
   // Slice 12 (updated assertion): the audio manager and celebration load before student.js (which calls them); the
   // application views (js/app.js) load last. The Instructor Playbook still loads after every student script.
-  assert.match(read("../site/js/boot.js"), /var AFTER = \["js\/progress\.js", "js\/achievements\.js", "js\/sound\.js", "js\/celebrate\.js", "js\/manage\.js", "js\/student\.js", "js\/teacher\.js", "js\/btp\.js", "js\/aistudio\.js", "js\/research\.js", "js\/playbook\.js", "js\/app\.js", "js\/certificates\.js", "js\/checklist\.js"\];/); // portable achievements, then the learning checklist (updated assertion: checklist.js added at the end)
+  assert.match(read("../site/js/boot.js"), /var AFTER = \["js\/progress\.js", "js\/achievements\.js", "js\/sound\.js", "js\/celebrate\.js", "js\/manage\.js", "js\/student\.js", "js\/teacher\.js", "js\/btp\.js", "js\/aistudio\.js", "js\/research\.js", "js\/playbook\.js", "js\/app\.js", "js\/certificates\.js", "js\/checklist\.js", "js\/course\.js", "js\/calendar\.js"\];/); // portable achievements, the learning checklist, the course welcome, then the calendar (updated assertions: checklist.js, course.js, calendar.js added at the end)
   assert.ok(read("../site/index.html").includes('<link rel="stylesheet" href="css/student.css">\n<link rel="stylesheet" href="css/app.css">'));
 });
 

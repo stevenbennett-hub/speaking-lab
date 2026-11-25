@@ -31,6 +31,7 @@ Four separate questions for each area:
 | Instructor Playbook, Unit 1 (teacher-facing) | ✅ (Lesson Manager → Playbook; tests) | ⬜ draft; video segments not yet previewed | ✅ | ⬜ |
 | Unified application (Slice 12): header, five views, Preferences | ✅ (tests; 60 browser checks) | ⬜ awaiting review | ✅ | ⬜ |
 | Sound library | ✅ manager + 11 files (tests; browser) | ⬜ listen and set `reviewed` | ✅ (off by default) | ⬜ |
+| RC2: course welcome, Course Essentials, History & Voices of Wyandotte, legacy links, calendar | ✅ (232 tests; browser 51 + 31 + 61 + 27; print 12/12; privacy 60/60) | ⬜ welcome/essentials wording, Wyandotte materials, calendar, Spanish draft | ✅ | ⬜ |
 | My Learning Checklist, Weekly Grading Checkpoint, weekly assessment overview | ✅ (216 tests; browser 27/27; print 12/12; privacy audit 60/60) | ⬜ Unit 1 tasks, proposed grading, exceptions, Spanish draft | ✅ | ⬜ |
 | Certificates, portfolio, Email to Myself (portable achievements) | ✅ (tests; browser; privacy audit 60/60) | ⬜ wording, Spanish draft, district privacy review | ✅ | ⬜ |
 | Achievement celebrations | ✅ (tests; browser) | ⬜ awaiting review | ✅ | ⬜ |

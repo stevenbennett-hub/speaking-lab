@@ -301,6 +301,24 @@
       ${body}${legend()}<p class="sr" role="status" id="ckLive"></p></section>`;
   }
 
+  /* ---------- lesson pages: the tasks that belong to that lesson's date ---------- */
+  /** A compact, date-specific summary on an individual lesson (archived or the unit's Today tab), with links to the full
+      checklist. It only ever lists the tasks of that lesson's own class meeting, never today's tasks on a past lesson. */
+  function lessonSummary(day) {
+    const g = X.group(); if (!g) return "";
+    const m = S.meetings(X.opts(g)).find(x => x.date === day); if (!m) return "";
+    const st = store(), sr = src(), list = meetingTasks(ctxFor(D.checklist), m, partsFor(g)(m));
+    if (!list.length) return "";
+    const isToday = day === X.today(), done = list.filter(t => t.req && completion(t, st, sr).done).length, req = list.filter(t => t.req).length;
+    const row = t => { const c = completion(t, st, sr), a = t.assess, graded = a && a.status === "approved";
+      return `<li class="ck-mini-i${c.done ? " is-done" : ""}"><span class="ck-ctl">${control(t, c)}</span><span class="ck-mini-t">${h(T(t.title))}${graded ? ` ${kindChip("graded")}` : ""}${!t.req ? ` <span class="ck-opt">(${L("optional", "opcional")})</span>` : ""}</span></li>`; };
+    return `<section class="sl2-card ck-lesson" aria-labelledby="ckLH-${day}" data-notr>
+      <h3 class="sl2-h3" id="ckLH-${day}">${ICO.practice} ${isToday ? L("Today’s tasks for this lesson", "Tareas de hoy para esta lección") : L(`Tasks from this lesson · ${fmtDay(day)}`, `Tareas de esta lección · ${fmtDay(day)}`)}</h3>
+      <p class="ck-small">${L(`${done} of ${req} required tasks done.`, `${done} de ${req} tareas obligatorias hechas.`)} ${isToday ? "" : L("These belong to this lesson’s class day, not to today.", "Estas pertenecen al día de clase de esta lección, no a hoy.")}</p>
+      <details class="ck-mini"><summary>${L("Show the tasks", "Mostrar las tareas")}</summary><ul class="ck-mini-l">${list.map(row).join("")}</ul></details>
+      <p class="sl2-btns"><a class="btn" href="#/today" data-ck-goto="today">${L("My Learning Checklist: Today", "Mi lista: Hoy")}</a> <a class="btn" href="#/today" data-ck-goto="week">${L("This Week", "Esta semana")}</a></p><p class="sr" role="status" id="ckLive"></p></section>`;
+  }
+
   /* ---------- teacher: weekly assessment overview (Week planner) and Quick Teach ---------- */
   const tdraft = () => { try { const d = JSON.parse(get(TKEY) || "null"); if (d && d.assessments && d.days) return d; } catch (e) {} return JSON.parse(JSON.stringify(D.checklist)); };
   const stable = x => JSON.stringify(x, null, 2) + "\n";
@@ -365,6 +383,7 @@
       <p class="ck-small">${L(`Semester dates: ${W.days.length ? `${fmtDay(W.days[0])} – ${fmtDay(W.days[W.days.length - 1])}` : "no class days"} (${W.groups.odd.meetings.length} odd and ${W.groups.even.meetings.length} even class meetings). Each planned day is listed once; the date columns show when each group has it, so tasks are never duplicated across groups.`, `Fechas del semestre: ${W.days.length ? `${fmtDay(W.days[0])} – ${fmtDay(W.days[W.days.length - 1])}` : "sin días de clase"} (${W.groups.odd.meetings.length} clases impares y ${W.groups.even.meetings.length} pares). Cada día planeado aparece una vez; las fechas muestran cuándo lo tiene cada grupo.`)}</p>
       <div class="sl2-tablewrap"><table class="sl2-table ck-ttable"><caption class="sr">${L("Weekly assessment overview", "Resumen semanal de evaluación")}</caption><thead><tr><th scope="col">${L("Day", "Día")}</th><th scope="col">${L("Odd", "Impar")}</th><th scope="col">${L("Even", "Par")}</th><th scope="col">${L("Learning objective", "Objetivo")}</th><th scope="col">${L("Required learning", "Aprendizaje obligatorio")}</th><th scope="col">${L("Practice", "Práctica")}</th><th scope="col">${L("Proposed graded", "Calificación propuesta")}</th><th scope="col">${L("Approved graded", "Calificación aprobada")}</th><th scope="col">${L("Canvas expectations", "Canvas")}</th></tr></thead><tbody>${rows}</tbody></table></div>
       ${sets.length ? `<p class="ck-small"><b>${L("Journal sets completed this week (approved, 100 points each):", "Grupos de diarios completados esta semana (aprobados, 100 puntos cada uno):")}</b> ${sets.map(h).join("; ")}</p>` : ""}
+      <p class="sl2-btns"><button type="button" class="btn" data-ck-calprev>${L("Preview on the student calendar (with my drafts)", "Vista previa en el calendario del estudiante (con mis borradores)")}</button></p>
       <p class="ck-small">${L("A planned grading opportunity is not a grade entered in Canvas. Speaking Lab cannot see the Canvas gradebook. Approvals and exceptions are drafts in this browser until you publish data/checklist.json (Publish tab). Points are shown only where the course data already sets them.", "Una oportunidad de calificación planeada no es una calificación puesta en Canvas. Speaking Lab no puede ver el libro de calificaciones de Canvas. Las aprobaciones y excepciones son borradores en este navegador hasta que publiques data/checklist.json (pestaña Publicar). Los puntos aparecen solo donde los datos del curso ya los fijan.")} <a href="#/teacher/playbook/${(S.unitOfWeek(D.units.units, w) || {}).id || 1}">${L("Instructor Playbook", "Guía docente")} →</a></p></section>`;
   }
   function paceText(k) { const w = Number(k.slice(1, 3)), d = Number(k.slice(4)) - 1, p = (D.pacing.weeks[w] || [])[d]; return Array.isArray(p) ? p[0] : p || ""; }
@@ -378,8 +397,12 @@
 
   /* ---------- events ---------- */
   root.document.addEventListener("click", e => {
+    const gt = e.target.closest && e.target.closest("[data-ck-goto]"); // links to Today's Lesson that choose the view first
+    if (gt) { VIEW = gt.dataset.ckGoto === "week" ? "week" : "today"; if (X.route() && X.route().name === "today") X.refresh(); return; }
     const v = e.target.closest && e.target.closest("[data-ck-view]");
     if (v) { VIEW = v.dataset.ckView === "week" ? "week" : "today"; X.refresh(); const b = root.document.querySelector(`.ck-seg [data-ck-view="${VIEW}"]`); if (b) b.focus(); return; }
+    const cp = e.target.closest && e.target.closest("[data-ck-calprev]");
+    if (cp && X.teacherOn()) { put("speakup-teacher-preview", "1"); location.hash = "#/calendar"; location.reload(); return; } // the existing draft preview (js/boot.js), this browser only
     const ap = e.target.closest && e.target.closest("[data-ck-approve],[data-ck-exon],[data-ck-exoff]");
     if (!ap || !X.teacherOn()) return;
     const d = tdraft();
@@ -399,6 +422,6 @@
     const live = root.document.getElementById("ckLive"); if (live) live.textContent = c.checked ? L("Checked. Saved in this browser.", "Marcado. Guardado en este navegador.") : L("Unchecked.", "Desmarcado.");
   });
 
-  root.SLChecklist = { core, panel, teacherWeek, quickTeach, changed, WARN };
-  try { const r = X.route(); if (r && (r.name === "today" || r.name === "teacher")) X.refresh(); } catch (e) {}
+  root.SLChecklist = { core, lessonSummary, panel, teacherWeek, quickTeach, changed, WARN };
+  try { const r = X.route(); if (r && (r.name === "today" || r.name === "teacher" || r.name === "unit")) X.refresh(); } catch (e) {}
 })(typeof window !== "undefined" ? window : globalThis);

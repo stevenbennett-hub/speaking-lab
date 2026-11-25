@@ -1,5 +1,21 @@
 # Changelog
 
+## Unreleased (branch `dev`) — RC2: unified student calendar
+- **Calendar** (`#/calendar`) is a primary destination between My Course and Learning Labs.
+  - Month view and week agenda, previous/next, Today, filters, event details, Upcoming Deadlines.
+  - Every event is computed from the schedule engine, pacing (`weekPlan`), due-date events, `units.json`, approved checklist assessments and the journal schedule. Nothing is stored.
+  - Speeches show a performance window. Journal sets show completion, not an invented deadline. Proposed grading appears only in teacher view.
+  - Teacher draft preview now includes checklist approvals; the weekly overview has "Preview on the student calendar".
+- **Tests:** 232. The 222 kept, plus 10 in `tests/calendar.test.mjs`. Updated transparently: the header navigation assertions (six destinations) and the load order (`js/calendar.js`). A real bug found by the tests and fixed: a block with two speech days listed its date twice in the window.
+
+## Unreleased (branch `dev`) — RC2 usability: course welcome, Course Essentials, History & Voices of Wyandotte, legacy links, lesson checklist access
+- My Course has a collapsible welcome (the existing video with captions and transcript, Mr. Bennett, course purpose, how to use Speaking Lab, Continue to Today's Lesson). There is no autoplay, and the collapsed state is remembered.
+- **Course Essentials** (`#/course`): Overview, Grading and Assignments (Canvas, checklists, weekly checkpoint), Classroom Expectations, Schedule, Responsible AI Use, Achievements and Progress. All come from existing content or data, shown in place.
+- **The History & Voices of Wyandotte** (`#/wyandotte`): a feature card beneath the units, plus a Resources link. It uses existing photograph and Voices content only.
+- **Legacy audit:** no student view links to `#top`. In-app clicks on classic section links open their application pages; bookmarks still open the classic page.
+- **Individual lessons** show a date-specific task summary with links to the Today and This Week checklists.
+- **Tests:** 222. The 216 kept, plus 6 in `tests/rc2-welcome.test.mjs`. The load-order assertion is updated for `js/course.js`. See `docs/rc2/RC2_USABILITY.md`.
+
 ## Unreleased (branch `dev`) — Daily and weekly learning checklists and grading alignment (RC1 usability)
 - **My Learning Checklist** on Today's Lesson, with **Today** and **This Week** views.
   - Tasks come from the real schedule: odd/even blocks, holidays, closures, extended lessons, short weeks, pathway.
