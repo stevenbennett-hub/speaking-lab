@@ -43,8 +43,8 @@ doc.add_paragraph(f"Generated {data['generated']} from the site's data files (si
 p = doc.add_paragraph(); p.add_run("How to use this document. ").bold = True
 p.add_run("Each item is marked APPROVED or DRAFT, separately for English and Spanish. You can review here (Track Changes works well) or directly in the Teacher Lesson Manager (Review tab), which exports the approvals into the site's data files. Nothing is approved automatically. The college notice is your required English text with a DRAFT Spanish translation.")
 
-p = doc.add_paragraph(); p.add_run("What's new in this edition (Slice 10). ").bold = True
-p.add_run("Beyond the Podium: your technoference feedback (exact wording) with a Spanish draft; descriptions of what the film shows, added to the transcript and as an optional read-aloud track; Spanish captions (draft, cue by cue against the English); Spanish gender corrections for Jordan. Achievements: the new Master Ad Detective badge and updated descriptions of the three teacher-verified badges (still pending). Typed journal: five facts students now read. Ad Detective (separate site, dev branch): new labels for independent mastery and the preview bar. Nothing has been approved on your behalf; statuses below are exactly as recorded in the data files.")
+p = doc.add_paragraph(); p.add_run("What's new in this edition (Instructor Playbook, after Slice 10). ").bold = True
+p.add_run("The Unit 1 Instructor Playbook (draft) and Unit 1 review notes with suggested English and Spanish edits (not applied) are in their own section. Earlier, Slice 10 added: Beyond the Podium: your technoference feedback (exact wording) with a Spanish draft; descriptions of what the film shows, added to the transcript and as an optional read-aloud track; Spanish captions (draft, cue by cue against the English); Spanish gender corrections for Jordan. Achievements: the new Master Ad Detective badge and updated descriptions of the three teacher-verified badges (still pending). Typed journal: five facts students now read. Ad Detective (separate site, dev branch): new labels for independent mastery and the preview bar. Nothing has been approved on your behalf; statuses below are exactly as recorded in the data files.")
 
 doc.add_heading("Approval status at a glance", 1)
 def cnt(items):
@@ -142,6 +142,17 @@ def simple_section(title, intro, rows):
     doc.add_page_break(); p = doc.add_heading(title, 1); status_tag(p, "DRAFT · no approval recorded")
     doc.add_paragraph(intro)
     table([[(r[0],), r[1], r[2]] for r in rows], header=["", "English", "Spanish"], widths=[1.5, 2.65, 2.65])
+if data.get("playbook"):
+    doc.add_page_break(); p = doc.add_heading("Instructor Playbook (teacher-facing)", 1); status_tag(p, "DRAFT · not approved")
+    doc.add_paragraph("New in this edition. The playbook extends the lessons by lesson key; objectives, success criteria and journals are not copied into it, so the review status of those stays in the sections above. Full text: 'Unit 1 Instructor Playbook (draft).docx' and Lesson Manager → Playbook.")
+    for pbk in data["playbook"]:
+        doc.add_heading(f"Unit {pbk['unit']}: {pbk['title']} (status {pbk['status']}, updated {pbk['updated']})", 2)
+        table([[(k,), t, ""] for k, t in pbk["days"]], header=["Planned day", "Playbook lesson", ""], widths=[1.2, 5.0, 0.6])
+        table([[(v[0],), v[1], v[2]] for v in pbk["videos"]], header=["Video", "Channel", "Segment"], widths=[3.4, 1.8, 1.6])
+    for t in data.get("playbookReview", []):
+        doc.add_heading(f"Unit 1 review notes: {t['title']}", 2)
+        doc.add_paragraph("Suggestions only; nothing was changed and no status was changed.")
+        table([[(r[0],)] + r[1:] for r in t["rows"]], header=["Where", "Observation / current", "Suggestion"], widths=[1.4, 2.7, 2.7])
 if data.get("achievements"):
     simple_section("Achievements (badge names, descriptions and criteria)", "Students see these on My achievements. Communication badges stay pending until a verification process exists; Canvas is the official record. Master Ad Detective is new; it can be earned only after the Ad Detective dev branch is published.", data["achievements"])
 if data.get("journalFacts"):

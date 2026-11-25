@@ -25,9 +25,10 @@ Four separate questions for each area:
 | AI Coaching Studio and AI permissions | ✅ | ⬜ | ✅ | ⬜ |
 | Research & Academic Integrity Studio, APA Academy | ✅ | ⬜ (APA rules cite apastyle.apa.org) | ✅ | ⬜ |
 | Achievements (online badges, learning points) | ✅ | ⬜ | ✅ | ⬜ |
-| Master Ad Detective + Ad Detective mastery | ◐ Ad Detective `dev` not published | ⬜ | ◐ needs the Ad Detective preview or publication | ⬜ |
-| Teacher-verified badges (Confident Speaker, Master Storyteller, Master Communicator) | ✅ stay pending by design | ⬜ rubric mapping decisions | ✅ (shown as "not available yet") | ⬜ verification route not chosen |
+| Master Ad Detective + Ad Detective mastery | ◐ Ad Detective `dev` not published | ⬜ | ◐ approved for preview testing; create `ad-detective-preview` | ⬜ (not approved for production) |
+| Teacher-verified badges (Confident Speaker, Master Storyteller, Master Communicator) | ✅ stay pending by design | ✅ framework decisions approved (Nov 24); Canvas rubric match to confirm | ✅ (shown as "not available yet") | ⬜ pending Canvas Outcomes setup |
 | Teacher Lesson Manager publishing workflow | ✅ (workflow test passed) | n/a | ✅ | ⬜ repeat on a district laptop |
+| Instructor Playbook, Unit 1 (teacher-facing) | ✅ (Lesson Manager → Playbook; tests) | ⬜ draft; video segments not yet previewed | ✅ | ⬜ |
 | College Public Speaking pathway | ✅ off by default | ⬜ Unit 5 college objectives, Spanish notice | n/a (not piloted) | ⬜ stays off unless authorized |
 | Development preview (separate storage) | ✅ | n/a | ✅ | n/a (never deployed to production) |
 | Accessibility (target WCAG 2.2 AA; not a formal claim) | ◐ automated and keyboard checks done | ⬜ screen-reader pass | ✅ | ⬜ |
@@ -47,7 +48,9 @@ Four separate questions for each area:
 - [ ] Research Studio text and case files approved. APA Academy rules spot-checked against apastyle.apa.org.
 - [ ] Approvals recorded in the Lesson Manager (Review tab) for lessons and journals. Studio `status` fields set to approved in their data files.
 - [ ] College enrollment notice wording confirmed (English required wording; Spanish is a draft).
-- [ ] Teacher-verified badges: decisions in `docs/proposals/teacher-verified-rubric-mapping.md`.
+- [x] Teacher-verified badges: framework decisions approved (`docs/proposals/teacher-verified-rubric-mapping.md`).
+- [ ] Confirm the Canvas rubrics match the site rubrics, then set up Canvas Outcomes. Badges stay pending until then.
+- [ ] Unit 1 Instructor Playbook (draft) reviewed. Video segments previewed and filled in. Review notes in `docs/playbook/UNIT1_CONTENT_REVIEW.md` accepted or declined.
 
 ## 2. Spanish language review
 - [ ] Spanish reviewed for lessons, journals, studios, Beyond the Podium, notices and achievements. All are currently **draft**.
@@ -75,7 +78,7 @@ Four separate questions for each area:
 - [ ] On one laptop: make progress on the preview, open production, and confirm production progress is unchanged.
 - [x] Preview links to Ad Detective go to `/ad-detective-preview/`, never to the real Ad Detective.
 - [ ] Optional: create `ad-detective-preview` (steps in `docs/preview/ad-detective-preview.md`).
-- [ ] Ad Detective `dev` published to its public site **only after your approval**. Until then Master Ad Detective shows 0 progress.
+- [ ] Ad Detective `dev` published to `ad-detective-preview` (approved for preview testing). Production publication is **not approved**. Until it is, Master Ad Detective shows 0 progress on the production site.
 
 ## 6. Scheduling accuracy
 - [ ] Calendar file matches the KCKPS 2026–27 calendar (no-school days, semesters).

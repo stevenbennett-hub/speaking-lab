@@ -88,9 +88,13 @@ The college rubrics have different delivery rows: Extemporaneous Delivery, Voice
 2. **Canvas Credentials (formerly Badgr):** only if KCKPS already licenses and authorizes it. Don't set up a new account or service.
 3. **Speaking Lab stays a display only.** It can say "verified by your teacher in Canvas" in words. It must never store a verification, because a public static site cannot do that securely, and it would be student data in a public repository.
 
-## Decisions needed from you
-- Is "proficient" = Meets or Exceeds? Yes / change: ______
-- Formal speeches for Confident Speaker (include the Self-Introduction?): ______
-- Count Time or Clarity in English toward any badge? ______
-- Master Communicator: option A or B? ______
-- Verification route (Canvas Outcomes / Credentials / none yet): ______
+## Decisions (approved by Mr. Bennett with Slice 10, Nov 24, 2026)
+- **Proficient = Meets or Exceeds.**
+- **The Self-Introduction is excluded** from the teacher-verified performance badges. The formal speeches are informative, demonstration, narrative and persuasive.
+- **Time and Clarity in English are not separate badge requirements.**
+- **Master Communicator uses Option A** (individual rubric criteria).
+- **Academic Integrity must be met** for every teacher-verified performance achievement.
+- **Verification route:** explore Canvas Outcomes.
+- **Status:** the badges stay pending until the Canvas rubric mapping and the verification process are confirmed.
+
+Still to do (Mr. Bennett): confirm the Canvas rubrics match the site rubrics, then set up Outcomes on the listed rows. Nothing in Speaking Lab changes until then.

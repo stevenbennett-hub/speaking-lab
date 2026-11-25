@@ -130,7 +130,9 @@ test("pilot, workflow and readiness documents", () => {
   for (const k of ["Introduce Speaking Lab", "learning pathway", "Language support", "Enter the unit", "objectives", "Handwritten journal", "Stand and share", "Interactive activity", "Achievements", "Back up"]) assert.match(g, new RegExp(k, "i"), k);
   const q = read("../docs/pilot/STUDENT_FEEDBACK.md");
   for (const k of ["Navigation", "Clarity", "Engagement", "Language support", "Accessibility", "Loading speed", "Usefulness", "one change"]) assert.match(q, new RegExp(k, "i"), k);
-  assert.match(q, /Do not write your name/); assert.doesNotMatch(q.split("For the teacher")[0], /(Name|Student ID|Email|Period)\s*:/i);
+  assert.match(q, /Do not write your name/);
+  for (const k of ["Model speeches", "enough chances to practice", "more confident about preparing my next speech"]) assert.match(q, new RegExp(k, "i"), k);
+  assert.doesNotMatch(q.split("For the teacher")[0], /device|My phone/i, "no device question: students use district laptops"); assert.doesNotMatch(q.split("For the teacher")[0], /(Name|Student ID|Email|Period)\s*:/i);
   const c = read("../docs/RELEASE_CHECKLIST.md");
   for (const k of ["Technically complete", "Instructionally reviewed", "Ready for classroom pilot", "Approved for production", "Do not merge `dev` into `main`"]) assert.ok(c.includes(k), k);
   const w = read("../docs/TEACHER_WORKFLOW_TEST.md");

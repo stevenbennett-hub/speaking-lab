@@ -16,9 +16,13 @@ Status as of Nov 24, 2026.
 | 7 | AI Coaching Studio, assignment AI permissions, Independent Thinker, development preview build | Approved |
 | 8 | Research & Academic Integrity Studio, APA Academy (college), ELD AI option | Approved |
 | 9 | Classroom readiness: Episode 1 film, language support preferences, research settings, typed journal, college Unit 5, accessibility review | Approved |
-| 10 | Integration and pilot readiness: 720p film copy, visual descriptions, Spanish captions (draft), Ad Detective mastery (separate `dev` branch) and Master Ad Detective, rubric mapping for teacher-verified badges, typed-journal notice, student experience review, teacher workflow test, pilot guide, questionnaire, readiness checklist | Built, awaiting review |
+| 10 | Integration and pilot readiness: 720p film copy, visual descriptions, Spanish captions (draft), Ad Detective mastery (separate `dev` branch) and Master Ad Detective, rubric mapping for teacher-verified badges, typed-journal notice, student experience review, teacher workflow test, pilot guide, questionnaire, readiness checklist | Approved (release candidate; production pending) |
+| 11 | Navigation for a daily platform (Today's Lesson, My Course, Learning Labs, Resources, My Achievements; teacher tools apart) and the Instructor Playbook prototype for Unit 1: resource audit, ten planned-day plans, meeting plans for the real blocks, video guides, substitute and printable plans, formative resources, reusable schema | Built, awaiting review |
 
-## Next: classroom pilot (no new features)
+## Next: review the Unit 1 Instructor Playbook, then the classroom pilot
+Review the Unit 1 playbook (Lesson Manager → Playbook). Preview the videos and fill in the segments. Units 2–6 playbooks are written only after Unit 1 is approved, using `docs/playbook/LESSON_SCHEMA.md`.
+
+## Classroom pilot (no new student features)
 Follow `docs/pilot/PILOT_GUIDE.md` with one class, then fix what the pilot shows. After that, work through `docs/RELEASE_CHECKLIST.md` (the full list) before any production release.
 
 ## Decisions and dependencies still open

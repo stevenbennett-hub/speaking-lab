@@ -387,3 +387,33 @@ body.sl2-present #sl2 { padding: 0; }
 .btp-player { margin: 8px 0 4px; }
 .btp-player label { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; }
 .btp-player select { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text); }
+
+/* Instructor Playbook (teacher-facing; js/playbook.js) */
+.pb-draft { border-left: 4px solid var(--line); padding: 6px 12px; color: var(--muted); }
+.pb-warn { border-left: 4px solid var(--accent, #C8431F); padding: 6px 12px; }
+.pb-2col { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(18em, 100%), 1fr)); gap: 0 24px; }
+.pb-key { font-size: 12px; color: var(--muted); }
+.pb-seg { border-top: 1px solid var(--line); margin-top: 20px; padding-top: 8px; }
+.pb-ph summary { cursor: pointer; font-weight: 600; padding: 4px 0; }
+.pb-note textarea { width: 100%; font: inherit; }
+.pb-noteprint { display: none; }
+.pb-dl dt { font-weight: 700; margin-top: 8px; }
+.pb-dl dd { margin: 2px 0 0 0; }
+.pb-vid { border-top: 1px solid var(--line); margin-top: 16px; }
+@media print { .pb-ph { break-inside: avoid; } .pb-noteprint { display: block; } }
+.pb-res { break-inside: avoid; } .pb-lines { list-style: none; padding: 0; } .pb-lines li { padding: 6px 0; border-bottom: 1px solid var(--line); }
+@media print { .pb h1:focus, .sp h1:focus, .sl2-h1:focus { outline: none; } .pb .sl2-tablewrap { overflow: visible; } }
+
+/* Header navigation (Today's Lesson · My Course · Learning Labs · Resources · My Achievements · More) */
+.navmore { position: relative; display: inline-flex; }
+.navmore-btn { font: inherit; font-weight: 600; font-size: 15px; color: var(--muted); background: none; border: 0; border-radius: 8px; padding: 8px 10px 10px; cursor: pointer; white-space: nowrap; }
+.navmore-btn::after { content: " ▾"; }
+.navmore-btn:hover, .navmore-btn[aria-expanded="true"] { color: var(--ink); background: var(--surface); }
+.navmore:has(a[aria-current]) .navmore-btn { color: var(--ink); font-weight: 800; }
+.navmore-list { position: absolute; top: 100%; left: 0; z-index: 50; min-width: 12em; display: flex; flex-direction: column; padding: 6px; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 8px 24px rgba(0, 0, 0, .12); }
+.navmore-list[hidden] { display: none; }
+nav.links .navmore-list a { padding: 8px 10px; }
+a.themesw.navteacher { text-decoration: none; }
+/* Narrow screens: the header row scrolls sideways, so the extra sections show inline instead of in a menu. */
+@media (max-width: 720px) { .navmore-btn { display: none; } .navmore, .navmore-list, .navmore-list[hidden] { display: contents; } }
+header .navteacher { margin-left: auto; } header .navteacher + .myworkbtn { margin-left: 0; }

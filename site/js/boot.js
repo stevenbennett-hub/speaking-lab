@@ -21,7 +21,7 @@
     aiperm: "data/ai-permissions.json"
   };
   // Loaded in order after the page's own scripts (they use the page's functions).
-  var AFTER = ["js/progress.js", "js/achievements.js", "js/manage.js", "js/student.js", "js/teacher.js", "js/btp.js", "js/aistudio.js", "js/research.js"];
+  var AFTER = ["js/progress.js", "js/achievements.js", "js/manage.js", "js/student.js", "js/teacher.js", "js/btp.js", "js/aistudio.js", "js/research.js", "js/playbook.js"];
 
   var params = new URLSearchParams(location.search);
   var preview = null;

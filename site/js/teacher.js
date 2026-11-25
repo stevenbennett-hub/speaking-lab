@@ -57,7 +57,7 @@
   const say = msg => { flash = msg; };
 
   /* ---------- manager shell ---------- */
-  const TABS = [["calendar", L("Calendar", "Calendario")], ["week", L("Week planner", "Plan semanal")], ["schedule", L("Schedule and releases", "Horario y aperturas")], ["journals", L("Journal library", "Biblioteca de diarios")], ["review", L("Review", "Revisión")], ["publish", L("Publish", "Publicar")], ["year", L("New semester or year", "Nuevo semestre o año")]];
+  const TABS = [["calendar", L("Calendar", "Calendario")], ["week", L("Week planner", "Plan semanal")], ["schedule", L("Schedule and releases", "Horario y aperturas")], ["journals", L("Journal library", "Biblioteca de diarios")], ["review", L("Review", "Revisión")], ["publish", L("Publish", "Publicar")], ["year", L("New semester or year", "Nuevo semestre o año")], ["playbook", L("Playbook", "Guía docente")]];
   function shell(tab, body) {
     const ch = changedFiles();
     return `<div class="wrap sl2 tm" id="sl2-main" data-notr>
@@ -81,10 +81,16 @@
     let body = "";
     try {
       body = tab === "week" ? tabWeek(Number(a1) || currentWeek()) : tab === "day" ? tabLesson(a1) : tab === "date" ? tabDate(a1) : tab === "schedule" ? tabSchedule()
-        : tab === "journals" ? tabJournals(a1) : tab === "review" ? tabReview(a1) : tab === "publish" ? tabPublish() : tab === "year" ? tabYear() : tab === "print" ? null : tabCalendar();
+        : tab === "journals" ? tabJournals(a1) : tab === "review" ? tabReview(a1) : tab === "publish" ? tabPublish() : tab === "year" ? tabYear() : tab === "playbook" ? (window.SLPlaybook ? SLPlaybook.tab(a1, a2, pbCtx()) : "") : tab === "print" ? null : tabCalendar();
     } catch (e) { console.error(e); body = `<p class="tm-err">${h(String(e.message || e))}</p>`; }
-    if (tab === "print") return printWeek(Number(a2) || currentWeek());
+    if (tab === "print") return (a1 === "plan" || a1 === "playbook") && window.SLPlaybook ? SLPlaybook.print(a1, a2, pbCtx()) : printWeek(Number(a2) || currentWeek());
     const out = shell(tab === "day" ? "week" : tab === "date" ? "calendar" : tab, body); flash = ""; return out;
+  }
+  /** What the Instructor Playbook (js/playbook.js) needs from the Lesson Manager: the chosen semester and group. */
+  function pbCtx() {
+    return { grp, sem, groupLabel: groupLabel(grp, false), semLabel: sem === "fall" ? "Fall 2026" : "Spring 2027",
+      meetings: () => withStart(() => S.meetings({ ...X.opts(grp), start: startOf(sem), overrides: W.overrides, journals: W.journals.journals })),
+      model: d => withStart(() => X.lessonModel(d, grp)) };
   }
   function currentWeek() { const v = weeksFor(), w = S.courseWeekOf(X.today(), v); if (w) return w; const next = [].concat(...v.weeks).find(d => d > X.today()); return next ? S.courseWeekOf(next, v) : 1; }
 
@@ -107,7 +113,7 @@
       <p>${L("Unit", "Unidad")} ${mod.unit} · ${mod.week === 0 ? L("Getting started", "Primeros días") : `${L("Week", "Semana")} ${mod.week}`} · ${L("Lesson:", "Lección:")} <b>${h(mod.title)}</b>${mod.extendOf ? ` · ${L("Extended from", "Extendida desde")} ${h(X.fmtShort(mod.extendOf))}` : ""}</p>
       <p>${j ? `${L("Journal", "Diario")} #${m.number} (${L("set", "grupo")} ${m.set}): ${h(pick(j.title || j.focus))}` : L("No journal for this class.", "Sin diario para esta clase.")}</p>
       <p class="sl2-btns"><a class="btn primary" href="#/present/${grp}/${day}">${L("Present", "Presentar")}</a> <a class="btn" href="#/sub/${grp}/${day}">${L("Substitute plan", "Plan para suplente")}</a> <a class="btn" href="?date=${day}#/unit/${mod.unit}/day/${day}">${L("Preview as a student", "Ver como estudiante")}</a>
-        ${mod.keys.map(k => `<a class="btn" href="#/teacher/day/${k}">${L("Edit reusable lesson", "Editar lección reutilizable")} ${k}</a>`).join(" ")}</p>
+        ${mod.keys.map(k => `<a class="btn" href="#/teacher/day/${k}">${L("Edit reusable lesson", "Editar lección reutilizable")} ${k}</a>`).join(" ")} <a class="btn" href="#/teacher/playbook/${mod.unit}/${day}">${L("Teacher plan (Playbook)", "Plan docente (guía)")}</a></p>
       <p class="sl2-small">${day < X.today() ? L("This class is in the archive. Its date, journal and journal number are fixed. Editing the reusable lesson changes the wording shown for every class that uses it, including this one.", "Esta clase está en el archivo. Su fecha, diario y número de diario son fijos. Editar la lección reutilizable cambia el texto de todas las clases que la usan, incluida esta.") : L("To change only this class, use Schedule and releases.", "Para cambiar solo esta clase, usa Horario y aperturas.")}</p>
       <h3 class="sl2-h3">${L("Objectives", "Objetivos")}</h3><ul>${mod.objectives.map(o => `<li>${h(pick(o.learn))}<br><span class="sl2-small">${h(pick(o.lang))}</span></li>`).join("")}</ul>
       <h3 class="sl2-h3">${L("Agenda", "Agenda")}</h3><ol>${mod.agenda.map(a => `<li>${h(a.t)}</li>`).join("")}</ol>
@@ -380,7 +386,7 @@
         : `<p>${L("No journal for this class.", "No hay diario para esta clase.")}</p>`}
       <h3>${L("Activities", "Actividades")}</h3><ol>${mod.agenda.map(a => `<li>${h(a.t)}</li>`).join("")}${mod.exit ? `<li>${L("Exit reflection:", "Reflexión final:")} ${h(pick(mod.exit))}</li>` : ""}</ol>
       <h3>${L("Website links", "Enlaces")}</h3><ul><li>${L("Today's lesson:", "Lección de hoy:")} ${h(base)}#/unit/${mod.unit}</li><li>${L("Projector view:", "Vista para proyector:")} ${h(base)}#/present/${g}</li>${mod.activities.map(a => `<li>${h(D.units.labNames[a] ? D.units.labNames[a][0] : a)}: ${h(base)}#/unit/${mod.unit}/labs</li>`).join("")}${mod.canvas.map(c => `<li>Canvas: ${h(c.url)}</li>`).join("")}</ul>
-      <h3>${L("Success criteria", "Criterios de éxito")}</h3><ul>${mod.success.map(s => `<li>${h(s)}</li>`).join("")}</ul></section>`;
+      <h3>${L("Success criteria", "Criterios de éxito")}</h3><ul>${mod.success.map(s => `<li>${h(s)}</li>`).join("")}</ul>${window.SLPlaybook ? SLPlaybook.sub(mod) : ""}</section>`;
   }
   function viewSub(r) {
     if (!teacher()) return `<div class="wrap sl2" id="sl2-main" data-notr><p>${L("The substitute plan is available in teacher view.", "El plan para suplente está disponible en la vista del maestro.")}</p></div>`;

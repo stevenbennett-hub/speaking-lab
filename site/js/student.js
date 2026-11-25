@@ -107,6 +107,7 @@
     if (!p.length) return { name: path() ? "home" : "start" };
     if (p[0] === "start") return { name: "start" };
     if (p[0] === "achievements") return { name: "achievements" };
+    if (p[0] === "today") return { name: "today" };
     if (EXTRA[p[0]]) return { name: p[0], args: p.slice(1) };
     if (p[0] === "unit" && /^[1-6]$/.test(p[1] || "")) {
       const id = Number(p[1]);
@@ -133,7 +134,18 @@
     }
     lastV2 = hs || "#/";
     route = parse(hs);
+    if (route.name === "today") { const to = todayTarget(); if (to) { location.replace(to); return; } }
     draw(true);
+  }
+  /** "Today's Lesson": the student's current scheduled lesson. First-time students choose a pathway first (then come
+      back here); the unit's Today tab asks for the class periods if needed, then shows the lesson for today (or the next
+      class) from the calendar, the odd/even group, release dates, overrides and any ?date= preview. Returns the hash to
+      open, or null to show the pathway choice. */
+  let afterStart = null;
+  function todayTarget() {
+    if (!path()) { afterStart = "#/today"; route = { name: "start" }; return null; }
+    const cur = currentUnitId();
+    return cur && unitOpen(cur) ? `#/unit/${cur}` : "#/";
   }
   function classic() {
     const wasUnit = route && route.name === "unit";
@@ -159,11 +171,21 @@
   }
   /** In the student view, "My course" is the current header link. */
   function markNav(on) {
-    document.querySelectorAll("header nav.links a").forEach(a => { if (a.getAttribute("href") === "#/") { if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); } else if (on) a.removeAttribute("aria-current"); });
-    const start = document.querySelector('header nav.links a[href="#top"]');
-    if (!on && start && !document.querySelector("header nav.links a[aria-current]")) start.setAttribute("aria-current", "location");
+    // Today's Lesson while in a unit's Today tab, My Achievements on that page, Lesson Manager for teacher pages, else My Course.
+    const r = route || {}, cur = !on ? null : r.name === "unit" && r.tab === "today" && !r.day ? "#/today" : r.name === "achievements" ? "#/achievements" : EXTRA[r.name] && ["teacher", "present", "sub"].includes(r.name) ? "#/teacher" : "#/";
+    document.querySelectorAll("header nav.links a, header a.navteacher").forEach(a => { if (on && a.getAttribute("href") === cur) a.setAttribute("aria-current", "page"); else if (on || a.getAttribute("aria-current") === "page") a.removeAttribute("aria-current"); });
   }
-  const navLabel = () => { const a = document.querySelector('header nav.links [href="#/"]'); if (a) a.textContent = L("My course", "Mi curso"); };
+  const NAV = { "#/today": ["Today’s Lesson", "Lección de hoy"], "#/": ["My Course", "Mi curso"], "#/achievements": ["My Achievements", "Mis logros"] };
+  const navLabel = () => {
+    const nav = document.querySelector("header nav.links"); if (!nav) return;
+    // Teacher view adds the Lesson Manager (with the Instructor Playbook) to the header; students never see it.
+    // It sits with the utility buttons (My work, Dark mode), apart from the student navigation.
+    let tm = document.querySelector('header a.navteacher'); const util = document.querySelector("header .myworkbtn");
+    if (teacherOn() && !tm && util) { tm = document.createElement("a"); tm.href = "#/teacher"; tm.className = "themesw navteacher"; tm.setAttribute("data-notr", ""); util.parentNode.insertBefore(tm, util); }
+    else if (!teacherOn() && tm) tm.remove();
+    if (tm) tm.textContent = L("Teacher tools", "Herramientas del maestro");
+    Object.entries(NAV).forEach(([hr, t]) => { const a = nav.querySelector(`:scope > a[href="${hr}"]`); if (a) { a.setAttribute("data-notr", ""); a.textContent = L(t[0], t[1]); } });
+  };
   const refresh = () => { navLabel(); if (route && !root.hidden) { const y = window.scrollY; draw(false); window.scrollTo(0, y); } };
 
   const dot = x => (/\.$/.test(x) ? x : x + ".");
@@ -201,7 +223,9 @@
     if (p === "col") { chooseLevel("col", btn); return; } // the existing gate decides; stays closed while college is off
     put(K.path, p); setLevel("hs");
     if (p === "eld") { put(K.support, "1"); if (!get(K.level)) put(K.level, "guided"); }
-    location.hash = "#/"; if (route) { route = parse("#/"); draw(true); }
+    const next = afterStart || "#/"; afterStart = null;
+    if (next === "#/") { location.hash = next; if (route) { route = parse("#/"); draw(true); } }
+    else if (location.hash === next) go(); else location.hash = next; // back to Today's Lesson
   }
 
   /* ---------- dashboard: six unit tiles ---------- */
@@ -648,6 +672,16 @@
   const nav = document.querySelector("header nav.links");
   if (nav && !nav.querySelector('[href="#/"]')) { const a = document.createElement("a"); a.href = "#/"; a.setAttribute("data-notr", ""); nav.insertBefore(a, nav.firstChild); }
   navLabel();
+  // "More" in the header: a disclosure button (keyboard, Escape, click outside, closes after choosing a section).
+  const moreBtn = document.querySelector("header .navmore-btn"), moreList = document.getElementById("navMoreList");
+  const setMore = open => { if (!moreBtn || !moreList) return; moreBtn.setAttribute("aria-expanded", String(open)); moreList.hidden = !open; };
+  if (moreBtn && moreList) {
+    moreBtn.addEventListener("click", () => setMore(moreList.hidden));
+    moreList.addEventListener("click", e => { if (e.target.closest("a")) setMore(false); });
+    document.addEventListener("click", e => { if (!moreList.hidden && !e.target.closest(".navmore")) setMore(false); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape" && !moreList.hidden) { setMore(false); moreBtn.focus(); } });
+    document.addEventListener("focusin", e => { if (!moreList.hidden && !e.target.closest(".navmore")) setMore(false); });
+  }
   const brand = document.querySelector("header .brand"); if (brand) brand.setAttribute("href", "#/");
 
   const addRoute = (name, def) => { EXTRA[name] = def; if (/^#\/?/.test(location.hash) && location.hash.replace(/^#\/?/, "").split("/")[0] === name) go(); };

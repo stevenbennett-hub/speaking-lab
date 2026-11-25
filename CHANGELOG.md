@@ -1,5 +1,77 @@
 # Changelog
 
+## Unreleased (branch `dev`) — Slice 11: Instructor Playbook (Unit 1 prototype) and navigation
+
+### Navigation (audit and rationale: `docs/NAVIGATION_AUDIT.md`)
+- **Primary student header:** Today's Lesson · My Course · Learning Labs · Resources ▾ · My Achievements (EN/ES).
+- **Today's Lesson** (`#/today`):
+  - Returning students go straight to the current unit's Today page (objectives, success criteria, journal, activities).
+  - First-time students choose a pathway, then their class periods, then land on the lesson.
+  - It uses the existing calendar, odd/even block, release, override and `?date=` logic; nothing is reimplemented.
+- **Removed from the header:** Start and Units. My Course already shows all six units.
+- **Practice Labs** is renamed **Learning Labs**, in the header and the section heading.
+- **The Resources menu** (an accessible disclosure button) holds: textbook and tools, example videos, Voices of Change, rubrics, due dates, pacing guide, course map, references, about.
+- **Teacher tools** (teacher view only) sit with the utility buttons and open the Lesson Manager and Playbook.
+- **Compatibility:** every old link still works, and no content or progress keys changed. Under 720 px the menu items show inline.
+
+### Instructor Playbook
+
+### Approved with Slice 10 (recorded, nothing deployed)
+- **Slice 10:** the core platform's release candidate. Production approval is still pending.
+- **Teacher-verified badges:**
+  - "Proficient" means Meets or Exceeds.
+  - The Self-Introduction is excluded.
+  - Time and Clarity in English are not separate requirements.
+  - Master Communicator uses Option A.
+  - Academic Integrity is required.
+  - Canvas Outcomes will be explored.
+  - The badges stay pending.
+- **Ad Detective:** approved for preview testing, not production.
+
+### Added
+- **Audit:** `docs/playbook/RESOURCE_AUDIT.md`.
+  - Inventories every existing resource and the actual Unit 1 meetings in 2026–27 (both groups, both semesters).
+  - Checks the Unit 1 videos' titles and channels.
+  - Lists connection opportunities.
+- **Unit 1 Instructor Playbook:** `site/data/playbook/unit-1.json` (draft, teacher-facing).
+  - Unit overview built on Learn → Observe → Investigate → Practice → Perform → Reflect.
+  - Ten planned-day lesson plans with:
+    - timed phases (core, stretch, short times) and teacher talking points;
+    - discussion questions and misconceptions;
+    - multilingual, accessibility and extension supports;
+    - formative checks, AI advice, Canvas, exit and teacher reflection;
+    - substitute steps.
+  - Eight video viewing guides. Segments are blank until previewed; nothing is quoted.
+  - The flex meeting (Beyond the Podium), eight printable formative resources, and materials and preparation checklists.
+  - Objectives, success criteria and journals are **not** copied; they are read from `lessons.json` and `journals.json`.
+- **`js/playbook.js`:**
+  - **`compose()`:** fits each real meeting's planned days into the 90-minute block (journal first, shorten when crowded, speeches take what's left, stretch when there's room, review for repeated days).
+  - **`validate()`:** checks the playbook file against the lesson data.
+  - **Teacher views:**
+    - Lesson Manager → **Playbook** tab, with a meeting map for the chosen semester and group;
+    - a per-meeting plan, a per-day plan and the video guides;
+    - printable plans (`#/teacher/print/plan/DATE`, `#/teacher/print/playbook/N`);
+    - the playbook's steps added to the existing substitute plan;
+    - a "Teacher plan" link on each Calendar date;
+    - "My notes" saved locally (`speakup-teacher-notes-v1`, not in student backups).
+  - Loaded last by `boot.js`. Students never load the playbook data.
+- **`docs/playbook/LESSON_SCHEMA.md`:** the reusable schema for Units 2–6.
+- **`docs/playbook/UNIT1_CONTENT_REVIEW.md`:** English questions and Spanish suggestions. None applied; statuses unchanged.
+- **`tests/tools/playbook-export.py`:** generates the playbook documents, daily plans and substitute plans from the site.
+- **Content review tool:** adds the playbook and the Unit 1 review notes.
+
+### Changed
+- **Pilot questionnaire:**
+  - Removed the device question; students use district laptops.
+  - Added questions on model speeches, practice opportunities and confidence for the next speech.
+  - Still anonymous and ungraded.
+- **Release checklist:** records the approved decisions and adds the Instructor Playbook row.
+- **`tests/student.test.mjs`:** expects `js/playbook.js` in the load list.
+
+### Tests
+- 146 existing tests preserved, plus 7 in `tests/playbook.test.mjs` and 5 in `tests/navigation.test.mjs`: 158 total.
+- Ad Detective (separate repository) still 7 of 7.
+
 ## Unreleased (branch `dev`) — Speaking Lab 2.0, slice 10: integration and pilot readiness
 
 ### Beyond the Podium

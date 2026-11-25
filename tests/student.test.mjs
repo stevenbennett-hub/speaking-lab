@@ -58,8 +58,8 @@ test("teacher preview needs the teacher code; ?date= alone does nothing", () => 
 });
 
 test("new scripts parse and load after the page scripts", () => {
-  for (const f of ["../site/js/student.js", "../site/js/progress.js", "../site/js/achievements.js", "../site/js/manage.js", "../site/js/teacher.js", "../site/js/boot.js", "../site/js/schedule.js"]) assert.doesNotThrow(() => new vm.Script(read(f)), f);
-  assert.match(read("../site/js/boot.js"), /var AFTER = \["js\/progress\.js", "js\/achievements\.js", "js\/manage\.js", "js\/student\.js", "js\/teacher\.js", "js\/btp\.js", "js\/aistudio\.js", "js\/research\.js"\];/);
+  for (const f of ["../site/js/student.js", "../site/js/progress.js", "../site/js/achievements.js", "../site/js/manage.js", "../site/js/teacher.js", "../site/js/boot.js", "../site/js/schedule.js", "../site/js/playbook.js"]) assert.doesNotThrow(() => new vm.Script(read(f)), f);
+  assert.match(read("../site/js/boot.js"), /var AFTER = \["js\/progress\.js", "js\/achievements\.js", "js\/manage\.js", "js\/student\.js", "js\/teacher\.js", "js\/btp\.js", "js\/aistudio\.js", "js\/research\.js", "js\/playbook\.js"\];/, "Instructor Playbook (teacher-facing) loads last");
   assert.ok(read("../site/index.html").includes('<link rel="stylesheet" href="css/student.css">'));
 });
 

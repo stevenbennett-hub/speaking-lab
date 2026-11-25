@@ -1,10 +1,10 @@
 # Speaking Lab — notes for Claude
 
-Owner: Steven Bennett, Speech & Debate, Wyandotte High School (KCKPS). Full brief: `Speaking_Lab_2.0_Claude_Master_Prompt.md` (kept by the owner). Read `CHANGELOG.md` for what each slice did and `DEVELOPMENT_ROADMAP.md` for what is next. Slices 1–9 approved, slice 10 (integration and pilot readiness) awaiting review; none deployed yet. **Feature development is paused until the classroom pilot** (`docs/pilot/`); only fixes, review and readiness work until then. Release checklist: `docs/RELEASE_CHECKLIST.md`.
+Owner: Steven Bennett, Speech & Debate, Wyandotte High School (KCKPS). Full brief: `Speaking_Lab_2.0_Claude_Master_Prompt.md` (kept by the owner). Read `CHANGELOG.md` for what each slice did and `DEVELOPMENT_ROADMAP.md` for what is next. Slices 1–10 approved (slice 10 = release candidate; production approval pending); Slice 11 (navigation + Instructor Playbook Unit 1 prototype) awaiting review; none deployed yet. **Feature development is paused until the classroom pilot** (`docs/pilot/`); only fixes, review and readiness work until then. Release checklist: `docs/RELEASE_CHECKLIST.md`.
 
 ## How the site runs
 - GitHub Pages deploys **`site/` from `main` only**, after `node --test tests/*.test.mjs` passes. Other branches and pull requests run tests only.
-- `site/index.html` is the classic one-page course (~2 MB, plain JS, EN/ES). Its scripts are `type="text/x-speakup"`; `site/js/boot.js` loads `site/data/*.json` into `window.SL_DATA`, runs those scripts in order, then loads `js/progress.js`, `js/achievements.js`, `js/manage.js`, `js/student.js`, `js/teacher.js`, `js/btp.js`, `js/aistudio.js`, `js/research.js`. `js/schedule.js` and `js/build.js` load first.
+- `site/index.html` is the classic one-page course (~2 MB, plain JS, EN/ES). Its scripts are `type="text/x-speakup"`; `site/js/boot.js` loads `site/data/*.json` into `window.SL_DATA`, runs those scripts in order, then loads `js/progress.js`, `js/achievements.js`, `js/manage.js`, `js/student.js`, `js/teacher.js`, `js/btp.js`, `js/aistudio.js`, `js/research.js`, `js/playbook.js`. `js/schedule.js` and `js/build.js` load first.
 - `js/student.js` is the student experience. Routes: `#/` dashboard (or `#/start` entrance on first visit), `#/unit/N` (Today), `/lessons`, `/day/YYYY-MM-DD`, `/guide`, `/labs`. Any other hash shows the classic page, so all old links work. Inside a unit it moves the page's `#units` and `#labs` sections in and back out (marker comments) instead of copying them.
 - `src/` (React) is NOT deployed; content source only (24 Learn modules, 9 labs, AI Coach JSON).
 
@@ -26,6 +26,7 @@ Owner: Steven Bennett, Speech & Debate, Wyandotte High School (KCKPS). Full brie
 | `ai-studio.json` | AI Coaching Studio content (loaded when the studio opens) |
 | `research-studio.json` | Research Studio + APA Academy content; APA rules each cite their apastyle.apa.org page; portfolio required counts |
 | `achievements.json` | every badge: level, status (active / pending-verification / coming), criteria, points |
+| `playbook/unit-N.json` | Instructor Playbook (teacher-facing, loaded only by the Lesson Manager); extends lessons by key, never copies objectives/journals |
 Never paste data back into `index.html`; tests fail if inline copies return.
 
 ## Rules that must hold (approved Nov 24, 2026)
@@ -93,6 +94,18 @@ Never paste data back into `index.html`; tests fail if inline copies return.
 - Typed journal shows five facts (`JOURNAL_FACTS` in student.js); never ask why a student types, never collect accommodation information.
 - Tests may not assume published lessons have no `ai`/`research` settings; validate them instead (teacher workflow test, `docs/TEACHER_WORKFLOW_TEST.md`).
 - Readiness: `docs/RELEASE_CHECKLIST.md` (four statuses). Pilot: `docs/pilot/`.
+
+## Navigation (Slice 11, `docs/NAVIGATION_AUDIT.md`)
+- Header: Today's Lesson (`#/today`) · My Course (`#/`) · Learning Labs (`#labs`) · Resources menu (`.navmore`: #resources #videos #speeches #rubrics #dates #pacing #top #references #about) · My Achievements. Teacher tools (teacher view only) sit with the utility buttons, not in the nav.
+- `#/today` never computes schedules itself: no pathway → entrance then back; else `currentUnitId()` + `unitOpen()` → `#/unit/N` (Today tab asks for periods). Keep every old hash working; labels need EN/ES (ES dict or `NAV` in student.js).
+
+## Instructor Playbook (`js/playbook.js`, `data/playbook/`, `docs/playbook/`)
+- Framework Learn → Observe → Investigate → Practice → Perform → Reflect. Unit 1 is the prototype; **do not write Units 2–6 until Unit 1 is approved**.
+- Keyed by lesson key; `validate()` refuses copied objectives/success/prompts and any planned day without an entry. Planned days ≠ meetings: meeting plans come from the live schedule via `compose()` (journal 15 min, 72-minute budget, `short` times, `fill` = speeches, stretch, repeated days → review).
+- Videos: only ones already on the site; never invent contents, quotations or timestamps; segments stay blank and `verified: false` until the owner previews them (validator enforces). No autoplay; alternatives for blocked videos; district laptops, no personal phones.
+- Teacher views only (Lesson Manager → Playbook, print routes, sub plan section); students never load the data. Notes: `speakup-teacher-notes-v1` (local, not in student backups). No student information anywhere.
+- Guidance is edited in the JSON (no second lesson editor). Documents: `python3 tests/tools/playbook-export.py URL N OUT` (server running). Everything stays draft until approved.
+- Approved decisions (Nov 24): proficient = Meets/Exceeds; Self-Introduction excluded from teacher-verified badges; Time and Clarity in English not separate requirements; Master Communicator Option A; integrity required; explore Canvas Outcomes; badges pending. Ad Detective approved for preview testing only.
 
 ## Content review
 Regenerate the teacher review document after content changes: `node tests/tools/content-review.mjs [path/to/ad-detective/src/app.js] > /tmp/r.json && python3 tests/tools/content-review.py /tmp/r.json review.docx`. Never change a status on the owner's behalf.

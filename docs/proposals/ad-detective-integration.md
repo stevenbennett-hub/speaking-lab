@@ -1,6 +1,6 @@
 # Ad Detective integration: mastery, practice and Master Ad Detective
 
-Status: **built on development branches; not deployed** (Slice 10).
+Status: **built on development branches; not deployed** (Slice 10). **Approved for preview testing, not for production** (Mr. Bennett, Nov 24, 2026): publish it to `ad-detective-preview` only, using the steps in `docs/preview/ad-detective-preview.md`.
 - Ad Detective: `dev` branch, commit `828d064`, delivered as a separate ZIP. The public site `https://stevenbennett-hub.github.io/ad-detective/` is unchanged until you approve.
 - Speaking Lab: `dev`.
 
