@@ -59,6 +59,9 @@
   const rankOf = (levels, id) => { const l = (levels || []).find(x => x.id === id); return l ? l.rank : -1; };
   /** May a prompt that needs `need` be used under the current assignment permission `have`? */
   const allowed = (levels, need, have) => rankOf(levels, have) >= rankOf(levels, need) && rankOf(levels, need) > 0;
+  /** A prompt under the current permission p = { level, eld }. ELD-marked prompts are also open when the instructor
+      explicitly allowed English language development support (never when AI is not permitted). */
+  const allowedPrompt = (levels, it, p) => allowed(levels, it.level, p.level) || (!!it.eld && p.eld === true && rankOf(levels, p.level) >= 1);
   /** Fill a prompt: {level} and the Think Before You Prompt answers; empty answers stay as [brackets]. */
   function fillPrompt(text, vals, isCol, es) {
     const blank = { topic: es ? "[mi tema]" : "[my topic]", ideas: es ? "[mis ideas]" : "[my ideas]", thesis: es ? "[mi tesis]" : "[my thesis]", tried: es ? "[lo que ya intenté]" : "[what I've tried]", need: es ? "[lo que necesito]" : "[what I need]", audience: es ? "[mi público]" : "[my audience]" };
@@ -68,7 +71,7 @@
       return v || blank[k] || m;
     });
   }
-  const core = { KEY, PARTS, load, ownershipResult, ethicsResult, factResult, academyResult, mastery, record, allowed, rankOf, fillPrompt };
+  const core = { KEY, PARTS, load, ownershipResult, ethicsResult, factResult, academyResult, mastery, record, allowed, allowedPrompt, rankOf, fillPrompt };
   root.SLAI = core;
 
   /* ---------- page ---------- */
@@ -115,6 +118,7 @@
     if (p.teacher) return `<div class="sl2-teachnote" role="note">${L("Teacher view: every prompt can be copied so you can preview it. Students see only what their current assignment allows.", "Vista del maestro: puedes copiar todos los prompts para revisarlos. Los estudiantes solo ven lo que permite su tarea actual.")}</div>`;
     return `<section class="sl2-card sl2-ai is-${h(lv.id)}" aria-labelledby="ai-perm-h"><p class="sl2-kicker" id="ai-perm-h">${L("Your current assignment's AI permission", "Permiso de IA de tu tarea actual")}${p.day ? ` · ${h(SL2.fmtShort(p.day))}` : ""}</p>
       <p class="sl2-ai-level"><b>${h(pick(lv.name))}</b></p><p>${h(pick(lv.explain))}</p>
+      ${p.eld && D.aiperm.eld ? `<p class="sl2-ai-note"><b>${h(pick(D.aiperm.eld.name))}.</b> ${h(pick(D.aiperm.eld.explain))}</p>` : ""}
       ${p.note ? `<p class="sl2-ai-note"><b>${L("Mr. Bennett's note:", "Nota del Sr. Bennett:")}</b> ${h(pick(p.note))}</p>` : ""}
       ${p.nogroup ? `<p class="sl2-small">${L("Choose your class group on the dashboard to see your class's setting. Until then the class default applies.", "Elige tu grupo de clase en el panel para ver la regla de tu clase. Mientras tanto se aplica la regla general.")}</p>` : ""}
       <p class="sl2-small">${L("A prompt being in this studio does not mean you may use it. When in doubt, ask Mr. Bennett first.", "Que un prompt esté en este estudio no significa que puedas usarlo. Si tienes dudas, pregunta primero al Sr. Bennett.")}</p></section>`;
@@ -132,11 +136,12 @@
     ["disclosure", { en: "AI-use disclosure", es: "Declaración de uso de IA" }],
   ];
   const wrap = (cur, inner) => `<div class="wrap sl2 ai" id="sl2-main" data-notr>
-    <p class="sl2-back sl2-noprint"><a href="${cur ? "#/ai" : "#/"}">← ${cur ? L("AI Coaching Studio", "Estudio de coaching con IA") : L("My course", "Mi curso")}</a></p>
+    <p class="sl2-back sl2-noprint">${cur ? `<a href="#/ai">← ${L("AI Coaching Studio", "Estudio de coaching con IA")}</a>` : backToUnit()}</p>
     <p class="sl2-kicker">${h(pick(C.title))} · ${h(pick(C.principle))}</p>
     ${cur ? `<nav class="ai-nav sl2-noprint" aria-label="${L("Studio sections", "Secciones del estudio")}"><ul>${PAGES.slice(1).map(([id, n]) => `<li><a href="#/ai/${id}"${id === cur ? ' aria-current="page"' : ""}>${h(pick(n))}</a></li>`).join("")}</ul></nav>` : ""}
     ${es() && C.status.es !== "approved" ? `<p class="btp-draft">Traducción en borrador: el Sr. Bennett todavía la está revisando.</p>` : ""}
     ${inner}</div>`;
+  const backToUnit = () => { const u = SL2.currentUnitId && SL2.currentUnitId(); return u && SL2.unitOpen(u) ? `<a href="#/unit/${u}/labs">← ${L(`Unit ${u}: labs and studios`, `Unidad ${u}: laboratorios y estudios`)}</a> · <a href="#/">${L("My course", "Mi curso")}</a>` : `<a href="#/">← ${L("My course", "Mi curso")}</a>`; };
   const statusLine = (txt, ok) => `<p class="btp-status" role="status">${ok ? `${ICON.check} ` : ""}${txt}</p>`;
   const privacy = () => `<p class="sl2-small">${L("Saved only in this browser on this computer; never sent anywhere. Don't include personal details about yourself or others.", "Se guarda solo en este navegador y en esta computadora; nunca se envía. No incluyas datos personales tuyos ni de otras personas.")}</p>`;
 
@@ -206,8 +211,8 @@
     const items = P.items.filter(it => (!cat || it.cat === cat) && (!q || [pick(it.title), pick(it.when), pick(it.text), pick(P.categories.find(c => c.id === it.cat).name)].join(" ").toLowerCase().includes(q)));
     if (!items.length) return `<p role="status">${L("No prompts match. Try another word or category.", "Ningún prompt coincide. Prueba otra palabra o categoría.")}</p>`;
     return `<p class="sl2-small" role="status">${L(`${items.length} prompts`, `${items.length} prompts`)}</p><ul class="ai-prompts">${items.map(it => {
-      const ok = p.teacher || allowed(lv, it.level, p.level), need = SL2.aiLevel(it.level), text = fillPrompt(pick(it.text), prep, isCol(), es());
-      return `<li class="sl2-card ai-prompt" id="ai-p-${it.id}"><p class="sl2-kicker">${h(pick(P.categories.find(c => c.id === it.cat).name))} · <span class="sl2-pill">${L("Needs:", "Requiere:")} ${h(pick(need.short))}</span></p>
+      const ok = p.teacher || allowedPrompt(lv, it, p), need = SL2.aiLevel(it.level), text = fillPrompt(pick(it.text), prep, isCol(), es());
+      return `<li class="sl2-card ai-prompt" id="ai-p-${it.id}"><p class="sl2-kicker">${h(pick(P.categories.find(c => c.id === it.cat).name))} · <span class="sl2-pill">${L("Needs:", "Requiere:")} ${h(pick(need.short))}${it.eld ? ` ${L("or ELD support", "o apoyo de inglés")}` : ""}</span></p>
         <h2 class="sl2-h3">${h(pick(it.title))}</h2><p><b>${L("When to use it:", "Cuándo usarlo:")}</b> ${T(it.when)}</p>
         <pre class="ai-text" id="ai-tx-${it.id}">${h(text)}</pre>
         ${ok ? `<p class="btp-row"><button type="button" class="btn primary" data-ai="copy" data-id="${it.id}" data-k="copy-${it.id}">${L("Copy prompt", "Copiar prompt")}<span class="sr"> ${h(pick(it.title))}</span></button>${p.teacher ? "" : ` <span class="sl2-small">${L("Allowed on your current assignment.", "Permitido en tu tarea actual.")}</span>`}</p>`
@@ -274,7 +279,7 @@
       <p><button type="button" class="btn primary" data-ai="fccheck" data-k="fccheck">${L("Check my investigation", "Revisar mi investigación")}</button></p>
       ${checked ? statusLine(r.done ? L("Investigation complete. Every claim, source and the decision are right.", "Investigación completa. Cada afirmación, fuente y la decisión son correctas.") : L(`Claims: ${r.okClaims} of ${F.claims.length} · Sources: ${r.okSources} of ${F.sources.length} · Decision: ${r.final ? "right" : "not yet"}. Change anything and check again.`, `Afirmaciones: ${r.okClaims} de ${F.claims.length} · Fuentes: ${r.okSources} de ${F.sources.length} · Decisión: ${r.final ? "correcta" : "todavía no"}. Cambia lo que quieras y revisa otra vez.`), r.done) : ""}
       </form></div>
-      <p class="sl2-small">${h(pick(F.research))} <a href="#/unit/2/labs">${L("Open the Research & Source Lab", "Abrir el Laboratorio de investigación y fuentes")}</a></p>`);
+      <p class="sl2-small">${h(pick(F.research))} <a href="#/research/sources">${L("Open the Research & Academic Integrity Studio", "Abrir el Estudio de investigación e integridad académica")}</a> · <a href="#/unit/2/labs">${L("Research & Source Lab", "Laboratorio de investigación y fuentes")}</a></p>`);
   }
 
   function viewDisclosure() {
@@ -284,6 +289,7 @@
       <div id="aiBody" class="ai-disc">${X.fields.map(f => `<label class="btp-note"><span>${T(f.label)}</span><textarea rows="${f.id === "assignment" || f.id === "tool" || f.id === "permission" ? 1 : 3}" data-ai="disc" data-id="${f.id}" data-k="disc-${f.id}"${f.id === "permission" && !rec.disc.permission && !p.teacher ? ` placeholder="${h(pick(lv.name))}"` : ""}>${h(rec.disc[f.id] || "")}</textarea></label>`).join("")}
         <p class="ai-sign">☐ ${T(X.sign)} &nbsp; ${L("Signature", "Firma")}: ______________________</p></div>
       <p class="btp-row sl2-noprint"><button type="button" class="btn primary" data-sl2-print>${L("Print", "Imprimir")}</button> <button type="button" class="btn" data-ai="copydisc">${L("Copy as text (for Canvas)", "Copiar como texto (para Canvas)")}</button> <button type="button" class="btn" data-ai="cleardisc">${L("Clear the form", "Borrar el formulario")}</button> <span role="status" class="sl2-small" id="aiCopied">${h(copied)}</span></p>
+      <p class="sl2-ai-note"><b>${h(pick(X.citeNote))}</b></p>
       <p class="sl2-small">${h(pick(X.student))}</p>${privacy()}
       ${SL2.teacherOn() ? `<p class="sl2-teachnote" role="note">${h(pick(X.teacher))}</p>` : ""}`);
   }
@@ -350,7 +356,7 @@
       case "lookup": rec.fc.looked[id] = true; save(); redraw(t.dataset.k); return;
       case "copy": {
         const it = C.prompts.items.find(x => x.id === id), p = perm();
-        if (!it || !(p.teacher || allowed(D.aiperm.levels, it.level, p.level))) return; // never copies a prompt the assignment doesn't allow
+        if (!it || !(p.teacher || allowedPrompt(D.aiperm.levels, it, p))) return; // never copies a prompt the assignment doesn't allow
         copyText(fillPrompt(pick(it.text), prep, isCol(), es())).then(ok => say(ok ? L(`Copied: ${pick(it.title)}. Paste it into a district-approved AI tool, then evaluate what it says.`, `Copiado: ${pick(it.title)}. Pégalo en una herramienta de IA aprobada por el distrito y luego evalúa lo que dice.`) : L("Copy didn't work here. Select the prompt text and copy it.", "No se pudo copiar aquí. Selecciona el texto del prompt y cópialo.")));
         return;
       }

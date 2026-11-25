@@ -221,9 +221,13 @@ test("AI permission on a lesson: known levels only, bilingual note, expanded nee
   assert.equal(errs(), "", "an English note is enough to save; missing Spanish is a warning");
   assert.ok(Mg.validate(d, { today: TODAY }).warnings.some(w => w.where === k && /AI permission note/.test(w.msg)));
   d.lessons.days[k].ai = { level: "none", note: "x" }; assert.match(errs(), /note must have English and Spanish/);
+  d.lessons.days[k].ai = { level: "grammar", eld: true }; assert.equal(errs(), "");
+  d.lessons.days[k].ai = { level: "grammar", eld: "yes" }; assert.match(errs(), /English language development option must be true or false/);
   const P = json("../site/data/ai-permissions.json");
   assert.equal(P.default, "grammar", "class default: grammar and spelling feedback only");
   assert.deepEqual(P.levels.map(l => [l.id, l.rank]), [["none", 0], ["grammar", 1], ["coach", 2], ["expanded", 3]]);
   for (const l of P.levels) for (const f of ["name", "short", "explain"]) assert.ok(l[f].en && l[f].es, `${l.id} ${f}`);
-  assert.ok(!Object.values(data().lessons.days).some(x => x.ai), "no lesson changes the default until Mr. Bennett sets one");
+  // Published lessons may carry AI settings once Mr. Bennett sets them in the Lesson Manager (Slice 10 workflow test);
+  // whatever is published must pass the same validation.
+  const pub = data(); assert.equal(Mg.validate(pub, { today: TODAY }).errors.filter(e => /AI permission|English language development/.test(e.msg)).length, 0);
 });

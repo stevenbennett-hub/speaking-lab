@@ -72,7 +72,17 @@
           if (!isObj(ls.ai) || !lv) err("lessons", k, `AI permission must be one of: ${Object.keys(aiLevels).join(", ") || "none, grammar, coach, expanded"}`);
           else {
             if (ls.ai.note !== undefined) { if (!isObj(ls.ai.note)) err("lessons", k, "AI permission note must have English and Spanish text"); else both(ls.ai.note, "lessons", k, "AI permission note", false); }
+            if (ls.ai.eld !== undefined && typeof ls.ai.eld !== "boolean") err("lessons", k, "AI English language development option must be true or false");
             if (ls.ai.level === "expanded" && !(isObj(ls.ai.note) && String(ls.ai.note.en || "").trim())) err("lessons", k, "expanded AI assistance needs a note saying exactly what is allowed");
+          }
+        }
+        if (ls.research !== undefined) {
+          const r = ls.research;
+          if (!isObj(r)) err("lessons", k, "research assignment must be an object");
+          else {
+            if (typeof r.id !== "string" || !/^[a-z0-9][a-z0-9-]{1,29}$/.test(r.id)) err("lessons", k, "research assignment needs an id: 2–30 lowercase letters, numbers or hyphens (for example persuasive)");
+            if (!Number.isInteger(r.sources) || r.sources < 0 || r.sources > 20) err("lessons", k, "required sources must be a whole number from 0 to 20");
+            for (const f of ["name", "expect", "written", "oral", "portfolio"]) if (r[f] !== undefined) { if (!isObj(r[f])) err("lessons", k, `research ${f} must have English and Spanish text`); else both(r[f], "lessons", k, `research ${f}`, false); }
           }
         }
         if (ls.status) for (const l of ["en", "es"]) if (ls.status[l] && !["draft", "approved"].includes(ls.status[l])) err("lessons", k, `status.${l} must be draft or approved`);

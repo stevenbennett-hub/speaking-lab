@@ -43,6 +43,27 @@ doc.add_paragraph(f"Generated {data['generated']} from the site's data files (si
 p = doc.add_paragraph(); p.add_run("How to use this document. ").bold = True
 p.add_run("Each item is marked APPROVED or DRAFT, separately for English and Spanish. You can review here (Track Changes works well) or directly in the Teacher Lesson Manager (Review tab), which exports the approvals into the site's data files. Nothing is approved automatically. The college notice is your required English text with a DRAFT Spanish translation.")
 
+p = doc.add_paragraph(); p.add_run("What's new in this edition (Slice 10). ").bold = True
+p.add_run("Beyond the Podium: your technoference feedback (exact wording) with a Spanish draft; descriptions of what the film shows, added to the transcript and as an optional read-aloud track; Spanish captions (draft, cue by cue against the English); Spanish gender corrections for Jordan. Achievements: the new Master Ad Detective badge and updated descriptions of the three teacher-verified badges (still pending). Typed journal: five facts students now read. Ad Detective (separate site, dev branch): new labels for independent mastery and the preview bar. Nothing has been approved on your behalf; statuses below are exactly as recorded in the data files.")
+
+doc.add_heading("Approval status at a glance", 1)
+def cnt(items):
+    c = {}
+    for s_ in items: c[s_] = c.get(s_, 0) + 1
+    return ", ".join(f"{v} {k}" for k, v in sorted(c.items()))
+les = [((d["lesson"] or {}).get("status") or data["lessonsStatus"]) for u in data["units"] for d in u["days"]]
+jou = [j["status"] for u in data["units"] for j in u["journals"]]
+rows = [[("Daily objectives and success criteria",), cnt(x["en"].upper() for x in les), cnt(x["es"].upper() for x in les)],
+        [("Daily Learning Journals",), cnt(x["en"].upper() for x in jou), cnt(x["es"].upper() for x in jou)]]
+for e in data.get("btp", []): rows.append([(e["title"],), e["status"]["en"].upper(), e["status"]["es"].upper()])
+for k, n in (("ai", "AI Coaching Studio"), ("research", "Research & Academic Integrity Studio")):
+    if data.get(k): rows.append([(n,), data[k]["status"]["en"].upper(), data[k]["status"]["es"].upper()])
+rows += [[("Achievements text",), "NO APPROVAL RECORDED", "NO APPROVAL RECORDED (DRAFT)"],
+         [("Typed-journal notice",), "NO APPROVAL RECORDED", "DRAFT"],
+         [("Pacing-guide lines",), "as on the live site", f"{len(data['missing'])} lines have no Spanish"]]
+if data.get("adDetective"): rows.append([("Ad Detective new labels (dev branch)",), "NO APPROVAL RECORDED", "DRAFT"])
+table(rows, header=["Content", "English", "Spanish"], widths=[2.6, 2.1, 2.1])
+
 doc.add_heading("1. College Public Speaking notice", 1)
 p = doc.add_paragraph(); p.add_run("Shown before college entry. The college pathway is turned off by default.").italic = True
 table([[("English (required wording)",), data["notice"]["en"]], [("Spanish",), data["notice"]["es"]]], widths=[1.6, 5.2])
@@ -105,5 +126,27 @@ if data.get("ai"):
     for name, rows in e["sections"]:
         doc.add_heading(name, 2)
         table([[(r[0],), r[1], r[2]] for r in rows], header=["", "English", "Spanish"], widths=[1.5, 2.65, 2.65])
+if data.get("research"):
+    e = data["research"]
+    doc.add_page_break()
+    p = doc.add_heading("Research & Academic Integrity Studio — From Evidence to Credibility", 1)
+    status_tag(p, f"English {e['status']['en'].upper()} · Spanish {e['status']['es'].upper()}")
+    doc.add_paragraph("All studio text. Case files, people, sites, journals and source passages marked fictional were written for these activities; authentic examples are described, not quoted. The portfolio's required number of sources is set in site/data/research-studio.json (portfolio.assignments).")
+    doc.add_heading("APA rules and the official page each was checked against", 2)
+    doc.add_paragraph(f"Checked against apastyle.apa.org on {e['checked']}. Italics in the site are marked here with *asterisks*.")
+    table([[(r["topic"],), r["rule"], r["src"]] for r in e["apa"]], header=["Rule", "As taught (English)", "Official source"], widths=[1.3, 3.5, 2.0])
+    for name, rows in e["sections"]:
+        doc.add_heading(name, 2)
+        table([[(r[0],), r[1], r[2]] for r in rows], header=["", "English", "Spanish"], widths=[1.5, 2.65, 2.65])
+def simple_section(title, intro, rows):
+    doc.add_page_break(); p = doc.add_heading(title, 1); status_tag(p, "DRAFT · no approval recorded")
+    doc.add_paragraph(intro)
+    table([[(r[0],), r[1], r[2]] for r in rows], header=["", "English", "Spanish"], widths=[1.5, 2.65, 2.65])
+if data.get("achievements"):
+    simple_section("Achievements (badge names, descriptions and criteria)", "Students see these on My achievements. Communication badges stay pending until a verification process exists; Canvas is the official record. Master Ad Detective is new; it can be earned only after the Ad Detective dev branch is published.", data["achievements"])
+if data.get("journalFacts"):
+    simple_section("Typed (digital) journal: what students read", "Shown to students with the typed-journal option, before and after they enter the code. Handwritten journals remain the class routine.", data["journalFacts"])
+if data.get("adDetective"):
+    simple_section("Ad Detective: new labels (dev branch, not published)", "From the separate Ad Detective site's dev branch (src/app.js). Existing Ad Detective text is unchanged and not repeated here.", data["adDetective"])
 doc.save(sys.argv[2])
 print("saved", sys.argv[2])

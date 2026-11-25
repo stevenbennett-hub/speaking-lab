@@ -1,6 +1,161 @@
 # Changelog
 
-## Unreleased (branch `dev`) — Speaking Lab 2.0, slice 7: AI Coaching Studio and the development preview
+## Unreleased (branch `dev`) — Speaking Lab 2.0, slice 10: integration and pilot readiness
+
+### Beyond the Podium
+- **Optional 720p copy** (`beyond_the_podium_720p.mp4`, 5.0 MB, H.264 CRF 21, AAC 128k). The 1080p original is unchanged.
+  - Students choose the quality in the player. The choice is remembered, and switching keeps the playback position.
+  - Captions, dialogue, aspect ratio and sync are the same (same duration, same caption track).
+- **Technoference feedback** replaced with Mr. Bennett's wording (EN), plus a Spanish draft. It shows as three paragraphs.
+- **"What the film shows"**: descriptions of the opening and the other visual moments, written from the film itself. Actions only.
+  - They appear in the transcript (EN, plus an ES draft).
+  - They are also a timed track (`descriptions.{en,es}.vtt`). "Read what the film shows aloud" pauses the film, reads the description in the browser's voice, then resumes.
+  - Evaluation: `docs/reviews/btp-audio-description.md`.
+- **Spanish captions** (`captions.es.vtt`): draft, with the same cue times as the English. Students see them only after review.
+- Spanish gender agreement for Jordan corrected in the lab text.
+- The thumbnail is still a missing dependency. None was generated.
+
+### Ad Detective (separate repository, `dev` branch only; public site unchanged)
+- Independent vs. shown answers.
+- Retry on a later day.
+- Versioned summary `addetective-mastery-v1`, rebuilt on every save so each case is counted once.
+- Preview storage under `slpreview:` at `/ad-detective-preview/`.
+- Existing progress is preserved and read conservatively.
+- Tests: `tests/mastery.test.mjs` (7).
+
+### Speaking Lab
+- **Master Ad Detective** (applied): all six cases mastered on your own.
+  - Grouped as persuasive appeals (1–3), logical fallacies (4), misleading claims (5) and ethical advertising (6).
+  - `js/achievements.js` reads only the validated summary.
+  - Learning points count each case once.
+  - Persuasion Detective is unchanged.
+- **Preview build** sends Ad Detective links to `/ad-detective-preview/` (`SLBuild.adHref`), so preview testing never writes real Ad Detective progress.
+- **Teacher-verified badges:**
+  - Descriptions now match the provisional framework.
+  - Master Communicator covers Units 3–6.
+  - Still pending; never awarded online.
+  - Rubric mapping in `docs/proposals/teacher-verified-rubric-mapping.md`, built from the actual rubrics. No invented criteria or scales.
+- **Typed journal:** five facts shown to students:
+  - the code isn't security;
+  - responses are stored locally;
+  - work goes to Canvas when asked;
+  - responses aren't auto-graded;
+  - completion can't be verified by the site.
+- **Student experience review** (`docs/reviews/student-experience-review.md`). Fixes:
+  - heading order on the Beyond the Podium series page;
+  - multi-paragraph feedback.
+- **Teacher workflow test** (`docs/TEACHER_WORKFLOW_TEST.md`). It found that two tests would have failed as soon as a teacher saved AI or research settings on a lesson. Fixed: the tests now validate published settings instead of forbidding them.
+
+### Documents
+- `docs/pilot/PILOT_GUIDE.md`, `docs/pilot/STUDENT_FEEDBACK.md` (anonymous).
+- `docs/RELEASE_CHECKLIST.md` rewritten with four statuses: technically complete, instructionally reviewed, ready for pilot, approved for production.
+- `DEVELOPMENT_ROADMAP.md`: completed work is no longer listed as future work; development is paused until the pilot.
+- Content review tool: adds caption and description tracks, achievements, the typed-journal notice, Ad Detective labels, and an approval overview.
+
+### Tests
+- 136 existing tests preserved (two updated to allow valid teacher settings and the Ad Detective summary), plus 10 in `tests/slice10.test.mjs`: 146 total. Ad Detective has its own 7.
+
+## Unreleased (branch `dev`) — Speaking Lab 2.0, slice 9: classroom readiness
+
+### Media
+- **Beyond the Podium Episode 1 film added** (`site/media/btp/ep1/beyond_the_podium_final.mp4`, 55 s, 1080p, 15.9 MB,
+  as supplied, not re-encoded). Its built-in English subtitle track was extracted unchanged to `captions.en.vtt`
+  (matches the official dialogue; a test checks). Still missing: thumbnail (none generated) and Spanish captions.
+- The film's opening shows Alex holding a phone while Jordan works. The technoference feedback now asks students to
+  consider that observation (still "no evidence in the words"). Flagged for your review.
+
+### Instructional decisions applied
+- Research requirements per assignment in the **Lesson Manager** (lesson editor → Research assignment): required
+  sources (default 3), research expectations, written-citation expectations, oral-citation requirements, portfolio
+  instructions. The Research Portfolio shows them; speeches without outside sources have no requirement.
+- APA: tool vs. specific AI chat citation examples (APA, April 2026), "citing AI never makes AI use allowed" in the
+  APA Academy and the AI-use disclosure, and two new APA challenges.
+- Quotation warnings accept page, paragraph, section-heading and timestamp locators.
+- AI policy unchanged: grammar/spelling default; ELD option and broader coaching only with permission.
+
+### Added
+- **Language support preferences**: Guided, Supported, Independent (dashboard; compact on unit pages). Preferences,
+  not proficiency levels; same objectives at every level; progress kept; works for high school and college.
+  Guided = translations on, vocabulary open, step-by-step journal help; Supported = starters, optional
+  translations; Independent = supports folded. New key `speakup-support-level`; existing choices carry over.
+- **Digital journal option** (instructor-authorized accessibility alternative): unlock with Mr. Bennett's code on that
+  browser; type, auto-save locally, print, copy, download; Canvas instructions; never graded or marked complete;
+  handwritten stays the routine. Keys `speakup-journal-v1` (backed up), `speakup-journal-ok` (not backed up).
+- **College Unit 5**: draft college objectives on nine days (Unit 5 had none). Review in `docs/reviews/college-pathway-review.md`.
+- Studio pages return to the current unit's labs.
+- Documents: `docs/RELEASE_CHECKLIST.md`, `docs/reviews/accessibility-performance-review.md`,
+  `docs/reviews/college-pathway-review.md`, `docs/proposals/ad-detective-integration.md`,
+  `docs/proposals/teacher-verified-achievements.md`.
+
+### Reviewed, not activated
+- **Ad Detective**: not integrated. "Show the answer" marks items solved, and Ad Detective has no preview separation;
+  proposal for a small Ad Detective change first. Speaking Lab does not read its progress (test).
+- **Teacher-verified badges** stay pending; proposal: Canvas Outcomes (or Canvas Credentials) as the record.
+
+### Accessibility and performance (target WCAG 2.2 AA; not a compliance claim)
+- Fixed: table-header contrast (2.3:1) in achievements/Lesson Manager tables; duplicate `ob-title` id (Outline
+  Builder heading vs. its title field); portfolio menu overflow at 320 px.
+- Checked: names/labels, headings, keyboard focus and focus-not-obscured, target size, reflow, reduced motion, dark
+  mode, 1280/1366 laptop widths. First load ≈1.1 MB compressed; film never preloaded.
+
+### Tests
+- `tests/slice9.test.mjs` (8) and new research/BTP checks: 136 tests.
+
+## Slice 8: Research & Academic Integrity Studio
+
+### Slice 7 follow-ups
+- Tests confirmed against the complete repository: GitHub `dev` (Slices 1–5, 71 tests) plus the Slices 1–7 package
+  passes all 111. The standalone ZIP lacked `src/content/aiCoach.json` (read by one test); packages now include it.
+- AI policy: grammar and spelling stays the class default; vocabulary explanations, brainstorming, research coaching
+  and organization feedback still need instructor permission. New lesson option **"Also allow English language
+  development prompts"** (`ai.eld`, Lesson Manager checkbox) opens only the two ELD-marked prompts (word
+  explanations, sentence-frame practice), never other coaching, and never when AI is not permitted. Shown on the
+  dashboard, presentation mode, substitute plan and in the studio.
+- The preview repository's existing workflow (`preview.yml`, updated by ChatGPT) is the preview deployment; no new
+  workflow was added. `docs/preview/` stays as reference.
+
+### Added: Research & Academic Integrity Studio — "From Evidence to Credibility" (`#/research`; introduced Unit 2, open in Units 2–6)
+- **Source Detective**: lateral-reading steps, 12 evaluation questions, "web addresses are clues, not verdicts"
+  (.org/.edu/.gov are not automatically reliable), six case files (five fictional, one authentic example described
+  but not quoted) with simulated lateral reading, a verdict and the most important question.
+- **Evidence Explorer**: research questions, search terms, evidence types (example, statistic, testimony,
+  research finding), does the evidence support the claim, misleading statistics, selective quotation,
+  counterevidence and synthesis; informative vs. persuasive use; **ProCon.org guide** (start there, follow the
+  footnotes to the original, cite what you read).
+- **Plagiarism Investigator**: 11 case files covering every requested category, original passage beside the student's
+  work, classify + choose the reason, a fix for each, unlimited retries. Detector scores are never treated as proof.
+- **Paraphrasing Workshop**: quote / paraphrase / summary, the synonym-swap trap, the seven steps with "set the
+  source aside", two passages (guided, then on your own), self-check lists. The student's own paraphrase is never
+  graded by the tool.
+- **Citation Builder**: oral, in-text and reference forms; why each detail matters; an oral-citation builder that uses
+  only what the student enters and strips web addresses; challenges and missing-information checks; never invents details.
+- **Speech Research Portfolio**: multiple source records with all 17 requested fields, per-assignment required count
+  (3 by default, set in `data/research-studio.json`), missing-information, quotation-page and URL-in-oral-citation
+  warnings, "complete fields don't make a source credible", printable summary, .txt download, copy for Canvas.
+  Stored only in this browser (`speakup-research-v1`, included in backups).
+- **APA Academy** (`#/research/apa`, authorized college pathway only): 22 rules, each linked to the apastyle.apa.org
+  page it was checked against on 2026-11-24 (author–date, narrative/parenthetical, two and 3+ authors, group
+  authors, quotations, page and no-page locators, paraphrases, secondary sources, elements, missing information,
+  DOIs/URLs, journal, book, edited chapter, webpage, government report, video, generative AI (APA page updated April
+  2026), reference list format, plagiarism); 12 correction/matching/construction challenges; oral vs. written
+  attribution; the enrollment disclaimer. Locked with an explanation for high school.
+- ELD: Spanish for all text (draft), vocabulary, sentence frames, visual step flows, side-by-side supports,
+  progressive independence.
+- AI integration: verification points, the current AI permission, links to and from the AI Fact Checker.
+- **Citation Specialist is now active** (Plagiarism Investigator + Paraphrasing Workshop checks + Citation Builder).
+  New **APA Scholar** (college pathway only; hidden and not earnable otherwise). Source Detective and Evidence
+  Investigator keep their criteria; no duplicate badge. Each studio skill adds learning points once.
+- Content review document: every studio text pair and a table of APA rules with their official sources.
+- `tests/research.test.mjs` (14) plus ELD and Lesson Manager tests: 126 tests in total.
+
+### Changed
+- `studios.json`: Research Studio opens `#/research` (Research & Source Lab still linked); APA Academy available
+  (college only). Achievements support `audience: "col"`. Boot loads `js/research.js`.
+
+### Not done
+- No new Beyond the Podium media. Nothing deployed.
+
+## Slice 7: AI Coaching Studio and the development preview
 
 ### Added: development preview build
 - `site/js/build.js` decides production or preview. Preview turns on only when the page is served from

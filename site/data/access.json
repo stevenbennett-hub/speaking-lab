@@ -1,6 +1,15 @@
 {
-  "$comment": "Classroom access switches. These are navigation deterrents, NOT security: this file and the page are public and anyone can read or change what their own browser does. Never put real passwords, student data or restricted content here; use Canvas or district-approved authenticated hosting for anything that must be private. college.enabled must stay false unless college-level instruction is authorized. To change a code, open the site, run SLAccess.hash(\"college\", \"new-code\") or SLAccess.hash(\"teacher\", \"new-code\") in the browser console, and paste the result here.",
+  "$comment": "Classroom access switches. These are navigation deterrents, NOT security: this file and the page are public and anyone can read or change what their own browser does. Never put real passwords, student data or restricted content here; use Canvas or district-approved authenticated hosting for anything that must be private. college.enabled must stay false unless college-level instruction is authorized. To change a code, open the site, run SLAccess.hash(\"college\", \"new-code\") or SLAccess.hash(\"teacher\", \"new-code\") or SLAccess.hash(\"journal\", \"new-code\") in the browser console, and paste the result here.",
   "version": 1,
-  "college": { "enabled": false, "codeHash": "08fade53" },
-  "teacher": { "codeHash": "4f676b5a" }
+  "college": {
+    "enabled": false,
+    "codeHash": "08fade53"
+  },
+  "teacher": {
+    "codeHash": "4f676b5a"
+  },
+  "journal": {
+    "codeHash": "032da531",
+    "about": "Instructor-authorized digital journal (accessibility alternative). Give the code only to students who are allowed to type their journal; it unlocks typing on that browser only."
+  }
 }

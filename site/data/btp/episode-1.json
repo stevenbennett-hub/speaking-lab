@@ -1,168 +1,1319 @@
 {
-  "$comment": "Beyond the Podium episode data. One file per episode; js/btp.js renders any episode from this shape, so a new episode is a new file plus its media. All activities use ONLY the official transcript: nothing here describes what the film or thumbnail shows. Media files are NOT in the repository yet: each has available:false until the teacher adds the approved file at src and sets available:true (captions: only verified timing; Spanish captions also need reviewed:true). Lab text is a draft for teacher review (status). Practice dialogue in Change the Conversation is labeled as practice, not as part of the film.",
-  "version": 1,
-  "series": { "en": "Beyond the Podium: Communication in Real Life", "es": "Beyond the Podium: La comunicación en la vida real" },
-  "id": "ep1",
-  "episode": 1,
-  "unit": 1,
-  "journal": "j-u1-flex",
-  "title": { "en": "The Misunderstanding", "es": "El malentendido" },
-  "label": { "en": "A fictional, AI-generated educational dramatization.", "es": "Una dramatización educativa ficticia, generada con IA." },
-  "status": { "en": "draft", "es": "draft" },
-  "media": {
-    "video": { "src": "media/btp/ep1/beyond_the_podium_final.mp4", "available": false, "seconds": 55 },
-    "poster": { "src": "media/btp/ep1/beyond_the_podium_thumbnail.jpg", "available": false, "alt": null },
-    "captions": {
-      "en": { "src": "media/btp/ep1/captions.en.vtt", "available": false },
-      "es": { "src": "media/btp/ep1/captions.es.vtt", "available": false, "reviewed": false }
+ "$comment": "Beyond the Podium episode data. One file per episode; js/btp.js renders any episode from this shape, so a new episode is a new file plus its media. All activities use ONLY the official transcript: nothing here describes what the film or thumbnail shows. Media files are NOT in the repository yet: each has available:false until the teacher adds the approved file at src and sets available:true (captions: only verified timing; Spanish captions also need reviewed:true). Lab text is a draft for teacher review (status). Practice dialogue in Change the Conversation is labeled as practice, not as part of the film. Slice 10: transcript entries with speaker \"Description\" describe what the film shows (actions only; draft). media.video720 is a lower-bandwidth copy of the approved film; media.descriptions are timed text descriptions that can be read aloud by the browser.",
+ "version": 1,
+ "series": {
+  "en": "Beyond the Podium: Communication in Real Life",
+  "es": "Beyond the Podium: La comunicación en la vida real"
+ },
+ "id": "ep1",
+ "episode": 1,
+ "unit": 1,
+ "journal": "j-u1-flex",
+ "title": {
+  "en": "The Misunderstanding",
+  "es": "El malentendido"
+ },
+ "label": {
+  "en": "A fictional, AI-generated educational dramatization.",
+  "es": "Una dramatización educativa ficticia, generada con IA."
+ },
+ "status": {
+  "en": "draft",
+  "es": "draft"
+ },
+ "media": {
+  "video": {
+   "src": "media/btp/ep1/beyond_the_podium_final.mp4",
+   "available": true,
+   "seconds": 55,
+   "supplied": "2026-11-24: approved 55-second film (H.264 1920x1080, AAC, 15.9 MB) as supplied, not re-encoded."
+  },
+  "poster": {
+   "src": "media/btp/ep1/beyond_the_podium_thumbnail.jpg",
+   "available": false,
+   "alt": null
+  },
+  "captions": {
+   "en": {
+    "src": "media/btp/ep1/captions.en.vtt",
+    "available": true,
+    "supplied": "Extracted unchanged from the film's own English subtitle track (mov_text → WebVTT); cue times are the film's."
+   },
+   "es": {
+    "src": "media/btp/ep1/captions.es.vtt",
+    "available": true,
+    "reviewed": false,
+    "supplied": "Draft translation timed to the English caption cues; not shown in the player until reviewed."
+   }
+  },
+  "video720": {
+   "src": "media/btp/ep1/beyond_the_podium_720p.mp4",
+   "available": true,
+   "supplied": "2026-11-24: lower-bandwidth copy of the approved film (1280x720, H.264 + AAC, ~5.0 MB), made from the original with ffmpeg; same length, audio and aspect ratio. The original is unchanged."
+  },
+  "descriptions": {
+   "en": {
+    "src": "media/btp/ep1/descriptions.en.vtt",
+    "available": true,
+    "reviewed": false
+   },
+   "es": {
+    "src": "media/btp/ep1/descriptions.es.vtt",
+    "available": true,
+    "reviewed": false
+   }
+  }
+ },
+ "transcript": [
+  {
+   "id": "d0",
+   "speaker": "Description",
+   "en": "In a sunny classroom, Jordan types on a laptop at a table. Across the table, Alex rests his head on one hand and looks down at a phone.",
+   "es": "En un salón soleado, Jordan escribe en una computadora portátil en una mesa. Al otro lado de la mesa, Alex apoya la cabeza en una mano y mira un teléfono."
+  },
+  {
+   "id": "l1",
+   "speaker": "Jordan",
+   "en": "Seriously, Alex? I had to finish almost the entire project by myself. You never take anything seriously.",
+   "es": "¿En serio, Alex? Tuve que terminar casi todo el proyecto yo sola. Nunca te tomas nada en serio."
+  },
+  {
+   "id": "d1",
+   "speaker": "Description",
+   "en": "Alex, holding the phone, looks up at Jordan, then folds his arms.",
+   "es": "Alex, con el teléfono en la mano, levanta la vista hacia Jordan y luego cruza los brazos."
+  },
+  {
+   "id": "l2",
+   "speaker": "Alex",
+   "en": "What are you talking about? You don't even know what I've been dealing with. I was trying to—",
+   "es": "¿De qué hablas? Ni siquiera sabes con qué he estado lidiando. Estaba tratando de—"
+  },
+  {
+   "id": "l3",
+   "speaker": "Jordan",
+   "en": "There's always an excuse. Why am I even working with you?",
+   "es": "Siempre hay una excusa. ¿Por qué estoy trabajando contigo?"
+  },
+  {
+   "id": "l4",
+   "speaker": "Alex",
+   "en": "Whatever. If that's what you think of me, just do it yourself.",
+   "es": "Como quieras. Si eso es lo que piensas de mí, hazlo tú sola."
+  },
+  {
+   "id": "d2",
+   "speaker": "Description",
+   "en": "Alex picks up a backpack and walks out of the classroom. Jordan stays at the table, chin on hand. Jordan sits alone, looking down. The screen goes black.",
+   "es": "Alex toma una mochila y sale del salón. Jordan se queda en la mesa, con la barbilla apoyada en la mano. Jordan está sentada sola, mirando hacia abajo. La pantalla se pone negra."
+  },
+  {
+   "id": "n1",
+   "speaker": "Narrator",
+   "en": "Communication isn't just about what we say. It's also about how we listen, respond, and understand others. Where did this conversation go wrong?",
+   "es": "La comunicación no se trata solo de lo que decimos. También se trata de cómo escuchamos, respondemos y entendemos a los demás. ¿En qué momento se torció esta conversación?"
+  },
+  {
+   "id": "e1",
+   "speaker": "End card",
+   "en": "BEYOND THE PODIUM / Where did communication break down?",
+   "es": "BEYOND THE PODIUM / ¿Dónde se rompió la comunicación?"
+  }
+ ],
+ "vocab": [
+  {
+   "en": "observation",
+   "es": "observación",
+   "def": {
+    "en": "Something you can see or hear directly.",
+    "es": "Algo que puedes ver u oír directamente."
+   }
+  },
+  {
+   "en": "inference",
+   "es": "inferencia",
+   "def": {
+    "en": "A conclusion you draw from what you observe; it may be wrong.",
+    "es": "Una conclusión que sacas de lo que observas; puede estar equivocada."
+   }
+  },
+  {
+   "en": "assumption",
+   "es": "suposición",
+   "def": {
+    "en": "Something you treat as true without checking.",
+    "es": "Algo que das por cierto sin comprobarlo."
+   }
+  },
+  {
+   "en": "overgeneralization",
+   "es": "generalización excesiva",
+   "def": {
+    "en": "Using words like always and never to describe a person.",
+    "es": "Usar palabras como siempre y nunca para describir a una persona."
+   }
+  },
+  {
+   "en": "defensiveness",
+   "es": "actitud defensiva",
+   "def": {
+    "en": "Protecting yourself instead of listening to the concern.",
+    "es": "Protegerte en lugar de escuchar la preocupación."
+   }
+  },
+  {
+   "en": "escalation",
+   "es": "escalada",
+   "def": {
+    "en": "When a conflict grows more intense with each response.",
+    "es": "Cuando un conflicto se vuelve más intenso con cada respuesta."
+   }
+  },
+  {
+   "en": "withdrawal",
+   "es": "retirada",
+   "def": {
+    "en": "Leaving the conversation instead of solving the problem.",
+    "es": "Salir de la conversación en lugar de resolver el problema."
+   }
+  },
+  {
+   "en": "paralanguage",
+   "es": "paralenguaje",
+   "def": {
+    "en": "How words are said: tone, volume, speed, pauses, sighs.",
+    "es": "Cómo se dicen las palabras: tono, volumen, velocidad, pausas, suspiros."
+   }
+  },
+  {
+   "en": "perception checking",
+   "es": "verificación de percepciones",
+   "def": {
+    "en": "Describing what you noticed, offering a possible meaning, and asking if you are right.",
+    "es": "Describir lo que notaste, ofrecer un posible significado y preguntar si es correcto."
+   }
+  },
+  {
+   "en": "I-statement",
+   "es": "mensaje en primera persona",
+   "def": {
+    "en": "Saying how you feel and why, without blaming: I feel ___ when ___ because ___.",
+    "es": "Decir cómo te sientes y por qué, sin culpar: Me siento ___ cuando ___ porque ___."
+   }
+  },
+  {
+   "en": "paraphrase",
+   "es": "parafrasear",
+   "def": {
+    "en": "Repeating the other person's message in your own words to check understanding.",
+    "es": "Repetir el mensaje de la otra persona con tus palabras para comprobar que entendiste."
+   }
+  },
+  {
+   "en": "active listening",
+   "es": "escucha activa",
+   "def": {
+    "en": "Listening to understand: attention, questions and paraphrasing.",
+    "es": "Escuchar para entender: atención, preguntas y paráfrasis."
+   }
+  }
+ ],
+ "frames": {
+  "en": [
+   "I observed ___. I am inferring ___.",
+   "I feel ___ when ___ because ___. Could we ___?",
+   "It sounds like ___. Is that right?",
+   "I noticed ___. I'm wondering if ___. Is that right?",
+   "One barrier was ___, shown when ___ said \"___.\""
+  ],
+  "es": [
+   "Observé ___. Infiero que ___.",
+   "Me siento ___ cuando ___ porque ___. ¿Podríamos ___?",
+   "Parece que ___. ¿Es así?",
+   "Noté que ___. Me pregunto si ___. ¿Es así?",
+   "Una barrera fue ___, que se ve cuando ___ dijo \"___\"."
+  ]
+ },
+ "stages": [
+  {
+   "id": "observe",
+   "title": {
+    "en": "Read the Room",
+    "es": "Lee el ambiente"
+   },
+   "intro": {
+    "en": "An observation is what you can see or hear. An inference is what you conclude from it, and it can be wrong. Sort each statement about the episode's words.",
+    "es": "Una observación es lo que puedes ver u oír. Una inferencia es lo que concluyes a partir de eso, y puede estar equivocada. Clasifica cada afirmación sobre las palabras del episodio."
+   },
+   "posterPrompt": {
+    "en": "Look at the episode image. Write one thing you can actually see, and one thing you are guessing. Do not guess anyone's feelings from their face alone.",
+    "es": "Mira la imagen del episodio. Escribe algo que realmente puedes ver y algo que estás adivinando. No adivines los sentimientos de nadie solo por su cara."
+   },
+   "items": [
+    {
+     "id": "o1",
+     "text": {
+      "en": "Jordan says, \"I had to finish almost the entire project by myself.\"",
+      "es": "Jordan dice: \"Tuve que terminar casi todo el proyecto yo sola\"."
+     },
+     "answer": "obs",
+     "why": {
+      "en": "We can hear Jordan say these words. Whether it is completely true is a different question.",
+      "es": "Podemos oír a Jordan decir estas palabras. Si es totalmente cierto es otra pregunta."
+     }
+    },
+    {
+     "id": "o2",
+     "text": {
+      "en": "Jordan did all of the work.",
+      "es": "Jordan hizo todo el trabajo."
+     },
+     "answer": "inf",
+     "why": {
+      "en": "We only have Jordan's word, and Jordan said \"almost.\"",
+      "es": "Solo tenemos la palabra de Jordan, y Jordan dijo \"casi\"."
+     }
+    },
+    {
+     "id": "o3",
+     "text": {
+      "en": "Alex begins, \"I was trying to—\" and does not finish.",
+      "es": "Alex empieza: \"Estaba tratando de—\" y no termina."
+     },
+     "answer": "obs",
+     "why": {
+      "en": "The unfinished sentence is in the transcript.",
+      "es": "La oración sin terminar está en la transcripción."
+     }
+    },
+    {
+     "id": "o4",
+     "text": {
+      "en": "Alex does not care about the project.",
+      "es": "A Alex no le importa el proyecto."
+     },
+     "answer": "inf",
+     "why": {
+      "en": "Nothing Alex says tells us this. It is a guess about Alex's thoughts.",
+      "es": "Nada de lo que dice Alex nos lo dice. Es una suposición sobre lo que piensa Alex."
+     }
+    },
+    {
+     "id": "o5",
+     "text": {
+      "en": "Jordan asks, \"Why am I even working with you?\"",
+      "es": "Jordan pregunta: \"¿Por qué estoy trabajando contigo?\""
+     },
+     "answer": "obs",
+     "why": {
+      "en": "These are Jordan's exact words.",
+      "es": "Son las palabras exactas de Jordan."
+     }
+    },
+    {
+     "id": "o6",
+     "text": {
+      "en": "Jordan and Alex will never work together again.",
+      "es": "Jordan y Alex nunca volverán a trabajar juntos."
+     },
+     "answer": "inf",
+     "why": {
+      "en": "The episode ends without telling us what happens next.",
+      "es": "El episodio termina sin decirnos qué pasa después."
+     }
     }
+   ]
   },
-  "transcript": [
-    { "id": "l1", "speaker": "Jordan", "en": "Seriously, Alex? I had to finish almost the entire project by myself. You never take anything seriously.", "es": "¿En serio, Alex? Tuve que terminar casi todo el proyecto yo solo. Nunca te tomas nada en serio." },
-    { "id": "l2", "speaker": "Alex", "en": "What are you talking about? You don't even know what I've been dealing with. I was trying to—", "es": "¿De qué hablas? Ni siquiera sabes con qué he estado lidiando. Estaba tratando de—" },
-    { "id": "l3", "speaker": "Jordan", "en": "There's always an excuse. Why am I even working with you?", "es": "Siempre hay una excusa. ¿Por qué estoy trabajando contigo?" },
-    { "id": "l4", "speaker": "Alex", "en": "Whatever. If that's what you think of me, just do it yourself.", "es": "Como quieras. Si eso es lo que piensas de mí, hazlo tú solo." },
-    { "id": "n1", "speaker": "Narrator", "en": "Communication isn't just about what we say. It's also about how we listen, respond, and understand others. Where did this conversation go wrong?", "es": "La comunicación no se trata solo de lo que decimos. También se trata de cómo escuchamos, respondemos y entendemos a los demás. ¿En qué momento se torció esta conversación?" },
-    { "id": "e1", "speaker": "End card", "en": "BEYOND THE PODIUM / Where did communication break down?", "es": "BEYOND THE PODIUM / ¿Dónde se rompió la comunicación?" }
-  ],
-  "vocab": [
-    { "en": "observation", "es": "observación", "def": { "en": "Something you can see or hear directly.", "es": "Algo que puedes ver u oír directamente." } },
-    { "en": "inference", "es": "inferencia", "def": { "en": "A conclusion you draw from what you observe; it may be wrong.", "es": "Una conclusión que sacas de lo que observas; puede estar equivocada." } },
-    { "en": "assumption", "es": "suposición", "def": { "en": "Something you treat as true without checking.", "es": "Algo que das por cierto sin comprobarlo." } },
-    { "en": "overgeneralization", "es": "generalización excesiva", "def": { "en": "Using words like always and never to describe a person.", "es": "Usar palabras como siempre y nunca para describir a una persona." } },
-    { "en": "defensiveness", "es": "actitud defensiva", "def": { "en": "Protecting yourself instead of listening to the concern.", "es": "Protegerte en lugar de escuchar la preocupación." } },
-    { "en": "escalation", "es": "escalada", "def": { "en": "When a conflict grows more intense with each response.", "es": "Cuando un conflicto se vuelve más intenso con cada respuesta." } },
-    { "en": "withdrawal", "es": "retirada", "def": { "en": "Leaving the conversation instead of solving the problem.", "es": "Salir de la conversación en lugar de resolver el problema." } },
-    { "en": "paralanguage", "es": "paralenguaje", "def": { "en": "How words are said: tone, volume, speed, pauses, sighs.", "es": "Cómo se dicen las palabras: tono, volumen, velocidad, pausas, suspiros." } },
-    { "en": "perception checking", "es": "verificación de percepciones", "def": { "en": "Describing what you noticed, offering a possible meaning, and asking if you are right.", "es": "Describir lo que notaste, ofrecer un posible significado y preguntar si es correcto." } },
-    { "en": "I-statement", "es": "mensaje en primera persona", "def": { "en": "Saying how you feel and why, without blaming: I feel ___ when ___ because ___.", "es": "Decir cómo te sientes y por qué, sin culpar: Me siento ___ cuando ___ porque ___." } },
-    { "en": "paraphrase", "es": "parafrasear", "def": { "en": "Repeating the other person's message in your own words to check understanding.", "es": "Repetir el mensaje de la otra persona con tus palabras para comprobar que entendiste." } },
-    { "en": "active listening", "es": "escucha activa", "def": { "en": "Listening to understand: attention, questions and paraphrasing.", "es": "Escuchar para entender: atención, preguntas y paráfrasis." } }
-  ],
-  "frames": {
-    "en": ["I observed ___. I am inferring ___.", "I feel ___ when ___ because ___. Could we ___?", "It sounds like ___. Is that right?", "I noticed ___. I'm wondering if ___. Is that right?", "One barrier was ___, shown when ___ said \"___.\""],
-    "es": ["Observé ___. Infiero que ___.", "Me siento ___ cuando ___ porque ___. ¿Podríamos ___?", "Parece que ___. ¿Es así?", "Noté que ___. Me pregunto si ___. ¿Es así?", "Una barrera fue ___, que se ve cuando ___ dijo \"___\"."]
+  {
+   "id": "watch",
+   "title": {
+    "en": "Watch the Film",
+    "es": "Mira el cortometraje"
+   },
+   "before": {
+    "en": [
+     "Who speaks first, and what is their first concern?",
+     "Listen for words like always and never.",
+     "Notice the moment the conversation turns from the project to the person."
+    ],
+    "es": [
+     "¿Quién habla primero y cuál es su primera preocupación?",
+     "Escucha palabras como siempre y nunca.",
+     "Fíjate en el momento en que la conversación pasa del proyecto a la persona."
+    ]
+   },
+   "after": {
+    "en": [
+     "What did Alex try to say before being interrupted?",
+     "What question did neither student ask?",
+     "The narrator asks where the conversation went wrong. What is your answer, with one line as evidence?"
+    ],
+    "es": [
+     "¿Qué intentaba decir Alex antes de que lo interrumpieran?",
+     "¿Qué pregunta no hizo ninguno de los dos?",
+     "El narrador pregunta dónde se torció la conversación. ¿Cuál es tu respuesta, con una línea como evidencia?"
+    ]
+   }
   },
-  "stages": [
-    { "id": "observe", "title": { "en": "Read the Room", "es": "Lee el ambiente" },
-      "intro": { "en": "An observation is what you can see or hear. An inference is what you conclude from it, and it can be wrong. Sort each statement about the episode's words.", "es": "Una observación es lo que puedes ver u oír. Una inferencia es lo que concluyes a partir de eso, y puede estar equivocada. Clasifica cada afirmación sobre las palabras del episodio." },
-      "posterPrompt": { "en": "Look at the episode image. Write one thing you can actually see, and one thing you are guessing. Do not guess anyone's feelings from their face alone.", "es": "Mira la imagen del episodio. Escribe algo que realmente puedes ver y algo que estás adivinando. No adivines los sentimientos de nadie solo por su cara." },
-      "items": [
-        { "id": "o1", "text": { "en": "Jordan says, \"I had to finish almost the entire project by myself.\"", "es": "Jordan dice: \"Tuve que terminar casi todo el proyecto yo solo\"." }, "answer": "obs", "why": { "en": "We can hear Jordan say these words. Whether it is completely true is a different question.", "es": "Podemos oír a Jordan decir estas palabras. Si es totalmente cierto es otra pregunta." } },
-        { "id": "o2", "text": { "en": "Jordan did all of the work.", "es": "Jordan hizo todo el trabajo." }, "answer": "inf", "why": { "en": "We only have Jordan's word, and Jordan said \"almost.\"", "es": "Solo tenemos la palabra de Jordan, y Jordan dijo \"casi\"." } },
-        { "id": "o3", "text": { "en": "Alex begins, \"I was trying to—\" and does not finish.", "es": "Alex empieza: \"Estaba tratando de—\" y no termina." }, "answer": "obs", "why": { "en": "The unfinished sentence is in the transcript.", "es": "La oración sin terminar está en la transcripción." } },
-        { "id": "o4", "text": { "en": "Alex does not care about the project.", "es": "A Alex no le importa el proyecto." }, "answer": "inf", "why": { "en": "Nothing Alex says tells us this. It is a guess about Alex's thoughts.", "es": "Nada de lo que dice Alex nos lo dice. Es una suposición sobre lo que piensa Alex." } },
-        { "id": "o5", "text": { "en": "Jordan asks, \"Why am I even working with you?\"", "es": "Jordan pregunta: \"¿Por qué estoy trabajando contigo?\"" }, "answer": "obs", "why": { "en": "These are Jordan's exact words.", "es": "Son las palabras exactas de Jordan." } },
-        { "id": "o6", "text": { "en": "Jordan and Alex will never work together again.", "es": "Jordan y Alex nunca volverán a trabajar juntos." }, "answer": "inf", "why": { "en": "The episode ends without telling us what happens next.", "es": "El episodio termina sin decirnos qué pasa después." } }
-      ] },
-    { "id": "watch", "title": { "en": "Watch the Film", "es": "Mira el cortometraje" },
-      "before": { "en": ["Who speaks first, and what is their first concern?", "Listen for words like always and never.", "Notice the moment the conversation turns from the project to the person."], "es": ["¿Quién habla primero y cuál es su primera preocupación?", "Escucha palabras como siempre y nunca.", "Fíjate en el momento en que la conversación pasa del proyecto a la persona."] },
-      "after": { "en": ["What did Alex try to say before being interrupted?", "What question did neither student ask?", "The narrator asks where the conversation went wrong. What is your answer, with one line as evidence?"], "es": ["¿Qué intentaba decir Alex antes de que lo interrumpieran?", "¿Qué pregunta no hizo ninguno de los dos?", "El narrador pregunta dónde se torció la conversación. ¿Cuál es tu respuesta, con una línea como evidencia?"] } },
-    { "id": "detective", "title": { "en": "Communication Detective", "es": "Detective de la comunicación" },
-      "intro": { "en": "For each barrier, choose the line that is your evidence. If the words give no evidence, say so. Retry as often as you like.", "es": "Para cada barrera, elige la línea que es tu evidencia. Si las palabras no dan evidencia, dilo. Inténtalo cuantas veces quieras." },
-      "barriers": [
-        { "id": "accuse", "name": { "en": "Accusatory language", "es": "Lenguaje acusatorio" }, "def": { "en": "Blaming the person with \"you\" statements.", "es": "Culpar a la persona con frases de \"tú\"." }, "evidence": ["l1", "l3"], "why": { "en": "\"You never take anything seriously\" and \"Why am I even working with you?\" attack Alex instead of describing the problem.", "es": "\"Nunca te tomas nada en serio\" y \"¿Por qué estoy trabajando contigo?\" atacan a Alex en lugar de describir el problema." } },
-        { "id": "general", "name": { "en": "Overgeneralization", "es": "Generalización excesiva" }, "def": { "en": "Always/never statements about a person.", "es": "Frases de siempre/nunca sobre una persona." }, "evidence": ["l1", "l3"], "why": { "en": "\"Never\" (Jordan's first line) and \"always\" (\"There's always an excuse\") turn one situation into a judgment of Alex.", "es": "\"Nunca\" (primera línea de Jordan) y \"siempre\" (\"Siempre hay una excusa\") convierten una situación en un juicio sobre Alex." } },
-        { "id": "defend", "name": { "en": "Defensiveness", "es": "Actitud defensiva" }, "def": { "en": "Protecting yourself instead of hearing the concern.", "es": "Protegerte en lugar de escuchar la preocupación." }, "evidence": ["l2"], "why": { "en": "\"What are you talking about? You don't even know…\" answers the accusation with a counter-attack before addressing the work.", "es": "\"¿De qué hablas? Ni siquiera sabes…\" responde a la acusación con un contraataque antes de hablar del trabajo." } },
-        { "id": "interrupt", "name": { "en": "Interrupting", "es": "Interrumpir" }, "def": { "en": "Cutting someone off before they finish.", "es": "Cortar a alguien antes de que termine." }, "evidence": ["l2", "l3"], "why": { "en": "Alex's sentence ends at \"I was trying to—\" and Jordan speaks next, so Alex's explanation is never heard.", "es": "La oración de Alex termina en \"Estaba tratando de—\" y Jordan habla después, así que nunca se escucha la explicación de Alex." } },
-        { "id": "assume", "name": { "en": "Assumptions", "es": "Suposiciones" }, "def": { "en": "Treating a guess about the other person as fact.", "es": "Tratar una suposición sobre la otra persona como un hecho." }, "evidence": ["l3", "l4"], "why": { "en": "Jordan calls Alex's reason an excuse without hearing it; Alex decides \"that's what you think of me\" without checking.", "es": "Jordan llama excusa a la razón de Alex sin oírla; Alex decide \"eso es lo que piensas de mí\" sin comprobarlo." } },
-        { "id": "listen", "name": { "en": "Poor listening", "es": "No escuchar bien" }, "def": { "en": "Responding without trying to understand.", "es": "Responder sin intentar entender." }, "evidence": ["l3"], "why": { "en": "Alex says Jordan doesn't know what Alex has been dealing with; Jordan never asks.", "es": "Alex dice que Jordan no sabe con qué ha estado lidiando; Jordan nunca pregunta." } },
-        { "id": "escalate", "name": { "en": "Emotional escalation", "es": "Escalada emocional" }, "def": { "en": "Each response raises the intensity.", "es": "Cada respuesta aumenta la intensidad." }, "evidence": ["l3"], "why": { "en": "\"Why am I even working with you?\" moves from the project to the whole partnership.", "es": "\"¿Por qué estoy trabajando contigo?\" pasa del proyecto a toda la relación de trabajo." } },
-        { "id": "withdraw", "name": { "en": "Withdrawal", "es": "Retirada" }, "def": { "en": "Leaving the problem instead of working on it.", "es": "Abandonar el problema en lugar de trabajarlo." }, "evidence": ["l4"], "why": { "en": "\"Whatever… just do it yourself\" ends the conversation with the problem unsolved.", "es": "\"Como quieras… hazlo tú solo\" termina la conversación con el problema sin resolver." } },
-        { "id": "techno", "name": { "en": "Technoference (a phone or device getting in the way)", "es": "Tecnointerferencia (un teléfono o aparato que interfiere)" }, "def": { "en": "Attention pulled away by a device.", "es": "La atención se desvía por un aparato." }, "evidence": ["none"], "why": { "en": "Nothing in the words mentions a phone or device. Good detectives do not claim a barrier without evidence. (When the film is available, check whether the footage shows it.)", "es": "Nada en las palabras menciona un teléfono o aparato. Un buen detective no afirma una barrera sin evidencia. (Cuando el cortometraje esté disponible, revisa si las imágenes lo muestran.)" } }
-      ] },
-    { "id": "words", "title": { "en": "Beyond Words", "es": "Más allá de las palabras" },
-      "intro": { "en": "Messages travel three ways: the words (verbal), the body (nonverbal: face, gestures, posture, eye contact) and the voice (paralanguage: tone, volume, speed, pauses). These examples are general practice, not descriptions of the film.", "es": "Los mensajes viajan de tres maneras: las palabras (verbal), el cuerpo (no verbal: cara, gestos, postura, contacto visual) y la voz (paralenguaje: tono, volumen, velocidad, pausas). Estos ejemplos son práctica general, no descripciones del cortometraje." },
-      "items": [
-        { "id": "w1", "text": { "en": "Saying \"I'm fine.\"", "es": "Decir \"Estoy bien\"." }, "answer": "verbal", "why": { "en": "The message is in the words themselves.", "es": "El mensaje está en las palabras mismas." } },
-        { "id": "w2", "text": { "en": "Folding your arms while someone talks.", "es": "Cruzar los brazos mientras alguien habla." }, "answer": "nonverbal", "why": { "en": "Posture is body language, and it can mean many things: cold, comfortable, closed off, or none of these.", "es": "La postura es lenguaje corporal y puede significar muchas cosas: frío, comodidad, cerrarse, o nada de eso." } },
-        { "id": "w3", "text": { "en": "Saying \"Seriously?\" in a sharp, rising voice.", "es": "Decir \"¿En serio?\" con una voz aguda y que sube." }, "answer": "para", "why": { "en": "The tone of voice changes the meaning of the same word.", "es": "El tono de voz cambia el significado de la misma palabra." } },
-        { "id": "w4", "text": { "en": "A long sigh before answering.", "es": "Un suspiro largo antes de responder." }, "answer": "para", "why": { "en": "Sighs and pauses are vocal but not words: paralanguage.", "es": "Los suspiros y las pausas son de la voz pero no son palabras: paralenguaje." } },
-        { "id": "w5", "text": { "en": "Looking at a phone while a partner is speaking.", "es": "Mirar el teléfono mientras tu compañero habla." }, "answer": "nonverbal", "why": { "en": "Where you put your attention sends a message without words.", "es": "Dónde pones tu atención envía un mensaje sin palabras." } },
-        { "id": "w6", "text": { "en": "Talking faster and louder as you get upset.", "es": "Hablar más rápido y más fuerte al enojarte." }, "answer": "para", "why": { "en": "Speed and volume are part of how a message sounds.", "es": "La velocidad y el volumen son parte de cómo suena un mensaje." } }
-      ],
-      "interpret": { "cue": { "en": "Someone looks away while you are talking.", "es": "Alguien aparta la mirada mientras hablas." },
-        "meanings": { "en": ["They are thinking.", "They feel uncomfortable or upset.", "Looking away is respectful in their family or culture.", "They are distracted.", "They are shy."], "es": ["Está pensando.", "Se siente incómodo o molesto.", "Apartar la mirada es respetuoso en su familia o cultura.", "Está distraído.", "Es tímido."] },
-        "lesson": { "en": "One cue can mean many things. Context matters, and body language cannot tell you whether someone is lying or what they privately think. When it matters, ask.", "es": "Una señal puede significar muchas cosas. El contexto importa, y el lenguaje corporal no puede decirte si alguien miente ni lo que piensa en privado. Cuando importa, pregunta." } },
-      "mismatch": { "en": "When words and voice don't match (\"I'm fine,\" said sharply), listeners notice the mismatch. A good communicator checks: \"You said you're fine, but you sound upset. Is something wrong?\"", "es": "Cuando las palabras y la voz no coinciden (\"Estoy bien\", dicho con brusquedad), quien escucha nota la diferencia. Un buen comunicador verifica: \"Dices que estás bien, pero suenas molesto. ¿Pasa algo?\"" },
-      "watchFor": { "en": ["Facial expressions", "Posture and gestures", "Eye contact", "Tone, volume and pace"], "es": ["Expresiones faciales", "Postura y gestos", "Contacto visual", "Tono, volumen y ritmo"] } },
-    { "id": "perspectives", "title": { "en": "Two Perspectives", "es": "Dos perspectivas" },
-      "intro": { "en": "Neither student is the villain. Sort what each one actually says from what we do not know.", "es": "Ninguno de los dos es el villano. Separa lo que cada uno dice realmente de lo que no sabemos." },
-      "items": [
-        { "id": "p1", "text": { "en": "Jordan finished almost the entire project alone.", "es": "Jordan terminó casi todo el proyecto solo." }, "answer": "said", "why": { "en": "Jordan says this. It is Jordan's view; Alex's view is not heard.", "es": "Jordan lo dice. Es la visión de Jordan; no se escucha la de Alex." } },
-        { "id": "p2", "text": { "en": "Alex has been dealing with something.", "es": "Alex ha estado lidiando con algo." }, "answer": "said", "why": { "en": "Alex says this, but not what it is.", "es": "Alex lo dice, pero no qué es." } },
-        { "id": "p3", "text": { "en": "What Alex has been dealing with.", "es": "Con qué ha estado lidiando Alex." }, "answer": "unknown", "why": { "en": "Alex is interrupted before explaining.", "es": "Interrumpen a Alex antes de que lo explique." } },
-        { "id": "p4", "text": { "en": "Whether Jordan asked Alex for help earlier.", "es": "Si Jordan le pidió ayuda a Alex antes." }, "answer": "unknown", "why": { "en": "The episode does not say.", "es": "El episodio no lo dice." } },
-        { "id": "p5", "text": { "en": "Jordan feels frustrated.", "es": "Jordan se siente frustrado." }, "answer": "unknown", "why": { "en": "Likely, but Jordan never names a feeling. Treat it as a guess to check, not a fact.", "es": "Es probable, pero Jordan nunca nombra un sentimiento. Trátalo como una suposición que hay que comprobar, no como un hecho." } },
-        { "id": "p6", "text": { "en": "Alex tried to explain.", "es": "Alex intentó explicar." }, "answer": "said", "why": { "en": "\"I was trying to—\" shows Alex started to explain.", "es": "\"Estaba tratando de—\" muestra que Alex empezó a explicar." } },
-        { "id": "p7", "text": { "en": "Alex wants to quit the project.", "es": "Alex quiere dejar el proyecto." }, "answer": "unknown", "why": { "en": "\"Just do it yourself\" may be anger in the moment. We do not know what Alex wants.", "es": "\"Hazlo tú solo\" puede ser enojo del momento. No sabemos qué quiere Alex." } }
-      ],
-      "write": [
-        { "id": "jordan", "prompt": { "en": "What might Jordan need from Alex? (Use what Jordan says as evidence.)", "es": "¿Qué podría necesitar Jordan de Alex? (Usa lo que dice Jordan como evidencia.)" } },
-        { "id": "alex", "prompt": { "en": "What might Alex need from Jordan? (Use what Alex says as evidence.)", "es": "¿Qué podría necesitar Alex de Jordan? (Usa lo que dice Alex como evidencia.)" } },
-        { "id": "check", "prompt": { "en": "Write a perception check Jordan could have said instead of line 3: \"I noticed ___. I'm wondering if ___. Is that right?\"", "es": "Escribe una verificación de percepción que Jordan pudo decir en lugar de la línea 3: \"Noté que ___. Me pregunto si ___. ¿Es así?\"" } }
-      ] },
-    { "id": "change", "title": { "en": "Change the Conversation", "es": "Cambia la conversación" },
-      "intro": { "en": "Practice version: choose what to say and see where each choice leads. These lines are practice dialogue, not part of the film. Reach a conversation that solves the problem in both scenes. Retry as often as you like.", "es": "Versión de práctica: elige qué decir y mira a dónde lleva cada opción. Estas líneas son diálogo de práctica, no parte del cortometraje. Llega a una conversación que resuelva el problema en ambas escenas. Inténtalo cuantas veces quieras." },
-      "scenes": [
-        { "id": "A", "role": "Jordan", "title": { "en": "Scene A: You are Jordan", "es": "Escena A: Eres Jordan" },
-          "setup": { "en": "The project is due tomorrow. You did most of it. Alex has just arrived.", "es": "El proyecto se entrega mañana. Tú hiciste la mayor parte. Alex acaba de llegar." },
-          "start": "a1",
-          "nodes": {
-            "a1": { "choices": [
-              { "say": { "en": "Seriously, Alex? You never take anything seriously.", "es": "¿En serio, Alex? Nunca te tomas nada en serio." }, "skills": ["accusatory language", "overgeneralization"], "good": false, "why": { "en": "This is the film's opening: it blames and generalizes, so Alex gets defensive before the problem is even named.", "es": "Así empieza el cortometraje: culpa y generaliza, así que Alex se pone a la defensiva antes de nombrar el problema." }, "reply": { "en": "What are you talking about? You don't even know what I've been dealing with.", "es": "¿De qué hablas? Ni siquiera sabes con qué he estado lidiando." }, "end": "escalated" },
-              { "say": { "en": "I feel stressed because I've done most of the project and it's due tomorrow. Can we talk about what happened?", "es": "Me siento estresado porque hice la mayor parte del proyecto y se entrega mañana. ¿Podemos hablar de lo que pasó?" }, "skills": ["I-statement", "open-ended question"], "good": true, "why": { "en": "An I-statement names your feeling and the problem without blaming, and the open question invites Alex to explain.", "es": "Un mensaje en primera persona nombra tu sentimiento y el problema sin culpar, y la pregunta abierta invita a Alex a explicar." }, "reply": { "en": "Yeah… I've had a lot going on at home this week. I should have told you.", "es": "Sí… he tenido muchas cosas en casa esta semana. Debí decírtelo." }, "next": "a2" },
-              { "say": { "en": "Whatever. I'll just finish it myself.", "es": "Como quieras. Lo termino yo solo." }, "skills": ["withdrawal"], "good": false, "why": { "en": "Withdrawing avoids the argument, but the problem and the resentment stay.", "es": "Retirarte evita la discusión, pero el problema y el resentimiento se quedan." }, "end": "withdrawn" } ] },
-            "a2": { "choices": [
-              { "say": { "en": "That's still an excuse.", "es": "Eso sigue siendo una excusa." }, "skills": ["dismissing", "assumption"], "good": false, "why": { "en": "Calling Alex's reason an excuse shuts down the explanation you just asked for.", "es": "Llamar excusa a la razón de Alex cierra la explicación que acabas de pedir." }, "reply": { "en": "Then why did you even ask?", "es": "¿Entonces para qué preguntaste?" }, "end": "escalated" },
-              { "say": { "en": "That sounds hard. So you've had a lot going on and couldn't keep up. Is that right? What part could you take on tonight?", "es": "Eso suena difícil. O sea, has tenido muchas cosas y no pudiste seguir el ritmo. ¿Es así? ¿Qué parte podrías hacer esta noche?" }, "skills": ["empathy", "paraphrasing", "perception check", "collaborative problem-solving"], "good": true, "why": { "en": "You show empathy, check your understanding, and move to a shared plan.", "es": "Muestras empatía, compruebas que entendiste y pasan a un plan compartido." }, "reply": { "en": "Yes. I can finish the slides tonight and practice my part with you before class.", "es": "Sí. Puedo terminar las diapositivas esta noche y practicar mi parte contigo antes de clase." }, "end": "repaired" },
-              { "say": { "en": "Okay. I'll do everything then.", "es": "Está bien. Entonces lo hago todo yo." }, "skills": ["not assertive"], "good": false, "why": { "en": "You stay calm, but you give up your own needs. Being assertive means asking for what is fair.", "es": "Te mantienes en calma, pero renuncias a lo que necesitas. Ser asertivo es pedir lo que es justo." }, "end": "unresolved" } ] }
-          } },
-        { "id": "B", "role": "Alex", "title": { "en": "Scene B: You are Alex", "es": "Escena B: Eres Alex" },
-          "setup": { "en": "Jordan says the film's first line: \"Seriously, Alex? I had to finish almost the entire project by myself. You never take anything seriously.\"", "es": "Jordan dice la primera línea del cortometraje: \"¿En serio, Alex? Tuve que terminar casi todo el proyecto yo solo. Nunca te tomas nada en serio\"." },
-          "start": "b1",
-          "nodes": {
-            "b1": { "choices": [
-              { "say": { "en": "What are you talking about? You don't even know what I've been dealing with.", "es": "¿De qué hablas? Ni siquiera sabes con qué he estado lidiando." }, "skills": ["defensiveness"], "good": false, "why": { "en": "This is the film's reply: it defends instead of acknowledging Jordan's concern, and the argument grows.", "es": "Así responde el cortometraje: se defiende en lugar de reconocer la preocupación de Jordan, y la discusión crece." }, "reply": { "en": "There's always an excuse.", "es": "Siempre hay una excusa." }, "end": "escalated" },
-              { "say": { "en": "You did a lot of the work, and you sound really frustrated. I haven't told you what's been going on. Can I explain?", "es": "Hiciste mucho del trabajo y suenas muy frustrado. No te he contado lo que me ha pasado. ¿Puedo explicarte?" }, "skills": ["acknowledging", "empathy", "assertive request"], "good": true, "why": { "en": "You acknowledge Jordan's point first, then ask for a chance to explain. That lowers the temperature.", "es": "Primero reconoces lo que dice Jordan y luego pides la oportunidad de explicar. Eso baja la tensión." }, "reply": { "en": "Fine. But I really needed help this week.", "es": "Está bien. Pero de verdad necesitaba ayuda esta semana." }, "next": "b2" },
-              { "say": { "en": "Whatever. Just do it yourself.", "es": "Como quieras. Hazlo tú solo." }, "skills": ["withdrawal"], "good": false, "why": { "en": "Walking away protects you for a moment, but the project and the partnership both lose.", "es": "Irte te protege un momento, pero pierden el proyecto y la relación de trabajo." }, "end": "withdrawn" } ] },
-            "b2": { "choices": [
-              { "say": { "en": "Well, you never asked me.", "es": "Bueno, nunca me preguntaste." }, "skills": ["blame shifting", "overgeneralization"], "good": false, "why": { "en": "Answering blame with blame, plus a \"never,\" restarts the argument.", "es": "Responder a la culpa con culpa, más un \"nunca\", reinicia la discusión." }, "reply": { "en": "So now it's my fault?", "es": "¿Y ahora es mi culpa?" }, "end": "escalated" },
-              { "say": { "en": "I hear you: you needed help and I wasn't there. I've had a lot going on at home. I can finish the slides tonight. Would that help?", "es": "Te entiendo: necesitabas ayuda y no estuve. He tenido muchas cosas en casa. Puedo terminar las diapositivas esta noche. ¿Eso ayudaría?" }, "skills": ["paraphrasing", "I-statement", "collaborative problem-solving"], "good": true, "why": { "en": "You paraphrase Jordan's need, share your side without excuses, and offer a concrete fix.", "es": "Parafraseas lo que necesita Jordan, compartes tu lado sin excusas y ofreces una solución concreta." }, "reply": { "en": "Yes, that would help. Thanks for telling me.", "es": "Sí, eso ayudaría. Gracias por decírmelo." }, "end": "repaired" },
-              { "say": { "en": "Sorry.", "es": "Perdón." }, "skills": ["incomplete repair"], "good": false, "why": { "en": "An apology is a start, but without listening or a plan, the problem is still there.", "es": "Una disculpa es un comienzo, pero sin escuchar ni un plan, el problema sigue ahí." }, "end": "unresolved" } ] }
-          } }
-      ],
-      "endings": {
-        "repaired": { "en": "Repaired: you both understand each other and have a plan.", "es": "Reparada: se entienden y tienen un plan." },
-        "escalated": { "en": "Escalated: the conflict grew and the problem is still there.", "es": "Escalada: el conflicto creció y el problema sigue ahí." },
-        "withdrawn": { "en": "Withdrawn: the conversation ended, but nothing was solved.", "es": "Retirada: la conversación terminó, pero no se resolvió nada." },
-        "unresolved": { "en": "Unresolved: calmer, but the problem is not fixed.", "es": "Sin resolver: más calma, pero el problema no está arreglado." }
-      } },
-    { "id": "apply", "title": { "en": "Reflect and Apply", "es": "Reflexiona y aplica" },
-      "intro": { "en": "New situations, same skills. Score 4 of 5 to show you can apply them. Retry as often as you like; your best score counts.", "es": "Situaciones nuevas, las mismas habilidades. Obtén 4 de 5 para mostrar que puedes aplicarlas. Inténtalo cuantas veces quieras; cuenta tu mejor puntuación." },
-      "pass": 4,
-      "questions": [
-        { "id": "q1", "q": { "en": "In a group chat, a teammate writes: \"You ALWAYS ignore my ideas.\" Which barrier is this?", "es": "En un chat de grupo, un compañero escribe: \"SIEMPRE ignoras mis ideas\". ¿Qué barrera es?" },
-          "options": [ { "t": { "en": "Overgeneralization", "es": "Generalización excesiva" }, "ok": true }, { "t": { "en": "Paraphrasing", "es": "Parafrasear" } }, { "t": { "en": "Withdrawal", "es": "Retirada" } }, { "t": { "en": "Active listening", "es": "Escucha activa" } } ],
-          "why": { "en": "\"Always\" turns one moment into a judgment about the whole person.", "es": "\"Siempre\" convierte un momento en un juicio sobre toda la persona." } },
-        { "id": "q2", "q": { "en": "A friend arrives late to practice again. Which is the best I-statement?", "es": "Un amigo llega tarde al ensayo otra vez. ¿Cuál es el mejor mensaje en primera persona?" },
-          "options": [ { "t": { "en": "You are always late.", "es": "Siempre llegas tarde." } }, { "t": { "en": "I feel worried when we start late because we lose practice time. Could we meet ten minutes early?", "es": "Me preocupo cuando empezamos tarde porque perdemos tiempo de ensayo. ¿Podríamos vernos diez minutos antes?" }, "ok": true }, { "t": { "en": "Whatever, it's fine.", "es": "Como quieras, no importa." } }, { "t": { "en": "Why are you so careless?", "es": "¿Por qué eres tan descuidado?" } } ],
-          "why": { "en": "It names a feeling, the situation and the effect, then asks for a specific change.", "es": "Nombra un sentimiento, la situación y el efecto, y luego pide un cambio concreto." } },
-        { "id": "q3", "q": { "en": "Your partner starts to explain, and you cut in before they finish. Which barrier is that?", "es": "Tu compañero empieza a explicar y lo cortas antes de que termine. ¿Qué barrera es?" },
-          "options": [ { "t": { "en": "Interrupting", "es": "Interrumpir" }, "ok": true }, { "t": { "en": "Empathy", "es": "Empatía" } }, { "t": { "en": "Perception checking", "es": "Verificación de percepciones" } }, { "t": { "en": "Paralanguage", "es": "Paralenguaje" } } ],
-          "why": { "en": "Cutting someone off means their message is never heard, as happened to Alex.", "es": "Cortar a alguien hace que su mensaje nunca se escuche, como le pasó a Alex." } },
-        { "id": "q4", "q": { "en": "A classmate got quiet after a meeting. Which is a perception check?", "es": "Un compañero se quedó callado después de una reunión. ¿Cuál es una verificación de percepción?" },
-          "options": [ { "t": { "en": "You're obviously mad at me.", "es": "Es obvio que estás enojado conmigo." } }, { "t": { "en": "I noticed you got quiet after the meeting. I'm wondering if something bothered you. Is that right?", "es": "Noté que te quedaste callado después de la reunión. Me pregunto si algo te molestó. ¿Es así?" }, "ok": true }, { "t": { "en": "Don't be so sensitive.", "es": "No seas tan sensible." } }, { "t": { "en": "Let's not talk about it.", "es": "Mejor no hablemos de eso." } } ],
-          "why": { "en": "It describes what you noticed, offers one possible meaning, and asks instead of assuming.", "es": "Describe lo que notaste, ofrece un posible significado y pregunta en lugar de suponer." } },
-        { "id": "q5", "q": { "en": "Your sibling says, \"You never help with chores.\" Which reply is most likely to calm things down and solve the problem?", "es": "Tu hermano dice: \"Nunca ayudas con los quehaceres\". ¿Qué respuesta tiene más probabilidad de calmar las cosas y resolver el problema?" },
-          "options": [ { "t": { "en": "That's not true, you never help either.", "es": "No es cierto, tú tampoco ayudas nunca." } }, { "t": { "en": "Whatever.", "es": "Como quieras." } }, { "t": { "en": "It sounds like you feel you're doing most of the chores. Which ones do you want me to take?", "es": "Parece que sientes que haces la mayoría de los quehaceres. ¿Cuáles quieres que yo haga?" }, "ok": true }, { "t": { "en": "Sorry.", "es": "Perdón." } } ],
-          "why": { "en": "Paraphrasing shows you listened, and the question moves to a solution.", "es": "Parafrasear muestra que escuchaste, y la pregunta lleva a una solución." } }
-      ],
-      "reflect": [
-        { "id": "r1", "prompt": { "en": "Name two barriers from the episode and the consequence of each.", "es": "Nombra dos barreras del episodio y la consecuencia de cada una." } },
-        { "id": "r2", "prompt": { "en": "Recommend one strategy for Jordan and one for Alex.", "es": "Recomienda una estrategia para Jordan y otra para Alex." } },
-        { "id": "r3", "prompt": { "en": "Describe how you would use one strategy in a group project. You may describe a real or an imagined situation.", "es": "Describe cómo usarías una estrategia en un proyecto de grupo. Puedes describir una situación real o imaginada." } }
-      ] }
-  ],
-  "mastery": { "detective": "all barriers matched to correct evidence", "change": "both scenes repaired", "apply": "4 of 5" }
+  {
+   "id": "detective",
+   "title": {
+    "en": "Communication Detective",
+    "es": "Detective de la comunicación"
+   },
+   "intro": {
+    "en": "For each barrier, choose the line that is your evidence. If the words give no evidence, say so. Retry as often as you like.",
+    "es": "Para cada barrera, elige la línea que es tu evidencia. Si las palabras no dan evidencia, dilo. Inténtalo cuantas veces quieras."
+   },
+   "barriers": [
+    {
+     "id": "accuse",
+     "name": {
+      "en": "Accusatory language",
+      "es": "Lenguaje acusatorio"
+     },
+     "def": {
+      "en": "Blaming the person with \"you\" statements.",
+      "es": "Culpar a la persona con frases de \"tú\"."
+     },
+     "evidence": [
+      "l1",
+      "l3"
+     ],
+     "why": {
+      "en": "\"You never take anything seriously\" and \"Why am I even working with you?\" attack Alex instead of describing the problem.",
+      "es": "\"Nunca te tomas nada en serio\" y \"¿Por qué estoy trabajando contigo?\" atacan a Alex en lugar de describir el problema."
+     }
+    },
+    {
+     "id": "general",
+     "name": {
+      "en": "Overgeneralization",
+      "es": "Generalización excesiva"
+     },
+     "def": {
+      "en": "Always/never statements about a person.",
+      "es": "Frases de siempre/nunca sobre una persona."
+     },
+     "evidence": [
+      "l1",
+      "l3"
+     ],
+     "why": {
+      "en": "\"Never\" (Jordan's first line) and \"always\" (\"There's always an excuse\") turn one situation into a judgment of Alex.",
+      "es": "\"Nunca\" (primera línea de Jordan) y \"siempre\" (\"Siempre hay una excusa\") convierten una situación en un juicio sobre Alex."
+     }
+    },
+    {
+     "id": "defend",
+     "name": {
+      "en": "Defensiveness",
+      "es": "Actitud defensiva"
+     },
+     "def": {
+      "en": "Protecting yourself instead of hearing the concern.",
+      "es": "Protegerte en lugar de escuchar la preocupación."
+     },
+     "evidence": [
+      "l2"
+     ],
+     "why": {
+      "en": "\"What are you talking about? You don't even know…\" answers the accusation with a counter-attack before addressing the work.",
+      "es": "\"¿De qué hablas? Ni siquiera sabes…\" responde a la acusación con un contraataque antes de hablar del trabajo."
+     }
+    },
+    {
+     "id": "interrupt",
+     "name": {
+      "en": "Interrupting",
+      "es": "Interrumpir"
+     },
+     "def": {
+      "en": "Cutting someone off before they finish.",
+      "es": "Cortar a alguien antes de que termine."
+     },
+     "evidence": [
+      "l2",
+      "l3"
+     ],
+     "why": {
+      "en": "Alex's sentence ends at \"I was trying to—\" and Jordan speaks next, so Alex's explanation is never heard.",
+      "es": "La oración de Alex termina en \"Estaba tratando de—\" y Jordan habla después, así que nunca se escucha la explicación de Alex."
+     }
+    },
+    {
+     "id": "assume",
+     "name": {
+      "en": "Assumptions",
+      "es": "Suposiciones"
+     },
+     "def": {
+      "en": "Treating a guess about the other person as fact.",
+      "es": "Tratar una suposición sobre la otra persona como un hecho."
+     },
+     "evidence": [
+      "l3",
+      "l4"
+     ],
+     "why": {
+      "en": "Jordan calls Alex's reason an excuse without hearing it; Alex decides \"that's what you think of me\" without checking.",
+      "es": "Jordan llama excusa a la razón de Alex sin oírla; Alex decide \"eso es lo que piensas de mí\" sin comprobarlo."
+     }
+    },
+    {
+     "id": "listen",
+     "name": {
+      "en": "Poor listening",
+      "es": "No escuchar bien"
+     },
+     "def": {
+      "en": "Responding without trying to understand.",
+      "es": "Responder sin intentar entender."
+     },
+     "evidence": [
+      "l3"
+     ],
+     "why": {
+      "en": "Alex says Jordan doesn't know what Alex has been dealing with; Jordan never asks.",
+      "es": "Alex dice que Jordan no sabe con qué ha estado lidiando; Jordan nunca pregunta."
+     }
+    },
+    {
+     "id": "escalate",
+     "name": {
+      "en": "Emotional escalation",
+      "es": "Escalada emocional"
+     },
+     "def": {
+      "en": "Each response raises the intensity.",
+      "es": "Cada respuesta aumenta la intensidad."
+     },
+     "evidence": [
+      "l3"
+     ],
+     "why": {
+      "en": "\"Why am I even working with you?\" moves from the project to the whole partnership.",
+      "es": "\"¿Por qué estoy trabajando contigo?\" pasa del proyecto a toda la relación de trabajo."
+     }
+    },
+    {
+     "id": "withdraw",
+     "name": {
+      "en": "Withdrawal",
+      "es": "Retirada"
+     },
+     "def": {
+      "en": "Leaving the problem instead of working on it.",
+      "es": "Abandonar el problema en lugar de trabajarlo."
+     },
+     "evidence": [
+      "l4"
+     ],
+     "why": {
+      "en": "\"Whatever… just do it yourself\" ends the conversation with the problem unsolved.",
+      "es": "\"Como quieras… hazlo tú sola\" termina la conversación con el problema sin resolver."
+     }
+    },
+    {
+     "id": "techno",
+     "name": {
+      "en": "Technoference (a phone or device getting in the way)",
+      "es": "Tecnointerferencia (un teléfono o aparato que interfiere)"
+     },
+     "def": {
+      "en": "Attention pulled away by a device.",
+      "es": "La atención se desvía por un aparato."
+     },
+     "evidence": [
+      "none"
+     ],
+     "why": {
+      "en": "The dialogue alone does not establish technoference. Now observe the opening of the film. Alex is holding a phone while Jordan is working on the group assignment.\n\nDoes the presence of a phone automatically mean that technoference is occurring? What additional evidence would help you determine whether technology is interfering with their communication or collaboration?\n\nDiscuss your observations with a partner. Distinguish what you can directly observe from what you are assuming.",
+      "es": "El diálogo por sí solo no demuestra tecnointerferencia. Ahora observa el inicio del cortometraje. Alex tiene un teléfono en la mano mientras Jordan trabaja en la tarea del grupo.\n\n¿La presencia de un teléfono significa automáticamente que hay tecnointerferencia? ¿Qué otra evidencia te ayudaría a determinar si la tecnología está interfiriendo con su comunicación o su colaboración?\n\nComenta tus observaciones con un compañero. Distingue lo que puedes observar directamente de lo que estás suponiendo."
+     }
+    }
+   ]
+  },
+  {
+   "id": "words",
+   "title": {
+    "en": "Beyond Words",
+    "es": "Más allá de las palabras"
+   },
+   "intro": {
+    "en": "Messages travel three ways: the words (verbal), the body (nonverbal: face, gestures, posture, eye contact) and the voice (paralanguage: tone, volume, speed, pauses). These examples are general practice, not descriptions of the film.",
+    "es": "Los mensajes viajan de tres maneras: las palabras (verbal), el cuerpo (no verbal: cara, gestos, postura, contacto visual) y la voz (paralenguaje: tono, volumen, velocidad, pausas). Estos ejemplos son práctica general, no descripciones del cortometraje."
+   },
+   "items": [
+    {
+     "id": "w1",
+     "text": {
+      "en": "Saying \"I'm fine.\"",
+      "es": "Decir \"Estoy bien\"."
+     },
+     "answer": "verbal",
+     "why": {
+      "en": "The message is in the words themselves.",
+      "es": "El mensaje está en las palabras mismas."
+     }
+    },
+    {
+     "id": "w2",
+     "text": {
+      "en": "Folding your arms while someone talks.",
+      "es": "Cruzar los brazos mientras alguien habla."
+     },
+     "answer": "nonverbal",
+     "why": {
+      "en": "Posture is body language, and it can mean many things: cold, comfortable, closed off, or none of these.",
+      "es": "La postura es lenguaje corporal y puede significar muchas cosas: frío, comodidad, cerrarse, o nada de eso."
+     }
+    },
+    {
+     "id": "w3",
+     "text": {
+      "en": "Saying \"Seriously?\" in a sharp, rising voice.",
+      "es": "Decir \"¿En serio?\" con una voz aguda y que sube."
+     },
+     "answer": "para",
+     "why": {
+      "en": "The tone of voice changes the meaning of the same word.",
+      "es": "El tono de voz cambia el significado de la misma palabra."
+     }
+    },
+    {
+     "id": "w4",
+     "text": {
+      "en": "A long sigh before answering.",
+      "es": "Un suspiro largo antes de responder."
+     },
+     "answer": "para",
+     "why": {
+      "en": "Sighs and pauses are vocal but not words: paralanguage.",
+      "es": "Los suspiros y las pausas son de la voz pero no son palabras: paralenguaje."
+     }
+    },
+    {
+     "id": "w5",
+     "text": {
+      "en": "Looking at a phone while a partner is speaking.",
+      "es": "Mirar el teléfono mientras tu compañero habla."
+     },
+     "answer": "nonverbal",
+     "why": {
+      "en": "Where you put your attention sends a message without words.",
+      "es": "Dónde pones tu atención envía un mensaje sin palabras."
+     }
+    },
+    {
+     "id": "w6",
+     "text": {
+      "en": "Talking faster and louder as you get upset.",
+      "es": "Hablar más rápido y más fuerte al enojarte."
+     },
+     "answer": "para",
+     "why": {
+      "en": "Speed and volume are part of how a message sounds.",
+      "es": "La velocidad y el volumen son parte de cómo suena un mensaje."
+     }
+    }
+   ],
+   "interpret": {
+    "cue": {
+     "en": "Someone looks away while you are talking.",
+     "es": "Alguien aparta la mirada mientras hablas."
+    },
+    "meanings": {
+     "en": [
+      "They are thinking.",
+      "They feel uncomfortable or upset.",
+      "Looking away is respectful in their family or culture.",
+      "They are distracted.",
+      "They are shy."
+     ],
+     "es": [
+      "Está pensando.",
+      "Se siente incómodo o molesto.",
+      "Apartar la mirada es respetuoso en su familia o cultura.",
+      "Está distraído.",
+      "Es tímido."
+     ]
+    },
+    "lesson": {
+     "en": "One cue can mean many things. Context matters, and body language cannot tell you whether someone is lying or what they privately think. When it matters, ask.",
+     "es": "Una señal puede significar muchas cosas. El contexto importa, y el lenguaje corporal no puede decirte si alguien miente ni lo que piensa en privado. Cuando importa, pregunta."
+    }
+   },
+   "mismatch": {
+    "en": "When words and voice don't match (\"I'm fine,\" said sharply), listeners notice the mismatch. A good communicator checks: \"You said you're fine, but you sound upset. Is something wrong?\"",
+    "es": "Cuando las palabras y la voz no coinciden (\"Estoy bien\", dicho con brusquedad), quien escucha nota la diferencia. Un buen comunicador verifica: \"Dices que estás bien, pero suenas molesto. ¿Pasa algo?\""
+   },
+   "watchFor": {
+    "en": [
+     "Facial expressions",
+     "Posture and gestures",
+     "Eye contact",
+     "Tone, volume and pace"
+    ],
+    "es": [
+     "Expresiones faciales",
+     "Postura y gestos",
+     "Contacto visual",
+     "Tono, volumen y ritmo"
+    ]
+   }
+  },
+  {
+   "id": "perspectives",
+   "title": {
+    "en": "Two Perspectives",
+    "es": "Dos perspectivas"
+   },
+   "intro": {
+    "en": "Neither student is the villain. Sort what each one actually says from what we do not know.",
+    "es": "Ninguno de los dos es el villano. Separa lo que cada uno dice realmente de lo que no sabemos."
+   },
+   "items": [
+    {
+     "id": "p1",
+     "text": {
+      "en": "Jordan finished almost the entire project alone.",
+      "es": "Jordan terminó casi todo el proyecto sola."
+     },
+     "answer": "said",
+     "why": {
+      "en": "Jordan says this. It is Jordan's view; Alex's view is not heard.",
+      "es": "Jordan lo dice. Es la visión de Jordan; no se escucha la de Alex."
+     }
+    },
+    {
+     "id": "p2",
+     "text": {
+      "en": "Alex has been dealing with something.",
+      "es": "Alex ha estado lidiando con algo."
+     },
+     "answer": "said",
+     "why": {
+      "en": "Alex says this, but not what it is.",
+      "es": "Alex lo dice, pero no qué es."
+     }
+    },
+    {
+     "id": "p3",
+     "text": {
+      "en": "What Alex has been dealing with.",
+      "es": "Con qué ha estado lidiando Alex."
+     },
+     "answer": "unknown",
+     "why": {
+      "en": "Alex is interrupted before explaining.",
+      "es": "Interrumpen a Alex antes de que lo explique."
+     }
+    },
+    {
+     "id": "p4",
+     "text": {
+      "en": "Whether Jordan asked Alex for help earlier.",
+      "es": "Si Jordan le pidió ayuda a Alex antes."
+     },
+     "answer": "unknown",
+     "why": {
+      "en": "The episode does not say.",
+      "es": "El episodio no lo dice."
+     }
+    },
+    {
+     "id": "p5",
+     "text": {
+      "en": "Jordan feels frustrated.",
+      "es": "Jordan se siente frustrada."
+     },
+     "answer": "unknown",
+     "why": {
+      "en": "Likely, but Jordan never names a feeling. Treat it as a guess to check, not a fact.",
+      "es": "Es probable, pero Jordan nunca nombra un sentimiento. Trátalo como una suposición que hay que comprobar, no como un hecho."
+     }
+    },
+    {
+     "id": "p6",
+     "text": {
+      "en": "Alex tried to explain.",
+      "es": "Alex intentó explicar."
+     },
+     "answer": "said",
+     "why": {
+      "en": "\"I was trying to—\" shows Alex started to explain.",
+      "es": "\"Estaba tratando de—\" muestra que Alex empezó a explicar."
+     }
+    },
+    {
+     "id": "p7",
+     "text": {
+      "en": "Alex wants to quit the project.",
+      "es": "Alex quiere dejar el proyecto."
+     },
+     "answer": "unknown",
+     "why": {
+      "en": "\"Just do it yourself\" may be anger in the moment. We do not know what Alex wants.",
+      "es": "\"Hazlo tú sola\" puede ser enojo del momento. No sabemos qué quiere Alex."
+     }
+    }
+   ],
+   "write": [
+    {
+     "id": "jordan",
+     "prompt": {
+      "en": "What might Jordan need from Alex? (Use what Jordan says as evidence.)",
+      "es": "¿Qué podría necesitar Jordan de Alex? (Usa lo que dice Jordan como evidencia.)"
+     }
+    },
+    {
+     "id": "alex",
+     "prompt": {
+      "en": "What might Alex need from Jordan? (Use what Alex says as evidence.)",
+      "es": "¿Qué podría necesitar Alex de Jordan? (Usa lo que dice Alex como evidencia.)"
+     }
+    },
+    {
+     "id": "check",
+     "prompt": {
+      "en": "Write a perception check Jordan could have said instead of line 3: \"I noticed ___. I'm wondering if ___. Is that right?\"",
+      "es": "Escribe una verificación de percepción que Jordan pudo decir en lugar de la línea 3: \"Noté que ___. Me pregunto si ___. ¿Es así?\""
+     }
+    }
+   ]
+  },
+  {
+   "id": "change",
+   "title": {
+    "en": "Change the Conversation",
+    "es": "Cambia la conversación"
+   },
+   "intro": {
+    "en": "Practice version: choose what to say and see where each choice leads. These lines are practice dialogue, not part of the film. Reach a conversation that solves the problem in both scenes. Retry as often as you like.",
+    "es": "Versión de práctica: elige qué decir y mira a dónde lleva cada opción. Estas líneas son diálogo de práctica, no parte del cortometraje. Llega a una conversación que resuelva el problema en ambas escenas. Inténtalo cuantas veces quieras."
+   },
+   "scenes": [
+    {
+     "id": "A",
+     "role": "Jordan",
+     "title": {
+      "en": "Scene A: You are Jordan",
+      "es": "Escena A: Eres Jordan"
+     },
+     "setup": {
+      "en": "The project is due tomorrow. You did most of it. Alex has just arrived.",
+      "es": "El proyecto se entrega mañana. Tú hiciste la mayor parte. Alex acaba de llegar."
+     },
+     "start": "a1",
+     "nodes": {
+      "a1": {
+       "choices": [
+        {
+         "say": {
+          "en": "Seriously, Alex? You never take anything seriously.",
+          "es": "¿En serio, Alex? Nunca te tomas nada en serio."
+         },
+         "skills": [
+          "accusatory language",
+          "overgeneralization"
+         ],
+         "good": false,
+         "why": {
+          "en": "This is the film's opening: it blames and generalizes, so Alex gets defensive before the problem is even named.",
+          "es": "Así empieza el cortometraje: culpa y generaliza, así que Alex se pone a la defensiva antes de nombrar el problema."
+         },
+         "reply": {
+          "en": "What are you talking about? You don't even know what I've been dealing with.",
+          "es": "¿De qué hablas? Ni siquiera sabes con qué he estado lidiando."
+         },
+         "end": "escalated"
+        },
+        {
+         "say": {
+          "en": "I feel stressed because I've done most of the project and it's due tomorrow. Can we talk about what happened?",
+          "es": "Me siento estresada porque hice la mayor parte del proyecto y se entrega mañana. ¿Podemos hablar de lo que pasó?"
+         },
+         "skills": [
+          "I-statement",
+          "open-ended question"
+         ],
+         "good": true,
+         "why": {
+          "en": "An I-statement names your feeling and the problem without blaming, and the open question invites Alex to explain.",
+          "es": "Un mensaje en primera persona nombra tu sentimiento y el problema sin culpar, y la pregunta abierta invita a Alex a explicar."
+         },
+         "reply": {
+          "en": "Yeah… I've had a lot going on at home this week. I should have told you.",
+          "es": "Sí… he tenido muchas cosas en casa esta semana. Debí decírtelo."
+         },
+         "next": "a2"
+        },
+        {
+         "say": {
+          "en": "Whatever. I'll just finish it myself.",
+          "es": "Como quieras. Lo termino yo sola."
+         },
+         "skills": [
+          "withdrawal"
+         ],
+         "good": false,
+         "why": {
+          "en": "Withdrawing avoids the argument, but the problem and the resentment stay.",
+          "es": "Retirarte evita la discusión, pero el problema y el resentimiento se quedan."
+         },
+         "end": "withdrawn"
+        }
+       ]
+      },
+      "a2": {
+       "choices": [
+        {
+         "say": {
+          "en": "That's still an excuse.",
+          "es": "Eso sigue siendo una excusa."
+         },
+         "skills": [
+          "dismissing",
+          "assumption"
+         ],
+         "good": false,
+         "why": {
+          "en": "Calling Alex's reason an excuse shuts down the explanation you just asked for.",
+          "es": "Llamar excusa a la razón de Alex cierra la explicación que acabas de pedir."
+         },
+         "reply": {
+          "en": "Then why did you even ask?",
+          "es": "¿Entonces para qué preguntaste?"
+         },
+         "end": "escalated"
+        },
+        {
+         "say": {
+          "en": "That sounds hard. So you've had a lot going on and couldn't keep up. Is that right? What part could you take on tonight?",
+          "es": "Eso suena difícil. O sea, has tenido muchas cosas y no pudiste seguir el ritmo. ¿Es así? ¿Qué parte podrías hacer esta noche?"
+         },
+         "skills": [
+          "empathy",
+          "paraphrasing",
+          "perception check",
+          "collaborative problem-solving"
+         ],
+         "good": true,
+         "why": {
+          "en": "You show empathy, check your understanding, and move to a shared plan.",
+          "es": "Muestras empatía, compruebas que entendiste y pasan a un plan compartido."
+         },
+         "reply": {
+          "en": "Yes. I can finish the slides tonight and practice my part with you before class.",
+          "es": "Sí. Puedo terminar las diapositivas esta noche y practicar mi parte contigo antes de clase."
+         },
+         "end": "repaired"
+        },
+        {
+         "say": {
+          "en": "Okay. I'll do everything then.",
+          "es": "Está bien. Entonces lo hago todo yo."
+         },
+         "skills": [
+          "not assertive"
+         ],
+         "good": false,
+         "why": {
+          "en": "You stay calm, but you give up your own needs. Being assertive means asking for what is fair.",
+          "es": "Te mantienes en calma, pero renuncias a lo que necesitas. Ser asertivo es pedir lo que es justo."
+         },
+         "end": "unresolved"
+        }
+       ]
+      }
+     }
+    },
+    {
+     "id": "B",
+     "role": "Alex",
+     "title": {
+      "en": "Scene B: You are Alex",
+      "es": "Escena B: Eres Alex"
+     },
+     "setup": {
+      "en": "Jordan says the film's first line: \"Seriously, Alex? I had to finish almost the entire project by myself. You never take anything seriously.\"",
+      "es": "Jordan dice la primera línea del cortometraje: \"¿En serio, Alex? Tuve que terminar casi todo el proyecto yo sola. Nunca te tomas nada en serio\"."
+     },
+     "start": "b1",
+     "nodes": {
+      "b1": {
+       "choices": [
+        {
+         "say": {
+          "en": "What are you talking about? You don't even know what I've been dealing with.",
+          "es": "¿De qué hablas? Ni siquiera sabes con qué he estado lidiando."
+         },
+         "skills": [
+          "defensiveness"
+         ],
+         "good": false,
+         "why": {
+          "en": "This is the film's reply: it defends instead of acknowledging Jordan's concern, and the argument grows.",
+          "es": "Así responde el cortometraje: se defiende en lugar de reconocer la preocupación de Jordan, y la discusión crece."
+         },
+         "reply": {
+          "en": "There's always an excuse.",
+          "es": "Siempre hay una excusa."
+         },
+         "end": "escalated"
+        },
+        {
+         "say": {
+          "en": "You did a lot of the work, and you sound really frustrated. I haven't told you what's been going on. Can I explain?",
+          "es": "Hiciste mucho del trabajo y suenas muy frustrada. No te he contado lo que me ha pasado. ¿Puedo explicarte?"
+         },
+         "skills": [
+          "acknowledging",
+          "empathy",
+          "assertive request"
+         ],
+         "good": true,
+         "why": {
+          "en": "You acknowledge Jordan's point first, then ask for a chance to explain. That lowers the temperature.",
+          "es": "Primero reconoces lo que dice Jordan y luego pides la oportunidad de explicar. Eso baja la tensión."
+         },
+         "reply": {
+          "en": "Fine. But I really needed help this week.",
+          "es": "Está bien. Pero de verdad necesitaba ayuda esta semana."
+         },
+         "next": "b2"
+        },
+        {
+         "say": {
+          "en": "Whatever. Just do it yourself.",
+          "es": "Como quieras. Hazlo tú sola."
+         },
+         "skills": [
+          "withdrawal"
+         ],
+         "good": false,
+         "why": {
+          "en": "Walking away protects you for a moment, but the project and the partnership both lose.",
+          "es": "Irte te protege un momento, pero pierden el proyecto y la relación de trabajo."
+         },
+         "end": "withdrawn"
+        }
+       ]
+      },
+      "b2": {
+       "choices": [
+        {
+         "say": {
+          "en": "Well, you never asked me.",
+          "es": "Bueno, nunca me preguntaste."
+         },
+         "skills": [
+          "blame shifting",
+          "overgeneralization"
+         ],
+         "good": false,
+         "why": {
+          "en": "Answering blame with blame, plus a \"never,\" restarts the argument.",
+          "es": "Responder a la culpa con culpa, más un \"nunca\", reinicia la discusión."
+         },
+         "reply": {
+          "en": "So now it's my fault?",
+          "es": "¿Y ahora es mi culpa?"
+         },
+         "end": "escalated"
+        },
+        {
+         "say": {
+          "en": "I hear you: you needed help and I wasn't there. I've had a lot going on at home. I can finish the slides tonight. Would that help?",
+          "es": "Te entiendo: necesitabas ayuda y no estuve. He tenido muchas cosas en casa. Puedo terminar las diapositivas esta noche. ¿Eso ayudaría?"
+         },
+         "skills": [
+          "paraphrasing",
+          "I-statement",
+          "collaborative problem-solving"
+         ],
+         "good": true,
+         "why": {
+          "en": "You paraphrase Jordan's need, share your side without excuses, and offer a concrete fix.",
+          "es": "Parafraseas lo que necesita Jordan, compartes tu lado sin excusas y ofreces una solución concreta."
+         },
+         "reply": {
+          "en": "Yes, that would help. Thanks for telling me.",
+          "es": "Sí, eso ayudaría. Gracias por decírmelo."
+         },
+         "end": "repaired"
+        },
+        {
+         "say": {
+          "en": "Sorry.",
+          "es": "Perdón."
+         },
+         "skills": [
+          "incomplete repair"
+         ],
+         "good": false,
+         "why": {
+          "en": "An apology is a start, but without listening or a plan, the problem is still there.",
+          "es": "Una disculpa es un comienzo, pero sin escuchar ni un plan, el problema sigue ahí."
+         },
+         "end": "unresolved"
+        }
+       ]
+      }
+     }
+    }
+   ],
+   "endings": {
+    "repaired": {
+     "en": "Repaired: you both understand each other and have a plan.",
+     "es": "Reparada: se entienden y tienen un plan."
+    },
+    "escalated": {
+     "en": "Escalated: the conflict grew and the problem is still there.",
+     "es": "Escalada: el conflicto creció y el problema sigue ahí."
+    },
+    "withdrawn": {
+     "en": "Withdrawn: the conversation ended, but nothing was solved.",
+     "es": "Retirada: la conversación terminó, pero no se resolvió nada."
+    },
+    "unresolved": {
+     "en": "Unresolved: calmer, but the problem is not fixed.",
+     "es": "Sin resolver: más calma, pero el problema no está arreglado."
+    }
+   }
+  },
+  {
+   "id": "apply",
+   "title": {
+    "en": "Reflect and Apply",
+    "es": "Reflexiona y aplica"
+   },
+   "intro": {
+    "en": "New situations, same skills. Score 4 of 5 to show you can apply them. Retry as often as you like; your best score counts.",
+    "es": "Situaciones nuevas, las mismas habilidades. Obtén 4 de 5 para mostrar que puedes aplicarlas. Inténtalo cuantas veces quieras; cuenta tu mejor puntuación."
+   },
+   "pass": 4,
+   "questions": [
+    {
+     "id": "q1",
+     "q": {
+      "en": "In a group chat, a teammate writes: \"You ALWAYS ignore my ideas.\" Which barrier is this?",
+      "es": "En un chat de grupo, un compañero escribe: \"SIEMPRE ignoras mis ideas\". ¿Qué barrera es?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "Overgeneralization",
+        "es": "Generalización excesiva"
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "Paraphrasing",
+        "es": "Parafrasear"
+       }
+      },
+      {
+       "t": {
+        "en": "Withdrawal",
+        "es": "Retirada"
+       }
+      },
+      {
+       "t": {
+        "en": "Active listening",
+        "es": "Escucha activa"
+       }
+      }
+     ],
+     "why": {
+      "en": "\"Always\" turns one moment into a judgment about the whole person.",
+      "es": "\"Siempre\" convierte un momento en un juicio sobre toda la persona."
+     }
+    },
+    {
+     "id": "q2",
+     "q": {
+      "en": "A friend arrives late to practice again. Which is the best I-statement?",
+      "es": "Un amigo llega tarde al ensayo otra vez. ¿Cuál es el mejor mensaje en primera persona?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "You are always late.",
+        "es": "Siempre llegas tarde."
+       }
+      },
+      {
+       "t": {
+        "en": "I feel worried when we start late because we lose practice time. Could we meet ten minutes early?",
+        "es": "Me preocupo cuando empezamos tarde porque perdemos tiempo de ensayo. ¿Podríamos vernos diez minutos antes?"
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "Whatever, it's fine.",
+        "es": "Como quieras, no importa."
+       }
+      },
+      {
+       "t": {
+        "en": "Why are you so careless?",
+        "es": "¿Por qué eres tan descuidado?"
+       }
+      }
+     ],
+     "why": {
+      "en": "It names a feeling, the situation and the effect, then asks for a specific change.",
+      "es": "Nombra un sentimiento, la situación y el efecto, y luego pide un cambio concreto."
+     }
+    },
+    {
+     "id": "q3",
+     "q": {
+      "en": "Your partner starts to explain, and you cut in before they finish. Which barrier is that?",
+      "es": "Tu compañero empieza a explicar y lo cortas antes de que termine. ¿Qué barrera es?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "Interrupting",
+        "es": "Interrumpir"
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "Empathy",
+        "es": "Empatía"
+       }
+      },
+      {
+       "t": {
+        "en": "Perception checking",
+        "es": "Verificación de percepciones"
+       }
+      },
+      {
+       "t": {
+        "en": "Paralanguage",
+        "es": "Paralenguaje"
+       }
+      }
+     ],
+     "why": {
+      "en": "Cutting someone off means their message is never heard, as happened to Alex.",
+      "es": "Cortar a alguien hace que su mensaje nunca se escuche, como le pasó a Alex."
+     }
+    },
+    {
+     "id": "q4",
+     "q": {
+      "en": "A classmate got quiet after a meeting. Which is a perception check?",
+      "es": "Un compañero se quedó callado después de una reunión. ¿Cuál es una verificación de percepción?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "You're obviously mad at me.",
+        "es": "Es obvio que estás enojado conmigo."
+       }
+      },
+      {
+       "t": {
+        "en": "I noticed you got quiet after the meeting. I'm wondering if something bothered you. Is that right?",
+        "es": "Noté que te quedaste callado después de la reunión. Me pregunto si algo te molestó. ¿Es así?"
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "Don't be so sensitive.",
+        "es": "No seas tan sensible."
+       }
+      },
+      {
+       "t": {
+        "en": "Let's not talk about it.",
+        "es": "Mejor no hablemos de eso."
+       }
+      }
+     ],
+     "why": {
+      "en": "It describes what you noticed, offers one possible meaning, and asks instead of assuming.",
+      "es": "Describe lo que notaste, ofrece un posible significado y pregunta en lugar de suponer."
+     }
+    },
+    {
+     "id": "q5",
+     "q": {
+      "en": "Your sibling says, \"You never help with chores.\" Which reply is most likely to calm things down and solve the problem?",
+      "es": "Tu hermano dice: \"Nunca ayudas con los quehaceres\". ¿Qué respuesta tiene más probabilidad de calmar las cosas y resolver el problema?"
+     },
+     "options": [
+      {
+       "t": {
+        "en": "That's not true, you never help either.",
+        "es": "No es cierto, tú tampoco ayudas nunca."
+       }
+      },
+      {
+       "t": {
+        "en": "Whatever.",
+        "es": "Como quieras."
+       }
+      },
+      {
+       "t": {
+        "en": "It sounds like you feel you're doing most of the chores. Which ones do you want me to take?",
+        "es": "Parece que sientes que haces la mayoría de los quehaceres. ¿Cuáles quieres que yo haga?"
+       },
+       "ok": true
+      },
+      {
+       "t": {
+        "en": "Sorry.",
+        "es": "Perdón."
+       }
+      }
+     ],
+     "why": {
+      "en": "Paraphrasing shows you listened, and the question moves to a solution.",
+      "es": "Parafrasear muestra que escuchaste, y la pregunta lleva a una solución."
+     }
+    }
+   ],
+   "reflect": [
+    {
+     "id": "r1",
+     "prompt": {
+      "en": "Name two barriers from the episode and the consequence of each.",
+      "es": "Nombra dos barreras del episodio y la consecuencia de cada una."
+     }
+    },
+    {
+     "id": "r2",
+     "prompt": {
+      "en": "Recommend one strategy for Jordan and one for Alex.",
+      "es": "Recomienda una estrategia para Jordan y otra para Alex."
+     }
+    },
+    {
+     "id": "r3",
+     "prompt": {
+      "en": "Describe how you would use one strategy in a group project. You may describe a real or an imagined situation.",
+      "es": "Describe cómo usarías una estrategia en un proyecto de grupo. Puedes describir una situación real o imaginada."
+     }
+    }
+   ]
+  }
+ ],
+ "mastery": {
+  "detective": "all barriers matched to correct evidence",
+  "change": "both scenes repaired",
+  "apply": "4 of 5"
+ }
 }

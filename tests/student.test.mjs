@@ -33,7 +33,7 @@ test("studios: coming-soon items have no link; available ones open a real site o
     assert.ok(x.title.en && x.title.es && x.blurb.en && x.blurb.es, x.id);
     assert.ok(x.units.length && x.units.every(u => u >= 1 && u <= 6) && x.units.includes(x.introduces), x.id);
     if (x.status === "coming") assert.ok(!x.href && !x.lab && !x.route, `${x.id} must not look functional`);
-    else assert.ok(x.href ? /^https:\/\//.test(x.href) : x.route ? /^#\/(btp\/\d+|ai)$/.test(x.route) && (x.episode || x.content) && existsSync(new URL("../site/" + (x.episode || x.content), import.meta.url)) : units.labNames[x.lab], `${x.id} opens something real`);
+    else assert.ok(x.href ? /^https:\/\//.test(x.href) : x.route ? /^#\/(btp\/\d+|ai|research|research\/apa)$/.test(x.route) && (x.episode || x.content) && existsSync(new URL("../site/" + (x.episode || x.content), import.meta.url)) : units.labNames[x.lab], `${x.id} opens something real`);
   }
   const by = id => studios.find(x => x.id === id);
   assert.deepEqual(by("ad-detective").units, [6]); assert.equal(by("ad-detective").featured, true);
@@ -59,7 +59,7 @@ test("teacher preview needs the teacher code; ?date= alone does nothing", () => 
 
 test("new scripts parse and load after the page scripts", () => {
   for (const f of ["../site/js/student.js", "../site/js/progress.js", "../site/js/achievements.js", "../site/js/manage.js", "../site/js/teacher.js", "../site/js/boot.js", "../site/js/schedule.js"]) assert.doesNotThrow(() => new vm.Script(read(f)), f);
-  assert.match(read("../site/js/boot.js"), /var AFTER = \["js\/progress\.js", "js\/achievements\.js", "js\/manage\.js", "js\/student\.js", "js\/teacher\.js", "js\/btp\.js", "js\/aistudio\.js"\];/);
+  assert.match(read("../site/js/boot.js"), /var AFTER = \["js\/progress\.js", "js\/achievements\.js", "js\/manage\.js", "js\/student\.js", "js\/teacher\.js", "js\/btp\.js", "js\/aistudio\.js", "js\/research\.js"\];/);
   assert.ok(read("../site/index.html").includes('<link rel="stylesheet" href="css/student.css">'));
 });
 

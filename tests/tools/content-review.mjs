@@ -1,4 +1,4 @@
-// Builds the data bundle for the teacher content review (objectives, journals, Spanish, college notice,
+// Builds the data bundle for the teacher content review (Slice 10: + caption/description tracks, achievements, typed-journal notice, Ad Detective labels) (objectives, journals, Spanish, college notice,
 // pacing lines without Spanish). Usage: node tests/tools/content-review.mjs > /tmp/review.json
 // then: python3 tests/tools/content-review.py /tmp/review.json "Speaking Lab Content Review.docx"
 import { readFileSync } from "node:fs";
@@ -14,7 +14,7 @@ for (const [w, days] of Object.entries(pace)) days.forEach((d, k) => {
   v.forEach(([who, t]) => { if (!hasEs(t)) missing.push({ week: Number(w), day: k + 1, who, text: t }); });
 });
 const out = {
-  generated: new Date().toISOString().slice(0, 10),
+  generated: new Date().toLocaleDateString("en-CA", { timeZone: "America/Chicago" }), // Central Time, like the site
   notice: { en: notice, es: ES[norm(notice)] || "" },
   lessonsStatus: lessons.status,
   missing,
@@ -35,10 +35,16 @@ const pairs = (o, where, rows) => {
 out.btp = J("studios.json").experiences.filter(x => x.episode).map(x => {
   const ep = J(x.episode.replace(/^data\//, ""));
   const m = ep.media, miss = [[m.video, "film"], [m.poster, "thumbnail"], [m.captions.en, "English captions"], [m.captions.es, "Spanish captions"]].filter(([f]) => !f.available).map(([f, w]) => `${w}: site/${f.src}`);
+  // Slice 10: timed tracks for review, cue by cue (English | Spanish), with their review flags.
+  const vtt = f => { try { return readFileSync(new URL(`../../site/${f}`, import.meta.url), "utf8").split(/\r?\n\r?\n/).map(b => b.split(/\r?\n/)).filter(b => b.some(l => l.includes("-->"))).map(b => { const i = b.findIndex(l => l.includes("-->")); return { t: b[i].split(" --> ")[0], text: b.slice(i + 1).join(" ") }; }); } catch (e) { return []; } };
+  const both = (a, b) => a.map((c, i) => [c.t, c.text, (b[i] || {}).text || ""]);
+  const tracks = [];
+  if (m.captions.es && m.captions.es.available) tracks.push([`Spanish captions (draft; reviewed: ${!!m.captions.es.reviewed})`, both(vtt(m.captions.en.src), vtt(m.captions.es.src))]);
+  if (m.descriptions && m.descriptions.en && m.descriptions.en.available) tracks.push([`Visual descriptions (read aloud on request; English reviewed: ${!!m.descriptions.en.reviewed}, Spanish reviewed: ${!!(m.descriptions.es && m.descriptions.es.reviewed)})`, both(vtt(m.descriptions.en.src), m.descriptions.es && m.descriptions.es.available ? vtt(m.descriptions.es.src) : [])]);
   return { title: `${ep.series.en}, Episode ${ep.episode}: ${ep.title.en}`, status: ep.status, missing: miss,
     sections: [["Episode", pairs({ series: ep.series, title: ep.title, label: ep.label, frames: ep.frames, vocabulary: ep.vocab }, "", [])],
       ["Transcript", ep.transcript.map(l => [l.speaker, l.en, l.es])],
-      ...ep.stages.map((st, i) => [`Stage ${i + 1}: ${st.title.en}`, pairs(st, "", [])])] };
+      ...ep.stages.map((st, i) => [`Stage ${i + 1}: ${st.title.en}`, pairs(st, "", [])]), ...tracks] };
 });
 // AI Coaching Studio and the AI permission levels (slice 7).
 const AIS = J("ai-studio.json"), PERM = J("ai-permissions.json");
@@ -53,4 +59,30 @@ out.ai = { status: AIS.status, sections: [
   ["AI Fact Checker (simulated)", pairs(AIS.factcheck, "", [])],
   ["AI-use disclosure", pairs(AIS.disclosure, "", [])],
 ] };
+// Research & Academic Integrity Studio and APA Academy (slice 8).
+const RS = J("research-studio.json");
+out.research = { status: RS.status, apa: RS.apa.rules.map(r => ({ topic: r.topic.en, rule: r.rule.en, src: r.src })), checked: RS.apa.checked, sections: [
+  ["Studio front page and AI links", pairs({ title: RS.title, tagline: RS.tagline, principle: RS.principle, fictional: RS.fictional, noAuto: RS.noAuto, ai: RS.ai, vocabulary: RS.vocab, frames: RS.frames }, "", [])],
+  ["Source Detective", pairs(RS.sources, "", [])],
+  ["Evidence Explorer (with the ProCon.org guide)", pairs(RS.evidence, "", [])],
+  ["Plagiarism Investigator", pairs(RS.integrity, "", [])],
+  ["Paraphrasing Workshop", pairs(RS.paraphrase, "", [])],
+  ["Citation Builder", pairs(RS.cite, "", [])],
+  ["Speech Research Portfolio", pairs(RS.portfolio, "", [])],
+  ["APA Academy (college pathway): text and challenges", pairs({ intro: RS.apa.intro, notice: RS.apa.notice, oralVsWritten: RS.apa.oralVsWritten, challenges: RS.apa.challenges }, "", [])],
+] };
+// Slice 10: achievements (no approval field exists for these; all are unreviewed), typed-journal notice, Ad Detective labels.
+const ACH = J("achievements.json");
+out.achievements = [
+  ...Object.entries(ACH.levels).map(([k, v]) => [`Level: ${k}`, `${v.en}: ${v.about.en}`, `${v.es}: ${v.about.es}`]),
+  ...ACH.badges.flatMap(b => [[`${b.title.en} (${b.status})`, `${b.title.en}: ${b.about.en}`, `${b.title.es}: ${b.about.es}`], ...b.criteria.map(c => [`  criterion (${c.type})`, c.label.en, c.label.es])]),
+];
+const stu = readFileSync(new URL("../../site/js/student.js", import.meta.url), "utf8");
+const facts = stu.slice(stu.indexOf("const JOURNAL_FACTS = ["), stu.indexOf("];", stu.indexOf("const JOURNAL_FACTS = [")));
+out.journalFacts = [...facts.matchAll(/\["([^"]+)", "([^"]+)"\]/g)].map((x, i) => [`Fact ${i + 1}`, x[1], x[2]]);
+// Ad Detective (separate repository): pass its dev src/app.js path as the first argument to include the new labels.
+if (process.argv[2]) {
+  const app = readFileSync(process.argv[2], "utf8"), keys = ["mastery", "masteryP", "ofCh", "ownOk", "shownNote", "retryLater", "retry", "caseMastered", "previewBar"];
+  out.adDetective = keys.map(k => { const m2 = app.match(new RegExp(`\\b${k}: \\["((?:[^"\\\\]|\\\\.)*)", "((?:[^"\\\\]|\\\\.)*)"\\]`)); return m2 ? [k, m2[1], m2[2]] : [k, "(not found)", ""]; });
+}
 process.stdout.write(JSON.stringify(out));

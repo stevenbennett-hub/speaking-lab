@@ -2689,7 +2689,7 @@ function renderSaveNotes() { const el = document.getElementById("labsSave"); if 
 /* ---------- My work: back up, restore, and how to turn work in ---------- */
 (function () {
   const d = document.getElementById("myWork"); if (!d) return; let from = null;
-  const keys = () => { const out = []; try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith("speakup-") && k !== "speakup-col-ok" && !k.startsWith("speakup-teacher-")) out.push(k); } } catch (e) {} return out; };
+  const keys = () => { const out = []; try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith("speakup-") && k !== "speakup-col-ok" && k !== "speakup-journal-ok" && !k.startsWith("speakup-teacher-")) out.push(k); } } catch (e) {} return out; };
   const count = () => { const es = lang === "es", ks = keys(); let q = 0, t = 0, a = 0;
     try { const Q = JSON.parse(localStorage.getItem("speakup-quiz-v1") || "{}"); q = Object.values(Q.u || {}).filter(x => x && x.best != null).length; } catch (e) {}
     try { const P = JSON.parse(localStorage.getItem("speakup-test-v1") || "{}"); t = Object.values(P).filter(x => x && x.best != null).length; } catch (e) {}
@@ -2709,7 +2709,7 @@ function renderSaveNotes() { const el = document.getElementById("labsSave"); if 
     const f = e.target.files && e.target.files[0], msg = document.getElementById("mwMsg"), es = lang === "es"; if (!f) return;
     const r = new FileReader();
     r.onload = () => { try { const j = JSON.parse(r.result); if (!j || j.app !== "speak-up" || typeof j.data !== "object") throw 0;
-        let n = 0; Object.entries(j.data).forEach(([k, v]) => { if (k.startsWith("speakup-") && k !== "speakup-col-ok" && !k.startsWith("speakup-teacher-") && typeof v === "string") { localStorage.setItem(k, v); n++; } });
+        let n = 0; Object.entries(j.data).forEach(([k, v]) => { if (k.startsWith("speakup-") && k !== "speakup-col-ok" && k !== "speakup-journal-ok" && !k.startsWith("speakup-teacher-") && typeof v === "string") { localStorage.setItem(k, v); n++; } });
         msg.textContent = es ? `Se restauraron ${n} elementos. Cargando tu trabajo…` : `Restored ${n} items. Loading your work…`; setTimeout(() => location.reload(), 900);
       } catch (er) { msg.textContent = es ? "Ese archivo no es un respaldo de Speak Up. Elige el archivo que descargaste con “Descargar mi archivo de respaldo”." : "That file isn’t a Speak Up backup. Choose the file you downloaded with “Download my backup file.”"; } };
     r.readAsText(f); e.target.value = "";
@@ -7138,7 +7138,7 @@ window.LL_DATA = (function () {
   function draw() {
     if (!root) return;
     const i = Math.max(0, STEPS.findIndex(s => s[0] === st.step)), s = STEPS[i];
-    root.innerHTML = `<div class="pl-top"><h3 id="ob-title">${T(UI.title)}</h3><p class="pl-prog">${T(UI.privacy)}</p></div><p class="al-lead">${T(UI.lead)}</p>
+    root.innerHTML = `<div class="pl-top"><h3 id="ob-heading">${T(UI.title)}</h3><p class="pl-prog">${T(UI.privacy)}</p></div><p class="al-lead">${T(UI.lead)}</p>
       <div class="pl-wrap"><nav aria-label="${T(UI.title)}"><ol class="ob-steps">${STEPS.map(([id, name], k) => `<li><button type="button" class="ob-stepbtn" data-ob-go="${id}" aria-current="${id === s[0] ? "step" : "false"}"><span class="pl-tn">${k + 1}</span><span class="pl-tt">${E(T(name))}</span><span class="pl-tstat">${stepStatus(id)}</span></button></li>`).join("")}</ol></nav>
       <div class="pl-panel"><p class="pl-count">${fmt(UI.step, { i: i + 1, n: STEPS.length })}</p><h3 class="pl-ptitle" id="ob-ptitle" tabindex="-1">${E(T(s[1]))}</h3>${view(s[0])}
       <div class="pl-nav ob-nav"><button class="btn" type="button" data-ob-nav="-1"${i === 0 ? " disabled" : ""}>${T(UI.back)}</button>${i < STEPS.length - 1 ? `<button class="btn primary" type="button" data-ob-nav="1">${T(UI.next)}: ${E(T(STEPS[i + 1][1]))}</button>` : ""}</div></div></div>`;

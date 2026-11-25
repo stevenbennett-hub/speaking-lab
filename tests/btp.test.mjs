@@ -67,13 +67,20 @@ test("the official dialogue is unchanged and every barrier cites lines that exis
 
 test("no invented media: missing files are marked missing, and nothing marked available is absent", () => {
   const m = ep.media;
-  for (const [what, f] of [["video", m.video], ["poster", m.poster], ["captions en", m.captions.en], ["captions es", m.captions.es]]) {
+  for (const [what, f] of [["video", m.video], ["video 720p", m.video720], ["poster", m.poster], ["captions en", m.captions.en], ["captions es", m.captions.es], ["descriptions en", m.descriptions.en], ["descriptions es", m.descriptions.es]]) {
     const there = existsSync(new URL("../site/" + f.src, import.meta.url));
     assert.equal(f.available, there, `${what}: available must match whether the file exists`);
   }
   if (m.captions.es.available) assert.equal(typeof m.captions.es.reviewed, "boolean");
   if (m.poster.available) assert.ok(m.poster.alt && m.poster.alt.en, "an added thumbnail needs a description");
-  assert.deepEqual(plain(B.missing(ep)).map(x => x.what), ["film", "thumbnail", "English captions", "Spanish captions"]);
+  // Slice 9: the approved film arrived with an English subtitle track (extracted unchanged). Still missing:
+  // Slice 10: Spanish captions and visual descriptions are drafts waiting for review.
+  assert.deepEqual(plain(B.missing(ep)).map(x => x.what), ["thumbnail", "Spanish captions (teacher review)", "English visual descriptions (teacher review)", "Spanish visual descriptions (teacher review)"]);
+  // The supplied captions say exactly the official dialogue (speaker lines and narrator), in order.
+  const vtt = read("../site/" + m.captions.en.src);
+  assert.match(vtt, /^WEBVTT/);
+  const cues = vtt.split(/\n\n+/).slice(1).map(b => b.split("\n").slice(1).join(" ").replace(/^[A-Z]+: /, "")).join(" ");
+  for (const l of ep.transcript.filter(l => l.speaker !== "End card" && l.speaker !== "Description")) for (const part of l.en.split(/(?<=—)\s*/)) assert.ok(cues.includes(part.trim()), `caption has: ${part}`);
   // No timestamps or visual descriptions of the film anywhere in the episode file.
   const text = JSON.stringify(ep);
   assert.doesNotMatch(text, /\b\d{1,2}:\d{2}\b/, "no invented timestamps");
@@ -86,7 +93,8 @@ test("the film never autoplays; playback has native controls, captions only when
   assert.match(src, /cap\.es\.available && cap\.es\.reviewed/, "Spanish captions only after review");
   assert.match(src, /data-btp="replay"/);
   assert.match(src, /<details class="btp-script"/, "transcript always available");
-  assert.ok(!/\.play\(\)/.test(src.replace(/case "replay"[^\n]*/, "")), "play() only from the replay button");
+  // play() only from the replay button, or to resume a film that was already playing (quality switch, spoken description).
+  for (const m of src.matchAll(/[^\n]*\.play\(\)[^\n]*/g)) assert.match(m[0], /case "replay"|if \(playing\)|if \(wasPlaying\)/, m[0].trim());
 });
 
 test("branching scenes: every choice has feedback, every path ends, and each scene can be repaired", () => {

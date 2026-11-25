@@ -12,7 +12,7 @@
 (function () {
   "use strict";
   const D = window.SL_DATA, S = window.SLSchedule, P = window.SLProgress;
-  const K = { path: "speakup-path", support: "speakup-support", group: "speakup-group", teacher: "speakup-teacher-ok" };
+  const K = { path: "speakup-path", support: "speakup-support", level: "speakup-support-level", group: "speakup-group", teacher: "speakup-teacher-ok", journalOk: "speakup-journal-ok", journal: "speakup-journal-v1" };
   const get = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
   const put = (k, v) => { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} };
   const es = () => lang === "es";
@@ -36,7 +36,13 @@
 
   /* ---------- pathway and supports ---------- */
   const path = () => { const p = get(K.path); return p === "hs" || p === "eld" || (p === "col" && colUnlocked()) ? p : null; };
-  const supportsOn = () => path() === "eld" || get(K.support) === "1";
+  /* Language support preference (slice 9): guided | supported | independent. A learning preference the student can
+     change anytime, never a proficiency level; progress is unaffected. Translations (speakup-support = "1") are always
+     on for Guided and optional for the others. Earlier choices carry over: the "learning English" pathway starts on
+     Guided; everyone else on Supported. Learning goals are the same at every level. */
+  const SUPPORT_LEVELS = ["guided", "supported", "independent"];
+  const supportLevel = () => { const v = get(K.level); return SUPPORT_LEVELS.includes(v) ? v : path() === "eld" ? "guided" : "supported"; };
+  const supportsOn = () => supportLevel() === "guided" || get(K.support) === "1";
   const group = () => (classGroup === "odd" || classGroup === "even" ? classGroup : null);
 
   /* ---------- schedule helpers ---------- */
@@ -194,7 +200,7 @@
   function choosePath(p, btn) {
     if (p === "col") { chooseLevel("col", btn); return; } // the existing gate decides; stays closed while college is off
     put(K.path, p); setLevel("hs");
-    if (p === "eld") put(K.support, "1");
+    if (p === "eld") { put(K.support, "1"); if (!get(K.level)) put(K.level, "guided"); }
     location.hash = "#/"; if (route) { route = parse("#/"); draw(true); }
   }
 
@@ -241,9 +247,20 @@
       ${action}
     </li>`;
   }
-  function supportToggle() {
-    const on = supportsOn(), locked = path() === "eld";
-    return `<label class="sl2-support"><input type="checkbox" data-sl2-support ${on ? "checked" : ""} ${locked ? "disabled" : ""}> ${L("Language supports (English and Spanish side by side)", "Apoyos de idioma (inglés y español lado a lado)")}</label>`;
+  const SUPPORT_TXT = {
+    guided: [["Guided", "Guiado"], ["English and Spanish side by side, vocabulary open, sentence frames and step-by-step help.", "Inglés y español lado a lado, vocabulario abierto, marcos de oración y ayuda paso a paso."]],
+    supported: [["Supported", "Con apoyo"], ["Academic vocabulary and sentence starters; Spanish when you turn it on.", "Vocabulario académico e inicios de oración; español cuando lo actives."]],
+    independent: [["Independent", "Independiente"], ["Academic English; supports stay folded until you open them.", "Inglés académico; los apoyos quedan cerrados hasta que los abras."]],
+  };
+  let supFoldOpen = false; // keeps the compact panel open after a change (the page redraws)
+  function supportToggle(compact) {
+    const lv = supportLevel(), on = supportsOn();
+    if (compact) return `<details class="sl2-supfold"${supFoldOpen ? " open" : ""}><summary>${L("Language support", "Apoyo de idioma")}: <b>${es() ? SUPPORT_TXT[lv][0][1] : SUPPORT_TXT[lv][0][0]}</b>${on && lv !== "guided" ? ` · ${L("Spanish on", "Inglés visible")}` : ""}</summary>${supportToggle(false)}</details>`;
+    return `<fieldset class="sl2-support"><legend>${L("Language support", "Apoyo de idioma")}</legend>
+      <div class="sl2-supopts">${SUPPORT_LEVELS.map(v => `<label title="${h(es() ? SUPPORT_TXT[v][1][1] : SUPPORT_TXT[v][1][0])}"><input type="radio" name="sl2-suplv" value="${v}" data-sl2-suplv${lv === v ? " checked" : ""}> ${es() ? SUPPORT_TXT[v][0][1] : SUPPORT_TXT[v][0][0]}</label>`).join("")}</div>
+      <p class="sl2-small">${h(es() ? SUPPORT_TXT[lv][1][1] : SUPPORT_TXT[lv][1][0])}</p>
+      <label class="sl2-suptr"><input type="checkbox" data-sl2-support ${on ? "checked" : ""} ${lv === "guided" ? "disabled" : ""}> ${L("Show Spanish (English) side by side", "Mostrar inglés (español) lado a lado")}</label>
+      <p class="sl2-small">${L("A learning preference, not a language level. Change it anytime; your progress stays.", "Es una preferencia de aprendizaje, no un nivel de idioma. Cámbiala cuando quieras; tu progreso se conserva.")}</p></fieldset>`;
   }
   function groupBar() {
     const g = group();
@@ -259,7 +276,7 @@
     const tabs = [["today", L("Today", "Hoy"), ""], ["lessons", L("Lessons and journals", "Lecciones y diarios"), "/lessons"], ["guide", L("Unit guide", "Guía de la unidad"), "/guide"], ["labs", L("Labs and studios", "Laboratorios y estudios"), "/labs"]];
     const head = `<p class="sl2-back"><a href="#/">← ${L("All units", "Todas las unidades")}</a></p>
       <p class="sl2-kicker">${L("Unit", "Unidad")} ${u.id} · <span class="sl2-state-in">${ICON[STATE[i.state].icon]} ${es() ? STATE[i.state].es : STATE[i.state].en}</span></p>
-      <h1 class="sl2-h1">${h(title)}</h1>${supportToggle()}${i.preview ? teacherNote(i.at) : ""}`;
+      <h1 class="sl2-h1">${h(title)}</h1>${supportToggle(true)}${i.preview ? teacherNote(i.at) : ""}`;
     if (!i.open) return `<div class="wrap sl2 sl2-unit" style="--acc: var(--u${u.id})" id="sl2-main" data-notr>${head}${lockedNotice(u.id)}</div>`;
     return `<div class="wrap sl2 sl2-unit" style="--acc: var(--u${u.id})" id="sl2-main">
       <div data-notr>${head}
@@ -351,9 +368,11 @@
   /** The permission for a class day: the lesson's setting, the more restrictive one if two lessons differ, else the default. */
   function aiOf(ls) {
     const set = (ls || []).filter(x => x && x.ai && aiLevel(x.ai.level));
-    if (!set.length) return { level: (D.aiperm && D.aiperm.default) || "grammar", note: null, set: false };
+    if (!set.length) return { level: (D.aiperm && D.aiperm.default) || "grammar", note: null, eld: false, set: false };
     const top = set.reduce((a, b) => (aiLevel(b.ai.level).rank < aiLevel(a.ai.level).rank ? b : a));
-    return { level: top.ai.level, note: top.ai.note || null, set: true };
+    // ELD support only when every lesson that day explicitly allows it, and never with "not permitted".
+    const eld = top.ai.level !== "none" && set.every(x => x.ai.eld === true);
+    return { level: top.ai.level, note: top.ai.note || null, eld, set: true };
   }
   /** The permission for the student's current assignment: today's class, or the most recent class before today. */
   function aiNow(g) {
@@ -367,9 +386,56 @@
     const lv = aiLevel(ai.level); if (!lv) return "";
     return `<section class="sl2-card sl2-ai is-${h(lv.id)}" aria-label="${L("AI permission", "Permiso de IA")}"><p class="sl2-kicker">${L("AI on today's work", "IA en el trabajo de hoy")}</p>
       <p class="sl2-ai-level"><b>${h(pick(lv.name))}</b></p>${compact ? "" : `<p>${h(pick(lv.explain))}</p>`}
+      ${ai.eld && D.aiperm.eld ? `<p class="sl2-ai-note"><b>${h(pick(D.aiperm.eld.name))}.</b> ${compact ? "" : h(pick(D.aiperm.eld.explain))}</p>` : ""}
       ${ai.note ? `<p class="sl2-ai-note"><b>${L("Mr. Bennett's note:", "Nota del Sr. Bennett:")}</b> ${h(pick(ai.note))}</p>` : ""}
       <p class="sl2-small"><a href="#/ai">${L("AI Coaching Studio: Your Thinking. Your Voice.", "Estudio de coaching con IA: Tu pensamiento. Tu voz.")}</a></p></section>`;
   }
+  /* ---------- optional digital journal (instructor-authorized accessibility alternative) ----------
+     Handwritten journals stay the routine. With Mr. Bennett's code (access.json journal.codeHash; this browser only,
+     never in backups) a student can type the journal instead: drafts stay in this browser (speakup-journal-v1), and can
+     be printed, copied or downloaded for Canvas. Nothing is graded, sent or marked complete. */
+  const journalOk = () => !!(D.access.journal && get(K.journalOk) === D.access.journal.codeHash);
+  const jStore = () => { try { const r = JSON.parse(get(K.journal) || "null"); return r && r.v === 1 && r.entries && typeof r.entries === "object" ? r : { v: 1, entries: {} }; } catch (e) { return { v: 1, entries: {} }; } };
+  /* Slice 10: the five facts about typed journals, shown before and after unlocking. Nothing asks why a student types. */
+  const JOURNAL_FACTS = [
+    ["The code is a classroom permission from Mr. Bennett, not a password or secure login.", "El código es un permiso de clase del Sr. Bennett, no una contraseña ni un inicio de sesión seguro."],
+    ["What you type is saved only in this browser on this device. It is not sent to anyone.", "Lo que escribes se guarda solo en este navegador, en este dispositivo. No se envía a nadie."],
+    ["When Mr. Bennett asks for it, turn it in through Canvas (copy it in or upload the download).", "Cuando el Sr. Bennett lo pida, entrégalo en Canvas (cópialo o sube el archivo descargado)."],
+    ["Typed responses are not graded automatically.", "Las respuestas escritas aquí no se califican automáticamente."],
+    ["This site can't check whether a journal was done, handwritten or typed. Mr. Bennett checks that.", "Este sitio no puede comprobar si se hizo un diario, a mano o escrito. El Sr. Bennett lo revisa."],
+  ];
+  const journalFacts = () => `<ul class="sl2-small sl2-jfacts">${JOURNAL_FACTS.map(f => `<li>${L(f[0], f[1])}</li>`).join("")}</ul>`;
+  function digitalJournal(day, m, j) {
+    if (!D.access.journal) return "";
+    if (!journalOk()) return `<details class="sl2-fold sl2-noprint"><summary>${L("Typing your journal instead (with Mr. Bennett's permission)", "Escribir tu diario en la computadora (con permiso del Sr. Bennett)")}</summary>
+      <p class="sl2-small">${L("Handwritten journals are the class routine. If Mr. Bennett has allowed you to type yours, enter the code he gave you. It works on this browser only.", "Los diarios a mano son la rutina de la clase. Si el Sr. Bennett te permitió escribir el tuyo en la computadora, escribe el código que te dio. Funciona solo en este navegador.")}</p>${journalFacts()}
+      <p class="btp-row"><label>${L("Digital journal code", "Código del diario digital")} <input id="sl2JCode" autocomplete="off" class="sl2-code"></label> <button type="button" class="btn" data-sl2-jcode>${L("Unlock", "Activar")}</button> <span role="status" id="sl2JMsg" class="sl2-small"></span></p></details>`;
+    const e = jStore().entries[day] || {}, id = `sl2J-${day}`;
+    return `<section class="sl2-djournal" aria-labelledby="${id}-h"><h3 id="${id}-h">${L("My typed journal", "Mi diario escrito en la computadora")} · ${L("Journal", "Diario")} #${m.number}</h3>
+      <label for="${id}" class="sr">${L("Your journal response", "Tu respuesta del diario")}</label>
+      <textarea id="${id}" rows="8" data-sl2-jtext="${day}" spellcheck="true">${h(e.text || "")}</textarea>
+      <p class="sl2-small" role="status" id="${id}-st">${e.text ? L(`${(e.text.match(/\S+/g) || []).length} words · saved in this browser`, `${(e.text.match(/\S+/g) || []).length} palabras · guardado en este navegador`) : L("Saves in this browser as you type.", "Se guarda en este navegador mientras escribes.")}</p>
+      <p class="btp-row sl2-noprint"><button type="button" class="btn" data-sl2-jprint="${day}">${L("Print", "Imprimir")}</button> <button type="button" class="btn" data-sl2-jcopy="${day}">${L("Copy", "Copiar")}</button> <button type="button" class="btn" data-sl2-jdl="${day}">${L("Download (.txt)", "Descargar (.txt)")}</button></p>
+      <p class="sl2-small">${L(`To turn it in when Mr. Bennett asks: copy it into the Canvas assignment for Journal #${m.number}, or upload the downloaded file. Typing here doesn't mark your journal as done or graded, and still stand and share with someone new.`, `Para entregarlo cuando el Sr. Bennett lo pida: cópialo en la tarea de Canvas del Diario #${m.number} o sube el archivo descargado. Escribir aquí no marca tu diario como terminado ni calificado; también ponte de pie y comparte con alguien nuevo.`)} ${L("Don't include private information about yourself or others.", "No incluyas información privada tuya ni de otras personas.")}</p>
+      <details class="sl2-fold sl2-noprint"><summary>${L("How typed journals work", "Cómo funcionan los diarios escritos")}</summary>${journalFacts()}</details></section>`;
+  }
+  function journalText(day) {
+    const m = (lessonModel(day, group() || "odd") || {}).meeting, j = m && m.journal, e = jStore().entries[day] || {};
+    return [`${L("Daily Learning Journal", "Diario de aprendizaje")}${m ? ` #${m.number}` : ""} · ${fmtLong(day)}`, j ? `${L("Prompt", "Pregunta")}: ${pick(j.prompt)}` : "", "", e.text || ""].join("\n");
+  }
+  document.addEventListener("input", e => {
+    const t = e.target; if (!t.matches || !t.matches("[data-sl2-jtext]") || !journalOk()) return;
+    const r = jStore(), day = t.dataset.sl2Jtext; r.entries[day] = { text: t.value.slice(0, 20000), updated: today() }; put(K.journal, JSON.stringify(r));
+    const st = document.getElementById(`sl2J-${day}-st`); if (st) st.textContent = L(`${(t.value.match(/\S+/g) || []).length} words · saved in this browser`, `${(t.value.match(/\S+/g) || []).length} palabras · guardado en este navegador`);
+  });
+  document.addEventListener("click", e => {
+    const t = e.target.closest && e.target.closest("[data-sl2-jcode],[data-sl2-jprint],[data-sl2-jcopy],[data-sl2-jdl]"); if (!t) return;
+    if (t.hasAttribute("data-sl2-jcode")) { const v = ($id("sl2JCode") || {}).value || ""; if (D.access.journal && hash("journal", v) === D.access.journal.codeHash) { put(K.journalOk, D.access.journal.codeHash); refresh(); const ta = document.querySelector("[data-sl2-jtext]"); if (ta) ta.focus(); } else { const m = $id("sl2JMsg"); if (m) m.textContent = L("That code isn't right.", "Ese código no es correcto."); } return; }
+    const day = t.dataset.sl2Jprint || t.dataset.sl2Jcopy || t.dataset.sl2Jdl, text = journalText(day);
+    if (t.hasAttribute("data-sl2-jprint")) { const w = document.createElement("div"); w.id = "sl2JPrint"; w.textContent = text; document.body.appendChild(w); document.body.classList.add("sl2-jprinting"); window.print(); setTimeout(() => { document.body.classList.remove("sl2-jprinting"); w.remove(); }, 500); return; }
+    if (t.hasAttribute("data-sl2-jcopy")) { (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(() => { t.textContent = L("Copied", "Copiado"); }, () => { t.textContent = L("Copy didn't work here", "No se pudo copiar"); }); return; }
+    try { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], { type: "text/plain;charset=utf-8" })); a.download = `journal-${day}.txt`; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500); } catch (err) {}
+  });
   const DEFAULT_EXPECT = { en: "10 minutes · Write by hand in your journal.", es: "10 minutos · Escribe a mano en tu diario." };
   function viewDay(u, day, isPast) {
     const g = group(); if (!g) return `<div class="sl2-card">${groupBar()}</div>`;
@@ -391,8 +457,11 @@
         ${two(j.prompt, "sl2-prompt")}
         <p class="sl2-how"><b>${h(pick(j.expect || DEFAULT_EXPECT))}</b>${j.alt ? ` <span>${L("Prefer not to share something personal?", "¿Prefieres no compartir algo personal?")} ${h(pick(j.alt))}</span>` : ""}</p>
         <div class="sl2-cols"><div><h3>${L("Vocabulary", "Vocabulario")}</h3><ul class="sl2-chips">${j.vocab.en.map((wd, x) => `<li>${h(es() ? j.vocab.es[x] : wd)}${sup ? ` <span class="sl2-alt" lang="${es() ? "en" : "es"}">${h(es() ? wd : j.vocab.es[x])}</span>` : ""}</li>`).join("")}</ul></div>
-        <div><h3>${L("Sentence starters", "Inicios de oración")}</h3><ul class="sl2-frames">${j.frames.en.map((f, x) => `<li>${h(es() ? j.frames.es[x] : f)}${sup ? `<span class="sl2-alt" lang="${es() ? "en" : "es"}">${h(es() ? f : j.frames.es[x])}</span>` : ""}</li>`).join("")}</ul></div></div>
+        ${(() => { const list = `<ul class="sl2-frames">${j.frames.en.map((f, x) => `<li>${h(es() ? j.frames.es[x] : f)}${sup ? `<span class="sl2-alt" lang="${es() ? "en" : "es"}">${h(es() ? f : j.frames.es[x])}</span>` : ""}</li>`).join("")}</ul>`;
+          return supportLevel() === "independent" ? `<details class="sl2-fold"><summary>${L("Sentence starters (optional)", "Inicios de oración (opcional)")}</summary>${list}</details>` : `<div><h3>${L("Sentence starters", "Inicios de oración")}</h3>${list}</div>`; })()}</div>
+        ${supportLevel() === "guided" ? `<ol class="sl2-steps-mini" aria-label="${L("How to do your journal", "Cómo hacer tu diario")}"><li>${L("Read the prompt. Ask: what is the question?", "Lee la pregunta. Pregúntate: ¿qué me pide?")}</li><li>${L("Look at the vocabulary words.", "Mira las palabras de vocabulario.")}</li><li>${L("Choose a sentence starter.", "Elige un inicio de oración.")}</li><li>${L("Write for 10 minutes in your journal.", "Escribe 10 minutos en tu diario.")}</li><li>${L("Stand up and share with someone new.", "Ponte de pie y comparte con alguien nuevo.")}</li></ol>` : ""}
         <div class="sl2-share">${ICON.people} <div><h3>${L("Stand and share", "Ponte de pie y comparte")}</h3>${two(j.share)}<p class="sl2-small">${L("When you finish writing, stand up and share with someone new in the room.", "Cuando termines de escribir, ponte de pie y comparte con alguien nuevo del salón.")}</p></div></div>
+        ${digitalJournal(day, m, j)}
         ${exp ? `<p class="sl2-small">${L("Connected experience:", "Experiencia relacionada:")} ${exp.status === "available" && exp.route ? `<a href="${h(exp.route)}">${h(pick(exp.title))}</a>` : h(pick(exp.title))}${exp.status === "available" ? "" : ` (${L("coming soon", "próximamente")})`}</p>` : ""}
       </section>` : `<section class="sl2-card sl2-journal"><p>${L("No journal is assigned for this class.", "No hay diario asignado para esta clase.")}${m.note ? ` (${h(m.note)})` : ""}</p></section>`;
     const canvas = M.canvas.map(c => `<li><b>${L("Canvas:", "Canvas:")}</b> <a href="${h(c.url)}" target="_blank" rel="noopener">${h(c.label ? pick(c.label) : L("Open the assignment", "Abrir la tarea"))}<span class="sr"> ${L("(opens in a new tab)", "(se abre en una pestaña nueva)")}</span> ↗</a></li>`);
@@ -457,7 +526,8 @@
   function withDate(iso) { const u = new URL(location.href); if (iso) u.searchParams.set("date", iso); else u.searchParams.delete("date"); return u.toString(); }
 
   /* ---------- achievements (js/achievements.js + data/achievements.json) ---------- */
-  const AC = () => D.achievements, A = window.SLAchieve;
+  // College-only badges (audience col) are shown and earnable only on the authorized college pathway.
+  const AC = () => ({ ...D.achievements, badges: D.achievements.badges.filter(b => !b.audience || b.audience === "all" || level === "col") }), A = window.SLAchieve;
   function achState() {
     const labs = {}; [["rlab", "RLab"], ["glab", "GLab"], ["nvlab", "NVLab"], ["nvclab", "NVCLab"]].forEach(([id, g]) => { try { if (window[g] && window[g].summary) labs[id] = window[g].summary(); } catch (e) {} });
     const src = A.collect({ get, labs });
@@ -561,7 +631,10 @@
     }
   });
   document.addEventListener("keydown", e => { if (e.key === "Enter" && e.target && e.target.id === "sl2TeacherCode") { e.preventDefault(); const b = document.querySelector("[data-sl2-teachercode]"); if (b) b.click(); } });
-  document.addEventListener("change", e => { if (e.target.matches("[data-sl2-support]")) { put(K.support, e.target.checked ? "1" : null); refresh(); } });
+  document.addEventListener("change", e => {
+    if (e.target.matches("[data-sl2-support]")) { supFoldOpen = !!e.target.closest(".sl2-supfold"); put(K.support, e.target.checked ? "1" : null); refresh(); const f = document.querySelector("[data-sl2-support]"); if (f) f.focus(); }
+    if (e.target.matches("[data-sl2-suplv]")) { supFoldOpen = !!e.target.closest(".sl2-supfold"); put(K.level, e.target.value); refresh(); const f = document.querySelector(`[data-sl2-suplv][value="${e.target.value}"]`); if (f) f.focus(); }
+  });
   window.addEventListener("hashchange", go);
 
   // Re-draw after the page re-renders (language, level, class group, saved progress).
@@ -578,6 +651,6 @@
   const brand = document.querySelector("header .brand"); if (brand) brand.setAttribute("href", "#/");
 
   const addRoute = (name, def) => { EXTRA[name] = def; if (/^#\/?/.test(location.hash) && location.hash.replace(/^#\/?/, "").split("/")[0] === name) go(); };
-  window.SL2 = { addRoute, refresh, route: () => route, currentUnitId, unitInfo, lessonModel, opts, weeks, fmtLong, fmtShort, fmtAt, lessonKey, unitOpen, released, releasedAt, lockedNotice, achState, supportsOn, teacherOn, aiOf, aiNow, aiLevel, aiCard, ICON, h, L, pick, other, today, now, group, DEFAULT_EXPECT };
+  window.SL2 = { addRoute, refresh, route: () => route, currentUnitId, unitInfo, lessonModel, opts, weeks, fmtLong, fmtShort, fmtAt, lessonKey, unitOpen, released, releasedAt, lockedNotice, achState, supportsOn, supportLevel, teacherOn, aiOf, aiNow, aiLevel, aiCard, ICON, h, L, pick, other, today, now, group, DEFAULT_EXPECT };
   go();
 })();

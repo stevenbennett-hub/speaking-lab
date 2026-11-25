@@ -30,6 +30,8 @@
       listenFinal: LI.fin && LI.fin.best != null ? Number(LI.fin.best) : null,
       btp: btpParts(parse(env.get("speakup-btp-v1"))),
       ai: aiParts(parse(env.get("speakup-ai-v1"))),
+      research: researchParts(parse(env.get("speakup-research-v1"))),
+      ad: adCases(parse(env.get("addetective-mastery-v1"))),
     };
   }
 
@@ -57,6 +59,28 @@
     const out = {};
     if (!rec || typeof rec !== "object" || rec.v !== 1 || !rec.mastered || typeof rec.mastered !== "object" || Array.isArray(rec.mastered)) return out;
     for (const k of AI_PARTS) { const d = rec.mastered[k]; out[k] = typeof d === "string" && ISO_DAY.test(d) && !isNaN(new Date(d + "T12:00:00Z")); }
+    return out;
+  }
+
+  /** Research & Academic Integrity Studio (js/research.js, key speakup-research-v1): only dated `mastered` parts. */
+  const RS_PARTS = ["sources", "evidence", "integrity", "paraphrase", "cite", "apa"];
+  function researchParts(rec) {
+    const out = {};
+    if (!rec || typeof rec !== "object" || rec.v !== 1 || !rec.mastered || typeof rec.mastered !== "object" || Array.isArray(rec.mastered)) return out;
+    for (const k of RS_PARTS) { const d = rec.mastered[k]; out[k] = typeof d === "string" && ISO_DAY.test(d) && !isNaN(new Date(d + "T12:00:00Z")); }
+    return out;
+  }
+
+  /** Ad Detective (separate site, same address; its dev branch writes addetective-mastery-v1). Only the versioned
+      summary is read: { v: 1, app: "ad-detective", cases: { "1": "YYYY-MM-DD", … } }, one dated entry per case
+      mastered with every objective challenge answered without showing the answer. Ad Detective's own saved
+      work is never read here, and watching, opening or revealing answers never appear in the summary.
+      In the development preview this key is read under "slpreview:" like every other key. */
+  const AD_CASES = [1, 2, 3, 4, 5, 6];
+  function adCases(rec) {
+    const out = {};
+    if (!rec || typeof rec !== "object" || rec.v !== 1 || rec.app !== "ad-detective" || !rec.cases || typeof rec.cases !== "object" || Array.isArray(rec.cases)) return out;
+    for (const n of AD_CASES) { const d = rec.cases[String(n)]; out[n] = typeof d === "string" && ISO_DAY.test(d) && !isNaN(new Date(d + "T12:00:00Z")); }
     return out;
   }
 
@@ -91,6 +115,8 @@
       case "listenFinal": return { label, done: src.listenFinal != null && src.listenFinal >= c.min, have: src.listenFinal, need: c.min, kind: "score" };
       case "audCheck": return { label, done: src.audBest != null && src.audBest >= c.min, have: src.audBest, need: c.min, kind: "of10" };
       case "btp": { const e = (src.btp || {})[c.episode] || {}; return { label, done: !!e[c.part], have: e[c.part] ? 1 : 0, need: 1, kind: "step" }; }
+      case "research": { const v = !!(src.research || {})[c.part]; return { label, done: v, have: v ? 1 : 0, need: 1, kind: "step" }; }
+      case "adcase": { const have = c.cases.filter(n => (src.ad || {})[n]).length; return { label, done: have === c.cases.length, have, need: c.cases.length, kind: "count" }; }
       case "ai": { const v = !!(src.ai || {})[c.part]; return { label, done: v, have: v ? 1 : 0, need: 1, kind: "step" }; }
       case "improved": { const have = Object.keys((store && store.improved) || {}).length; return { label, done: have >= c.count, have: Math.min(have, c.count), need: c.count, kind: "count" }; }
       default: return { label, done: false, have: null, need: null, kind: c.type }; // teacher, external: never met online
@@ -120,7 +146,9 @@
     // Each Beyond the Podium mastery part counts once, like a lab activity.
     const btp = Object.values(sources.btp || {}).reduce((n, e) => n + ["detective", "change", "apply"].filter(k => e[k]).length, 0);
     const ai = AI_PARTS.filter(k => (sources.ai || {})[k]).length; // each AI Coaching Studio skill once
-    return { total: (lab + btp + ai) * P.labActivity + quiz * P.quiz + test * P.test + badges * P.badge, lab, btp, ai, quiz, test, badges };
+    const research = RS_PARTS.filter(k => (sources.research || {})[k]).length; // each Research Studio skill once
+    const ad = AD_CASES.filter(n => (sources.ad || {})[n]).length; // each Ad Detective case once
+    return { total: (lab + btp + ai + research + ad) * P.labActivity + quiz * P.quiz + test * P.test + badges * P.badge, lab, btp, ai, research, ad, quiz, test, badges };
   }
 
   /* ---------- badge artwork: one medallion design, a glyph per badge ---------- */
@@ -140,6 +168,7 @@
     crown: "M3 7l5 4 4-6 4 6 5-4-2 11H5zm3 13h12v2H6z",
     bridge: "M2 16h20v2H2zm2-6a8 8 0 0116 0v6h-2v-4h-2v4h-2v-5h-4v5H8v-4H6v4H4z",
     lightbulb: "M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2zM9 18h6v2H9zm1 3h4v1h-4z",
+    shield: "M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5zm-1.2 13.6l6.2-6.2-1.4-1.4-4.8 4.8-2.2-2.2L7.2 12z",
     quote: "M5 6h6v6H8c0 2 1 3 3 3v3c-4 0-6-2.5-6-6zm8 0h6v6h-3c0 2 1 3 3 3v3c-4 0-6-2.5-6-6z",
   };
   const LEVEL_TOKEN = { knowledge: "var(--u2)", applied: "var(--u5)", communication: "var(--u6)" };
@@ -155,5 +184,5 @@
     </svg>`;
   }
 
-  root.SLAchieve = { KEY, collect, track, evaluate, points, medallion, GLYPH };
+  root.SLAchieve = { KEY, collect, track, evaluate, points, medallion, GLYPH, adCases };
 })(typeof window !== "undefined" ? window : globalThis);

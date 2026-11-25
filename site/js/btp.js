@@ -110,9 +110,23 @@
     if (!m.captions.en.available) out.push({ what: "English captions", src: m.captions.en.src });
     if (!m.captions.es.available) out.push({ what: "Spanish captions", src: m.captions.es.src });
     else if (!m.captions.es.reviewed) out.push({ what: "Spanish captions (teacher review)", src: m.captions.es.src });
+    if (m.descriptions) for (const l of ["en", "es"]) { const d = m.descriptions[l]; if (d && d.available && !d.reviewed) out.push({ what: `${l === "en" ? "English" : "Spanish"} visual descriptions (teacher review)`, src: d.src }); }
     return out;
   }
-  const core = { KEY, PARTS, load, epRec, checkEvidence, sortResult, walk, applyScore, mastery, record, finishScene, submitApply, missing, stageOf, speakerLines };
+  /** Minimal WebVTT reader for the description track: [{ start, end, text }] in seconds. */
+  function parseVtt(txt) {
+    const sec = t => { const p = t.trim().split(":").map(Number); return p.length === 3 ? p[0] * 3600 + p[1] * 60 + p[2] : p[0] * 60 + p[1]; };
+    return String(txt || "").split(/\r?\n\r?\n/).map(b => b.split(/\r?\n/)).map(lines => {
+      const i = lines.findIndex(x => x.includes("-->")); if (i < 0) return null;
+      const [a, z] = lines[i].split("-->"); return { start: sec(a), end: sec(z.trim().split(/\s/)[0]), text: lines.slice(i + 1).join(" ").trim() };
+    }).filter(c => c && c.text && !isNaN(c.start));
+  }
+  /** Which video file to use: the player choice, else the lower-bandwidth copy when the browser reports a slow or data-saving connection. */
+  function pickQuality(pref, conn) {
+    if (pref === "hd" || pref === "low") return pref;
+    return conn && (conn.saveData || /(^|-)(2g|3g)$/.test(conn.effectiveType || "")) ? "low" : "hd";
+  }
+  const core = { KEY, PARTS, load, epRec, parseVtt, pickQuality, checkEvidence, sortResult, walk, applyScore, mastery, record, finishScene, submitApply, missing, stageOf, speakerLines };
   root.SLBtp = core;
 
   /* ---------- page ---------- */
@@ -160,6 +174,36 @@
     if (newly.length && SL2.achState) { try { SL2.achState(); } catch (err) {} }
   }
 
+  /* ----- film playback preferences (this browser): quality and spoken descriptions ----- */
+  const prefs = () => (isObj(rec.prefs) ? rec.prefs : (rec.prefs = {}));
+  const quality = m => (m.video720 && m.video720.available ? pickQuality(prefs().quality, root.navigator && navigator.connection) : "hd");
+  const videoSrc = m => (quality(m) === "low" ? m.video720.src : m.video.src);
+  let descCues = null, descSpoken = new Set(), lastT = 0;
+  function loadDescriptions(m) {
+    if (descCues || !m.descriptions) return;
+    descCues = [];
+    const d = es() && m.descriptions.es && m.descriptions.es.available && m.descriptions.es.reviewed ? m.descriptions.es : m.descriptions.en;
+    fetch(d.src).then(r => (r.ok ? r.text() : "")).then(t => { descCues = parseVtt(t); }).catch(() => {});
+  }
+  function onTime(v, m) {
+    if (!prefs().describe || !("speechSynthesis" in root)) return;
+    if (!descCues) { loadDescriptions(m); return; }
+    const t = v.currentTime;
+    if (t < lastT - 0.5) descSpoken = new Set([...descSpoken].filter(i => descCues[i].start < t));
+    lastT = t;
+    const i = descCues.findIndex((c, n) => !descSpoken.has(n) && t >= c.start && t < c.end + 0.5);
+    if (i < 0) return;
+    descSpoken.add(i);
+    const wasPlaying = !v.paused; v.pause();
+    const u = new SpeechSynthesisUtterance(descCues[i].text); u.lang = "en-US";
+    let resumed = false;
+    const resume = () => { if (resumed) return; resumed = true; if (wasPlaying) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } };
+    u.onend = u.onerror = resume;
+    setTimeout(resume, 2000 + descCues[i].text.split(/\s+/).length * 450); // never leave the film stuck if the computer has no voice
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }
+  document.addEventListener("timeupdate", ev => { if (ev.target && ev.target.id === "btpVideo") { const c = current(); if (c) onTime(ev.target, c.ep.media); } }, true);
+
   /* ----- views ----- */
   const wrap = inner => `<div class="wrap sl2 btp" id="sl2-main" data-notr>${inner}</div>`;
   function viewSeries() {
@@ -168,6 +212,7 @@
       <p class="sl2-kicker">${L("Beyond the Podium", "Beyond the Podium")}</p>
       <h1 class="sl2-h1">${L("Communication in Real Life", "La comunicación en la vida real")}</h1>
       <p class="sl2-lead">${L("Short films about everyday conversations. Investigate what happens, see more than one side, and practice what to say.", "Cortometrajes sobre conversaciones de todos los días. Investiga qué pasa, mira más de un lado y practica qué decir.")}</p>
+      <h2 class="sr">${L("Episodes", "Episodios")}</h2>
       <ul class="sl2-studios">${list.map(x => `<li class="sl2-card sl2-studio"><h3>${h(pick(x.title))}</h3><p>${h(pick(x.blurb))}</p><a class="btn" href="${h(x.route)}">${L("Open", "Abrir")}<span class="sr"> ${h(pick(x.title))}</span></a></li>`).join("") || `<li class="sl2-card">${L("No episodes are open yet.", "Todavía no hay episodios abiertos.")}</li>`}</ul>`);
   }
   function stepper(ep, n, cur, done) {
@@ -204,8 +249,8 @@
   function transcript(ep, open) {
     let k = 0;
     return `<details class="btp-script"${open ? " open" : ""}><summary>${L("Transcript", "Transcripción")}</summary><ul>${ep.transcript.map(l => {
-      const lab = /^l\d+$/.test(l.id) ? `${L("Line", "Línea")} ${++k} · ${h(l.speaker)}` : h(l.speaker === "Narrator" ? L("Narrator", "Narrador") : l.speaker === "End card" ? L("End card", "Pantalla final") : l.speaker);
-      return `<li><b>${lab}:</b> ${T(l)}</li>`; }).join("")}</ul></details>`;
+      const lab = /^l\d+$/.test(l.id) ? `${L("Line", "Línea")} ${++k} · ${h(l.speaker)}` : h(l.speaker === "Narrator" ? L("Narrator", "Narrador") : l.speaker === "End card" ? L("End card", "Pantalla final") : l.speaker === "Description" ? L("What the film shows", "Lo que muestra el cortometraje") : l.speaker);
+      return `<li${l.speaker === "Description" ? ' class="btp-desc"' : ""}><b>${lab}:</b> ${T(l)}</li>`; }).join("")}</ul></details>`;
   }
   function sortStage(ep, st, e, store, labels, ckey) {
     const r = sortResult(st.items, e[store]), checked = !!e.checked[ckey];
@@ -232,9 +277,12 @@
       const tracks = [cap.en.available ? `<track kind="captions" srclang="en" label="English" src="${h(cap.en.src)}"${!es() || !(cap.es.available && cap.es.reviewed) ? " default" : ""}>` : "",
         cap.es.available && cap.es.reviewed ? `<track kind="captions" srclang="es" label="Español" src="${h(cap.es.src)}"${es() ? " default" : ""}>` : ""].join("");
       return `<h2 class="sl2-h2">${L("Before you watch", "Antes de ver")}</h2><ul>${arr(st.before).map(q => `<li>${h(q)}</li>`).join("")}</ul>
-        ${v.available ? `<figure class="btp-film"><video id="btpVideo" controls preload="metadata" playsinline${m.poster.available ? ` poster="${h(m.poster.src)}"` : ""} aria-describedby="btpFilmCap"><source src="${h(v.src)}" type="video/mp4">${tracks}</video>
+        ${v.available ? `<figure class="btp-film"><video id="btpVideo" controls preload="metadata" playsinline${m.poster.available ? ` poster="${h(m.poster.src)}"` : ""} aria-describedby="btpFilmCap"><source src="${h(videoSrc(m))}" type="video/mp4">${tracks}</video>
           <figcaption id="btpFilmCap">${h(pick(ep.title))} · ${h(pick(ep.label))}${cap.en.available ? "" : ` ${L("Captions are not available yet; use the transcript.", "Los subtítulos todavía no están disponibles; usa la transcripción.")}`}</figcaption></figure>
-          <p class="sl2-noprint"><button type="button" class="btn" data-btp="replay" data-k="replay">${L("Replay from the start", "Ver otra vez desde el inicio")}</button></p>` : mediaNote()}
+          <div class="btp-row btp-player sl2-noprint"><button type="button" class="btn" data-btp="replay" data-k="replay">${L("Replay from the start", "Ver otra vez desde el inicio")}</button>
+            ${m.video720 && m.video720.available ? `<label>${L("Video quality", "Calidad del video")} <select data-btp="quality" data-k="quality"><option value="hd"${quality(m) === "hd" ? " selected" : ""}>${L("Standard (1080p, 16 MB)", "Estándar (1080p, 16 MB)")}</option><option value="low"${quality(m) === "low" ? " selected" : ""}>${L("Lower bandwidth (720p, 5 MB)", "Menos datos (720p, 5 MB)")}</option></select></label>` : ""}
+            ${m.descriptions && m.descriptions.en.available ? `<label class="btp-desc-toggle"><input type="checkbox" data-btp="describe" data-k="describe"${prefs().describe ? " checked" : ""}${"speechSynthesis" in root ? "" : " disabled"}> ${L("Read what the film shows aloud (pauses the film; uses this computer's voice)", "Leer en voz alta lo que muestra el cortometraje (pausa el video; usa la voz de esta computadora)")}</label>` : ""}</div>
+          ${m.descriptions && m.descriptions.en.available && !("speechSynthesis" in root) ? `<p class="sl2-small">${L("This browser can't read descriptions aloud. They are in the transcript below.", "Este navegador no puede leer las descripciones en voz alta. Están en la transcripción de abajo.")}</p>` : ""}` : mediaNote()}
         ${transcript(ep, !v.available)}
         <h2 class="sl2-h2">${L("After you watch", "Después de ver")}</h2>
         ${arr(st.after).map((q, i) => `<label class="btp-note"><span>${h(q)}</span><textarea rows="2" data-btp="note" data-id="after${i}" data-k="note-after${i}">${h(e.notes["after" + i] || "")}</textarea></label>`).join("")}
@@ -249,7 +297,7 @@
         <div class="btp-cases">${st.barriers.map(b => {
           const picks = Array.isArray(e.ev[b.id]) ? e.ev[b.id] : [], shown = !!e.checked["ev-" + b.id], r = checkEvidence(b, picks);
           let fb = "";
-          if (shown) fb = r.ok ? `${ICON.check} <b>${L("Supported.", "Con evidencia.")}</b> ${T(b.why)}${r.partial ? ` <span>${L("(Other lines show it too.)", "(Otras líneas también lo muestran.)")}</span>` : ""}`
+          if (shown) fb = r.ok ? `${ICON.check} <b>${b.evidence.includes("none") ? L("Right.", "Correcto.") : L("Supported.", "Con evidencia.")}</b> <span class="btp-pl">${T(b.why)}</span>${r.partial ? ` <span>${L("(Other lines show it too.)", "(Otras líneas también lo muestran.)")}</span>` : ""}`
             : r.reason === "empty" ? L("Choose at least one line, or choose that the words show no evidence.", "Elige al menos una línea, o elige que las palabras no muestran evidencia.")
             : r.reason === "mixed" ? L("You chose lines and also \"no evidence.\" Choose one or the other.", "Elegiste líneas y también \"sin evidencia\". Elige una cosa o la otra.")
             : r.reason === "missed" ? L("Look again: at least one line does show this barrier.", "Mira otra vez: al menos una línea sí muestra esta barrera.")
@@ -315,7 +363,7 @@
     return wrap(`${head(ep, x, n)}${stepper(ep, n, sid, done)}
       <section id="btpStage" class="btp-stage" aria-labelledby="btp-st"><h2 class="sl2-h2 btp-sth" id="btp-st">${L("Stage", "Etapa")} ${i + 1}: ${h(pick(st.title))}</h2>
       <div id="btpBody">${STAGE[sid](ep, st, e)}</div></section>
-      <details class="btp-vocab sl2-noprint"><summary>${L("Vocabulary and sentence starters", "Vocabulario e inicios de oración")}</summary><dl>${ep.vocab.map(v => `<dt>${h(es() ? v.es : v.en)}${SL2.supportsOn() ? ` <span class="sl2-alt" lang="${es() ? "en" : "es"}">${h(es() ? v.en : v.es)}</span>` : ""}</dt><dd>${T(v.def)}</dd>`).join("")}</dl><ul class="sl2-frames">${arr(ep.frames).map(f => `<li>${h(f)}</li>`).join("")}</ul></details>
+      <details class="btp-vocab sl2-noprint"${SL2.supportLevel && SL2.supportLevel() === "guided" ? " open" : ""}><summary>${L("Vocabulary and sentence starters", "Vocabulario e inicios de oración")}</summary><dl>${ep.vocab.map(v => `<dt>${h(es() ? v.es : v.en)}${SL2.supportsOn() ? ` <span class="sl2-alt" lang="${es() ? "en" : "es"}">${h(es() ? v.en : v.es)}</span>` : ""}</dt><dd>${T(v.def)}</dd>`).join("")}</dl><ul class="sl2-frames">${arr(ep.frames).map(f => `<li>${h(f)}</li>`).join("")}</ul></details>
       <p class="btp-nav sl2-noprint">${prev ? `<a class="btn" href="#/btp/${n}/${prev.id}">← ${h(pick(prev.title))}</a>` : `<a class="btn" href="#/btp/${n}">← ${L("Episode overview", "Resumen del episodio")}</a>`} ${next ? `<a class="btn primary" href="#/btp/${n}/${next.id}">${h(pick(next.title))} →</a>` : `<a class="btn primary" href="#/btp/${n}/summary">${L("My learning summary", "Mi resumen de aprendizaje")} →</a>`}</p>`);
   }
   function viewSummary(ep, x, n, e) {
@@ -384,6 +432,17 @@
       if (act === "sort") { e[t.dataset.store][id] = t.value; e.checked[t.dataset.ck] = false; save(); redraw(c, t.dataset.k); }
       else if (act === "ev") { const set = new Set(Array.isArray(e.ev[id]) ? e.ev[id] : []); if (t.checked) set.add(t.value); else set.delete(t.value); e.ev[id] = [...set]; e.checked["ev-" + id] = false; save(); redraw(c, t.dataset.k); }
       else if (act === "ap") { e.apply.ans[id] = Number(t.value); e.apply.checked = false; save(); redraw(c, t.dataset.k); }
+      else if (act === "quality") {
+        prefs().quality = t.value; save();
+        const v = document.getElementById("btpVideo"); if (!v) return;
+        const at = v.currentTime, playing = !v.paused, srcEl = v.querySelector("source");
+        srcEl.src = videoSrc(ep.media); v.load();
+        v.addEventListener("loadedmetadata", () => {
+          if (playing) v.addEventListener("seeked", () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); }, { once: true });
+          v.currentTime = at;
+        }, { once: true });
+      }
+      else if (act === "describe") { prefs().describe = t.checked; save(); if (t.checked) loadDescriptions(ep.media); else if ("speechSynthesis" in root) speechSynthesis.cancel(); }
       return;
     }
     if (ev.type !== "click") return;

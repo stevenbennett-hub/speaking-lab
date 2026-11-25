@@ -162,15 +162,37 @@
           <label lang="es">${L("Label (Spanish)", "Etiqueta (español)")}<input id="f-canvas-es" value="${h((ls.canvas && ls.canvas.label && ls.canvas.label.es) || "")}"></label></fieldset>
         <fieldset class="tm-pair"><legend>${L("AI permission for this lesson's work", "Permiso de IA para el trabajo de esta lección")}</legend>
           <label>${L("Level", "Nivel")} <select id="f-ai">${opt("", L(`Class default (${pick(X.aiLevel(D.aiperm.default).name)})`, `Regla general (${pick(X.aiLevel(D.aiperm.default).name)})`), !(ls.ai && ls.ai.level))}${D.aiperm.levels.map(l => opt(l.id, pick(l.name), ls.ai && ls.ai.level === l.id)).join("")}</select></label>
+          <label class="tm-inline"><input type="checkbox" id="f-aield"${ls.ai && ls.ai.eld ? " checked" : ""}> ${L("Also allow English language development prompts (explain a word, practice sentence frames) for multilingual learners", "Permitir también los prompts de desarrollo del inglés (explicar una palabra, practicar marcos de oración) para estudiantes multilingües")}</label>
           <label>${L("Note to students (English; required for expanded)", "Nota para estudiantes (inglés; obligatoria para uso ampliado)")}<input id="f-ainote-en" value="${h((ls.ai && ls.ai.note && ls.ai.note.en) || "")}"></label>
           <label lang="es">${L("Note to students (Spanish)", "Nota para estudiantes (español)")}<input id="f-ainote-es" value="${h((ls.ai && ls.ai.note && ls.ai.note.es) || "")}"></label>
           <p class="sl2-small">${L("Students see this on the Daily Learning Dashboard, in presentation mode and in the AI Coaching Studio. Showing a prompt in the studio never authorizes it.", "Los estudiantes lo ven en el panel diario, en el modo de presentación y en el Estudio de coaching con IA. Mostrar un prompt en el estudio nunca lo autoriza.")}</p></fieldset>
+        ${researchFields(ls.research)}
         <fieldset class="tm-checks"><legend>${L("Review status (you decide; nothing is approved automatically)", "Estado de revisión (tú decides; nada se aprueba solo)")}</legend>
           <label>English <select id="f-st-en">${opt("draft", L("Draft", "Borrador"), st.en !== "approved")}${opt("approved", L("Approved", "Aprobado"), st.en === "approved")}</select></label>
           <label>Español <select id="f-st-es">${opt("draft", L("Draft", "Borrador"), st.es !== "approved")}${opt("approved", L("Approved", "Aprobado"), st.es === "approved")}</select></label></fieldset>
         <p class="sl2-btns"><button type="submit" class="btn primary">${L("Save draft", "Guardar borrador")}</button> <button type="button" class="btn" data-tm-revert="${k}">${L("Undo my changes to this lesson", "Deshacer mis cambios en esta lección")}</button></p>
         <p class="sl2-small">${L("Saving keeps the draft in this browser only. Use Publish to export it.", "Guardar mantiene el borrador solo en este navegador. Usa Publicar para exportarlo.")}</p>
       </form>`;
+  }
+  /* Research assignment settings (only for speeches that need outside sources; Research Portfolio reads them). */
+  function researchFields(r) {
+    const on = !!r, ids = ["informative", "persuasive", "demonstration"];
+    return `<fieldset class="tm-pair tm-research"><legend>${L("Research assignment (optional)", "Tarea de investigación (opcional)")}</legend>
+      <label class="tm-inline"><input type="checkbox" id="f-rs-on"${on ? " checked" : ""}> ${L("This lesson assigns a speech that needs outside sources", "Esta lección asigna un discurso que necesita fuentes externas")}</label>
+      <label>${L("Assignment id (same id = same assignment in the portfolio)", "Id de la tarea (mismo id = misma tarea en el portafolio)")}<input id="f-rs-id" list="f-rs-ids" value="${h((r && r.id) || "")}" placeholder="persuasive"><datalist id="f-rs-ids">${ids.map(i => `<option value="${i}">`).join("")}</datalist></label>
+      <label>${L("Required sources", "Fuentes requeridas")}<input id="f-rs-n" type="number" min="0" max="20" step="1" value="${r && Number.isInteger(r.sources) ? r.sources : 3}"></label>
+      <p class="sl2-small">${L("Default 3 credible sources. Leave the box unchecked for speeches without outside sources.", "Por defecto, 3 fuentes confiables. Deja la casilla sin marcar para discursos sin fuentes externas.")}</p></fieldset>
+      ${fieldPair("f-rs-name", L("Research assignment name", "Nombre de la tarea de investigación"), r && r.name)}
+      ${fieldPair("f-rs-expect", L("Research expectations (kinds of sources, local source, dates…)", "Expectativas de investigación (tipos de fuentes, fuente local, fechas…)"), r && r.expect)}
+      ${fieldPair("f-rs-written", L("Written citation expectations (blank = class default: APA-style author–date for high school, APA 7 for college)", "Expectativas de cita escrita (en blanco = regla de la clase: autor y fecha estilo APA en preparatoria, APA 7 en universidad)"), r && r.written)}
+      ${fieldPair("f-rs-oral", L("Oral citation requirements (blank = class default)", "Requisitos de cita oral (en blanco = regla de la clase)"), r && r.oral)}
+      ${fieldPair("f-rs-portfolio", L("Research Portfolio instructions for students", "Instrucciones del portafolio para los estudiantes"), r && r.portfolio)}`;
+  }
+  function readResearch() {
+    if (!(document.getElementById("f-rs-on") || {}).checked) return null;
+    const n = parseInt(val("f-rs-n"), 10), r = { id: val("f-rs-id").toLowerCase(), sources: Number.isInteger(n) ? n : 3 };
+    for (const [f, id] of [["name", "f-rs-name"], ["expect", "f-rs-expect"], ["written", "f-rs-written"], ["oral", "f-rs-oral"], ["portfolio", "f-rs-portfolio"]]) { const v = pairVal(id); if (v.en || v.es) r[f] = v; }
+    return r;
   }
   function saveLesson(k) {
     const old = W.lessons.days[k], ls = { ...old };
@@ -181,8 +203,10 @@
     const acts = [...document.querySelectorAll('.tm-form input[name="act"]:checked')].map(x => x.value), feat = [...document.querySelectorAll('.tm-form input[name="feat"]:checked')].map(x => x.value);
     if (acts.length) ls.activities = acts; else delete ls.activities;
     if (feat.length) ls.featured = feat; else delete ls.featured;
+    const research = readResearch(); if (research) ls.research = research; else delete ls.research;
     const aiv = val("f-ai"), an = { en: val("f-ainote-en"), es: val("f-ainote-es") };
-    if (aiv) { ls.ai = { level: aiv }; if (an.en || an.es) ls.ai.note = an; } else delete ls.ai;
+    const eld = !!(document.getElementById("f-aield") || {}).checked;
+    if (aiv || eld) { ls.ai = { level: aiv || D.aiperm.default }; if (eld) ls.ai.eld = true; if (an.en || an.es) ls.ai.note = an; } else delete ls.ai;
     const url = val("f-canvas-url"); if (url) ls.canvas = { url, label: { en: val("f-canvas-en"), es: val("f-canvas-es") } }; else delete ls.canvas;
     ls.status = M.reviewAfterEdit({ ...old, status: M.statusOf(W.lessons, k) }, ls, { en: val("f-st-en") || "draft", es: val("f-st-es") || "draft" }, M.LESSON_TEXT);
     const reset = ["en", "es"].filter(l => val(`f-st-${l}`) === "approved" && ls.status[l] === "draft");
@@ -325,7 +349,7 @@
             <p class="pr-small">${h(pick(j.expect || X.DEFAULT_EXPECT))} · ${L("Then stand and share with someone new:", "Luego ponte de pie y comparte con alguien nuevo:")} ${h(pick(j.share))}</p>` : `<h2>${L("No journal today", "Hoy no hay diario")}</h2>`}</section>
           ${j ? `<section><h2>${L("Vocabulary", "Vocabulario")}</h2><p>${j.vocab.en.map((w, i) => h(es() ? j.vocab.es[i] : w)).join(" · ")}</p>
             <h2>${L("Sentence starters", "Inicios de oración")}</h2><ul>${j.frames.en.map((f, i) => `<li>${h(es() ? j.frames.es[i] : f)}</li>`).join("")}</ul></section>` : ""}
-          ${(() => { const lv = X.aiLevel(mod.ai.level); return lv ? `<section class="pr-ai"><h2>${L("AI on today's work", "IA en el trabajo de hoy")}</h2><p><b>${h(pick(lv.name))}</b>${mod.ai.note ? ` · ${h(pick(mod.ai.note))}` : ""}</p></section>` : ""; })()}
+          ${(() => { const lv = X.aiLevel(mod.ai.level); return lv ? `<section class="pr-ai"><h2>${L("AI on today's work", "IA en el trabajo de hoy")}</h2><p><b>${h(pick(lv.name))}</b>${mod.ai.eld ? ` · ${h(pick(D.aiperm.eld.name))}` : ""}${mod.ai.note ? ` · ${h(pick(mod.ai.note))}` : ""}</p></section>` : ""; })()}
           <section><h2>${L("Agenda", "Agenda")}</h2><ol><li>${L("Journal: 10 minutes, then stand and share", "Diario: 10 minutos y luego compartir")}</li>${mod.agenda.map(a => `<li>${h(a.t)}</li>`).join("")}${mod.exit ? `<li>${h(pick(mod.exit))}</li>` : ""}</ol></section>
         </div>`;
     return `<div class="pr" id="sl2-main" data-notr style="--pfs: ${size}px">
@@ -349,7 +373,7 @@
     return `<section class="sp-block"><h2>${h(X.fmtLong(mod.day))} · ${h(groupLabel(g, false))} (${h(GROUPS[g].d[0])}, ${L("90-minute block", "bloque de 90 minutos")})</h2>
       <p><b>${L("Unit", "Unidad")} ${mod.unit}, ${mod.week === 0 ? L("getting started", "primeros días") : `${L("week", "semana")} ${mod.week}`}:</b> ${h(mod.title)}${mod.extendOf ? ` (${L("continues", "continúa")} ${h(X.fmtShort(mod.extendOf))})` : ""}</p>
       <h3>${L("Objectives", "Objetivos")}</h3><ul>${mod.objectives.map(o => `<li>${h(pick(o.learn))}<br><i>${L("Language:", "Lenguaje:")}</i> ${h(pick(o.lang))}</li>`).join("")}</ul>
-      ${(() => { const lv = X.aiLevel(mod.ai.level); return lv ? `<p><b>${L("AI permission for today's work:", "Permiso de IA para el trabajo de hoy:")}</b> ${h(pick(lv.name))}${mod.ai.note ? ` (${h(pick(mod.ai.note))})` : ""}</p>` : ""; })()}
+      ${(() => { const lv = X.aiLevel(mod.ai.level); return lv ? `<p><b>${L("AI permission for today's work:", "Permiso de IA para el trabajo de hoy:")}</b> ${h(pick(lv.name))}${mod.ai.eld ? `; ${h(pick(D.aiperm.eld.name))}` : ""}${mod.ai.note ? ` (${h(pick(mod.ai.note))})` : ""}</p>` : ""; })()}
       <h3>${L("Journal (start of class)", "Diario (inicio de clase)")}</h3>
       ${j ? `<p>${L(`Display Journal #${m.number}. Students write by hand in their journals for about 10 minutes (no devices needed). Then they stand and share with someone new.`, `Muestre el Diario #${m.number}. Los estudiantes escriben a mano unos 10 minutos. Luego se ponen de pie y comparten con alguien nuevo.`)}</p>
         <p class="sp-quote">${h(pick(j.prompt))}</p><p><i>${L("Stand and share:", "Compartir:")}</i> ${h(pick(j.share))}</p>${j.alt ? `<p><i>${L("Students who prefer not to share something personal:", "Si prefieren no compartir algo personal:")}</i> ${h(pick(j.alt))}</p>` : ""}`

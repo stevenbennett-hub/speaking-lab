@@ -11,14 +11,16 @@
       "title": { "en": "Ad Detective: The Art of Persuasion", "es": "Ad Detective: El arte de la persuasión" },
       "blurb": { "en": "Investigate six fictional ads for persuasive appeals, logical fallacies, misleading claims and ethical persuasion.", "es": "Investiga seis anuncios ficticios para encontrar apelaciones persuasivas, falacias lógicas, afirmaciones engañosas y persuasión ética." } },
     { "id": "research-studio", "kind": "studio", "status": "available", "units": [2, 3, 4, 5, 6], "introduces": 2, "audience": "all", "lab": "rlab",
+      "route": "#/research", "content": "data/research-studio.json",
       "title": { "en": "Research & Academic Integrity", "es": "Investigación e integridad académica" },
-      "blurb": { "en": "From evidence to credibility: find and judge sources, cite them aloud and in writing, and avoid plagiarism. Opens the Research & Source Lab for now; the full studio comes later.", "es": "De la evidencia a la credibilidad: encuentra y evalúa fuentes, cítalas en voz alta y por escrito, y evita el plagio. Por ahora abre el Laboratorio de investigación y fuentes; el estudio completo llegará después." } },
+      "blurb": { "en": "From Evidence to Credibility: Source Detective, Evidence Explorer, Plagiarism Investigator, Paraphrasing Workshop, Citation Builder and your Speech Research Portfolio. Works with the Research & Source Lab.", "es": "De la evidencia a la credibilidad: Detective de fuentes, Explorador de evidencia, Investigador de plagio, Taller de paráfrasis, Constructor de citas y tu Portafolio de investigación. Funciona junto con el Laboratorio de investigación y fuentes." } },
     { "id": "ai-coach", "kind": "studio", "status": "available", "units": [1, 2, 3, 4, 5, 6], "introduces": 1, "audience": "all",
       "route": "#/ai", "content": "data/ai-studio.json",
       "title": { "en": "AI Coaching Studio: Your Thinking. Your Voice.", "es": "Estudio de coaching con IA: Tu pensamiento. Tu voz." },
       "blurb": { "en": "AI is a coach, not an author. Learn how AI works and fails, practice keeping ownership of your thinking, fact-check AI, find coaching prompts and fill in your AI-use disclosure. Each assignment's AI permission decides what you may use.", "es": "La IA es un entrenador, no un autor. Aprende cómo funciona y falla la IA, practica conservar tu pensamiento, verifica a la IA, encuentra prompts de coaching y completa tu declaración de uso de IA. El permiso de IA de cada tarea decide qué puedes usar." } },
-    { "id": "apa-academy", "kind": "studio", "status": "coming", "units": [2, 3, 6], "introduces": 2, "audience": "col",
+    { "id": "apa-academy", "kind": "studio", "status": "available", "units": [2, 3, 6], "introduces": 2, "audience": "col",
+      "route": "#/research/apa", "content": "data/research-studio.json",
       "title": { "en": "APA Academy", "es": "Academia APA" },
-      "blurb": { "en": "Coming soon for the authorized college pathway: APA 7 citations and references, checked against official APA guidance.", "es": "Próximamente para el nivel universitario autorizado: citas y referencias APA 7, revisadas con la guía oficial de APA." } }
+      "blurb": { "en": "For the authorized college pathway: APA 7 citations and references, each rule checked against official APA Style guidance, with correction and matching challenges. Not concurrent enrollment or college credit.", "es": "Para el nivel universitario autorizado: citas y referencias APA 7, cada regla verificada con la guía oficial de APA Style, con retos de corrección y de relacionar. No es inscripción simultánea ni crédito universitario." } }
   ]
 }

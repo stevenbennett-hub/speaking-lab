@@ -8,6 +8,9 @@
    preview behavior by accident. Preview behavior: all six high school units open, any date can be viewed, a
    "Development Preview" banner, and its own saved progress (every localStorage key is stored under "slpreview:",
    so preview testing never reads or changes students' real progress on the same github.io address).
+   Links to Ad Detective (a separate site on the same github.io address) go to its own preview address
+   (/ad-detective-preview/) instead, so preview testing never writes students' real Ad Detective progress; until that
+   preview site exists those links show GitHub's 404 page (see docs/preview/ad-detective-preview.md).
    The college gate and the teacher-view code work exactly as in production. Like every gate on this site, this is
    a classroom convenience, not security. */
 (function (root) {
@@ -35,11 +38,20 @@
     Object.defineProperty(proto, "__slpreview", { value: true });
     return true;
   }
-  var B = { PREFIX: PREFIX, previewPlace: previewPlace, decide: decide, namespaceStorage: namespaceStorage, preview: false };
+  var AD_LIVE = "https://stevenbennett-hub.github.io/ad-detective/", AD_PREVIEW = "https://stevenbennett-hub.github.io/ad-detective-preview/";
+  /** Preview only: the Ad Detective address → its preview address (anything else unchanged). */
+  function adHref(href) { return typeof href === "string" && href.indexOf(AD_LIVE) === 0 ? AD_PREVIEW + href.slice(AD_LIVE.length) : href; }
+  var B = { PREFIX: PREFIX, previewPlace: previewPlace, decide: decide, namespaceStorage: namespaceStorage, adHref: adHref, AD_LIVE: AD_LIVE, AD_PREVIEW: AD_PREVIEW, preview: false };
   B.activate = function () {
     try { namespaceStorage(root.localStorage, root.Storage && root.Storage.prototype); } catch (e) {}
     B.preview = true;
-    if (root.document) root.document.documentElement.setAttribute("data-build", "preview");
+    if (root.document) {
+      root.document.documentElement.setAttribute("data-build", "preview");
+      // Rewrite an Ad Detective link just before it is followed (click, middle-click, keyboard or "open in new tab").
+      ["click", "auxclick", "contextmenu"].forEach(function (ev) {
+        root.document.addEventListener(ev, function (e) { var a = e.target && e.target.closest && e.target.closest("a[href]"); if (a && adHref(a.href) !== a.href) a.href = adHref(a.href); }, true);
+      });
+    }
   };
   root.SLBuild = B;
 })(typeof window !== "undefined" ? window : globalThis);

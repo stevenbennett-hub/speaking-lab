@@ -912,12 +912,14 @@
      "en": [
       "Use the AI-use disclosure in this studio.",
       "Be specific: \"grammar check on my final draft.\"",
-      "Disclosure protects you; hiding use does not."
+      "Disclosure protects you; hiding use does not.",
+      "Disclosing or citing AI doesn't make a prohibited use allowed."
      ],
      "es": [
       "Usa la declaración de uso de IA de este estudio.",
       "Sé específico: \"revisión de gramática de mi borrador final\".",
-      "Declarar te protege; ocultar el uso no."
+      "Declarar te protege; ocultar el uso no.",
+      "Declarar o citar la IA no convierte en permitido un uso prohibido."
      ]
     },
     "check": {
@@ -1561,7 +1563,8 @@
     "text": {
      "en": "Explain [word or concept] to a {level} student in plain language with one original example that is NOT about my speech topic. Then ask me to explain it back in my own words, and tell me what I got right or missed. Do not write anything for my speech.",
      "es": "Explícale [palabra o concepto] a un estudiante de {level} con lenguaje sencillo y un ejemplo original que NO sea sobre el tema de mi discurso. Luego pídeme que te lo explique con mis propias palabras y dime qué entendí bien o qué me faltó. No escribas nada para mi discurso."
-    }
+    },
+    "eld": true
    },
    {
     "id": "p-anxiety",
@@ -1676,7 +1679,8 @@
     "text": {
      "en": "I am learning English and practicing for a speech on {topic}. Teach me three general sentence frames for speeches (for example \"One reason is ___ because ___\"), with the meaning in Spanish. Then ask me to say my own sentence with each frame, and give me feedback on my English. Do not write sentences about my topic for me.",
      "es": "Estoy aprendiendo inglés y practico para un discurso sobre {topic}. Enséñame tres marcos de oración generales para discursos (por ejemplo \"One reason is ___ because ___\"), con el significado en español. Luego pídeme decir mi propia oración con cada marco y dame comentarios sobre mi inglés. No escribas oraciones sobre mi tema por mí."
-    }
+    },
+    "eld": true
    }
   ]
  },
@@ -2363,8 +2367,8 @@
    }
   },
   "research": {
-   "en": "Practice more in the Research & Source Lab (\"Evaluating AI-generated information\"). The full Research & Academic Integrity Studio comes later.",
-   "es": "Practica más en el Laboratorio de investigación y fuentes (\"Evaluar información generada por IA\"). El Estudio completo de investigación e integridad académica llegará después."
+   "en": "Keep going in the Research & Academic Integrity Studio: Source Detective, Evidence Explorer and the Plagiarism Investigator. The Research & Source Lab (\"Evaluating AI-generated information\") has more practice.",
+   "es": "Sigue en el Estudio de investigación e integridad académica: Detective de fuentes, Explorador de evidencia e Investigador de plagio. El Laboratorio de investigación y fuentes (\"Evaluar información generada por IA\") tiene más práctica."
   }
  },
  "disclosure": {
@@ -2455,6 +2459,10 @@
   "student": {
    "en": "Your work shows it's yours through your process: your drafts, this disclosure, and being able to explain your choices out loud. Mr. Bennett may ask you to talk through your work; that's normal.",
    "es": "Tu trabajo muestra que es tuyo a través de tu proceso: tus borradores, esta declaración y poder explicar tus decisiones en voz alta. El Sr. Bennett puede pedirte que expliques tu trabajo; es normal."
+  },
+  "citeNote": {
+   "en": "Citing or disclosing AI never makes AI use allowed. Check your assignment's AI permission first; disclosure is for use that was allowed.",
+   "es": "Citar o declarar el uso de IA nunca lo convierte en permitido. Revisa primero el permiso de IA de tu tarea; la declaración es para un uso que estaba permitido."
   }
  },
  "vocab": [

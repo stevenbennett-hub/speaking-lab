@@ -97,7 +97,7 @@ test("permissions: the assignment decides which prompts may be copied", () => {
   assert.equal(AI.allowed(L, "none", "expanded"), false, "nothing ever needs level 'none'");
   assert.equal(AI.allowed(L, "coach", "made-up"), false);
   const src = read("../site/js/aistudio.js");
-  assert.match(src, /if \(!it \|\| !\(p\.teacher \|\| allowed\(D\.aiperm\.levels, it\.level, p\.level\)\)\) return; \/\/ never copies/);
+  assert.match(src, /if \(!it \|\| !\(p\.teacher \|\| allowedPrompt\(D\.aiperm\.levels, it, p\)\)\) return; \/\/ never copies/);
   assert.match(src, /A prompt being in this studio does not mean you may use it\./);
   // Lesson model, dashboard, presentation and the substitute plan all show the setting.
   const student = read("../site/js/student.js"), teacher = read("../site/js/teacher.js");
@@ -225,4 +225,24 @@ test("the studio is available in all six units and reachable from the dashboard"
   assert.equal(x.status, "available"); assert.deepEqual(x.units, [1, 2, 3, 4, 5, 6]); assert.equal(x.route, "#/ai");
   assert.equal(x.title.en, "AI Coaching Studio: Your Thinking. Your Voice.");
   assert.match(read("../site/js/student.js"), /href="#\/ai"/);
+});
+
+test("ELD flexibility only when Mr. Bennett explicitly allows it (slice 8 policy decision)", () => {
+  const L = P.levels, eldItems = C.prompts.items.filter(p => p.eld).map(p => p.id).sort();
+  assert.deepEqual(eldItems, ["p-eld-frames", "p-vocab"]);
+  const vocab = C.prompts.items.find(p => p.id === "p-vocab"), frames = C.prompts.items.find(p => p.id === "p-eld-frames"), outline = C.prompts.items.find(p => p.id === "p-outline");
+  assert.equal(vocab.level, "coach", "vocabulary explanations still need permission by default");
+  assert.equal(AI.allowedPrompt(L, vocab, { level: "grammar" }), false);
+  assert.equal(AI.allowedPrompt(L, vocab, { level: "grammar", eld: true }), true);
+  assert.equal(AI.allowedPrompt(L, frames, { level: "grammar", eld: true }), true);
+  assert.equal(AI.allowedPrompt(L, outline, { level: "grammar", eld: true }), false, "ELD support never opens other coaching");
+  assert.equal(AI.allowedPrompt(L, vocab, { level: "none", eld: true }), false, "not permitted means not permitted");
+  assert.equal(AI.allowedPrompt(L, vocab, { level: "coach" }), true);
+  bi(P.eld.name, "eld"); bi(P.eld.explain, "eld");
+  const student = read("../site/js/student.js");
+  assert.match(student, /const eld = top\.ai\.level !== "none" && set\.every\(x => x\.ai\.eld === true\);/);
+  assert.match(read("../site/js/teacher.js"), /id="f-aield"/);
+  // The Ethics Lab still teaches the default policy: vocabulary help and brainstorming need permission.
+  assert.equal(C.ethics.scenarios.find(s => s.id === "e4").answer, "ask");
+  assert.equal(C.ethics.scenarios.find(s => s.id === "e10").answer, "ask");
 });
